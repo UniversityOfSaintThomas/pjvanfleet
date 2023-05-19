@@ -1,0 +1,8 @@
+<pre name='i_27_in' id='i_27_in' class='IFT'>g[t_] := 4 Sin[4 Pi*t] - Sign[t - .3] - Sign[.72 - t];
+n = 1000;
+v = g[Range[0, 1 - 1/n, 1/n]];
+iterations = 2;
+w = WTFull[v, Daub[4], NumIterations -&gt; iterations];
+FullWaveletVectorPlot[w, 
+ Iteration -&gt; {{1, 1, 2}, {2, 1, 2}, {2, 2, 2}}, Dimming -&gt; White, 
+ ImageSize -&gt; 200]</pre><div class='IFU'><a name='8462139'></a>http://wolfram.com/xid/0jqhxp1jfkkb02fxgadkjiduuygd66-fbnpp</div>

@@ -1,0 +1,2 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>SplineFilters[2, 2]
+SplineFilters[3, 5]</pre><div class='IFU'><a name='481015672'></a>http://wolfram.com/xid/0ejjx9peoqvmt3kgawgibmuza-h8n4cq</div>

@@ -1,0 +1,8 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;benches.png&quot;;
+A = ImageRead[file, Resize -&gt; {128, 192}];
+ImagePlot[A]
+wt = HWT[A];
+WaveletPlot[wt, Iteration -&gt; {{1, 1, 1}}, ChannelColor -&gt; Green, 
+ Dimming -&gt; Yellow, DimmingRange -&gt; {0, 255}]
+WaveletPlot[wt, Iteration -&gt; {{1, 1, 1}}, ChannelColor -&gt; Green, 
+ Dimming -&gt; Yellow, DimmingRange -&gt; {0, 100}]</pre><div class='IFU'><a name='84088413'></a>http://wolfram.com/xid/0istl84i27gzdwumfskoo8ntm-boclbj</div>

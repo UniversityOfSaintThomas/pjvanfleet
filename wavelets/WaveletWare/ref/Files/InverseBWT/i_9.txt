@@ -1,0 +1,7 @@
+<pre name='i_9_in' id='i_9_in' class='IFT'>v = Range[24];
+iterations -&gt; 3;
+wt = BWT[v, SplineFilters[2, 2], NumIterations -&gt; iterations];
+WaveletVectorPlot[wt, NumIterations -&gt; iterations]
+iwt = InverseBWT[wt, SplineFilters[2, 2], NumIterations -&gt; iterations];
+(* Mean Squared Error *)
+MSE[v, iwt]</pre><div class='IFU'><a name='377333314'></a>http://wolfram.com/xid/0ju408za6tmbiu55xzgpbugr-gixui8</div>

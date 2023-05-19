@@ -1,0 +1,12 @@
+<pre name='i_41_in' id='i_41_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;benches.png&quot;;
+A = ImageRead[file, Resize -&gt; {256, 384}];
+ImagePlot[A]
+wt = HWT[A, NumIterations -&gt; 2];
+WaveletPlot[wt, NumIterations -&gt; 2, 
+ Iteration -&gt; {{2, 1, 1}, {2, 1, 2}, {2, 2, 1}, {2, 2, 2}}]
+WaveletRegionPlot[wt, {{2, 1, 1}, {2, 1, 2}, {2, 2, 1}, {2, 2, 2}}, 
+ NumIterations -&gt; 2]
+(* Click on the mouse to scroll through the different regions of the \
+last plot *)
+WaveletRegionPlot[wt, {{2, 1, 1}, {2, 1, 2}, {2, 2, 1}, {2, 2, 2}}, 
+ NumIterations -&gt; 2, PresentationStyle -&gt; FlipView]</pre><div class='IFU'><a name='104379396'></a>http://wolfram.com/xid/0533vsu7qbb0ajiwwqawq9kz22kl8rc4uv1a9crxfvnihty6rtcsrbm-b0fhxy</div>

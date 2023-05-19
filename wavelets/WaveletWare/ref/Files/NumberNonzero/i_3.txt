@@ -1,0 +1,2 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>v = RandomInteger[{-1, 1}, 20]
+NumberNonzero[v]</pre><div class='IFU'><a name='596698103'></a>http://wolfram.com/xid/0byt3rd1cvx9wr2qw27dkc2rij8-j5jlhl</div>

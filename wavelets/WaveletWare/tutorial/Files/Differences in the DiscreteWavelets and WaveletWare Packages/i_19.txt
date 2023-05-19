@@ -1,0 +1,6 @@
+<pre name='i_19_in' id='i_19_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;waves.png&quot;;
+A = ImageRead[file, Resize -&gt; {256, 384}];
+ImagePlot[A]
+ImagePlot[A, PlotTogether -&gt; False]
+ImagePlot[A, PlotTogether -&gt; False, 
+ ChannelColor -&gt; {Red, Green, Blue}]</pre><div class='IFU'><a name='95035499'></a>http://wolfram.com/xid/0533vsu7qbb0ajiwwqawq9kz22kl8rc4uv1a9crxfvnihty6rtcsrbm-buu749</div>

@@ -1,0 +1,535 @@
+(************** Content-type: application/mathematica **************
+                     CreatedBy='Mathematica 5.2'
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used with any Mathematica-compatible
+application, such as Mathematica, MathReader or Publicon. The data
+for the notebook starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do
+one of the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the
+  application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing
+the word CacheID, otherwise Mathematica-compatible applications may
+try to use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+*******************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[     14075,        428]*)
+(*NotebookOutlinePosition[     14841,        454]*)
+(*  CellTagsIndexPosition[     14797,        450]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Haar Edge Detection", "Title"],
+
+Cell["\<\
+Wavelet Workshop
+June 7-10, 2006
+University of St. Thomas\
+\>", "Subtitle"],
+
+Cell["Objectives", "Subsubtitle"],
+
+Cell[TextData[{
+  "The purpose of this notebook is to show you how to perform naive edge \
+detection using the two-dimensional Discrete Haar Wavelet Transform.\n\nThe \
+notebook also contains a color image compression lab that makes up part of ",
+  StyleBox["Computer Session One",
+    FontWeight->"Bold"],
+  "."
+}], "Text"],
+
+Cell[CellGroupData[{
+
+Cell["WaveletFunctions", "Subsubtitle",
+  InitializationCell->True],
+
+Cell[TextData[{
+  "This cell initializes every time you open the notebook.  It loads the ",
+  StyleBox["Mathematica",
+    FontSlant->"Italic"],
+  " package ",
+  StyleBox["WaveletFunctions",
+    FontFamily->"Courier"],
+  " for use in subsequent computations."
+}], "Text",
+  InitializationCell->True],
+
+Cell[BoxData[{
+    \(<< WaveletFunctions`WaveletFunctions`\), "\n", 
+    \(<< LinearAlgebra`MatrixManipulation`\), "\[IndentingNewLine]", 
+    \(\(\(<< Graphics`Graphics`\)\(\[IndentingNewLine]\)
+    \)\), "\[IndentingNewLine]", 
+    \(\(flashdir = "\<E:/WaveletWorkshop06/Images/\>";\)\), "\
+\[IndentingNewLine]", 
+    \(\(Print["\<The flash drive directory is \>", 
+        flashdir, "\<.\>"];\)\), "\[IndentingNewLine]", 
+    \(\(imgurl = \
+"\<http://cam.mathlab.stthomas.edu/pvf/Math316/TestImages/\>";\)\), "\
+\[IndentingNewLine]", 
+    \(\(Print["\<The URL for images is \>", imgurl, "\<.\>"];\)\)}], "Input",
+  InitializationCell->True]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Help on WaveletFunctions", "Subsubtitle"],
+
+Cell[TextData[{
+  "If you ever need help with ",
+  StyleBox["WaveletFunctions",
+    FontFamily->"Courier"],
+  ", go to ",
+  StyleBox["Help",
+    FontSlant->"Italic"],
+  ", then ",
+  StyleBox["Help Browser",
+    FontSlant->"Italic"],
+  ", and click on ",
+  StyleBox["AddOns & Links",
+    FontSlant->"Italic"],
+  ".  If you scroll down you will find ",
+  StyleBox["WaveletFunctions",
+    FontFamily->"Courier"],
+  ".  "
+}], "Text"],
+
+Cell[CellGroupData[{
+
+Cell["Load an Image and Compute the Haar Wavelet Transform", "Section"],
+
+Cell["\<\
+We begin by loading the snoopy_gray.jpg image and computing it's Haar Wavelet \
+Transform.  \
+\>", "Text"],
+
+Cell[BoxData[{
+    \(\(\(A = 
+        ReadImage[flashdir <> "\<snoopy_gray.jpg\>", PrintInfo \[Rule] True, 
+          PowersOfTwo \[Rule] 3];\)\(\[IndentingNewLine]\)
+    \)\), "\[IndentingNewLine]", 
+    \(\(ImagePlot[A];\)\), "\[IndentingNewLine]", 
+    \(\({rows, cols} = Dimensions[A];\)\)}], "Input"],
+
+Cell[BoxData[{
+    \(\(its = 2;\)\), "\[IndentingNewLine]", 
+    \(\(wt = 
+        WT2D[A, N[Haar[]], 
+          NumIterations \[Rule] its];\)\), "\[IndentingNewLine]", 
+    \(\(WaveletDensityPlot[wt, NumIterations \[Rule] its, 
+        DivideLines \[Rule] True, 
+        DivideLinesColor \[Rule] Coral];\)\)}], "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Converting the Blur Portion to the Zero Matrix", "Section"],
+
+Cell[TextData[{
+  "If you are familiar with ",
+  StyleBox["Mathematica",
+    FontSlant->"Italic"],
+  ", then you probably have used the ",
+  StyleBox["SubMatrix",
+    FontWeight->"Bold"],
+  ", ",
+  StyleBox["BlockMatrix",
+    FontWeight->"Bold"],
+  ", or ",
+  StyleBox["ZeroMatrix",
+    FontWeight->"Bold"],
+  " commands.    These commands will be helpful since you want to convert the \
+upper left block of the wavelet transform to a matrix consisting of 0's.\n\n\
+Rather than use those commands, there are a couple of ",
+  StyleBox["UNDOCUMENTED ",
+    FontWeight->"Bold"],
+  "commands in WaveletFunctions that will assist you with splitting out \
+various portions of the wavelet transform.\n\nThe command ",
+  StyleBox["WaveletMatrixToList",
+    FontWeight->"Bold"],
+  " takes a wavelet transform and the ",
+  StyleBox["NumIterations",
+    FontWeight->"Bold"],
+  " directive and returns a list that stores various parts of the wavelet \
+transform.  It's best to explain via example:\n\nSuppose wt is the wavelet \
+transform of some image using 2 iterations and you issue the command"
+}], "Text"],
+
+Cell[BoxData[
+    \(wtlist = WaveletMatrixToList[wt, NumIterations \[Rule] 2]\)], "Text"],
+
+Cell[TextData[{
+  "\nThen the output is a list with three elements.  The first element of the \
+list is the lowpass portion of the transform.  The second element of the list \
+is a list of three matrices - the vertical, horizontal, and diagonal portions \
+of the second iteration of the transform.  The third element of the list is \
+also a list of three matrices - the vertical, horizontal, and diagonal \
+portions of the first iteration of the transform.\n\nThe command ",
+  StyleBox["WaveletListToMatrix",
+    FontWeight->"Bold"],
+  " converts a list of transform portions back to a matrix.  \n\nThe reason \
+we use this is we can convert to a list, drop the first element and replace \
+it with a zero matrix, and then convert back.\n"
+}], "Text"],
+
+Cell[BoxData[{
+    \(\(wtlist = 
+        WaveletMatrixToList[wt, 
+          NumIterations \[Rule] its];\)\), "\[IndentingNewLine]", 
+    \(Length[wtlist]\)}], "Input"],
+
+Cell[TextData[{
+  "Here are some plots to help you understand the components of ",
+  StyleBox["wtlist",
+    FontWeight->"Bold"],
+  "."
+}], "Text"],
+
+Cell[BoxData[
+    \(\(\(\[IndentingNewLine]\)\(\(ImagePlot[wtlist[\([1]\)], 
+        LinearScaling \[Rule] True];\)\[IndentingNewLine]\[IndentingNewLine]
+    \(ImagePlot[wtlist[\([2, 1]\)], 
+        LinearScaling \[Rule] True];\)\[IndentingNewLine]\[IndentingNewLine]
+    \(ImagePlot[wtlist[\([3, 2]\)], 
+        LinearScaling \[Rule] True];\)\)\)\)], "Input"],
+
+Cell[TextData[{
+  "We drop the first element of ",
+  StyleBox["wtlist",
+    FontWeight->"Bold"],
+  " and replace it with a zero matrix of appropriate size:"
+}], "Text"],
+
+Cell[BoxData[{
+    \(\(z = ZeroMatrix[rows/2^its, cols/2^its];\)\), "\[IndentingNewLine]", 
+    \(\(tmp = Drop[wtlist, 1];\)\), "\[IndentingNewLine]", 
+    \(\(\(wtlist = Prepend[tmp, z];\)\(\[IndentingNewLine]\)
+    \)\), "\[IndentingNewLine]", 
+    \(\(newwt = 
+        WaveletListToMatrix[wtlist, 
+          NumIterations \[Rule] its];\)\), "\[IndentingNewLine]", 
+    \(\(WaveletDensityPlot[newwt, NumIterations \[Rule] its, 
+        DivideLines \[Rule] True, \ 
+        DivideLinesColor \[Rule] Coral];\)\)}], "Input"],
+
+Cell["\<\
+Now we simply apply the inverse Haar wavelet transform to obtain the edges:\
+\>", "Text"],
+
+Cell[BoxData[{
+    \(\(edges = 
+        IWT2D[newwt, N[Haar[]], 
+          NumIterations \[Rule] its];\)\), "\[IndentingNewLine]", 
+    \(\(ImagePlot[edges, LinearScaling \[Rule] True];\)\)}], "Input"],
+
+Cell["\<\
+If you want a better idea of where the nonzero pixels are, you can try \
+something radical like what's done in the cell below.\
+\>", "Text"],
+
+Cell[BoxData[{
+    \(\(bright[t_] := 
+        Which[t \[Equal] 0, 0, True, 255];\)\), "\[IndentingNewLine]", 
+    \(\(s = Flatten[edges];\)\), "\[IndentingNewLine]", 
+    \(\(newedges = Map[bright, s];\)\), "\[IndentingNewLine]", 
+    \(\(newedges = Partition[newedges, cols];\)\), "\[IndentingNewLine]", 
+    \(\(ImagePlot[newedges, LinearScaling \[Rule] True];\)\)}], "Input"],
+
+Cell["\<\
+Of course, we don't want to keep ALL the nonzero values in the highpass \
+portions - that's where the next exercise comes in!\
+\>", "Text"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Computer Session One", "Title"],
+
+Cell["\<\
+There is one task in this computer session.  You will employ the thresholding \
+scheme of Gonzalez, et. al., to (hopefully) improve the edge detection \
+algorithm.\
+\>", "Text"],
+
+Cell[CellGroupData[{
+
+Cell["Task One", "Subtitle"],
+
+Cell[TextData[{
+  "In this task, you will employ the thresholding scheme of Gonzalez, et. al, \
+to hopefully improve the edge detection process.\n\nTo get started, simply \
+choose ",
+  StyleBox["S",
+    FontWeight->"Bold"],
+  " to be the ",
+  StyleBox["absolute value",
+    FontWeight->"Bold"],
+  " of modified wavelet transform matrix.  The blur is already 0, so there's \
+nothing to convert there.\n\nTake \[Alpha]=1 - that's the lowest level in \
+change in pixel values."
+}], "Text"],
+
+Cell[BoxData[{
+    \(\(S = Abs[newwt];\)\), "\[IndentingNewLine]", 
+    \(\(WaveletDensityPlot[S, NumIterations \[Rule] its, 
+        DivideLines \[Rule] True, 
+        DivideLinesColor \[Rule] Coral];\)\)}], "Input"],
+
+Cell[TextData[{
+  "Here are some commands that might help you get started.  For our purposes, \
+we can ",
+  StyleBox["Flatten",
+    FontWeight->"Bold"],
+  " ",
+  StyleBox["S",
+    FontWeight->"Bold"],
+  " into a vector."
+}], "Text"],
+
+Cell[BoxData[{
+    \(\(S = Flatten[S];\)\[IndentingNewLine]\), "\[IndentingNewLine]", 
+    \(\(tau1 = \((Min[S] + Max[S])\)/2;\)\), "\[IndentingNewLine]", 
+    \(\(S1 = Select[S, # < tau1 &];\)\), "\[IndentingNewLine]", 
+    \(\(S2 = 
+        Select[S, # \[GreaterEqual] tau1 &];\)\), "\[IndentingNewLine]", 
+    \(tau2 = \((Mean[S1] + Mean[S2])\)/2\), "\[IndentingNewLine]", 
+    \(Abs[tau2 - tau1]\), "\[IndentingNewLine]", 
+    \(\)}], "Input"],
+
+Cell[TextData[{
+  "You will want to iterate the above process.  You can use a ",
+  StyleBox["While",
+    FontWeight->"Bold"],
+  " loop or a ",
+  StyleBox["Table",
+    FontWeight->"Bold"],
+  " or ask me if you're not sure.\n\nOnce you have the iterative scheme for \
+selecting tau working, can you turn it into a module?  Put your module in the \
+cell below:"
+}], "Text"],
+
+Cell[BoxData[
+    \(\(FindTau[v_] := 
+        Module[\({ (*\ 
+              Local\ variables\ replace\ this\ \(\(comment\)\(.\)\)\ \
+*) }\)\(,\)\[IndentingNewLine]\t\t\t (*\ 
+            Mathematica\ commands\ go\ here\ *) \[IndentingNewLine]];\)\)], \
+"Input",
+  FontColor->RGBColor[0, 0, 1]],
+
+Cell[TextData[{
+  "\nHere is some ",
+  StyleBox["Mathematica",
+    FontSlant->"Italic"],
+  " code for applying your final ",
+  StyleBox["tau",
+    FontWeight->"Bold"],
+  " to ",
+  StyleBox["S",
+    FontWeight->"Bold"],
+  " and then ",
+  StyleBox["Partition",
+    FontWeight->"Bold"],
+  "ing back into a matrix.  I picked ",
+  StyleBox["tau=40",
+    FontWeight->"Bold"],
+  " to illustrate.  You will want to use the tau returned to you by ",
+  StyleBox["FindTau",
+    FontWeight->"Bold"],
+  "."
+}], "Text"],
+
+Cell[BoxData[{
+    \(\(tau = 
+        40. ;\)\[IndentingNewLine]\[IndentingNewLine] (*\ \(or\ use\ your\ \
+\(module : \[IndentingNewLine]\[IndentingNewLine]tau\) = 
+          FindTau[S];\)\[IndentingNewLine]\[IndentingNewLine]*) \
+\[IndentingNewLine]\[IndentingNewLine] (*\ 
+      Below\ is\ some\ simple\ code\ for\ the\ threshold\ \(\(function\)\(.\)\
+\)*) \), "\[IndentingNewLine]", 
+    \(\(thresh[v_, tau_] := 
+        Which[v > tau, v, True, 
+          0];\)\ \ \[IndentingNewLine]\[IndentingNewLine] (*\ 
+      tmp\ is\ the\ result\ of\ applying\ the\ threshold\ function\ \((with\ \
+whatever\ tau\ you\ decided\ to\ use)\)\ to\ the\ list\ \(\(S\)\(.\)\)\
+\[IndentingNewLine]*) \[IndentingNewLine]\), "\[IndentingNewLine]", 
+    \(\(tmp = 
+        Map[thresh[#, tau] &, 
+          S];\)\[IndentingNewLine]\[IndentingNewLine] (*\[IndentingNewLine]We\
+\ need\ to\ ultimately\ make\ tmp\ into\ a\ matrix, \ 
+      so\ we\ simply\ partition\ it\ into\ lists\ that\ are\ of\ length\ \
+\(\(cols\)\(.\)\)\[IndentingNewLine]*) \[IndentingNewLine]\), "\
+\[IndentingNewLine]", 
+    \(\(threshWT = 
+        Partition[tmp, cols];\)\[IndentingNewLine]\), "\[IndentingNewLine]", 
+    \(\(WaveletDensityPlot[threshWT, NumIterations \[Rule] its, 
+        DivideLines \[Rule] True, 
+        DivideLinesColor \[Rule] Coral];\)\)}], "Input"],
+
+Cell["\<\
+In the cell below, you can apply the inverse transform to threshWT to obtain \
+the edges.\
+\>", "Text"],
+
+Cell[BoxData[
+    \( (*\ Put\ Mathematica\ code\ here\ *) \)], "Input",
+  FontColor->RGBColor[0, 0, 1]],
+
+Cell[CellGroupData[{
+
+Cell["Extra Credit Question", "Section"],
+
+Cell["\<\
+Now that you have a module for FindTau, let's put it to use!  Can you do \
+thresholding with FindTau on each individual highpass component of the \
+wavelet transform?  If so, put the code below and then determine if \
+thresholding individual highpass channels improved the detected edges.\
+\>", "Text"],
+
+Cell[BoxData[
+    \( (*\ Put\ Mathematica\ code\ here\ *) \)], "Input",
+  FontColor->RGBColor[0, 0, 1]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+FrontEndVersion->"5.2 for Microsoft Windows",
+ScreenRectangle->{{0, 1024}, {0, 685}},
+AutoGeneratedPackage->None,
+ScreenStyleEnvironment->"Presentation",
+WindowSize->{1016, 651},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+ShowSelection->True,
+StyleDefinitions -> "Report.nb"
+]
+
+(*******************************************************************
+Cached data follows.  If you edit this Notebook file directly, not
+using Mathematica, you must remove the line containing CacheID at
+the top of  the file.  The cache data will then be recreated when
+you save this file from within Mathematica.
+*******************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+
+(*NotebookFileOutline
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[1776, 53, 36, 0, 117, "Title"],
+Cell[1815, 55, 85, 4, 143, "Subtitle"],
+Cell[1903, 61, 33, 0, 67, "Subsubtitle"],
+Cell[1939, 63, 324, 7, 106, "Text"],
+
+Cell[CellGroupData[{
+Cell[2288, 74, 67, 1, 67, "Subsubtitle",
+  InitializationCell->True],
+Cell[2358, 77, 298, 9, 63, "Text",
+  InitializationCell->True],
+Cell[2659, 88, 643, 13, 233, "Input",
+  InitializationCell->True]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[3339, 106, 47, 0, 67, "Subsubtitle"],
+Cell[3389, 108, 429, 17, 64, "Text"],
+
+Cell[CellGroupData[{
+Cell[3843, 129, 71, 0, 96, "Section"],
+Cell[3917, 131, 116, 3, 40, "Text"],
+Cell[4036, 136, 305, 6, 129, "Input"],
+Cell[4344, 144, 320, 7, 129, "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[4701, 156, 65, 0, 96, "Section"],
+Cell[4769, 158, 1098, 28, 260, "Text"],
+Cell[5870, 188, 89, 1, 40, "Text"],
+Cell[5962, 191, 750, 12, 260, "Text"],
+Cell[6715, 205, 167, 4, 77, "Input"],
+Cell[6885, 211, 146, 5, 40, "Text"],
+Cell[7034, 218, 360, 6, 181, "Input"],
+Cell[7397, 226, 168, 5, 40, "Text"],
+Cell[7568, 233, 523, 10, 207, "Input"],
+Cell[8094, 245, 99, 2, 40, "Text"],
+Cell[8196, 249, 201, 4, 77, "Input"],
+Cell[8400, 255, 150, 3, 62, "Text"],
+Cell[8553, 260, 378, 6, 155, "Input"],
+Cell[8934, 268, 149, 3, 62, "Text"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[9144, 278, 37, 0, 117, "Title"],
+Cell[9184, 280, 187, 4, 62, "Text"],
+
+Cell[CellGroupData[{
+Cell[9396, 288, 28, 0, 61, "Subtitle"],
+Cell[9427, 290, 486, 12, 172, "Text"],
+Cell[9916, 304, 217, 4, 103, "Input"],
+Cell[10136, 310, 232, 9, 40, "Text"],
+Cell[10371, 321, 447, 8, 233, "Input"],
+Cell[10821, 331, 370, 10, 106, "Text"],
+Cell[11194, 343, 293, 7, 103, "Input"],
+Cell[11490, 352, 505, 20, 84, "Text"],
+Cell[11998, 374, 1329, 25, 701, "Input"],
+Cell[13330, 401, 113, 3, 40, "Text"],
+Cell[13446, 406, 103, 2, 51, "Input"],
+
+Cell[CellGroupData[{
+Cell[13574, 412, 40, 0, 96, "Section"],
+Cell[13617, 414, 312, 5, 84, "Text"],
+Cell[13932, 421, 103, 2, 51, "Input"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+
+
+(*******************************************************************
+End of Mathematica Notebook file.
+*******************************************************************)
+

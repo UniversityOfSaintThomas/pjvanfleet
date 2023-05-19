@@ -1,0 +1,446 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     15187,        438]
+NotebookOptionsPosition[     12765,        375]
+NotebookOutlinePosition[     13108,        390]
+CellTagsIndexPosition[     13065,        387]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Example 3.6 (Block Matrices and Image Masking)", "Section",
+ CellChangeTimes->{{3.6747410188032584`*^9, 3.674741042688301*^9}, {
+   3.674742552975814*^9, 3.6747425597738523`*^9}, {3.67474453723468*^9, 
+   3.674744561535725*^9}, {3.674747931751519*^9, 3.6747479370307474`*^9}, 
+   3.6747516510077415`*^9, {3.674754123065485*^9, 
+   3.674754140322116*^9}},ExpressionUUID->"a60fbe6a-a37a-486c-9b66-\
+0288ec4c14d6"],
+
+Cell["\<\
+Use a matrix to perform naive edge detection on a digital image.\
+\>", "Text",
+ CellChangeTimes->{{3.6747410667041707`*^9, 3.6747410805055957`*^9}, {
+  3.6747424105934367`*^9, 3.674742410733837*^9}, {3.674742572300502*^9, 
+  3.674742584222324*^9}, {3.6747445741715794`*^9, 3.6747445846113987`*^9}, {
+  3.6747479622130194`*^9, 
+  3.674747968138232*^9}},ExpressionUUID->"8a5e52a2-1792-4142-a3ab-\
+868d2920b512"],
+
+Cell[CellGroupData[{
+
+Cell["Reference.", "Subsubsection",
+ CellChangeTimes->{{3.6747631102003517`*^9, 
+  3.6747631125733557`*^9}},ExpressionUUID->"af09bf37-61c7-4bab-840f-\
+880575072a19"],
+
+Cell["\<\
+The material for this lab is covered in Section 3.1 of the book \
+\[OpenCurlyDoubleQuote]Discrete Wavelet Transformations: An Elementary \
+Approach with Applications, 2nd Edition,\[CloseCurlyDoubleQuote] by Patrick J \
+Van Fleet.\
+\>", "Text",
+ CellChangeTimes->{{3.674763119565366*^9, 3.6747631649004583`*^9}, {
+  3.674763293323564*^9, 3.674763311554607*^9}, {3.6997856290190563`*^9, 
+  3.699785638548086*^9}, {3.72692103296169*^9, 3.726921034949597*^9}, {
+  3.7270063962717886`*^9, 
+  3.727006396991242*^9}},ExpressionUUID->"d5cc989f-314b-4a77-a0bd-\
+d8506e831def"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["WaveletWare Commands Used in This Notebook", "Subsubsection",
+ CellChangeTimes->{{3.6747417571916847`*^9, 3.674741765831501*^9}, {
+  3.6747418595935683`*^9, 
+  3.6747419193671017`*^9}},ExpressionUUID->"355f0c35-0b2c-4b55-9046-\
+9cb0ef17eb3c"],
+
+Cell["Execute the line below to load the WaveletWare package.", "Text",
+ CellChangeTimes->{{3.726919365764247*^9, 
+  3.7269193911263213`*^9}},ExpressionUUID->"fd822859-d185-4847-96b4-\
+1eb3b228d843"],
+
+Cell[BoxData[
+ RowBox[{"<<", "WaveletWare`"}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.7269193243151226`*^9, 3.7269193578933735`*^9}, {
+  3.7270065374179773`*^9, 3.727006537593671*^9}, {3.7270070318050675`*^9, 
+  3.7270070319488754`*^9}},ExpressionUUID->"fcf0dfd1-e81a-4211-81c6-\
+a079d7778155"],
+
+Cell["\<\
+Execute the line below to generate quick help on WaveletWare commands used in \
+this notebook.  Click on >> for each command to access detailed documentation \
+on the command.\
+\>", "Text",
+ CellChangeTimes->{{3.726919395574725*^9, 
+  3.7269194464807606`*^9}},ExpressionUUID->"a1e6a09c-de9c-4d5a-9efd-\
+883a500990f7"],
+
+Cell[BoxData[{
+ RowBox[{"?", "ImagePlot"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "ImageRead"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "PackageDirectory"}]}], "Input",
+ CellChangeTimes->{{3.7269193243151226`*^9, 3.7269193578933735`*^9}, {
+  3.727006411728204*^9, 3.7270064146082783`*^9}, {3.7270064673326874`*^9, 
+  3.7270064795892925`*^9}, {3.727006595390209*^9, 3.727006600158367*^9}, {
+  3.72700691873085*^9, 3.7270069320111556`*^9}, {3.7270070971669283`*^9, 
+  3.72700709878319*^9}},ExpressionUUID->"2a2ec426-7dae-4d26-a5c2-\
+e70b4bcb8993"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Solution.", "Subsubsection",
+ CellChangeTimes->{{3.674741083458001*^9, 3.674741085127204*^9}, {
+  3.674741868740185*^9, 
+  3.674741869629386*^9}},ExpressionUUID->"308fd387-de68-4abb-a1d9-\
+addca9380071"],
+
+Cell["\<\
+First load and crop the image from the WaveletWare package.  We are using a \
+color image from the package.  In this case, the image is comprised of three \
+intensity matrices representing red, green and blue.  We can convert the \
+image to grayscale by averaging and then rounding corresponding elements. \
+\>", "Text",
+ CellChangeTimes->{{3.6747411194901114`*^9, 3.6747411391369605`*^9}, {
+  3.674742623448035*^9, 3.674742630967649*^9}, {3.6747446245665*^9, 
+  3.6747446285253077`*^9}, {3.6747479738622437`*^9, 3.6747480058727283`*^9}, {
+  3.6747541466889267`*^9, 
+  3.674754251603379*^9}},ExpressionUUID->"296c9129-fe5c-4e0e-8e89-\
+e0861f809c46"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"A", "=", 
+   RowBox[{"Round", "[", 
+    RowBox[{"Mean", "[", 
+     RowBox[{"ImageRead", "[", 
+      RowBox[{
+       RowBox[{"PackageDirectory", "[", 
+        RowBox[{"DataType", "\[Rule]", "Images"}], "]"}], "<>", 
+       "\"\<fish.png\>\""}], "]"}], "]"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"A", "=", 
+   RowBox[{"Take", "[", 
+    RowBox[{"A", ",", 
+     RowBox[{"{", 
+      RowBox[{"63", ",", "512"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"319", ",", "768"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Dimensions", "[", "A", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"ImagePlot", "[", "A", "]"}]}], "Input",
+ CellChangeTimes->{{3.674741140587763*^9, 3.67474115564879*^9}, {
+  3.674741259701219*^9, 3.6747412605280204`*^9}, {3.674742284757322*^9, 
+  3.6747422853043227`*^9}, {3.674742435988764*^9, 3.674742436363165*^9}, {
+  3.6747426343568554`*^9, 3.674742635690858*^9}, {3.674742669741955*^9, 
+  3.674742710022859*^9}, {3.6747429836670275`*^9, 3.6747429838074274`*^9}, {
+  3.674744653049978*^9, 3.674744673361041*^9}, {3.674745406586665*^9, 
+  3.674745407023466*^9}, {3.6747480086223335`*^9, 3.674748023193988*^9}, {
+  3.6747481153646097`*^9, 3.674748128420251*^9}, {3.674748378005512*^9, 
+  3.6747483830659475`*^9}, {3.674748808650008*^9, 3.674748808774808*^9}, {
+  3.6747542560659866`*^9, 3.6747542864460683`*^9}, {3.674754327909342*^9, 
+  3.6747543379425864`*^9}, {3.6747552116907578`*^9, 
+  3.6747552122679586`*^9}},ExpressionUUID->"e908f2f1-d46f-40df-8ce5-\
+e540af3e43ce"],
+
+Cell[TextData[{
+ "To create the block matrix ",
+ StyleBox["M",
+  FontWeight->"Bold"],
+ ", we need a 150 x 150 zero matrix and a 150 x 150 identity matrix.  The \
+Mathematica command ",
+ StyleBox["ArrayFlatten",
+  FontWeight->"Bold"],
+ " allows us to build the block matrix ",
+ StyleBox["M",
+  FontWeight->"Bold"],
+ ". "
+}], "Text",
+ CellChangeTimes->{{3.6747481391318703`*^9, 3.6747481572267556`*^9}, {
+  3.6747482631312256`*^9, 3.6747482854328675`*^9}, {3.6747543729442806`*^9, 
+  3.6747544006279583`*^9}, {3.674754447143382*^9, 3.6747544609514065`*^9}, {
+  3.6747546110123515`*^9, 3.6747546204709682`*^9}, {3.674754716951002*^9, 
+  3.674754733742962*^9}, {3.6747547738516183`*^9, 
+  3.67475477495922*^9}},ExpressionUUID->"b5ed0f21-c161-4192-be23-\
+d4a2ca2262ce"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"n", "=", "150"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Z", "=", 
+   RowBox[{"ConstantArray", "[", 
+    RowBox[{"0", ",", 
+     RowBox[{"{", 
+      RowBox[{"n", ",", "n"}], "}"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Id", "=", 
+   RowBox[{"IdentityMatrix", "[", "n", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"M", "=", 
+   RowBox[{"ArrayFlatten", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"Z", ",", "Z", ",", "Z"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"Z", ",", "Id", ",", "Z"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"Z", ",", "Z", ",", "Z"}], "}"}]}], "}"}], "]"}]}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.6747481658821716`*^9, 3.67474824787617*^9}, {
+  3.674748287713472*^9, 3.6747482910226774`*^9}, {3.674748806752003*^9, 
+  3.6747488068686047`*^9}, {3.674754407153222*^9, 3.674754500099476*^9}, {
+  3.6747551341411896`*^9, 
+  3.674755161482438*^9}},ExpressionUUID->"cf5fc2b4-5018-40b9-a3c3-\
+eb3dbd52386a"],
+
+Cell[TextData[{
+ "Plot the product ",
+ StyleBox["M",
+  FontWeight->"Bold"],
+ ".",
+ StyleBox["A",
+  FontWeight->"Bold"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.6747547814040318`*^9, 
+  3.674754785758439*^9}},ExpressionUUID->"b617a54d-b88e-400e-9436-\
+45192c8d1d22"],
+
+Cell[BoxData[
+ RowBox[{"ImagePlot", "[", 
+  RowBox[{"M", ".", "A"}], "]"}]], "Input",
+ CellChangeTimes->{{3.674754541747592*^9, 3.674754545494008*^9}, {
+  3.6747552167491665`*^9, 
+  3.6747552168895674`*^9}},ExpressionUUID->"65680476-2dc1-476a-9417-\
+b4803fe2a32d"],
+
+Cell[TextData[{
+ "Plot the product ",
+ StyleBox["M",
+  FontWeight->"Bold"],
+ ".",
+ StyleBox["A",
+  FontWeight->"Bold"],
+ ".",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox[
+    StyleBox["M",
+     FontWeight->"Bold",
+     FontSlant->"Plain"], "T"], TraditionalForm]],ExpressionUUID->
+  "db6125fa-3eff-46ea-bfab-f72f7d63c796"]
+}], "Text",
+ CellChangeTimes->{{3.6747547986486874`*^9, 
+  3.6747548311129694`*^9}},ExpressionUUID->"b24c9719-a447-407d-a78a-\
+31391bff8dd1"],
+
+Cell[BoxData[
+ RowBox[{"ImagePlot", "[", 
+  RowBox[{"M", ".", "A", ".", 
+   RowBox[{"Transpose", "[", "M", "]"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.6747548407849865`*^9, 3.6747548474491987`*^9}, {
+  3.6747552193719716`*^9, 
+  3.674755219496772*^9}},ExpressionUUID->"ed634d3b-7cae-4343-9b5e-\
+22dda85afef7"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Things To Try.", "Subsubsection",
+ CellChangeTimes->{{3.674741944310015*^9, 
+  3.67474194691722*^9}},ExpressionUUID->"879e50aa-b3b6-48a3-a6b7-\
+92c7bc15104b"],
+
+Cell[TextData[{
+ "How would you define ",
+ StyleBox["M",
+  FontWeight->"Bold"],
+ " so that only the ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox[
+    StyleBox["A",
+     FontWeight->"Bold",
+     FontSlant->"Plain"], "33"], TraditionalForm]],ExpressionUUID->
+  "29f31f11-f396-4187-84bf-0aae934f6b34"],
+ " block is displayed?\n\nHow would you construct ",
+ StyleBox["M",
+  FontWeight->"Bold"],
+ " and what product would you compute so that the blocks ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox[
+    StyleBox["A",
+     FontWeight->"Bold",
+     FontSlant->"Plain"], "13"], TraditionalForm]],ExpressionUUID->
+  "2521650a-877f-4408-b97c-354fe1c0b4d3"],
+ ", ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox[
+    StyleBox["A",
+     FontWeight->"Bold",
+     FontSlant->"Plain"], "23"], TraditionalForm]],ExpressionUUID->
+  "429eaa03-491f-4a2c-957f-fefba26a1357"],
+ " and ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox[
+    StyleBox["A",
+     FontWeight->"Bold",
+     FontSlant->"Plain"], "33"], TraditionalForm]],ExpressionUUID->
+  "af57963f-8005-403e-91f2-d46b16b04e40"],
+ " are displayed?\n\nSuppose you wanted to display ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox[
+    StyleBox["A",
+     FontWeight->"Bold",
+     FontSlant->"Plain"], "11"], TraditionalForm]],ExpressionUUID->
+  "173d0f48-a3ae-4552-9294-e3130649d528"],
+ ", ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox[
+    StyleBox["A",
+     FontWeight->"Bold",
+     FontSlant->"Plain"], "22"], TraditionalForm]],ExpressionUUID->
+  "917e4395-7a0b-4dfe-99e9-61cbd22b6c76"],
+ " and ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox[
+    StyleBox["A",
+     FontWeight->"Bold",
+     FontSlant->"Plain"], "33"], TraditionalForm]],ExpressionUUID->
+  "9616e418-cd16-4e3e-9f04-7a834e55ef95"],
+ ".  How would you construct ",
+ StyleBox["M",
+  FontWeight->"Bold"],
+ " (or multiple ",
+ StyleBox["M",
+  FontWeight->"Bold"],
+ "\[CloseCurlyQuote]s) and what product would you compute?\n\nSuppose you \
+wanted to display ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox[
+    StyleBox["A",
+     FontWeight->"Bold",
+     FontSlant->"Plain"], "12"], TraditionalForm]],ExpressionUUID->
+  "f804c1f4-52f7-4c38-89c7-303aa89d4fde"],
+ " and ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox[
+    StyleBox["A",
+     FontWeight->"Bold",
+     FontSlant->"Plain"], "32"], TraditionalForm]],ExpressionUUID->
+  "c0f1c438-4f68-42cb-8f68-b60d31cc6c7e"],
+ ".  How would you construct ",
+ StyleBox["M",
+  FontWeight->"Bold"],
+ " (or multiple ",
+ StyleBox["M",
+  FontWeight->"Bold"],
+ "\[CloseCurlyQuote]s) and what product would you compute?"
+}], "Text",
+ CellChangeTimes->{{3.6747420480998836`*^9, 3.6747421314892807`*^9}, {
+  3.674742175168991*^9, 3.6747422393427753`*^9}, {3.6747427897444954`*^9, 
+  3.6747428171272078`*^9}, {3.674745173965828*^9, 3.674745256220656*^9}, {
+  3.6747453489013157`*^9, 3.674745361004139*^9}, {3.6747485066380587`*^9, 
+  3.674748554059788*^9}, {3.6747548607142477`*^9, 3.6747551092495203`*^9}, {
+  3.674755174682087*^9, 
+  3.6747551884895167`*^9}},ExpressionUUID->"859e91f3-02cd-4432-80c2-\
+cc7fd21c3ee7"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{759, 678},
+WindowMargins->{{Automatic, 89}, {99, Automatic}},
+FrontEndVersion->"11.1 for Microsoft Windows (64-bit) (April 18, 2017)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 417, 6, 70, "Section", "ExpressionUUID" -> \
+"a60fbe6a-a37a-486c-9b66-0288ec4c14d6"],
+Cell[1000, 30, 419, 8, 30, "Text", "ExpressionUUID" -> \
+"8a5e52a2-1792-4142-a3ab-868d2920b512"],
+Cell[CellGroupData[{
+Cell[1444, 42, 165, 3, 39, "Subsubsection", "ExpressionUUID" -> \
+"af09bf37-61c7-4bab-840f-880575072a19"],
+Cell[1612, 47, 577, 11, 49, "Text", "ExpressionUUID" -> \
+"d5cc989f-314b-4a77-a0bd-d8506e831def"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2226, 63, 248, 4, 39, "Subsubsection", "ExpressionUUID" -> \
+"355f0c35-0b2c-4b55-9046-9cb0ef17eb3c"],
+Cell[2477, 69, 199, 3, 30, "Text", "ExpressionUUID" -> \
+"fd822859-d185-4847-96b4-1eb3b228d843"],
+Cell[2679, 74, 314, 6, 46, "Input", "ExpressionUUID" -> \
+"fcf0dfd1-e81a-4211-81c6-a079d7778155",
+ InitializationCell->True],
+Cell[2996, 82, 327, 7, 49, "Text", "ExpressionUUID" -> \
+"a1e6a09c-de9c-4d5a-9efd-883a500990f7"],
+Cell[3326, 91, 544, 9, 69, "Input", "ExpressionUUID" -> \
+"2a2ec426-7dae-4d26-a5c2-e70b4bcb8993"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3907, 105, 209, 4, 39, "Subsubsection", "ExpressionUUID" -> \
+"308fd387-de68-4abb-a1d9-addca9380071"],
+Cell[4119, 111, 659, 11, 87, "Text", "ExpressionUUID" -> \
+"296c9129-fe5c-4e0e-8e89-e0861f809c46"],
+Cell[4781, 124, 1572, 34, 88, "Input", "ExpressionUUID" -> \
+"e908f2f1-d46f-40df-8ce5-e540af3e43ce"],
+Cell[6356, 160, 764, 19, 49, "Text", "ExpressionUUID" -> \
+"b5ed0f21-c161-4192-be23-d4a2ca2262ce"],
+Cell[7123, 181, 1063, 29, 88, "Input", "ExpressionUUID" -> \
+"cf5fc2b4-5018-40b9-a3c3-eb3dbd52386a"],
+Cell[8189, 212, 264, 11, 30, "Text", "ExpressionUUID" -> \
+"b617a54d-b88e-400e-9436-45192c8d1d22"],
+Cell[8456, 225, 264, 6, 30, "Input", "ExpressionUUID" -> \
+"65680476-2dc1-476a-9417-b4803fe2a32d"],
+Cell[8723, 233, 464, 18, 32, "Text", "ExpressionUUID" -> \
+"b24c9719-a447-407d-a78a-31391bff8dd1"],
+Cell[9190, 253, 313, 7, 30, "Input", "ExpressionUUID" -> \
+"ed634d3b-7cae-4343-9b5e-22dda85afef7"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9540, 265, 164, 3, 39, "Subsubsection", "ExpressionUUID" -> \
+"879e50aa-b3b6-48a3-a6b7-92c7bc15104b"],
+Cell[9707, 270, 3030, 101, 201, "Text", "ExpressionUUID" -> \
+"859e91f3-02cd-4432-80c2-cc7fd21c3ee7"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

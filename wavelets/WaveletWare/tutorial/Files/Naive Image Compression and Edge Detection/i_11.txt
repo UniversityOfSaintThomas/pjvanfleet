@@ -1,0 +1,8 @@
+<pre name='i_11_in' id='i_11_in' class='IFT'>k = PercentCE[ce, .99];
+newwt = Round[QuantizeCE[wt, k]];
+WaveletPlot[newwt, NumIterations -&gt; 3]
+Print[&quot;The largest &quot;, k, 
+  &quot; terms in absolute value in the wavelet transform represent 99% of \
+the energy.&quot;];
+Print[&quot;We retain these largest values and convert the remaining &quot;, 
+  r*c - k, &quot; values to 0.&quot;];</pre><div class='IFU'><a name='8376111'></a>http://wolfram.com/xid/0ck2bt1tgpszi5qmumv90y9mftkdg9nq1q0ukjlzbu-e9tb1</div>

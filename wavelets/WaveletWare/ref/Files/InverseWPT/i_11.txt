@@ -1,0 +1,5 @@
+<pre name='i_11_in' id='i_11_in' class='IFT'>v = Range[32];
+{wpt, tree} = 
+  WPT[v, SplineFilters[2, 2], Boundary -&gt; True, NumIterations -&gt; 3];
+inv = InverseWPT[{wpt, tree}, SplineFilters[2, 2], Boundary -&gt; True];
+v == inv</pre><div class='IFU'><a name='317891788'></a>http://wolfram.com/xid/0bclo942dwfme8ltsw2z409ej-fjjs5q</div>

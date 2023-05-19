@@ -1,0 +1,536 @@
+(************** Content-type: application/mathematica **************
+                     CreatedBy='Mathematica 5.2'
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used with any Mathematica-compatible
+application, such as Mathematica, MathReader or Publicon. The data
+for the notebook starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do
+one of the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the
+  application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing
+the word CacheID, otherwise Mathematica-compatible applications may
+try to use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+*******************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[     12561,        433]*)
+(*NotebookOutlinePosition[     13327,        459]*)
+(*  CellTagsIndexPosition[     13283,        455]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Digital Images", "Title"],
+
+Cell["\<\
+Wavelet Workshop
+June 7-10, 2006
+University of St. Thomas\
+\>", "Subtitle"],
+
+Cell["Objectives", "Subsubtitle"],
+
+Cell["\<\
+The purpose of this notebook is to give allow you to become familiar with the \
+qualitative/quantitative measures cumulative energy, peak \
+signal-to-noise-ratio, and entropy.  We will also write our first module in \
+this notebook\
+\>", "Text"],
+
+Cell[CellGroupData[{
+
+Cell["WaveletFunctions", "Subsubtitle",
+  InitializationCell->True],
+
+Cell[TextData[{
+  "This cell initializes every time you open the notebook.  It loads the ",
+  StyleBox["Mathematica",
+    FontSlant->"Italic"],
+  " package ",
+  StyleBox["WaveletFunctions",
+    FontFamily->"Courier"],
+  " for use in subsequent computations."
+}], "Text",
+  InitializationCell->True],
+
+Cell[BoxData[{
+    \(<< WaveletFunctions`WaveletFunctions`\), "\[IndentingNewLine]", 
+    \(\(flashdir = "\<E:/Images/\>";\)\), "\[IndentingNewLine]", 
+    \(\(Print["\<The flash drive directory is \>", 
+        flashdir, "\<.\>"];\)\), "\[IndentingNewLine]", 
+    \(\(imgurl = \
+"\<http://cam.mathlab.stthomas.edu/pvf/Math316/TestImages/\>";\)\), "\
+\[IndentingNewLine]", 
+    \(\(Print["\<The URL for images is \>", imgurl, "\<.\>"];\)\)}], "Input",
+  InitializationCell->True]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Help on WaveletFunctions", "Subsubtitle"],
+
+Cell[TextData[{
+  "If you ever need help with ",
+  StyleBox["WaveletFunctions",
+    FontFamily->"Courier"],
+  ", go to ",
+  StyleBox["Help",
+    FontSlant->"Italic"],
+  ", then ",
+  StyleBox["Help Browser",
+    FontSlant->"Italic"],
+  ", and click on ",
+  StyleBox["AddOns & Links",
+    FontSlant->"Italic"],
+  ".  If you scroll down you will find ",
+  StyleBox["WaveletFunctions",
+    FontFamily->"Courier"],
+  ".  "
+}], "Text"],
+
+Cell[CellGroupData[{
+
+Cell["Peak Signal-To-Noise Ratio", "Section"],
+
+Cell[TextData[{
+  StyleBox["WaveletFunctions",
+    FontFamily->"Courier"],
+  " has a routine called ",
+  StyleBox["PSNR",
+    FontWeight->"Bold"],
+  " that takes two matrices and returns the peak signal-to-noise ratio.  \
+Let's do an example.  \n\nWe load an image ",
+  StyleBox["A",
+    FontWeight->"Bold"],
+  " and create one approximation ",
+  StyleBox["B1",
+    FontWeight->"Bold"],
+  " by converting to 0 all values in the image that are less than 100.  We \
+create another approximation ",
+  StyleBox["B2",
+    FontWeight->"Bold"],
+  " by converting to 0 all values that are less than 20.  "
+}], "Text"],
+
+Cell[BoxData[{
+    \(\(A = 
+        ReadImage[
+          flashdir <> "\<stooges.jpg\>"];\)\), "\[IndentingNewLine]", 
+    \(\(ImagePlot[A];\)\)}], "Input"],
+
+Cell[BoxData[
+    \(\(\(\[IndentingNewLine]\)\(\(B1 = 
+        Map[Chop[#, 100. ] &, N[A]];\)\[IndentingNewLine]
+    \(ImagePlot[B1];\)\[IndentingNewLine]\[IndentingNewLine]
+    \(B2 = Map[Chop[#, 125. ] &, N[A]];\)\[IndentingNewLine]
+    \(ImagePlot[B2];\)\)\)\)], "Input"],
+
+Cell[BoxData[{
+    \(psnr1 = PSNR[A, B1]\), "\[IndentingNewLine]", 
+    \(psnr2 = PSNR[A, B2]\)}], "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Entropy", "Section"],
+
+Cell[TextData[{
+  "There is a function in ",
+  StyleBox["WaveletFunctions",
+    FontFamily->"Courier"],
+  " that allows you to compute the entropy of a vector/matrix.  The command \
+is called ",
+  StyleBox["Entropy",
+    FontWeight->"Bold"],
+  " and it takes as input either a vector or a matrix.  Here are some example \
+calls."
+}], "Text"],
+
+Cell[BoxData[{
+    \(\(v = {1, 1, 1, 1, 1, 1, 1, 1};\)\), "\[IndentingNewLine]", 
+    \(Entropy[v]\[IndentingNewLine]\), "\[IndentingNewLine]", 
+    \(\(w = {1, 2, 3, 4, 5, 6, 7, 8};\)\), "\[IndentingNewLine]", 
+    \(Entropy[w]\[IndentingNewLine]\), "\[IndentingNewLine]", 
+    \(\(x = {1, 2, 3, 4, 0, 0, 0, 0};\)\), "\[IndentingNewLine]", 
+    \(Entropy[x]\)}], "Input"],
+
+Cell[TextData[{
+  "The ",
+  StyleBox["Entropy",
+    FontWeight->"Bold"],
+  " command knows to convert a matrix into a vector before doing the \
+computations.  The entropy is computed symbolically - the ",
+  StyleBox["N[a]",
+    FontWeight->"Bold"],
+  " converts it to a numerical value."
+}], "Text"],
+
+Cell[BoxData[{
+    \(\(A = 
+        ReadImage[flashdir <> "\<calvin_hobbes_gray.jpg\>", 
+          PrintInfo \[Rule] True];\)\), "\[IndentingNewLine]", 
+    \(\(ImagePlot[A];\)\), "\[IndentingNewLine]", 
+    \(a = Entropy[A]\), "\[IndentingNewLine]", 
+    \(N[a]\), "\[IndentingNewLine]", 
+    \(\)}], "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Cumulative Energy", "Section"],
+
+Cell[TextData[{
+  "There is a function in ",
+  StyleBox["WaveletFunctions",
+    FontFamily->"Courier"],
+  " called ",
+  StyleBox["CE",
+    FontWeight->"Bold"],
+  " that computes the cumulative energy of a vector or a matrix.  Here is an \
+example call:"
+}], "Text"],
+
+Cell[BoxData[{
+    \(\(A = 
+        ReadImage[
+          flashdir <> "\<garfield_gray.jpg\>"];\)\), "\[IndentingNewLine]", 
+    \(\(ce = CE[N[A]];\)\), "\[IndentingNewLine]", 
+    \(\(ListPlot[ce, PlotStyle \[Rule] Brown];\)\)}], "Input"],
+
+Cell[TextData[{
+  "There are also two other routines in ",
+  StyleBox["WaveletFunctions",
+    FontFamily->"Courier"],
+  " that are related to the ",
+  StyleBox["CE",
+    FontWeight->"Bold"],
+  " routine.\n\n",
+  StyleBox["nCE",
+    FontWeight->"Bold"],
+  " takes as input a vector ",
+  StyleBox["v",
+    FontWeight->"Bold"],
+  " and a number 0 \[LessSlantEqual] ",
+  StyleBox["p",
+    FontWeight->"Bold"],
+  " \[LessSlantEqual] 1 and returns the number of elements in ",
+  StyleBox["v",
+    FontWeight->"Bold"],
+  " needed to comprise 100p% of the energy.  Here is an example."
+}], "Text"],
+
+Cell[BoxData[{
+    \(\(k = nCE[ce,  .95];\)\), "\[IndentingNewLine]", 
+    \(\(Print["\<The largest \>", 
+        k, "\< elements of A comprise 95% of the energy.\>"];\)\), "\
+\[IndentingNewLine]", 
+    \(\(Print["\<The matrix A has \>", 
+        Apply[Times, Dimensions[A]], "\< elements.\>"];\)\)}], "Input"],
+
+Cell[TextData[{
+  "The other command is ",
+  StyleBox["Comp",
+    FontWeight->"Bold"],
+  ".  This command takes either a matrix ",
+  StyleBox["A",
+    FontWeight->"Bold"],
+  " or a vector ",
+  StyleBox["v",
+    FontWeight->"Bold"],
+  " and an integer ",
+  StyleBox["k",
+    FontWeight->"Bold"],
+  " and converts all but the ",
+  StyleBox["k",
+    FontWeight->"Bold"],
+  " largest elements (in absolute value) in ",
+  StyleBox["A",
+    FontWeight->"Bold"],
+  " or ",
+  StyleBox["v",
+    FontWeight->"Bold"],
+  " to 0.  Here is an example:"
+}], "Text"],
+
+Cell[BoxData[{
+    \(\(newA = Comp[A, k];\)\), "\[IndentingNewLine]", 
+    \(\(ImagePlot[newA];\)\)}], "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Writing the Cumulative Energy Module", "Section"],
+
+Cell[TextData[{
+  "The cumulative energy module is a great first module for the students to \
+write.  It gets them acquainted with ",
+  StyleBox["Mathematica",
+    FontSlant->"Italic"],
+  " commands and lets them see the difference between a readable code and an \
+efficient one.\n\nIt is easy to take absolute values and sort a  vector v in \
+",
+  StyleBox["Mathematica",
+    FontSlant->"Italic"],
+  ".  We can also compute the square of the norm.  \nLet's do these \
+operations on a simple example."
+}], "Text"],
+
+Cell[BoxData[{
+    \(\(v = {1, \(-3\), 5, 6, 0, \(-4\), \(-2\), 5, 
+          6};\)\), "\[IndentingNewLine]", 
+    \(y = Sort[Abs[v], Greater]\), "\[IndentingNewLine]", 
+    \(nm = Total[y^2]\)}], "Input"],
+
+Cell[TextData[{
+  "Now we need to build a vector that cumulatively adds elements of y \
+(squared) and divides by the norm squared.  One way to do it is with a ",
+  StyleBox["Table",
+    FontWeight->"Bold"],
+  " and a ",
+  StyleBox["Sum",
+    FontWeight->"Bold"],
+  " command."
+}], "Text"],
+
+Cell[BoxData[{
+    \(ce\  = \ 
+      Table[Sum[y[\([k]\)]^2, {k, 1, j}], {j, 1, 
+          Length[y]}]\), "\[IndentingNewLine]", 
+    \(ce = ce/nm\)}], "Input"],
+
+Cell[TextData[{
+  "This works great for small vectors, but when the lenght of the vector (or \
+size of the matrix ) gets large, the element extraction ",
+  StyleBox["y[[ k ]]",
+    FontWeight->"Bold"],
+  " really slows down.  \n\nIt is better to use ",
+  StyleBox["Mathematica",
+    FontSlant->"Italic"],
+  " commands if possible to avoid element extraction.  "
+}], "Text",
+  CellDingbat->None],
+
+Cell[TextData[{
+  "\n",
+  StyleBox["My first reaction to this realization was that I didn't want to \
+make the course into a Mathematica training seminar, but as I progressed \
+through building these modules, I realized that there was a lot of logic (and \
+uses of linear algebra!) to be learned in the exercise.",
+    FontSlant->"Italic"]
+}], "Text",
+  CellDingbat->"\[LightBulb]"],
+
+Cell[TextData[{
+  "\n\nLet's get y as we did before, but instead of the ",
+  StyleBox["Table",
+    FontWeight->"Bold"],
+  " and ",
+  StyleBox["Sum",
+    FontWeight->"Bold"],
+  ", let's try a ",
+  StyleBox["Mathematica",
+    FontSlant->"Italic"],
+  " command called ",
+  StyleBox["FoldList",
+    FontWeight->"Bold"],
+  ":"
+}], "Text",
+  CellDingbat->None],
+
+Cell[BoxData[{
+    \(\(y = 
+        Sort[Abs[v], 
+            Greater]^2;\)\[IndentingNewLine]\), "\[IndentingNewLine]", 
+    \(FoldList[Plus, 0, y]\)}], "Input"],
+
+Cell[TextData[{
+  StyleBox["FoldList",
+    FontWeight->"Bold"],
+  " works great except we have to start it at 0.  But we can dump the first \
+element and get exactly what we want!"
+}], "Text"],
+
+Cell[BoxData[{
+    \(\(y = Sort[Abs[v], Greater]^2;\)\), "\[IndentingNewLine]", 
+    \(z = Drop[FoldList[Plus, 0, y], 1]\), "\[IndentingNewLine]", 
+    \(z = z/Total[y]\)}], "Input"],
+
+Cell[TextData[{
+  "This works well for even the largest vectors.  So here is our first ",
+  StyleBox["Mathematica",
+    FontSlant->"Italic"],
+  " module:"
+}], "Text"],
+
+Cell[BoxData[
+    \(\(CEnergy[a_] := 
+        Module[{y, z}, \[IndentingNewLine]\t
+          y = Sort[Abs[Flatten[a]], Greater]^2; \[IndentingNewLine]\t
+          z = Drop[FoldList[Plus, 0, y], 1]/Total[y]; \[IndentingNewLine]\t
+          Return[z];\[IndentingNewLine]];\)\)], "Input"],
+
+Cell[TextData[{
+  "The ",
+  StyleBox["Flatten",
+    FontWeight->"Bold"],
+  " command converts a matrix to a vector (or list in ",
+  StyleBox["Mathematica",
+    FontSlant->"Italic"],
+  ") and leaves a vector alone.  Let's try the new module:"
+}], "Text"],
+
+Cell[BoxData[{
+    \(\(A = 
+        ReadImage[
+          flashdir <> "\<garfield_gray.jpg\>"];\)\), "\[IndentingNewLine]", 
+    \(\(ce = CEnergy[N[A]];\)\), "\[IndentingNewLine]", 
+    \(\(ListPlot[ce, PlotStyle \[Rule] Brown];\)\)}], "Input"],
+
+Cell[TextData[{
+  "If you try the ",
+  StyleBox["Table",
+    FontWeight->"Bold"],
+  ", ",
+  StyleBox["Sum",
+    FontWeight->"Bold"],
+  " approach to computing the cumulative energy of the Garfield image, it \
+takes forever to compute!"
+}], "Text"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+FrontEndVersion->"5.2 for Microsoft Windows",
+ScreenRectangle->{{0, 1024}, {0, 685}},
+AutoGeneratedPackage->None,
+ScreenStyleEnvironment->"Presentation",
+WindowSize->{1016, 651},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+ShowSelection->True,
+StyleDefinitions -> "Report.nb"
+]
+
+(*******************************************************************
+Cached data follows.  If you edit this Notebook file directly, not
+using Mathematica, you must remove the line containing CacheID at
+the top of  the file.  The cache data will then be recreated when
+you save this file from within Mathematica.
+*******************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+
+(*NotebookFileOutline
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[1776, 53, 31, 0, 117, "Title"],
+Cell[1810, 55, 85, 4, 143, "Subtitle"],
+Cell[1898, 61, 33, 0, 67, "Subsubtitle"],
+Cell[1934, 63, 255, 5, 62, "Text"],
+
+Cell[CellGroupData[{
+Cell[2214, 72, 67, 1, 67, "Subsubtitle",
+  InitializationCell->True],
+Cell[2284, 75, 298, 9, 63, "Text",
+  InitializationCell->True],
+Cell[2585, 86, 479, 9, 155, "Input",
+  InitializationCell->True]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[3101, 100, 47, 0, 67, "Subsubtitle"],
+Cell[3151, 102, 429, 17, 64, "Text"],
+
+Cell[CellGroupData[{
+Cell[3605, 123, 45, 0, 96, "Section"],
+Cell[3653, 125, 609, 18, 129, "Text"],
+Cell[4265, 145, 155, 4, 77, "Input"],
+Cell[4423, 151, 274, 5, 181, "Input"],
+Cell[4700, 158, 107, 2, 77, "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[4844, 165, 26, 0, 96, "Section"],
+Cell[4873, 167, 341, 10, 63, "Text"],
+Cell[5217, 179, 372, 6, 233, "Input"],
+Cell[5592, 187, 299, 9, 62, "Text"],
+Cell[5894, 198, 310, 7, 155, "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[6241, 210, 36, 0, 96, "Section"],
+Cell[6280, 212, 265, 9, 63, "Text"],
+Cell[6548, 223, 238, 5, 103, "Input"],
+Cell[6789, 230, 589, 20, 107, "Text"],
+Cell[7381, 252, 310, 6, 103, "Input"],
+Cell[7694, 260, 550, 23, 62, "Text"],
+Cell[8247, 285, 111, 2, 77, "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[8395, 292, 55, 0, 96, "Section"],
+Cell[8453, 294, 513, 12, 128, "Text"],
+Cell[8969, 308, 205, 4, 103, "Input"],
+Cell[9177, 314, 288, 9, 62, "Text"],
+Cell[9468, 325, 160, 4, 77, "Input"],
+Cell[9631, 331, 394, 10, 106, "Text"],
+Cell[10028, 343, 382, 8, 106, "Text"],
+Cell[10413, 353, 354, 15, 84, "Text"],
+Cell[10770, 370, 162, 4, 103, "Input"],
+Cell[10935, 376, 192, 5, 40, "Text"],
+Cell[11130, 383, 182, 3, 103, "Input"],
+Cell[11315, 388, 166, 5, 40, "Text"],
+Cell[11484, 395, 285, 5, 155, "Input"],
+Cell[11772, 402, 253, 8, 62, "Text"],
+Cell[12028, 412, 243, 5, 103, "Input"],
+Cell[12274, 419, 247, 9, 62, "Text"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+
+
+(*******************************************************************
+End of Mathematica Notebook file.
+*******************************************************************)
+

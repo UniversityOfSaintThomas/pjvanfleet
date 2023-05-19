@@ -1,0 +1,2 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>(* {255,0,0} is RGB for red *)
+RGBToYCbCr[{255, 0, 0}]</pre><div class='IFU'><a name='160896521'></a>http://wolfram.com/xid/0br3whhmcljlx93k2duksn03hvyd-cx2ut3</div>

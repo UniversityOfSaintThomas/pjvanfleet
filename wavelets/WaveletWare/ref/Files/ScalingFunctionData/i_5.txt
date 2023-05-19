@@ -1,0 +1,4 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>samples = 
+  Map[ScalingFunctionData[Daub[4], NumIterations -&gt; #] &amp;, {2, 5, 10}];
+Map[ListPlot[#, Joined -&gt; True, 
+   Ticks -&gt; {Range[3], Range[2]}] &amp;, samples]</pre><div class='IFU'><a name='585876515'></a>http://wolfram.com/xid/0b6ekx0z8pnru3asylaru54pcy-jy3nhx</div>

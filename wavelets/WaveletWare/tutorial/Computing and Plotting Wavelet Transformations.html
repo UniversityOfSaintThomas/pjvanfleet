@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Computing and Plotting Wavelet Transformations&mdash;Wolfram Language Documentation</title>
+<meta name="buildnumber" content="0000000" />
+<meta name="historydata" content="{0.0, , , }" />
+<meta name="keywords" content="Computing and Plotting Wavelet Transformations" />
+
+<meta name="description" content="At the core of the WaveletWare package are several routines for computing different types of (bi)orthogonal wavelet transforms. This tutorial describes how to use these functions and how to visualize results. Some of the options for computing and visualizing transforms are not covered here but additional information can be found on particular function help pages. This loads the package: (top)" />
+<script language="JavaScript" type="text/javascript">baselang='Computing and Plotting Wavelet Transformations';</script>
+<script language="JavaScript" type="text/javascript">packagename='WaveletWare';</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		 <link rel="stylesheet" type="text/css" href="../css/reference.css" />
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/core/1.6.1/jquery.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/plugins/hoverIntent/r5/jquery.hoverIntent.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/reference.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/documentation-search.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/inputs.js"></script>
+		 <script language="javaScript" type="text/javascript" src="../javascript/faster-page-load.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/plugins/jcarousel/tinycarousel/tinycarousel.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery.dotdotdot-1.5.1.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/carousel.js"></script>
+</head>
+<body id="tutorial">
+<a name="top"></a>
+<!--#include virtual="/common/includes/gl-header.html"--> 
+<div class="main-wrapper">
+
+
+<div class="wrapper mainOuter">
+    <div class="mainContent">
+ <div class="topContentWrap">
+  <div class="ribbonWrap">
+   <span class="ribbonOuter"><span class="ribbonInner">WAVELET WARE TUTORIAL</span></span>
+  </div>
+  <ul class="dropdown">
+   <li>
+    <a href="#">Tutorials</a>
+    <ul class="sub_menu">
+     <li>
+      <a href="/language/WaveletWare/tutorial/Computing and Plotting Wavelet Packet Transforms.html"><span class="dropdownPad">Computing and Plotting Wavelet Packet Transformations</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/tutorial/Naive Image Compression and Edge Detection.html"><span class="dropdownPad">Naive Image Compression and Edge Detection</span></a>
+     </li>
+    </ul>
+   </li>
+   <li>
+    <a href="#">Functions</a>
+    <ul class="sub_menu">
+     <li>
+      <a href="/language/WaveletWare/ref/BWT.html"><span class="dropdownPad">BWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/CDF97.html"><span class="dropdownPad">CDF97</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/Coif.html"><span class="dropdownPad">Coif</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/Daub.html"><span class="dropdownPad">Daub</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/FullWaveletPlot.html"><span class="dropdownPad">FullWaveletPlot</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/FullWaveletVectorPlot.html"><span class="dropdownPad">FullWaveletVectorPlot</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/Haar.html"><span class="dropdownPad">Haar</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/HWT.html"><span class="dropdownPad">HWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/InverseHWT.html"><span class="dropdownPad">InverseHWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/InverseWT.html"><span class="dropdownPad">InverseWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/LeftBWT.html"><span class="dropdownPad">LeftBWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/LeftHWT.html"><span class="dropdownPad">LeftHWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/LeftLWT.html"><span class="dropdownPad">LeftLWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/LeftWT.html"><span class="dropdownPad">LeftWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/LeGall.html"><span class="dropdownPad">LeGall</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/LWT.html"><span class="dropdownPad">LWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/RighHWT.html"><span class="dropdownPad">RighHWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/RightBWT.html"><span class="dropdownPad">RightBWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/RightLWT.html"><span class="dropdownPad">RightLWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/RightWT.html"><span class="dropdownPad">RightWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/SplineFilters.html"><span class="dropdownPad">SplineFilters</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/WaveletPlot.html"><span class="dropdownPad">WaveletPlot</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/WaveletRegionPlot.html"><span class="dropdownPad">WaveletRegionPlot</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/WaveletVectorPlot.html"><span class="dropdownPad">WaveletVectorPlot</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/WT.html"><span class="dropdownPad">WT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/WTFull.html"><span class="dropdownPad">WTFull</span></a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+  <div class="clear"><!-- --></div>
+ </div>
+ <h1 class="Title"><a name="509267359"></a>Computing and Plotting Wavelet Transformations</h1>
+ <div class="TutorialJumpBox">
+  <table class="nogridboxdividers">
+   <col />
+   <col />
+   <tr class="lineAbove" style=""><td><a href="../tutorial/Computing and Plotting Wavelet Transformations.html#154834215">Orthogonal Wavelet Transformations</a></td><td><a href="../tutorial/Computing and Plotting Wavelet Transformations.html#214830535">One-Sided Wavelet Transforms</a></td></tr>
+   <tr class="" style=""><td><a href="../tutorial/Computing and Plotting Wavelet Transformations.html#82101870">Biorthogonal Wavelet Transformations</a></td><td></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="91897616"></a>At the core of the <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> package are several routines for computing different types of (bi)orthogonal wavelet transforms.  This tutorial describes how to use these functions and how to visualize results.  Some of the options for computing and visualizing transforms are not covered here but additional information can be found on particular function help pages.</p>
+ <div class="MCap"><a name="16454449"></a>This loads the package:</div>
+ <table class="InCell">
+  <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+     <a name="861618089"></a>
+     <img src="Files/Computing and Plotting Wavelet Transformations/I_2.gif"
+         height="15"
+         width="93"
+         alt="Click for copyable input" />
+    </div><div id="i_1_out" class="IFL"></div></td></tr>
+ </table>
+ <h2 class="Section"><a name="154834215"></a>Orthogonal Wavelet Transformations</h2>
+ <p class="Text">
+  <a name="110587106"></a>
+  <a href="#main">(top)</a>
+ </p>
+ <p class="Text"><a name="331981717"></a>The <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> package includes two routines, <span class="IF"><a href="../ref/HWT.html">HWT</a></span> and <span class="IF"><a href="../ref/WT.html">WT</a></span>, for computing orthogonal wavelet transformations.  <span class="IF"><a href="../ref/HWT.html">HWT</a></span> computes the Haar wavelet transformation of the input (using the near-orthogonal filter {1/2,1/2}) and <span class="IF"><a href="../ref/WT.html">WT</a></span> computes the orthogonal wavelet transform resulting from the use of an orthogonal filter.  Built-in orthogonal filters include the Haar filter (<span class="IF"><a href="../ref/Haar.html">Haar</a></span>), Daubechies filters (<span class="IF"><a href="../ref/Daub.html">Daub</a></span>) and Coiflet filters (<span class="IF"><a href="../ref/Coif.html">Coif</a></span>).  User-defined orthogonal filters can also be used.  A third routine, <span class="IF"><a href="../ref/WTFull.html">WTFull</a></span>, generates several iterations of wavelet transformations.</p>
+ <div class="MathTable DefinitionBox">
+  <a name="37913791"></a>
+  <table class="nogridboxdividers">
+   <col width="40%" />
+   <col width="60%" />
+   <tr class="lineAbove" style=""><td><a href="../ref/HWT.html">HWT</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Compute the Haar wavelet transformation</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/WT.html">WT</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">filter</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Compute an orthogonal wavelet transformation</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/WTFull.html">WTFull</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">filter</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Compute several iterations of wavelet transformations</span></td></tr>
+  </table>
+ </div>
+ <p class="Caption"><a name="178178909"></a>Computing orthogonal wavelet transformations.</p>
+ <div class="MathTable DefinitionBox">
+  <a name="307699754"></a>
+  <table class="nogridboxdividers">
+   <col width="40%" />
+   <col width="60%" />
+   <tr class="lineAbove" style=""><td><a href="../ref/Haar.html">Haar</a><span class="openbracket">[</span><span class="closebracket">]</span></td><td><span class="TT">Haar filter</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/Daub.html">Daub</a><span class="openbracket">[</span><span class="TI">n</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Daubechies filter of even length n</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/Coif.html">Coif</a><span class="openbracket">[</span><span class="TI">n</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT"><span class="specialcharacters">Coiflet filter of length 6n<span class="comma">,</span> n=1<span class="comma">,</span>2<span class="comma">,</span>3<span class="comma">,</span>4<span class="comma">,</span>5</span></span></td></tr>
+  </table>
+ </div>
+ <p class="Caption"><a name="84052837"></a>Orthogonal filters.</p>
+ <p class="Text"><a name="17105044"></a>The <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> package contains a variety of routines that can be used for visualizing wavelet transforms.</p>
+ <div class="MathTable DefinitionBox">
+  <a name="394148750"></a>
+  <table class="nogridboxdividers">
+   <col width="40%" />
+   <col width="60%" />
+   <tr class="lineAbove" style=""><td><a href="../ref/WaveletVectorPlot.html">WaveletVectorPlot</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Plots the wavelet transform of 1-d data</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/FullWaveletVectorPlot.html">FullWaveletVectorPlot</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Plots all iterations of wavelet transforms of 1-d data</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/WaveletPlot.html">WaveletPlot</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Plots the wavelet transform of a matrix or list of 3 matrices</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/FullWaveletPlot.html">FullWaveletPlot</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Plots all iterations of a wavelet transform of input data</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/WaveletRegionPlot.html">WaveletRegionPlot</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">region</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Plots particular regions of the wavelet transform of input data</span></td></tr>
+  </table>
+ </div>
+ <p class="Caption"><a name="221447181"></a>Routines to visualize wavelet transforms.</p>
+ <h3 class="Subsection"><a name="696086338"></a>One-Dimensional Haar Wavelet Transformations</h3>
+ <p class="Text">
+  <a name="1171015"></a>
+  <a href="#owt">(top of section)</a>
+ </p>
+ <p class="Text"><a name="705056536"></a>We begin with one-dimensional transformations.  We start with the simple vector and apply <span class="IF"><a href="../ref/HWT.html">HWT</a></span> to this vector is equivalent to multiplying the vector by the matrix below.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+      <a name="182350197"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_4.gif"
+          height="50"
+          width="204"
+          alt="Click for copyable input" />
+     </div><div id="i_3_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_1.gif" height="15" width="128" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td colspan="2"><div class="celllabelTableForm">Out[3]//MatrixForm=</div></td></tr>
+   <tr><td class="lab"> </td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_2.gif" width="158" height="197" alt="" /></td></tr>
+  </table>
+ </div>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[4]:=</td><td class="Input"><div>
+      <a name="371322207"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_6.gif"
+          height="33"
+          width="44"
+          alt="Click for copyable input" />
+     </div><div id="i_5_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[4]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_3.gif" height="15" width="188" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[5]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_4.gif" height="15" width="188" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="417170525"></a>Setting the <span class="IF"><a href="../ref/Orthogonal.html">Orthogonal</a></span> option to <a href="http://reference.wolfram.com/language/ref/True.html">True</a> causes <span class="IF"><a href="../ref/HWT.html">HWT</a></span> to use the Haar filter.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[6]:=</td><td class="Input"><div>
+      <a name="34899524"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_8.gif"
+          height="84"
+          width="180"
+          alt="Click for copyable input" />
+     </div><div id="i_7_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[7]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_5.gif" height="15" width="362" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td colspan="2"><div class="celllabelTableForm">Out[9]//MatrixForm=</div></td></tr>
+   <tr><td class="lab"> </td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_6.gif" width="254" height="213" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[10]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_7.gif" height="15" width="362" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="689007587"></a>Multiple iterations of the transformation can be computed (to the extent the data will allow).  Use the <span class="IF"><a href="../ref/NumIterations.html">NumIterations</a></span> option to control the number of iterations in the computation.  For the second iteration, <span class="IF"><a href="../ref/HWT.html">HWT</a></span> takes the first half  of the first iteration of the <span class="IF"><a href="../ref/HWT.html">HWT</a></span> and applies the <span class="IF"><a href="../ref/HWT.html">HWT</a></span> to it.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[11]:=</td><td class="Input"><div>
+      <a name="262046016"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_10.gif"
+          height="67"
+          width="181"
+          alt="Click for copyable input" />
+     </div><div id="i_9_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[12]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_8.gif" height="15" width="170" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[13]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_9.gif" height="15" width="204" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[14]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_10.gif" height="15" width="170" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="52992133"></a>The routine <span class="IF"><a href="../ref/WaveletVectorPlot.html">WaveletVectorPlot</a></span> can be used to visualize one-dimensional transform output.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[15]:=</td><td class="Input"><div>
+      <a name="71892246"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_12.gif"
+          height="135"
+          width="501"
+          alt="Click for copyable input" />
+     </div><div id="i_11_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[18]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_11.gif" height="163" width="240" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[20]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_12.gif" height="149" width="240" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="25330223"></a><span class="IF"><a href="../ref/WTFull.html">WTFull</a></span> can be used to generate several iterations of an orthogonal wavelet transformation.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[21]:=</td><td class="Input"><div>
+      <a name="80509886"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_14.gif"
+          height="135"
+          width="464"
+          alt="Click for copyable input" />
+     </div><div id="i_13_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[24]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_13.gif" height="163" width="240" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[26]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_14.gif" height="63" width="493" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="692233037"></a>The routine <span class="IF"><a href="../ref/WaveletRegionPlot.html">WaveletRegionPlot</a></span> can be used to plot particular regions of the wavelet transform.  The routine needs the input data and a list of regions to plot.  The items in the region list are lists themselves of length 2.  The first element is the iteration of the region and the second number is either 1 (lowpass) or 2 (highpass).   The only time the second number should be 1 is when the first number is the total number of iterations.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[27]:=</td><td class="Input"><div>
+      <a name="153124086"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_16.gif"
+          height="169"
+          width="315"
+          alt="Click for copyable input" />
+     </div><div id="i_15_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[31]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_15.gif" height="71" width="265" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[32]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_16.gif" height="57" width="134" alt="" /></td></tr>
+  </table>
+ </div>
+ <h3 class="Subsection"><a name="409375123"></a>One-Dimensional Wavelet Transformations</h3>
+ <p class="Text">
+  <a name="38429204"></a>
+  <a href="#owt">(top of section)</a>
+ </p>
+ <p class="Text"><a name="45478777"></a>In general, <span class="IF"><a href="../ref/WT.html">WT</a></span> can be used to compute orthogonal wavelet transforms with other filters.  The matrix computation is similar to that of the Haar wavelet transform.  <br /><br />For example, computing the transform of an 8-vector using the Daubechies length 4 filter is the same as multiplying the vector by the following matrix:</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[33]:=</td><td class="Input"><div>
+      <a name="220012217"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_18.gif"
+          height="152"
+          width="396"
+          alt="Click for copyable input" />
+     </div><div id="i_17_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[34]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_17.gif" height="15" width="23" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td colspan="2"><div class="celllabelTableForm">Out[36]//MatrixForm=</div></td></tr>
+   <tr><td class="lab"> </td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_18.gif" width="398" height="245" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[38]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_19.gif" height="15" width="386" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[39]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_20.gif" height="15" width="386" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="183347172"></a>To the extent the data will allow, multiple iterations of the transform can be computed:</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[40]:=</td><td class="Input"><div>
+      <a name="363045"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_20.gif"
+          height="135"
+          width="501"
+          alt="Click for copyable input" />
+     </div><div id="i_19_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[43]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_21.gif" height="163" width="240" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[45]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_22.gif" height="156" width="240" alt="" /></td></tr>
+  </table>
+ </div>
+ <h3 class="Subsection"><a name="109415124"></a>Inverse One-Dimensional Wavelet Transformations</h3>
+ <p class="Text">
+  <a name="17632333"></a>
+  <a href="#owt">(top of section)</a>
+ </p>
+ <p class="Text"><a name="727219761"></a>Each of <span class="IF"><a href="../ref/HWT.html">HWT</a></span> and <span class="IF"><a href="../ref/WT.html">WT</a></span> have an associated inverse function.  Since the wavelet matrices <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/1.png" height="18" width="11" alt="" /></span> (see above) are orthogonal, we have <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/2.png" height="18" width="23" alt="" /></span>= <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/3.png" height="18" width="17" alt="" /></span>.</p>
+ <div class="MathTable DefinitionBox">
+  <a name="525825130"></a>
+  <table class="nogridboxdividers">
+   <col width="40%" />
+   <col width="60%" />
+   <tr class="lineAbove" style=""><td><a href="../ref/InverseHWT.html">InverseHWT</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Inverse Haar wavelet transformation</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/InverseWT.html">InverseWT</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">filter</span><span class="comma">,</span> <span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Inverse orthogonal wavelet transformation</span></td></tr>
+  </table>
+ </div>
+ <p class="Caption"><a name="194149934"></a>Inverse wavelet transformations.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[46]:=</td><td class="Input"><div>
+      <a name="297301715"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_22.gif"
+          height="50"
+          width="116"
+          alt="Click for copyable input" />
+     </div><div id="i_21_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[46]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_23.gif" height="15" width="128" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[47]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_24.gif" height="15" width="188" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[48]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_25.gif" height="15" width="152" alt="" /></td></tr>
+  </table>
+ </div>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[49]:=</td><td class="Input"><div>
+      <a name="120136171"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_24.gif"
+          height="169"
+          width="272"
+          alt="Click for copyable input" />
+     </div><div id="i_23_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[52]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_26.gif" height="132" width="240" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[55]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_27.gif" height="15" width="23" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[56]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_28.gif" height="132" width="240" alt="" /></td></tr>
+  </table>
+ </div>
+ <h3 class="Subsection"><a name="6166732"></a>Two-Dimensional Wavelet Transformations</h3>
+ <p class="Text">
+  <a name="80888200"></a>
+  <a href="#owt">(top of section)</a>
+ </p>
+ <p class="Text"><a name="484200015"></a>For the wavelet transformation of an <span class="IF"><span class="TI">m</span></span> x <span class="IF"><span class="TI">n</span></span> matrix <span class="IF"><a href="http://reference.wolfram.com/language/Global/ref/A.html">A</a></span>, wavelet matrices <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/4.png" height="18" width="20" alt="" /></span> and <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/5.png" height="18" width="17" alt="" /></span> (see above) are formed, where even <span class="IF"><span class="TI">m</span></span>, <span class="IF"><span class="TI">n</span></span> represent the dimensions of the square matrices W<sub>m</sub> and W<sub>n</sub>, respectively, and then product <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/6.png" height="18" width="20" alt="" /></span>A <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/7.png" height="18" width="17" alt="" /></span> is computed.  Here is a simple example.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[57]:=</td><td class="Input"><div>
+      <a name="569729614"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_26.gif"
+          height="101"
+          width="334"
+          alt="Click for copyable input" />
+     </div><div id="i_25_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td colspan="2"><div class="celllabelTableForm">Out[58]//MatrixForm=</div></td></tr>
+   <tr><td class="lab"> </td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_29.gif" width="96" height="61" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[60]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_30.gif" height="147" width="222" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td colspan="2"><div class="celllabelTableForm">Out[61]//MatrixForm=</div></td></tr>
+   <tr><td class="lab"> </td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_31.gif" width="144" height="61" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td colspan="2"><div class="celllabelTableForm">Out[62]//MatrixForm=</div></td></tr>
+   <tr><td class="lab"> </td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_32.gif" width="144" height="61" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="23941572"></a>The <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> package comes with a group of stock images that can be used in image processing applications.  The routines <span class="IF"><a href="../ref/HWT.html">HWT</a></span> and <span class="IF"><a href="../ref/WT.html">WT</a></span> can be applied to these images once they have been imported as matrices.  The output can be plotted using <span class="IF"><a href="../ref/WaveletPlot.html">WaveletPlot</a></span>, <span class="IF"><a href="../ref/FullWaveletPlot.html">FullWaveletPlot</a></span> or <span class="IF"><a href="../ref/WaveletRegionPlot.html">WaveletRegionPlot</a></span>.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[63]:=</td><td class="Input"><div>
+      <a name="663816461"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_28.gif"
+          height="101"
+          width="306"
+          alt="Click for copyable input" />
+     </div><div id="i_27_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[65]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_33.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[67]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_34.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="698615516"></a><span class="IF"><a href="../ref/WaveletPlot.html">WaveletPlot</a></span> can plot multiple iterations or even particular regions.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[68]:=</td><td class="Input"><div>
+      <a name="533014330"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_30.gif"
+          height="101"
+          width="333"
+          alt="Click for copyable input" />
+     </div><div id="i_29_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[70]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_35.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[72]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_36.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+ </div>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[73]:=</td><td class="Input"><div>
+      <a name="207785125"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_32.gif"
+          height="101"
+          width="471"
+          alt="Click for copyable input" />
+     </div><div id="i_31_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[75]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_37.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[77]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_38.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="164678181"></a><span class="IF"><a href="../ref/WaveletRegionPlot.html">WaveletRegionPlot</a></span> can be used to plot particular regions of a transform.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[78]:=</td><td class="Input"><div>
+      <a name="76885826"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_34.gif"
+          height="101"
+          width="439"
+          alt="Click for copyable input" />
+     </div><div id="i_33_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[80]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_39.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[82]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_40.gif" height="66" width="239" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="548637099"></a><span class="IF"><a href="../ref/WTFull.html">WTFull</a></span> can be used to compute several iterations of a wavelet transform and the results can be plotted using <span class="IF"><a href="../ref/FullWaveletPlot.html">FullWaveletPlot</a></span>:</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[83]:=</td><td class="Input"><div>
+      <a name="58076340"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_36.gif"
+          height="101"
+          width="314"
+          alt="Click for copyable input" />
+     </div><div id="i_35_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[85]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_41.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[87]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_42.gif" height="66" width="431" alt="" /></td></tr>
+  </table>
+ </div>
+ <h3 class="Subsection"><a name="244283437"></a>Inverse Wavelet Transforms of Matrices</h3>
+ <p class="Text">
+  <a name="212386364"></a>
+  <a href="#owt">(top of section)</a>
+ </p>
+ <p class="Text"><a name="677162113"></a>Inverse wavelet transformations are computed using <span class="IF"><a href="../ref/InverseHWT.html">InverseHWT</a></span> or <span class="IF"><a href="../ref/InverseWT.html">InverseWT</a></span>.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[88]:=</td><td class="Input"><div>
+      <a name="194864089"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_38.gif"
+          height="169"
+          width="333"
+          alt="Click for copyable input" />
+     </div><div id="i_37_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[90]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_43.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[92]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_44.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[94]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_45.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[95]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_46.gif" height="15" width="23" alt="" /></td></tr>
+  </table>
+ </div>
+ <h3 class="Subsection"><a name="124770202"></a>Wavelet Transformations and Color Images</h3>
+ <p class="Text">
+  <a name="827602292"></a>
+  <a href="#owt">(top of section)</a>
+ </p>
+ <p class="Text"><a name="20438917"></a>The input for <span class="IF"><a href="../ref/HWT.html">HWT</a></span> and <span class="IF"><a href="../ref/WT.html">WT</a></span> can be lists of three matrices whose dimensions are the same.  Typically color images are converted to a different color space before they are processed by a wavelet transformation, but the capability to plot color output of wavelet transforms is built into the plotting routines.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[96]:=</td><td class="Input"><div>
+      <a name="56621111"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_40.gif"
+          height="135"
+          width="402"
+          alt="Click for copyable input" />
+     </div><div id="i_39_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[98]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_47.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[99]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_48.gif" height="66" width="324" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[101]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_49.gif" height="66" width="324" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[102]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_50.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="821862770"></a>A more typical use of <span class="IF"><a href="../ref/HWT.html">HWT</a></span> and <span class="IF"><a href="../ref/WT.html">WT</a></span> for color images is image processing.  In these cases, the red, green, blue channels are converted to a different color space and then transforms are computed.  Here is an example using the YCbCr color space.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[103]:=</td><td class="Input"><div>
+      <a name="594482016"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_42.gif"
+          height="152"
+          width="402"
+          alt="Click for copyable input" />
+     </div><div id="i_41_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[105]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_51.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[106]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_52.gif" height="66" width="324" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[108]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_53.gif" height="66" width="324" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[110]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_54.gif" height="66" width="324" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="273553507"></a>Particular regions of wavelet transforms of color images can be plotted using <span class="IF"><a href="../ref/WaveletPlot.html">WaveletPlot</a></span> or <span class="IF"><a href="../ref/WaveletRegionPlot.html">WaveletRegionPlot</a></span>.  In this case, the option <span class="IF"><a href="../ref/Iteration.html">Iteration</a></span> becomes a list of lists each of the form {<span class="IF"><span class="TI">c</span></span>,<span class="IF"><span class="TI">i</span></span>,<span class="IF"><span class="TI">j</span></span>,<span class="IF"><span class="TI">k</span></span>} where <span class="IF"><span class="TI">c</span></span> represents the channel (1,2,3), <span class="IF"><span class="TI">i</span></span> is the iteration and (<span class="IF"><span class="TI">j</span></span>,<span class="IF"><span class="TI">k</span></span>) is the matrix block of that iteration to be displayed.  The value of <span class="IF"><span class="TI">c</span></span> can also be <a href="http://reference.wolfram.com/language/ref/All.html">All</a> in which case the region (<span class="IF"><span class="TI">i</span></span>,<span class="IF"><span class="TI">j</span></span>,<span class="IF"><span class="TI">k</span></span>) is plotted for all channels.  </p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[111]:=</td><td class="Input"><div>
+      <a name="241349470"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_44.gif"
+          height="152"
+          width="468"
+          alt="Click for copyable input" />
+     </div><div id="i_43_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[113]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_55.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[114]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_56.gif" height="66" width="324" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[116]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_57.gif" height="66" width="324" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[117]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_58.gif" height="66" width="324" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[118]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_59.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="624404757"></a><span class="IF"><a href="../ref/WaveletRegionPlot.html">WaveletRegionPlot</a></span> can generate the equivalent output but the list of regions to be plotted is an argument rather than an option value.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[119]:=</td><td class="Input"><div>
+      <a name="80229544"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_46.gif"
+          height="152"
+          width="436"
+          alt="Click for copyable input" />
+     </div><div id="i_45_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[121]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_60.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[122]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_61.gif" height="66" width="324" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[124]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_62.gif" height="66" width="140" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[125]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_63.gif" height="66" width="324" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[126]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_64.gif" height="66" width="110" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="304335638"></a><span class="IF"><a href="../ref/WTFull.html">WTFull</a></span> can be used for color images and the results can be plotted by <span class="IF"><a href="../ref/FullWaveletPlot.html">FullWaveletPlot</a></span>:</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[127]:=</td><td class="Input"><div>
+      <a name="791213931"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_48.gif"
+          height="135"
+          width="402"
+          alt="Click for copyable input" />
+     </div><div id="i_47_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[129]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_65.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[130]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_66.gif" height="66" width="324" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[132]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_67.gif" height="276" width="339" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[133]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_68.gif" height="66" width="431" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="64940015"></a>Particular regions can be plotted using <span class="IF"><a href="../ref/FullWaveletPlot.html">FullWaveletPlot</a></span>, but the value of <span class="IF"><a href="../ref/Iteration.html">Iteration</a></span> must be given as a list of lists, the length of which is the number of iterations plotted plus one.  The value <a href="http://reference.wolfram.com/language/ref/All.html">All</a> can serve as a list element.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[134]:=</td><td class="Input"><div>
+      <a name="51493773"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_50.gif"
+          height="118"
+          width="421"
+          alt="Click for copyable input" />
+     </div><div id="i_49_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[136]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_69.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[137]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_70.gif" height="66" width="324" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[139]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_71.gif" height="206" width="339" alt="" /></td></tr>
+  </table>
+ </div>
+ <h3 class="Subsection"><a name="36305538"></a>Inverse Wavelet Transformations of Color Images</h3>
+ <p class="Text">
+  <a name="26485903"></a>
+  <a href="#owt">(top of section)</a>
+ </p>
+ <p class="Text"><a name="22330132"></a><span class="IF"><a href="../ref/InverseHWT.html">InverseHWT</a></span> and <span class="IF"><a href="../ref/InverseWT.html">InverseWT</a></span> can be used to compute inverse transforms of color images or color space images.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[140]:=</td><td class="Input"><div>
+      <a name="679376324"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_52.gif"
+          height="152"
+          width="314"
+          alt="Click for copyable input" />
+     </div><div id="i_51_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[142]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_72.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[144]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_73.gif" height="66" width="324" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[146]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_74.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[147]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_75.gif" height="15" width="23" alt="" /></td></tr>
+  </table>
+ </div>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[178]:=</td><td class="Input"><div>
+      <a name="199480965"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_54.gif"
+          height="203"
+          width="321"
+          alt="Click for copyable input" />
+     </div><div id="i_53_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[180]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_76.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[183]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_77.gif" height="66" width="324" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[186]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_78.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+ </div>
+ <h2 class="Section"><a name="82101870"></a>Biorthogonal Wavelet Transformations</h2>
+ <p class="Text">
+  <a name="280948534"></a>
+  <a href="#main">(top)</a>
+ </p>
+ <p class="Text"><a name="125188407"></a>The <a href="../ref/WaveletWare.html">WaveletWare</a> package is equipped with two functions, <span class="IF"><a href="../ref/BWT.html">BWT</a></span> and <span class="IF"><a href="../ref/LWT.html">LWT</a></span>, that can be used to compute the biorthogonal wavelet transformation of a vector, matrix or a list of three matrices of equal dimensions.  A third function, <span class="IF"><a href="../ref/WTFull.html">WTFull</a></span>, can be used to compute many iterations of a biorthogonal wavelet transformation.  <span class="IF"><a href="../ref/LWT.html">LWT</a></span> is a routine that computes the biorthogonal wavelet transform using the LeGall 5/7 filter pair.  The computation is done using the lifting scheme and can be configured so that integer-valued data are transformed as integers.  <span class="IF"><a href="../ref/BWT.html">BWT</a></span> is used to compute a general biorthogonal wavelet transform.  Built-in biorthogonal filter pairs include spline filters (<span class="IF"><a href="../ref/SplineFilters.html">SplineFilters</a></span>), the Cohen-Daubechies-Feauveau 9/7 filter pair (<span class="IF"><a href="../ref/CDF97.html">CDF97</a></span>) and the LeGall 5/7 filter pair (<span class="IF"><a href="../ref/LeGall.html">LeGall</a></span>).<br /><br />The syntax for <span class="IF"><a href="../ref/LWT.html">LWT</a></span> and <span class="IF"><a href="../ref/BWT.html">BWT</a></span> is much the same as that of <span class="IF"><a href="../ref/HWT.html">HWT</a></span> and <span class="IF"><a href="../ref/WT.html">WT</a></span>, respectively, except that there are options available to map integers to integers (<span class="IF"><a href="../ref/LWT.html">LWT</a></span>) and exploit the symmetric nature of the built-in biorthogonal filter pairs (see the <span class="IF"><a href="../ref/Boundary.html">Boundary</a></span> option).</p>
+ <div class="MathTable DefinitionBox">
+  <a name="440060218"></a>
+  <table class="nogridboxdividers">
+   <col width="40%" />
+   <col width="60%" />
+   <tr class="lineAbove" style=""><td><a href="../ref/LWT.html">LWT</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Compute the LeGall biorthogonal wavelet transformation</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/BWT.html">BWT</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">filter</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Compute a biorthogonal wavelet transformation</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/WTFull.html">WTFull</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">filter</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Compute several iterations of wavelet transformations</span></td></tr>
+  </table>
+ </div>
+ <p class="Caption"><a name="326234284"></a>Computing biorthogonal wavelet transformations.</p>
+ <div class="MathTable DefinitionBox">
+  <a name="129810759"></a>
+  <table class="nogridboxdividers">
+   <col width="40%" />
+   <col width="60%" />
+   <tr class="lineAbove" style=""><td><a href="../ref/LeGall.html">LeGall</a><span class="openbracket">[</span><span class="closebracket">]</span></td><td><span class="TT">LeGall 5/7 biorthogonal filter pair</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/CDF97.html">CDF97</a><span class="openbracket">[</span><span class="closebracket">]</span></td><td><span class="TT">Cohen-Daubechies-Feauveau biorthogonal filter pair</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/SplineFilters.html">SplineFilters</a><span class="openbracket">[</span><span class="TI">n</span><span class="comma">,</span><span class="TI">m</span><span class="closebracket">]</span></td><td><span class="TT"><span class="specialcharacters">Spline filter pair<span class="comma">,</span> </span><span class="IF"><span class="TI">m</span></span><span class="comma">,</span><span class="IF"><span class="TI">n</span></span> integers of the same parity</span></td></tr>
+  </table>
+ </div>
+ <p class="Caption"><a name="128710028"></a>Built-in biorthogonal filter pairs.</p>
+ <h3 class="Subsection"><a name="37247784"></a>One-Dimensional Biorthogonal Wavelet Transformations</h3>
+ <p class="Text">
+  <a name="511005601"></a>
+  <a href="#bwt">(top of section)</a>
+ </p>
+ <p class="Text"><a name="79564295"></a>Unlike orthogonal wavelet transformations, biorthogonal transformations use a pair of filters to generate the transformation matrix.  The cell below shows the (5,3) spline filter pair.  Starting indices of these filters are -2 and -1, respectively.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[187]:=</td><td class="Input"><div>
+      <a name="321377515"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_56.gif"
+          height="15"
+          width="93"
+          alt="Click for copyable input" />
+     </div><div id="i_55_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[187]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_79.gif" height="37" width="340" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="328391170"></a>The matrix for performing the transformation is shown below in the 8x8 case.  Note the top half of the matrix is constructed from cyclic shifts of the length 3 filter (with the 0 subscript term in the (1,1) position) and the bottom half constructed from shifts of the first filter with alternating signs.  In particular, if the first filter has values <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/8.png" height="18" width="14" alt="" /></span>, <span class="IF"><span class="TI">k</span></span>=-2,...,2, then the filter on the bottom is defined by <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/9.png" height="18" width="13" alt="" /></span>= <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/10.png" height="18" width="32" alt="" /></span><span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/11.png" height="18" width="25" alt="" /></span>, <span class="IF"><span class="TI">k</span></span>=-1,...,3.  Thus, <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/12.png" height="18" width="13" alt="" /></span>is located in the (5,1) position and other rows are obtained by cyclic shifts.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[188]:=</td><td class="Input"><div>
+      <a name="204652320"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_58.gif"
+          height="33"
+          width="240"
+          alt="Click for copyable input" />
+     </div><div id="i_57_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td colspan="2"><div class="celllabelTableForm">Out[189]//MatrixForm=</div></td></tr>
+   <tr><td class="lab"> </td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_80.gif" width="302" height="213" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="618662814"></a>Applying this matrix to a vector is equivalent to applying <span class="IF"><a href="../ref/BWT.html">BWT</a></span> to the vector.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[190]:=</td><td class="Input"><div>
+      <a name="623352218"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_60.gif"
+          height="50"
+          width="184"
+          alt="Click for copyable input" />
+     </div><div id="i_59_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[191]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_81.gif" height="15" width="358" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[192]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_82.gif" height="15" width="358" alt="" /></td></tr>
+  </table>
+ </div>
+ <h3 class="Subsection"><a name="230939176"></a>The Inverse One-Dimensional Biorthogonal Wavelet Transformation</h3>
+ <p class="Text">
+  <a name="269654096"></a>
+  <a href="#bwt">(top of section)</a>
+ </p>
+ <p class="Text"><a name="111800018"></a>For orthogonal transformations, we used a single filter to generate an orthogonal matrix <span class="IF"><a href="http://reference.wolfram.com/language/Global/ref/W.html">W</a></span> and in this case, <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/13.png" height="18" width="23" alt="" /></span>= <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/14.png" height="18" width="17" alt="" /></span>.  A matrix <span class="IF"><a href="http://reference.wolfram.com/language/Global/ref/W.html">W</a></span>, such as the one generated from the (5,3) spline filter pair is not orthogonal, but its inverse has an amazing property.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[193]:=</td><td class="Input"><div>
+      <a name="43545822"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_62.gif"
+          height="50"
+          width="435"
+          alt="Click for copyable input" />
+     </div><div id="i_61_out" class="IFL"></div></td></tr>
+  </table>
+  <div class="Print">
+   <a name="111502514"></a>
+   <img class="FlushInput"
+       src="Files/Computing and Plotting Wavelet Transformations/Image_15.gif"
+       alt=" " />
+  </div>
+  <div class="Print">
+   <a name="387842319"></a>
+   <img class="FlushInput"
+       src="Files/Computing and Plotting Wavelet Transformations/Image_16.gif"
+       alt=" " />
+  </div>
+ </div>
+ <p class="Text"><a name="659855256"></a>Note that the transpose of the inverse of <span class="IF"><a href="http://reference.wolfram.com/language/Global/ref/W.html">W</a></span> is simply the matrix we would have obtained had we generated a wavelet matrix from the (2,2) spline filter pair with the order of the filters reversed!</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[196]:=</td><td class="Input"><div>
+      <a name="387954011"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_64.gif"
+          height="15"
+          width="341"
+          alt="Click for copyable input" />
+     </div><div id="i_63_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td colspan="2"><div class="celllabelTableForm">Out[196]//MatrixForm=</div></td></tr>
+   <tr><td class="lab"> </td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_83.gif" width="314" height="213" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="322570755"></a>If we set <span class="IF"><a href="http://reference.wolfram.com/language/Global/ref/W.html">W</a></span> to be the  biorthogonal wavelet matrix generated from the filter pair (<span class="IF"><span class="TI">h</span></span>,<span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/17.png" height="20" width="8" alt="" /></span>), then the inverse of <span class="IF"><a href="http://reference.wolfram.com/language/Global/ref/W.html">W</a></span> is simply the transpose of the wavelet matrix <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/18.png" height="18" width="11" alt="" /></span> generated from the filter pair (<span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/19.png" height="20" width="8" alt="" /></span>,<span class="IF"><span class="TI">h</span></span>).  </p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[197]:=</td><td class="Input"><div>
+      <a name="9698799"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_66.gif"
+          height="101"
+          width="376"
+          alt="Click for copyable input" />
+     </div><div id="i_65_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[198]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_84.gif" height="15" width="358" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td colspan="2"><div class="celllabelTableForm">Out[200]//MatrixForm=</div></td></tr>
+   <tr><td class="lab"> </td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_85.gif" width="314" height="213" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[201]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_86.gif" height="15" width="152" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[202]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_87.gif" height="15" width="152" alt="" /></td></tr>
+  </table>
+ </div>
+ <h3 class="Subsection"><a name="73800766"></a>Exploiting the Symmetry of Biorthogonal Filters</h3>
+ <p class="Text">
+  <a name="459555693"></a>
+  <a href="#bwt">(top of section)</a>
+ </p>
+ <p class="Text"><a name="110911580"></a>It is possible to configure <span class="IF"><a href="../ref/BWT.html">BWT</a></span> via the <span class="IF"><a href="../ref/Boundary.html">Boundary</a></span> option to take advantage of the symmetric nature of built-in biorthogonal spline filter pairs (or user-created symmetric pairs).  The output of a biorthogonal wavelet transform is plotted below.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[203]:=</td><td class="Input"><div>
+      <a name="144344589"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_68.gif"
+          height="67"
+          width="321"
+          alt="Click for copyable input" />
+     </div><div id="i_67_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[204]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_88.gif" height="253" width="400" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[206]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_89.gif" height="238" width="400" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="895964426"></a>Note that the first term from the lowpass portion of the transform and the first and last terms of the highpass portion of the transform show the effects of the &quot;wrap around&quot; rows of the inherent biorthogonal wavelet matrix.  Below is the output with <span class="IF"><a href="../ref/Boundary.html">Boundary</a></span> set to <a href="http://reference.wolfram.com/language/ref/True.html">True.</a></p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[207]:=</td><td class="Input"><div>
+      <a name="48994220"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_70.gif"
+          height="67"
+          width="321"
+          alt="Click for copyable input" />
+     </div><div id="i_69_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[208]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_90.gif" height="253" width="400" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[210]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_91.gif" height="238" width="400" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="361729"></a>When <span class="IF"><a href="../ref/Boundary.html">Boundary</a></span> is set to <a href="http://reference.wolfram.com/language/ref/True.html">True</a>, <span class="IF"><a href="../ref/BWT.html">BWT</a></span>, for biorthogonal filters each with odd length, creates the following periodic vector from the input.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[211]:=</td><td class="Input"><div>
+      <a name="188875537"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_72.gif"
+          height="33"
+          width="234"
+          alt="Click for copyable input" />
+     </div><div id="i_71_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[211]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_92.gif" height="15" width="128" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[212]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_93.gif" height="15" width="224" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="263036436"></a>Next, a wavelet matrix of size 14x14 is created and applied to the new vector.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[213]:=</td><td class="Input"><div>
+      <a name="231902250"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_74.gif"
+          height="50"
+          width="252"
+          alt="Click for copyable input" />
+     </div><div id="i_73_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td colspan="2"><div class="celllabelTableForm">Out[214]//MatrixForm=</div></td></tr>
+   <tr><td class="lab"> </td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_94.gif" width="524" height="375" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[215]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_95.gif" height="33" width="371" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="102115772"></a>Note that the first element of the output is computed using <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/20.png" height="18" width="55" alt="" /></span>(now at the end of our periodic vector) rather than <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/21.png" height="18" width="53" alt="" /></span> were we to have used the 8x8 wavelet matrix.  Similar observations hold for the wrap around rows in the highpass portion of the transform.  <br /><br />Note also the symmetric nature of the lowpass and highpass portions of the transform.  Indeed we discard the last three elements of the lowpass and highpass portions of the output to arrive at our modified transform.  The result can be seen using <span class="IF"><a href="../ref/BWT.html">BWT</a></span> with <span class="IF"><a href="../ref/Boundary.html">Boundary</a></span> set to <a href="http://reference.wolfram.com/language/ref/True.html">True.</a></p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[216]:=</td><td class="Input"><div>
+      <a name="683324156"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_76.gif"
+          height="15"
+          width="244"
+          alt="Click for copyable input" />
+     </div><div id="i_75_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[216]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_96.gif" height="15" width="364" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="93490924"></a>The procedure for inverting &quot;symmetric&quot; transforms is straightforward.  The lowpass and highpass portions of the output are padded as above, the inverse transform is computed and then the extraneous elements of the output are dropped.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[217]:=</td><td class="Input"><div>
+      <a name="608651714"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_78.gif"
+          height="152"
+          width="388"
+          alt="Click for copyable input" />
+     </div><div id="i_77_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[218]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_97.gif" height="15" width="364" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[222]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_98.gif" height="33" width="371" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[224]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_99.gif" height="15" width="266" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[225]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_100.gif" height="15" width="152" alt="" /></td></tr>
+  </table>
+ </div>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[226]:=</td><td class="Input"><div>
+      <a name="764683930"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_80.gif"
+          height="15"
+          width="290"
+          alt="Click for copyable input" />
+     </div><div id="i_79_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[226]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_101.gif" height="15" width="152" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="63945579"></a>When <span class="IF"><a href="../ref/Boundary.html">Boundary</a></span> is set to <a href="http://reference.wolfram.com/language/ref/True.html">True</a> for even-length filter pairs, the periodic vector is formed by adjoining the original vector with a reverse of itself and proceeding in a method similar to that described above.</p>
+ <h3 class="Subsection"><a name="68214518"></a>Two-Dimensional Biorthogonal Wavelet Transformations</h3>
+ <p class="Text">
+  <a name="119944925"></a>
+  <a href="#bwt">(top of section)</a>
+ </p>
+ <p class="Text"><a name="146188979"></a>The biorthogonal filter pair (<span class="IF"><span class="TI">h</span></span>,<span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/22.png" height="20" width="8" alt="" /></span>) gives rise to wavelet matrices <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/23.png" height="18" width="11" alt="" /></span> and <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/24.png" height="18" width="11" alt="" /></span> described earlier in this section.  The construction guarantees that <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/25.png" height="18" width="23" alt="" /></span>= <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/26.png" height="21" width="17" alt="" /></span>.  As in the case of orthogonal transforms of matrices where the input matrix <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/27.png" height="18" width="8" alt="" /></span> was pre- and post-multiplied by <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/28.png" height="18" width="11" alt="" /></span> and <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/29.png" height="18" width="17" alt="" /></span>(<span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/30.png" height="18" width="23" alt="" /></span>), respectively, the biorthogonal transform of matrix <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/31.png" height="18" width="8" alt="" /></span> is obtained from the product <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/32.png" height="18" width="11" alt="" /></span><span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/33.png" height="18" width="8" alt="" /></span><span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/34.png" height="21" width="17" alt="" /></span>.<br /><br />Plotting biorthogonal wavelet transforms can be done with the visualization routines described above.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[227]:=</td><td class="Input"><div>
+      <a name="721485076"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_82.gif"
+          height="101"
+          width="314"
+          alt="Click for copyable input" />
+     </div><div id="i_81_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[229]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_102.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[231]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_103.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+ </div>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[232]:=</td><td class="Input"><div>
+      <a name="18064708"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_84.gif"
+          height="152"
+          width="435"
+          alt="Click for copyable input" />
+     </div><div id="i_83_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[234]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_104.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[236]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_105.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[238]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_106.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[239]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_107.gif" height="15" width="23" alt="" /></td></tr>
+  </table>
+ </div>
+ <h3 class="Subsection"><a name="511079900"></a>Biorthogonal Wavelet Transformations and Color Images</h3>
+ <p class="Text">
+  <a name="604727089"></a>
+  <a href="#bwt">(top of section)</a>
+ </p>
+ <p class="Text"><a name="367498968"></a>The computation and visualization of biorthogonal wavelet transformations involving color images is similar to the procedure described above for computing and plotting wavelet transformations of color images.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[240]:=</td><td class="Input"><div>
+      <a name="819681839"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_86.gif"
+          height="135"
+          width="402"
+          alt="Click for copyable input" />
+     </div><div id="i_85_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[242]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_108.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[243]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_109.gif" height="66" width="324" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[245]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_110.gif" height="66" width="324" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[246]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_111.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+ </div>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[247]:=</td><td class="Input"><div>
+      <a name="480506342"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_88.gif"
+          height="169"
+          width="402"
+          alt="Click for copyable input" />
+     </div><div id="i_87_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[249]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_112.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[250]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_113.gif" height="66" width="324" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[252]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_114.gif" height="66" width="324" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[254]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_115.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+ </div>
+ <h3 class="Subsection"><a name="97330748"></a>LeGall Biorthogonal Wavelet Transformation</h3>
+ <p class="Text">
+  <a name="153680609"></a>
+  <a href="#bwt">(top of section)</a>
+ </p>
+ <p class="Text"><a name="440027890"></a>The LeGall 5/3 biorthogonal filter pair is used for lossless compression in the JPEG2000 Image Compression Standard.  It can be computed using the <span class="IF"><a href="../ref/BWT.html">BWT</a></span> module and an adjusted <span class="IF"><a href="../ref/LeGall.html">LeGall</a></span> filter pair:</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[255]:=</td><td class="Input"><div>
+      <a name="936346788"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_90.gif"
+          height="67"
+          width="195"
+          alt="Click for copyable input" />
+     </div><div id="i_89_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[257]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_116.gif" height="15" width="188" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[258]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_117.gif" height="15" width="188" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="11207608"></a>The reason the LeGall transform is used in lossless compression is that the computation of the transform is done via the lifting method and as a result, rounding can be incorporated to produce an invertible transformation that maps integers to integers.  <br /><br />The lifting algorithm for the LeGall filter is as follows:  Partition input vector <span class="IF"><span class="TI">v</span></span> (of even length <span class="IF"><a href="http://reference.wolfram.com/language/ref/N.html">N</a></span>) into even e and odd o vectors.  Then the highpass portion <span class="IF"><span class="TI">d</span></span> and lowpass portion <span class="IF"><span class="TI">s</span></span> are computed element-wise by:<br /><br /><span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/35.png" height="18" width="14" alt="" /></span>= <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/36.png" height="18" width="13" alt="" /></span>- <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/37.png" height="26" width="9" alt="" /></span>(<span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/38.png" height="18" width="14" alt="" /></span>+ <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/39.png" height="18" width="25" alt="" /></span>) and then <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/40.png" height="18" width="12" alt="" /></span>= <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/41.png" height="18" width="14" alt="" /></span> +  <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/42.png" height="26" width="9" alt="" /></span>(<span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/43.png" height="18" width="14" alt="" /></span>+ <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/44.png" height="18" width="25" alt="" /></span>).<br /><br />Here, <span class="IF"><span class="TI">k</span></span>=1,...,<span class="IF"><a href="http://reference.wolfram.com/language/ref/N.html">N</a></span>/2 with <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/45.png" height="18" width="36" alt="" /></span>= <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/46.png" height="18" width="23" alt="" /></span> and <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/47.png" height="18" width="16" alt="" /></span>= <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/48.png" height="18" width="14" alt="" /></span>.  The formulas for recovering the odd and even vectors are easily obtained from the formulas for <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/49.png" height="18" width="14" alt="" /></span>and <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/50.png" height="18" width="12" alt="" /></span>.<br /><br />To map integers to integers, replace the formulas above by <br /><br /><span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/51.png" height="18" width="14" alt="" /></span>= <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/52.png" height="18" width="13" alt="" /></span>- <a href="http://reference.wolfram.com/language/ref/Floor.html">Floor</a>[<span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/53.png" height="26" width="9" alt="" /></span>(<span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/54.png" height="18" width="14" alt="" /></span>+ <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/55.png" height="18" width="25" alt="" /></span>)] and then <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/56.png" height="18" width="12" alt="" /></span>= <a href="http://reference.wolfram.com/language/ref/Floor.html">Floor</a>[<span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/57.png" height="18" width="14" alt="" /></span> +  <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/58.png" height="26" width="9" alt="" /></span>(<span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/59.png" height="18" width="14" alt="" /></span>+ <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/60.png" height="18" width="25" alt="" /></span>) + <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/61.png" height="26" width="9" alt="" /></span>].</p>
+ <p class="Text"><a name="818490691"></a>To implement the integer-to-integer version of the LeGall transform, set <span class="IF"><a href="../ref/IntegerMap.html">IntegerMap</a></span> to <a href="http://reference.wolfram.com/language/ref/True.html">True</a> in <span class="IF"><a href="../ref/LWT.html">LWT</a></span>.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[259]:=</td><td class="Input"><div>
+      <a name="253320604"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_92.gif"
+          height="50"
+          width="151"
+          alt="Click for copyable input" />
+     </div><div id="i_91_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[260]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_118.gif" height="15" width="188" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[261]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_119.gif" height="15" width="140" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="84316975"></a>The integer-to-integer version of the LeGall wavelet transform is invertible:</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[262]:=</td><td class="Input"><div>
+      <a name="27492711"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_94.gif"
+          height="50"
+          width="227"
+          alt="Click for copyable input" />
+     </div><div id="i_93_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[262]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_120.gif" height="15" width="128" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[263]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_121.gif" height="15" width="140" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[264]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_122.gif" height="15" width="128" alt="" /></td></tr>
+  </table>
+ </div>
+ <h2 class="Section"><a name="214830535"></a>One-Sided Wavelet Transforms</h2>
+ <p class="Text">
+  <a name="604094350"></a>
+  <a href="#main">(top)</a>
+ </p>
+ <p class="Text"><a name="69173792"></a>For primarily pedagogical reasons it is desirable to compute the &quot;left&quot; or &quot;right&quot; (biorthogonal) wavelet transform of a matrix or list of three matrices.  In the case of the former for a matrix, left-transform routines compute <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/62.png" height="18" width="11" alt="" /></span><span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/63.png" height="18" width="8" alt="" /></span>, where <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/64.png" height="18" width="11" alt="" /></span> is a wavelet matrix and <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/65.png" height="18" width="8" alt="" /></span> is the input matrix.  In the case of the latter for a matrix, the right-transform routines compute A<span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/66.png" height="18" width="17" alt="" /></span>if W is generated from an orthogonal filter and <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/67.png" height="18" width="8" alt="" /></span><span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/68.png" height="21" width="17" alt="" /></span>, if <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/69.png" height="18" width="11" alt="" /></span>, <span class="IF"><img src="Files/Computing and Plotting Wavelet Transformations/70.png" height="18" width="11" alt="" /></span> are generated from a biorthogonal pair.  All transform routines above have analogous left- and right-transforms.</p>
+ <div class="MathTable DefinitionBox">
+  <a name="582064689"></a>
+  <table class="nogridboxdividers">
+   <col width="40%" />
+   <col width="60%" />
+   <tr class="lineAbove" style=""><td><a href="../ref/LeftBWT.html">LeftBWT</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">filter</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Compute the left biorthogonal wavelet transform</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/LeftHWT.html">LeftHWT</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Compute the left Haar wavelet transform</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/LeftLWT.html">LeftLWT</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Compute the left LeGall wavelet transform</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/LeftWT.html">LeftWT</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">filter</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Compute the left orthogonal wavelet transform</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/RightBWT.html">RightBWT</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">filter</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Compute the right biorthogonal wavelet transform</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/RighHWT.html">RighHWT</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Compute the right Haar wavelet transform</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/RightLWT.html">RightLWT</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Compute the right LeGall wavelet transform</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/RightWT.html">RightWT</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">filter</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Compute the right orthogonal wavelet transform</span></td></tr>
+  </table>
+ </div>
+ <p class="Caption"><a name="11598760"></a>One-sided wavelet transforms.</p>
+ <p class="Text"><a name="193043070"></a>The <span class="IF"><a href="../ref/WaveletPlot.html">WaveletPlot</a></span> routine can be used to plot left- and right-transforms.  The option <span class="IF"><a href="../ref/PlotType.html">PlotType</a></span> can be set to <a href="http://reference.wolfram.com/language/ref/Left.html">Left</a> or <a href="http://reference.wolfram.com/language/ref/Right.html">Right</a> to plot the appropriate transform.</p>
+ <h3 class="Subsection"><a name="50416364"></a>One-Sided Wavelet Transforms of Matrices</h3>
+ <p class="Text">
+  <a name="4202194"></a>
+  <a href="#oneside">(top of section)</a>
+ </p>
+ <p class="Text"><a name="749519526"></a>Compute and plot the left- and right-transforms of a matrix.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[265]:=</td><td class="Input"><div>
+      <a name="464340405"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_96.gif"
+          height="152"
+          width="314"
+          alt="Click for copyable input" />
+     </div><div id="i_95_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[267]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_123.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[269]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_124.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[271]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_125.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="6602671"></a>For routines like <span class="IF"><a href="../ref/LeftWT.html">LeftWT</a></span>, <span class="IF"><a href="../ref/LeftBWT.html">LeftBWT</a></span>, <span class="IF"><a href="../ref/RightWT.html">RightWT</a></span>, <span class="IF"><a href="../ref/RightBWT.html">RightBWT</a></span>, a filter (pair) must be specified.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[272]:=</td><td class="Input"><div>
+      <a name="97343689"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_98.gif"
+          height="152"
+          width="333"
+          alt="Click for copyable input" />
+     </div><div id="i_97_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[274]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_126.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[276]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_127.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[278]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_128.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+ </div>
+ <h3 class="Subsection"><a name="412825644"></a>One-Sided Wavelet Transforms and Color</h3>
+ <p class="Text">
+  <a name="322794156"></a>
+  <a href="#oneside">(top of section)</a>
+ </p>
+ <p class="Text"><a name="265014766"></a>All of the one-sided wavelet transform routines accept as input a list of three matrices whose dimensions are equal.  This facilitates plotting color transforms or transforms in different color spaces.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[279]:=</td><td class="Input"><div>
+      <a name="53871044"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_100.gif"
+          height="169"
+          width="402"
+          alt="Click for copyable input" />
+     </div><div id="i_99_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[281]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_129.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[282]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_130.gif" height="66" width="324" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[284]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_131.gif" height="66" width="324" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[285]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_132.gif" height="66" width="324" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[286]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_133.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="44256328"></a>In the cell below, a color image is converted to YCbCr space and then the right-transform of each channel is computed and plotted.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[287]:=</td><td class="Input"><div>
+      <a name="22116165"></a>
+      <img src="Files/Computing and Plotting Wavelet Transformations/I_102.gif"
+          height="152"
+          width="308"
+          alt="Click for copyable input" />
+     </div><div id="i_101_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[289]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_134.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[291]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_135.gif" height="66" width="324" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[293]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Transformations/O_136.gif" height="66" width="324" alt="" /></td></tr>
+  </table>
+ </div>
+ <div class="expandWrap"
+     id="RelatedTutorials">
+  <div class="expandOuter">
+   <h2 class="expandInner"><a class="expand hide" title="show" href="#">Related Tutorials</a><a class="collapse" title="hide" href="#">Related Tutorials</a></h2>
+   <div class="expanded">
+    <ul class="functionList">
+     <li>
+      <a name="382937729"></a>
+      <a href="../tutorial/Computing and Plotting Wavelet Packet Transforms.html">Computing and Plotting Wavelet Packet Transformations</a>
+     </li>
+     <li>
+      <a name="64322727"></a>
+      <a href="../tutorial/Naive Image Compression and Edge Detection.html">Naive Image Compression and Edge Detection</a>
+     </li>
+    </ul>
+   </div>
+  </div>
+ </div>
+</div>
+</div><!-- /wrapper -->
+
+
+	
+</div>
+
+
+</body>
+		 </html>

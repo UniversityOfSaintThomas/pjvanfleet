@@ -1,0 +1,16 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>g[t_] := 4 Sin[4 Pi t] - Sign[t - .3] - Sign[.72 - t];
+{sigma, n} = {.35, 1024};
+original = g[Range[0, 1 - 1/n, 1/n]];
+ListPlot[original, Ticks -&gt; {Range[0, n, n/4], Range[-4, 4, 2]}, 
+ PlotLabel -&gt; &quot;Original Signal&quot;]
+y = original + WhiteNoise[n, sigma];
+ListPlot[y, Ticks -&gt; {Range[0, n, n/4], Range[-4, 4, 2]}, 
+ PlotLabel -&gt; &quot;Noisy Signal&quot;]
+(* Pick lambda somewhat arbitrarily *)
+lambda = 0.5;
+newy = WaveletShrinkage[y, Daub[4], lambda, NumIterations -&gt; 3];
+ListPlot[newy, Ticks -&gt; {Range[0, n, n/4], Range[-4, 4, 2]}, 
+ PlotLabel -&gt; &quot;Denoised Signal - 3 Iterations&quot;]
+newy = WaveletShrinkage[y, Daub[4], lambda, NumIterations -&gt; 5];
+ListPlot[newy, Ticks -&gt; {Range[0, n, n/4], Range[-4, 4, 2]}, 
+ PlotLabel -&gt; &quot;Denoised Signal - 5 Iterations&quot;]</pre><div class='IFU'><a name='121856098'></a>http://wolfram.com/xid/0cnb6473kluspzbo389ro71o3hbx5a-cat21w</div>

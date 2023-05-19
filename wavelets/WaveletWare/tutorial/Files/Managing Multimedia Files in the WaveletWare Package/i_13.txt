@@ -1,0 +1,5 @@
+<pre name='i_13_in' id='i_13_in' class='IFT'>files = DataInfo[]
+data = ReadList[First[files]];
+data = ChopVector[data, 2];
+ListPlot[data]
+WaveletVectorPlot[HWT[data]]</pre><div class='IFU'><a name='213811726'></a>http://wolfram.com/xid/093b2zotwtgp1kohoumsxygckfwrulbitwbhjwkhlefyamuei6g132-dtk0gw</div>

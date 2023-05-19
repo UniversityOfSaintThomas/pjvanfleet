@@ -1,0 +1,6 @@
+<pre name='i_31_in' id='i_31_in' class='IFT'>f = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;yucca.png&quot;;
+A = ImageRead[f, Resize -&gt; {128, 192}];
+ImagePlot[A]
+wt = WT[A, Coif[1], NumIterations -&gt; 3];
+WaveletPlot[wt, NumIterations -&gt; 3, 
+ Iteration -&gt; {{3, 1, 1}, {3, 2, 2}, {2, 1, 2}, {1, 2, 2}}]</pre><div class='IFU'><a name='207785125'></a>http://wolfram.com/xid/0kmsg876k74fv7tus4gahxj5adn8b2m3ovcixzmeb-dpzubb</div>

@@ -1,0 +1,6 @@
+<pre name='i_9_in' id='i_9_in' class='IFT'>f[t_] := Module[{p = Take[t, -2], q},
+   	q = First[p] + Map[Mean, Partition[Last[p], 2]];
+   	Return[Append[Drop[t, -2], q]];
+   ];
+tree = WaveletTree[3];
+Nest[f, tree, 3]</pre><div class='IFU'><a name='232279420'></a>http://wolfram.com/xid/0dw3hmeolb456i3ocz9bqdb7htqim7p8o1p7qzwg41bm-d4kt8e</div>

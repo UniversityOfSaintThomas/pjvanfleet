@@ -1,0 +1,3 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>(* {255,0,255} is RGB for purple *)
+{h, s, i} = RGBToHSI[{255, 0, 255}]
+HSIToRGB[{h, s, i}]</pre><div class='IFU'><a name='160896521'></a>http://wolfram.com/xid/04j60t5tk393i6ilswj6d4cvwq-cx2ut3</div>

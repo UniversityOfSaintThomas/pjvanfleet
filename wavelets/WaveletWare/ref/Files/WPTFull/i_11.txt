@@ -1,0 +1,6 @@
+<pre name='i_11_in' id='i_11_in' class='IFT'>v = Range[32];
+wpt = WPTFull[v, Daub[4], Shift -&gt; 0];
+FullWaveletVectorPlot[wpt]
+wpt = WPTFull[v, Daub[4], Shift -&gt; 3];
+FullWaveletVectorPlot[wpt]
+</pre><div class='IFU'><a name='723672237'></a>http://wolfram.com/xid/0istl84i27gzdwumja0goag32-l843cv</div>

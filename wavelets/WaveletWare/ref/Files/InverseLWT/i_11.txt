@@ -1,0 +1,11 @@
+<pre name='i_11_in' id='i_11_in' class='IFT'>&lt;&lt; WaveletWare`
+file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;chess.png&quot;;
+A = ImageRead[file, Resize -&gt; {192, 128}];
+ImagePlot[A]
+iterations = 3;
+wt = LWT[A, NumIterations -&gt; iterations];
+WaveletPlot[wt, NumIterations -&gt; iterations]
+iwt = InverseLWT[wt, NumIterations -&gt; iterations];
+ImagePlot[iwt]
+(* Mean Squared Error *)
+MSE[A, iwt]</pre><div class='IFU'><a name='6199230'></a>http://wolfram.com/xid/0bmr3yafg3z5yjy0oa0hu87-dy5m4</div>

@@ -1,0 +1,3 @@
+<pre name='i_15_in' id='i_15_in' class='IFT'>newA = InverseHWT[newwt, NumIterations -&gt; 3] + 128;
+Print[&quot;The PSNR between the original and compressed image is &quot;, 
+  PSNR[A, newA], &quot;.&quot;];</pre><div class='IFU'><a name='1021047218'></a>http://wolfram.com/xid/0ck2bt1tgpszi5qmumv90y9mftkdg9nq1q0ukjlzbu-q56vc0</div>

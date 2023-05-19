@@ -1,0 +1,6 @@
+<pre name='i_13_in' id='i_13_in' class='IFT'>(* Daub[4] filter *)
+v = Range[20];
+wt = HWT[v, Computation -&gt; Symbolic];
+iwt = Simplify[InverseHWT[wt, Computation -&gt; Symbolic]];
+v == iwt
+</pre><div class='IFU'><a name='3317315'></a>http://wolfram.com/xid/0tfzr7ob3cycrf11lom6dgqj-b9dxx</div>

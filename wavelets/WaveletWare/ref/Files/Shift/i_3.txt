@@ -1,0 +1,3 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>v = Range[10]^2
+HWT[v]
+HWT[v, Shift -&gt; 4]</pre><div class='IFU'><a name='455229920'></a>http://wolfram.com/xid/0rjp2d7cnuo0t3677my-htbfxu</div>

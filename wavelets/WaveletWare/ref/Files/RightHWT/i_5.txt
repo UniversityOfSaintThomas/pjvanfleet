@@ -1,0 +1,8 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;fish.png&quot;;
+A = ImageRead[file, Resize -&gt; {120, 180}];
+ImagePlot[A]
+rightwt = RightHWT[A];
+plots = WaveletPlot[rightwt, PlotType -&gt; Right, 
+   ChannelColor -&gt; {Red, Green, Blue}];
+Map[Show, plots]
+WaveletPlot[rightwt, PlotType -&gt; Right, PlotTogether -&gt; True]</pre><div class='IFU'><a name='15603273'></a>http://wolfram.com/xid/0e2pnrmsqjyawkp74vruz5p3-jkpuj</div>

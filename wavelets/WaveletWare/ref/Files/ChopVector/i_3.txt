@@ -1,0 +1,8 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>file = DataInfo[]
+v = ReadList[First[file]];
+Print[&quot;We can perform &quot;, MaxIts[v], 
+  &quot; iterations of a wavelet transform on v.&quot;];
+newv = ChopVector[v, 3];
+Print[&quot;After chopping, we can perform &quot;, MaxIts[newv], 
+  &quot; iterations of a wavelet transform on newv.&quot;];
+</pre><div class='IFU'><a name='83661317'></a>http://wolfram.com/xid/0bsub5sf4gpwe26lyof7p2-bn3frr</div>

@@ -1,0 +1,4 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>color = CMYKColor[1, 0, 1, 0, .5];
+datatype = 1;
+together = True;
+CheckColor[color, datatype, together]</pre><div class='IFU'><a name='689930303'></a>http://wolfram.com/xid/0nxaq5tqtv6thic7dsb9q-lo1vwx</div>

@@ -1,0 +1,6 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>v = Range[100];
+ce = CE[v];
+p = .8;
+k = PercentCE[ce, p]
+Show[ListPlot[ce, Ticks -&gt; {Range[0, 100, 25], Range[0, 1, .2]}], 
+ Graphics[{Red, Line[{{0, p}, {k, p}, {k, 0}}]}]]</pre><div class='IFU'><a name='50547521'></a>http://wolfram.com/xid/0k18vmbfsv1bofr5dmrmkd5-4doz3</div>

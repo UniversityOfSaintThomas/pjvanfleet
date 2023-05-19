@@ -1,0 +1,6 @@
+<pre name='i_25_in' id='i_25_in' class='IFT'>A = Table[i + j, {i, 1, 4}, {j, 1, 6}];
+MatrixForm[A]
+{W4, W6} = Map[WaveletMatrix[{1/2, 1/2}, {#, #}] &amp;, {4, 6}];
+Map[MatrixForm, {W4, W6}]
+W4.A.Transpose[W6] // N // MatrixForm
+HWT[A] // MatrixForm</pre><div class='IFU'><a name='569729614'></a>http://wolfram.com/xid/0kmsg876k74fv7tus4gahxj5adn8b2m3ovcixzmeb-jphkgw</div>

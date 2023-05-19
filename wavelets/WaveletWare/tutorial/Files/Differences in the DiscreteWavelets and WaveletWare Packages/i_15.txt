@@ -1,0 +1,16 @@
+<pre name='i_15_in' id='i_15_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;road.png&quot;;
+A = ImageRead[file, Resize -&gt; {128, 192}];
+ImagePlot[A]
+wt = HWT[A, NumIterations -&gt; 2];
+WaveletPlot[wt, NumIterations -&gt; 2]
+ce = CE[wt];
+k = PercentCE[ce, .995];
+Print[&quot;The original image is comprised of &quot;, 
+  Apply[Times, Dimensions[A]], &quot; pixels.  The largest &quot;, k, 
+  &quot; values represent 99.5% of the energy.&quot;];
+Print[&quot;We convert the remaining &quot;, Apply[Times, Dimensions[A]] - k, 
+  &quot; values to 0.&quot;];
+newwt = QuantizeCE[wt, k];
+WaveletPlot[newwt, NumIterations -&gt; 2]
+newA = InverseHWT[newwt, NumIterations -&gt; 2];
+ImagePlot[newA]</pre><div class='IFU'><a name='68217098'></a>http://wolfram.com/xid/0533vsu7qbb0ajiwwqawq9kz22kl8rc4uv1a9crxfvnihty6rtcsrbm-bewexo</div>

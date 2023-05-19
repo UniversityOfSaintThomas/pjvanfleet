@@ -1,0 +1,7 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>v = Flatten[Map[ConstantArray[#, 64] &amp;, {2, -5, -10, 20}]];
+ListPlot[v, Ticks -&gt; {Range[0, n, n/4], Range[-1/2, 1/2]}, 
+ PlotLabel -&gt; &quot;Data Samples&quot;]
+{wpt, tree} = 
+  WPT[v, Daub[4], CostFunction -&gt; NumberNonzero, NumIterations -&gt; 4];
+WaveletVectorPlot[wpt, tree, NumIterations -&gt; 4]
+ShowBestBasis[tree]</pre><div class='IFU'><a name='244548528'></a>http://wolfram.com/xid/0byt3rd1cvx9wr2qw27dkc2rij8-ebvs4y</div>

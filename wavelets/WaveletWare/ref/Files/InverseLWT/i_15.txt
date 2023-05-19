@@ -1,0 +1,4 @@
+<pre name='i_15_in' id='i_15_in' class='IFT'>v = Range[20];
+wt = LWT[v, Computation -&gt; Symbolic];
+iwt1 = InverseLWT[wt]
+iwt2 = Simplify[InverseLWT[wt, Computation -&gt; Symbolic]]</pre><div class='IFU'><a name='3317315'></a>http://wolfram.com/xid/0bmr3yafg3z5yjy0oa0hu87-b9dxx</div>

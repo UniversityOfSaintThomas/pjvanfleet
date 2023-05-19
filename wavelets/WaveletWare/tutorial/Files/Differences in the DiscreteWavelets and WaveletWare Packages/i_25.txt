@@ -1,0 +1,15 @@
+<pre name='i_25_in' id='i_25_in' class='IFT'>g[t_] := Sqrt[t (1 - t)]*Sin[2 Pi (1.05)/(t + .05)];
+n = 1024;
+v = g[Range[0, 1 - 1/n, 1/n]];
+ListPlot[v, Ticks -&gt; {Range[0, n, n/4], Range[-1/2, 1/2]}, 
+ PlotLabel -&gt; &quot;Data Samples&quot;]
+{wt, tree} = 
+  WPT[v, Haar[], NumIterations -&gt; 3, 
+   CostFunction -&gt; NumberAboveThreshold, SecondParameter -&gt; .1];
+ShowBestBasis[tree, ImageSize -&gt; 200]
+WaveletVectorPlot[wt, tree, ImageSize -&gt; 200]
+WaveletVectorPlot[wt, tree, 
+ Iteration -&gt; {{3, 1}, {3, 2}, {3, 7}, {3, 8}}, ImageSize -&gt; 200]
+WaveletVectorPlot[wt, tree, 
+ Iteration -&gt; {{3, 1}, {3, 2}, {3, 7}, {3, 8}}, 
+ Dimming -&gt; Lighter[Purple], ImageSize -&gt; 200]</pre><div class='IFU'><a name='386528111'></a>http://wolfram.com/xid/0533vsu7qbb0ajiwwqawq9kz22kl8rc4uv1a9crxfvnihty6rtcsrbm-goew99</div>

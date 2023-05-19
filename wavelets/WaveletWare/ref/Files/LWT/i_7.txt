@@ -1,0 +1,9 @@
+<pre name='i_7_in' id='i_7_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;goats.png&quot;;
+A = ImageRead[file, Resize -&gt; {120, 180}];
+ImagePlot[A]
+iterations = 2;
+wt = LWT[A, NumIterations -&gt; iterations];
+plots = WaveletPlot[wt, NumIterations -&gt; iterations, 
+   ChannelColor -&gt; {Red, Green, Blue}];
+Map[Show, plots]
+WaveletPlot[wt, NumIterations -&gt; iterations, PlotTogether -&gt; True]</pre><div class='IFU'><a name='15603273'></a>http://wolfram.com/xid/0b7b1epyjsjw8hlx3bsr-jkpuj</div>

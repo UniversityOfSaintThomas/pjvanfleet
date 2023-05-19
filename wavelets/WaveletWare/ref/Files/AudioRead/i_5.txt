@@ -1,0 +1,2 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>file = PackageDirectory[DataType -&gt; Sounds] &lt;&gt; &quot;sonar.wav&quot;;
+{samples, rate} = AudioRead[file, DisplayInfo -&gt; True];</pre><div class='IFU'><a name='708548904'></a>http://wolfram.com/xid/0gcihsaxmz0qthvk1zkd8q-lz4x4a</div>

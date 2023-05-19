@@ -1,0 +1,3 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>A = ConstantArray[1, {8, 8}];
+B = ConstantArray[0, {2, 2}];
+Map[MatrixForm, {A, B, PutCorner[A, B]}]</pre><div class='IFU'><a name='306395677'></a>http://wolfram.com/xid/0bhd4nmewcpafuv9qnu4lmth-fcpepb</div>

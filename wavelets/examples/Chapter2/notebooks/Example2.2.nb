@@ -1,0 +1,289 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     10070,        281]
+NotebookOptionsPosition[      7975,        225]
+NotebookOutlinePosition[      8319,        240]
+CellTagsIndexPosition[      8276,        237]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Example 2.2 (Vector Norms)", "Section",
+ CellChangeTimes->{{3.6747400799154887`*^9, 3.6747400868855157`*^9}, {
+  3.6747401192115917`*^9, 3.674740124362601*^9}, {3.674823639171709*^9, 
+  3.674823640303733*^9}, {3.6748236819375725`*^9, 3.674823684099594*^9}, {
+  3.6748241486687813`*^9, 
+  3.6748241538079395`*^9}},ExpressionUUID->"628ab9b9-15a9-47e6-a102-\
+b0c17ee361d2"],
+
+Cell["Compute the norms of the given vectors.", "Text",
+ CellChangeTimes->{{3.6747401116573763`*^9, 3.6747401462228427`*^9}, {
+  3.674823687935635*^9, 3.6748237135069*^9}, {3.674824162140191*^9, 
+  3.6748241660423098`*^9}},ExpressionUUID->"4cd558a0-0086-4f13-98b5-\
+0c374bb4ec5b"],
+
+Cell[CellGroupData[{
+
+Cell["Reference.", "Subsubsection",
+ CellChangeTimes->{{3.6747631102003517`*^9, 
+  3.6747631125733557`*^9}},ExpressionUUID->"108e7689-d7a8-4b3c-bc24-\
+3f0df436aa7a"],
+
+Cell["\<\
+The material for this lab is covered in Section 2.1 of the book \
+\[OpenCurlyDoubleQuote]Discrete Wavelet Transformations: An Elementary \
+Approach with Applications, 2nd Edition,\[CloseCurlyDoubleQuote] by Patrick J \
+Van Fleet.\
+\>", "Text",
+ CellChangeTimes->{{3.674763119565366*^9, 3.6747631649004583`*^9}, {
+  3.674763293323564*^9, 3.674763311554607*^9}, {3.6997856290190563`*^9, 
+  3.699785638548086*^9}, {3.72692103296169*^9, 3.726921034949597*^9}, {
+  3.726921069703249*^9, 
+  3.7269210711270695`*^9}},ExpressionUUID->"99f3b2b4-3185-49c1-a11d-\
+31f0fced81de"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["WaveletWare Commands Used in This Notebook", "Subsubsection",
+ CellChangeTimes->{{3.6747417571916847`*^9, 3.674741765831501*^9}, {
+  3.6747418595935683`*^9, 
+  3.6747419193671017`*^9}},ExpressionUUID->"eafa0f69-7e66-4505-a6cc-\
+e267e032a06e"],
+
+Cell["None.", "Text",
+ CellChangeTimes->{{3.6747419216613054`*^9, 
+  3.6747419222229066`*^9}},ExpressionUUID->"40aa36dd-dc71-459c-8e18-\
+5ce5126e3952"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Solution.", "Subsubsection",
+ CellChangeTimes->{{3.6747401847284007`*^9, 
+  3.6747401899458103`*^9}},ExpressionUUID->"6112e792-a49e-44f7-bb77-\
+d4a3ea99fff2"],
+
+Cell[TextData[{
+ "Vectors are defined as ",
+ StyleBox["lists",
+  FontSlant->"Italic"],
+ " in Mathematica.  Lists are enclosed by { }.  The vectors in Example 2.2 \
+are given below."
+}], "Text",
+ CellChangeTimes->{{3.674740194805643*^9, 3.6747402104415007`*^9}, {
+  3.6747402441785665`*^9, 3.6747402579060516`*^9}, {3.6748237198419676`*^9, 
+  3.6748237584134207`*^9}, {3.6748241758426056`*^9, 
+  3.6748241762326174`*^9}},ExpressionUUID->"f7629046-1ccd-4632-a530-\
+fb833865c437"],
+
+Cell[BoxData[{
+ RowBox[{"v", "=", 
+  RowBox[{"{", 
+   RowBox[{"2", ",", 
+    RowBox[{"-", "5"}], ",", "4"}], "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{"w", "=", 
+  RowBox[{"ConstantArray", "[", 
+   RowBox[{
+    RowBox[{"1", "/", "2"}], ",", "4"}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.674740213774307*^9, 3.6747402382289553`*^9}, {
+  3.6747413338552017`*^9, 3.674741342364217*^9}, {3.6747420276328416`*^9, 
+  3.6747420280550423`*^9}, {3.674823760720446*^9, 3.674823773168619*^9}, {
+  3.674824115899665*^9, 3.674824116286677*^9}, {3.6748243040946064`*^9, 
+  3.6748243181560526`*^9}},ExpressionUUID->"522b2b97-7068-4dd7-b873-\
+0becb1327221"],
+
+Cell[TextData[{
+ "The norm can be computed using the ",
+ StyleBox["Norm",
+  FontWeight->"Bold"],
+ " command or by taking the square root of the inner product."
+}], "Text",
+ CellChangeTimes->{{3.674740429278332*^9, 3.674740491840477*^9}, {
+  3.674823777188659*^9, 3.6748237857737494`*^9}, {3.6748238276532345`*^9, 
+  3.67482384430046*^9}, {3.6748243267603436`*^9, 
+  3.6748243464659405`*^9}},ExpressionUUID->"e965beae-eab9-453c-acd9-\
+23600e864022"],
+
+Cell[BoxData[{
+ RowBox[{"Norm", "[", "v", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Sqrt", "[", 
+   RowBox[{"v", ".", "v"}], "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"Norm", "[", "w", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Sqrt", "[", 
+  RowBox[{"w", ".", "w"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.674823788868782*^9, 3.6748237985098815`*^9}, {
+  3.674823845890476*^9, 3.674823850310524*^9}, {3.6748241176547184`*^9, 
+  3.6748241178247232`*^9}, {3.674824348787013*^9, 
+  3.6748243636924896`*^9}},ExpressionUUID->"a5a0f279-3378-4798-96f1-\
+325a703395c7"],
+
+Cell[TextData[{
+ "In Exercise 2.10 the 1-norm and the \[Infinity]-norm are introduced.  These \
+norms can be computed in Mathematica using the ",
+ StyleBox["Norm",
+  FontWeight->"Bold"],
+ " command.  You just need to add a second argument to the ",
+ StyleBox["Norm",
+  FontWeight->"Bold"],
+ " command."
+}], "Text",
+ CellChangeTimes->{{3.6748244638697925`*^9, 
+  3.6748245285332465`*^9}},ExpressionUUID->"be1b9654-83f8-4c5b-89bc-\
+82473cd4d223"],
+
+Cell[BoxData[{
+ RowBox[{"v", "=", 
+  RowBox[{"{", 
+   RowBox[{"2", ",", 
+    RowBox[{"-", "5"}], ",", "4"}], "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{"Norm", "[", "v", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Norm", "[", 
+  RowBox[{"v", ",", "2"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Norm", "[", 
+  RowBox[{"v", ",", "1"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Norm", "[", 
+  RowBox[{"v", ",", "Infinity"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.6748245366194115`*^9, 3.674824557238858*^9}, {
+  3.67482459580068*^9, 
+  3.6748245962406893`*^9}},ExpressionUUID->"562cf1e5-51c1-4947-a2d1-\
+b6131c776c8d"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Things To Try.", "Subsubsection",
+ CellChangeTimes->{{3.674741317287572*^9, 3.674741319527376*^9}, {
+  3.6747419524260297`*^9, 
+  3.674741953872259*^9}},ExpressionUUID->"94e96726-f48e-4e6d-accd-\
+3e4c73f68e24"],
+
+Cell["\<\
+Try defining your own vectors and computing their norms.  Can you create some \
+non-constant vectors of length longer than 2 that have norm = 1?  Mathematica \
+has some built-in vectors you can use as well:\
+\>", "Text",
+ CellChangeTimes->{{3.674741356475069*^9, 3.6747414431750774`*^9}, {
+  3.674741476278762*^9, 3.6747415170736356`*^9}, {3.6748239662840796`*^9, 
+  3.674824003645547*^9}, {3.674824380836932*^9, 
+  3.67482441611876*^9}},ExpressionUUID->"51f9013b-5c37-46f2-906b-\
+a79f8fd546a4"],
+
+Cell[BoxData[{
+ RowBox[{"v", "=", 
+  RowBox[{"Range", "[", "6", "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"v", "=", 
+  RowBox[{"Range", "[", 
+   RowBox[{"0", ",", "6"}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"v", "=", 
+  RowBox[{"Range", "[", 
+   RowBox[{
+    RowBox[{"-", "2"}], ",", "8", ",", "2"}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"v", "=", 
+  RowBox[{"Table", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"-", "1"}], ")"}], "^", "k"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"k", ",", "1", ",", "5"}], "}"}]}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"v", "=", 
+  RowBox[{"UnitVector", "[", 
+   RowBox[{"4", ",", "3"}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"v", "=", 
+  RowBox[{"ConstantArray", "[", 
+   RowBox[{"3", ",", "5"}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.6748240064755754`*^9, 3.6748240460170555`*^9}, {
+  3.674824078792511*^9, 3.674824084806695*^9}, {3.6748241226598983`*^9, 
+  3.674824122759901*^9}},ExpressionUUID->"e1181411-75e3-4d1d-bebe-\
+a9b144b68411"],
+
+Cell["\<\
+Try using these commands to create vectors and compute their norms.\
+\>", "Text",
+ CellChangeTimes->{{3.674824055900157*^9, 3.674824069012294*^9}, {
+  3.6748244246149335`*^9, 
+  3.674824427905999*^9}},ExpressionUUID->"a9bb250d-4c21-4df4-8a8b-\
+8cc7cbb7fafb"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{759, 678},
+WindowMargins->{{120, Automatic}, {41, Automatic}},
+FrontEndVersion->"11.1 for Microsoft Windows (64-bit) (April 18, 2017)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 376, 6, 70, "Section", "ExpressionUUID" -> \
+"628ab9b9-15a9-47e6-a102-b0c17ee361d2"],
+Cell[959, 30, 280, 4, 30, "Text", "ExpressionUUID" -> \
+"4cd558a0-0086-4f13-98b5-0c374bb4ec5b"],
+Cell[CellGroupData[{
+Cell[1264, 38, 165, 3, 39, "Subsubsection", "ExpressionUUID" -> \
+"108e7689-d7a8-4b3c-bc24-3f0df436aa7a"],
+Cell[1432, 43, 577, 11, 49, "Text", "ExpressionUUID" -> \
+"99f3b2b4-3185-49c1-a11d-31f0fced81de"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2046, 59, 248, 4, 39, "Subsubsection", "ExpressionUUID" -> \
+"eafa0f69-7e66-4505-a6cc-e267e032a06e"],
+Cell[2297, 65, 151, 3, 30, "Text", "ExpressionUUID" -> \
+"40aa36dd-dc71-459c-8e18-5ce5126e3952"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2485, 73, 164, 3, 39, "Subsubsection", "ExpressionUUID" -> \
+"6112e792-a49e-44f7-bb77-d4a3ea99fff2"],
+Cell[2652, 78, 477, 11, 49, "Text", "ExpressionUUID" -> \
+"f7629046-1ccd-4632-a530-fb833865c437"],
+Cell[3132, 91, 644, 14, 50, "Input", "ExpressionUUID" -> \
+"522b2b97-7068-4dd7-b873-0becb1327221"],
+Cell[3779, 107, 448, 10, 49, "Text", "ExpressionUUID" -> \
+"e965beae-eab9-453c-acd9-23600e864022"],
+Cell[4230, 119, 597, 13, 107, "Input", "ExpressionUUID" -> \
+"a5a0f279-3378-4798-96f1-325a703395c7"],
+Cell[4830, 134, 444, 12, 68, "Text", "ExpressionUUID" -> \
+"be1b9654-83f8-4c5b-89bc-82473cd4d223"],
+Cell[5277, 148, 614, 15, 107, "Input", "ExpressionUUID" -> \
+"562cf1e5-51c1-4947-a2d1-b6131c776c8d"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5928, 168, 216, 4, 39, "Subsubsection", "ExpressionUUID" -> \
+"94e96726-f48e-4e6d-accd-3e4c73f68e24"],
+Cell[6147, 174, 505, 9, 68, "Text", "ExpressionUUID" -> \
+"51f9013b-5c37-46f2-906b-a79f8fd546a4"],
+Cell[6655, 185, 1021, 28, 126, "Input", "ExpressionUUID" -> \
+"e1181411-75e3-4d1d-bebe-a9b144b68411"],
+Cell[7679, 215, 268, 6, 30, "Text", "ExpressionUUID" -> \
+"a9bb250d-4c21-4df4-8a8b-8cc7cbb7fafb"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

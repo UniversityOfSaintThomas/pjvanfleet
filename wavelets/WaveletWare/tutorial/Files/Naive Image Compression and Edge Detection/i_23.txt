@@ -1,0 +1,4 @@
+<pre name='i_23_in' id='i_23_in' class='IFT'>ce = Map[CE, wt];
+MapThread[
+ ListPlot[#1, Ticks -&gt; {{1/2, 1}*r*c, {.98, .99, 1}}, 
+   PlotLabel -&gt; #2] &amp;, {ce, {&quot;Y&quot;, &quot;Cb&quot;, &quot;Cr&quot;}}]</pre><div class='IFU'><a name='130790876'></a>http://wolfram.com/xid/0ck2bt1tgpszi5qmumv90y9mftkdg9nq1q0ukjlzbu-cf5k56</div>

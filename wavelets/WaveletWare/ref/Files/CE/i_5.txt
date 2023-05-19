@@ -1,0 +1,8 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>&lt;&lt; WaveletWare`;
+v = Range[32];
+CE[v]
+ListPlot[%];
+file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;canoes.png&quot;;
+A = ImageRead[file];
+CE[A];
+ListPlot[%]</pre><div class='IFU'><a name='14575440'></a>http://wolfram.com/xid/0iwz6b8tg2hnj68rau1-iyorm</div>

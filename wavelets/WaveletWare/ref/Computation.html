@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Computation&mdash;Wolfram Language Documentation</title>
+<meta name="buildnumber" content="0000000" />
+<meta name="historydata" content="{XX, , , }" />
+<meta name="keywords" content="Computation" />
+
+<meta name="description" content="Computation is an option used by wavelet transform functions, their inverses, de-noising functions and the and cumulative energy. It indicates whether the comptuation should be done numerically or symbolically." />
+<script language="JavaScript" type="text/javascript">baselang='Computation';</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		 <link rel="stylesheet" type="text/css" href="../css/reference.css" />
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/core/1.6.1/jquery.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/plugins/hoverIntent/r5/jquery.hoverIntent.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/reference.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/documentation-search.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/inputs.js"></script>
+		 <script language="javaScript" type="text/javascript" src="../javascript/faster-page-load.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/plugins/jcarousel/tinycarousel/tinycarousel.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery.dotdotdot-1.5.1.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/carousel.js"></script>
+<script language="JavaScript" type="text/javascript" src="../javascript/toggle-highlight.js"></script>
+</head>
+<body id="ref" class="function">
+<a name="top"></a>
+<!--#include virtual="/common/includes/gl-header.html"--> 
+<div class="main-wrapper">
+
+
+<div class="wrapper mainOuter">
+    <div class="mainContent">
+ <div class="topContentWrap">
+  <div class="ribbonWrap">
+   <span class="ribbonOuter"><span class="ribbonInner">WAVELET WARE PACKAGE SYMBOL</span></span>
+  </div>
+  <ul class="dropdown">
+   <li>
+    <a href="#">Tutorials</a>
+    <ul class="sub_menu">
+     <li>
+      <a href="/language/WaveletWare/tutorial/Computing and Plotting Wavelet Packet Transforms.html"><span class="dropdownPad">Computing and Plotting Wavelet Packet Transformations</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/tutorial/Computing and Plotting Wavelet Transformations.html"><span class="dropdownPad">Computing and Plotting Wavelet Transformations</span></a>
+     </li>
+    </ul>
+   </li>
+   <li>
+    <a href="#">See Also</a>
+    <ul class="sub_menu">
+     <li>
+      <a href="/language/WaveletWare/ref/WPTFull.html"><span class="dropdownPad">WPTFull</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/WPT.html"><span class="dropdownPad">WPT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/InverseWPT.html"><span class="dropdownPad">InverseWPT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/WT.html"><span class="dropdownPad">WT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/HWT.html"><span class="dropdownPad">HWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/LeftWT.html"><span class="dropdownPad">LeftWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/RightWT.html"><span class="dropdownPad">RightWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/RightHWT.html"><span class="dropdownPad">RightHWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/LeftHWT.html"><span class="dropdownPad">LeftHWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/WTFull.html"><span class="dropdownPad">WTFull</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/InverseWT.html"><span class="dropdownPad">InverseWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/InverseHWT.html"><span class="dropdownPad">InverseHWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/LeftInverseWT.html"><span class="dropdownPad">LeftInverseWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/LeftInverseHWT.html"><span class="dropdownPad">LeftInverseHWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/RightInverseWT.html"><span class="dropdownPad">RightInverseWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/RightInverseHWT.html"><span class="dropdownPad">RightInverseHWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/LeftBWT.html"><span class="dropdownPad">LeftBWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/RightBWT.html"><span class="dropdownPad">RightBWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/BWT.html"><span class="dropdownPad">BWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/LeftInverseBWT.html"><span class="dropdownPad">LeftInverseBWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/RightInverseBWT.html"><span class="dropdownPad">RightInverseBWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/InverseBWT.html"><span class="dropdownPad">InverseBWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/LeftLWT.html"><span class="dropdownPad">LeftLWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/RightLWT.html"><span class="dropdownPad">RightLWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/LWT.html"><span class="dropdownPad">LWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/LeftInverseLWT.html"><span class="dropdownPad">LeftInverseLWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/RightInverseLWT.html"><span class="dropdownPad">RightInverseLWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/InverseLWT.html"><span class="dropdownPad">InverseLWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/CE.html"><span class="dropdownPad">CE</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/WaveletShrinkage.html"><span class="dropdownPad">WaveletShrinkage</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/VisuShrink.html"><span class="dropdownPad">VisuShrink</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/SUREShrink.html"><span class="dropdownPad">SUREShrink</span></a>
+     </li>
+    </ul>
+   </li>
+   <li>
+    <a href="#">Related Guides</a>
+    <ul class="sub_menu">
+     <li>
+      <a href="/language/WaveletWare/guide/List of Options and Values.html"><span class="dropdownPad">List of Options and Values</span></a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+  <div class="clear"><!-- --></div>
+ </div>
+ <h1>Computation</h1>
+ <div class="functionIntroWrap">
+  <div class="functionIntro">
+   <p><span class="IF"><img src="Files/Computation/1.png" height="18" width="72" alt="" /></span><br />is an option used by wavelet transform functions, their inverses, de-noising functions and the and cumulative energy.  It indicates whether the comptuation should be done numerically or symbolically.</p>
+  </div>
+ </div>
+ <div class="expandWrap closed"
+     id="DetailsAndOptions">
+  <div class="expandOuter">
+   <h2 class="expandInner"><a class="expand hide" title="show" href="#">Details</a><a class="collapse" title="hide" href="#">Details</a></h2>
+   <div class="expanded">
+    <ul class="functionList">
+     <li><a name="1067943069"></a><span class="monospace">Computation</span> can be set to either <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/Numerical.html">Numerical</a></span> (default) or <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/Symbolic.html">Symbolic</a></span>.</li>
+     <li><a name="12577917"></a>In the case where <span class="monospace">Computation</span> is set to <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/Symbolic.html">Symbolic</a></span>, the filter must also be in symbolic form.  If this is not the case, <span class="monospace">Computation</span> is set to <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/Numerical.html">Numerical</a></span>.</li>
+    </ul>
+   </div>
+  </div>
+ </div>
+ <div class="expandWrap"
+     id="Examples">
+  <div class="expandOuter">
+   <h2 class="expandInner"><a class="expand hide" title="show" href="#">Examples</a><a class="collapse" title="hide" href="#">Examples</a><a class="all opener" title="open all" href="#"><span>open all</span></a><a class="all closer hide" title="close all" href="#"><span>close all</span></a></h2>
+   <div class="expanded">
+    <div class="expandSubWrap">
+     <div class="expandSubOuter">
+      <h3 class="expandSubInner"><a class="expand hide" href="#" title="show">Basic Examples<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a><a class="collapse" href="#" title="hide">Basic Examples<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a></h3>
+      <div class="expanded">
+       <div class="MCap"><a name="16454449"></a>This loads the package:</div>
+       <table class="InCell">
+        <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+           <a name="861618089"></a>
+           <img src="Files/Computation/I_2.gif"
+               height="15"
+               width="93"
+               alt="Click for copyable input" />
+          </div><div id="i_1_out" class="IFL"></div></td></tr>
+       </table>
+       <p><a name="17678236"></a>Compute a simple wavelet transform numerically and symbolically.</p>
+       <div class="IO">
+        <table class="InCell">
+         <tr><td class="lab">In[2]:=</td><td class="Input"><div>
+            <a name="601680247"></a>
+            <img src="Files/Computation/I_4.gif"
+                height="50"
+                width="401"
+                alt="Click for copyable input" />
+           </div><div id="i_3_out" class="IFL"></div></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[2]=</td><td class="Output"><img src="Files/Computation/O_1.gif" height="54" width="461" alt="" /></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[2]=</td><td class="Output"><img src="Files/Computation/O_2.gif" height="86" width="370" alt="" /></td></tr>
+        </table>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="toplink">
+     <a href="#top">Top</a>
+    </div>
+    <div class="clear"><!-- --></div>
+   </div>
+  </div>
+ </div>
+ <div class="expandWrap"
+     id="SeeAlso">
+  <div class="expandOuter">
+   <h2 class="expandInner"><a class="expand hide" title="show" href="#">See Also</a><a class="collapse" title="hide" href="#">See Also</a></h2>
+   <div class="expanded">
+    <p class="inlineFunctionList"><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/WPTFull.html">WPTFull</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/WPT.html">WPT</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/InverseWPT.html">InverseWPT</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/WT.html">WT</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/HWT.html">HWT</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/LeftWT.html">LeftWT</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/RightWT.html">RightWT</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/RightHWT.html">RightHWT</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/LeftHWT.html">LeftHWT</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/WTFull.html">WTFull</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/InverseWT.html">InverseWT</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/InverseHWT.html">InverseHWT</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/LeftInverseWT.html">LeftInverseWT</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/LeftInverseHWT.html">LeftInverseHWT</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/RightInverseWT.html">RightInverseWT</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/RightInverseHWT.html">RightInverseHWT</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/LeftBWT.html">LeftBWT</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/RightBWT.html">RightBWT</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/BWT.html">BWT</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/LeftInverseBWT.html">LeftInverseBWT</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/RightInverseBWT.html">RightInverseBWT</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/InverseBWT.html">InverseBWT</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/LeftLWT.html">LeftLWT</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/RightLWT.html">RightLWT</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/LWT.html">LWT</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/LeftInverseLWT.html">LeftInverseLWT</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/RightInverseLWT.html">RightInverseLWT</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/InverseLWT.html">InverseLWT</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/CE.html">CE</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/WaveletShrinkage.html">WaveletShrinkage</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/VisuShrink.html">VisuShrink</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/SUREShrink.html">SUREShrink</a></span></p>
+   </div>
+  </div>
+ </div>
+ <div class="expandWrap"
+     id="Tutorials">
+  <div class="expandOuter">
+   <h2 class="expandInner"><a class="expand hide" title="show" href="#">Tutorials</a><a class="collapse" title="hide" href="#">Tutorials</a></h2>
+   <div class="expanded">
+    <ul class="functionList">
+     <li>
+      <a name="753958766"></a>
+      <a href="http://reference.wolfram.com/language/WaveletWare/tutorial/Computing and Plotting Wavelet Packet Transforms.html">Computing and Plotting Wavelet Packet Transformations</a>
+     </li>
+     <li>
+      <a name="675691843"></a>
+      <a href="http://reference.wolfram.com/language/WaveletWare/tutorial/Computing and Plotting Wavelet Transformations.html">Computing and Plotting Wavelet Transformations</a>
+     </li>
+    </ul>
+   </div>
+  </div>
+ </div>
+ <div class="expandWrap"
+     id="RelatedGuides">
+  <div class="expandOuter">
+   <h2 class="expandInner"><a class="expand hide" title="show" href="#">Related Guides</a><a class="collapse" title="hide" href="#">Related Guides</a></h2>
+   <div class="expanded">
+    <ul class="functionList">
+     <li>
+      <a name="237368271"></a>
+      <a href="http://reference.wolfram.com/language/WaveletWare/guide/List of Options and Values.html">List of Options and Values</a>
+     </li>
+    </ul>
+   </div>
+  </div>
+ </div>
+</div>
+</div><!-- /wrapper -->
+
+	
+</div>
+
+
+</body>
+		 </html>

@@ -1,0 +1,6 @@
+<pre name='i_51_in' id='i_51_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;benches.png&quot;;
+A = ImageRead[file, Resize -&gt; {128, 192}];
+ImagePlot[A]
+wt = HWT[A];
+WaveletPlot[wt, Iteration -&gt; {{1, 1, 1}}, ChannelColor -&gt; Green, 
+ Dimming -&gt; Yellow, DimmingRange -&gt; {0, 255}]</pre><div class='IFU'><a name='308618018'></a>http://wolfram.com/xid/0cew39zuhikyj6xdcij5apz9u-fd01g0</div>

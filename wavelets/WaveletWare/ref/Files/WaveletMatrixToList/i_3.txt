@@ -1,0 +1,7 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>img = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;benches.png&quot;;
+A = ImageRead[img];
+ImagePlot[A]
+wt = WT[A, Daub[4]];
+{approx, {vert, horiz, diag}} = WaveletMatrixToList[wt];
+Map[ImagePlot[#, Scaling -&gt; True] &amp;, {approx, vert, horiz, diag}]
+</pre><div class='IFU'><a name='58982902'></a>http://wolfram.com/xid/0bgs8pq6xf2jh4szo9r0zq50s76aii-9ehr8</div>

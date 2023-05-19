@@ -1,0 +1,9 @@
+<pre name='i_7_in' id='i_7_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;canoes.png&quot;;
+A = ImageRead[file];
+ImagePlot[A]
+Print[&quot;The original bit stream length is &quot;, 
+  8*Apply[Times, Dimensions[A]], &quot;.&quot;];
+B = 20*Floor[A/20];
+ImagePlot[B]
+{codes, old, new} = MakeHuffmanCodes[B];
+Print[&quot;The bit stream length of the approximate image is &quot;, new, &quot;.&quot;];</pre><div class='IFU'><a name='631979977'></a>http://wolfram.com/xid/0flnk7wc6ibfrlmgjk7d2kmzqbnel-kqjs5n</div>

@@ -1,0 +1,3 @@
+<pre name='i_73_in' id='i_73_in' class='IFT'>W = WaveletMatrix[SplineFilters[2, 2], {14, 14}];
+MatrixForm[W]
+W.vperiodic // N</pre><div class='IFU'><a name='231902250'></a>http://wolfram.com/xid/0kmsg876k74fv7tus4gahxj5adn8b2m3ovcixzmeb-d4cq7g</div>

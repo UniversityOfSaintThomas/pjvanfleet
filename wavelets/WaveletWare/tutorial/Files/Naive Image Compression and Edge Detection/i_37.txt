@@ -1,0 +1,3 @@
+<pre name='i_37_in' id='i_37_in' class='IFT'>newA = YCbCrToRGB[newYCbCr, DisplayMode -&gt; True];
+ImagePlot[newA]
+PSNR[A, newA]</pre><div class='IFU'><a name='239811965'></a>http://wolfram.com/xid/0ck2bt1tgpszi5qmumv90y9mftkdg9nq1q0ukjlzbu-d82adr</div>

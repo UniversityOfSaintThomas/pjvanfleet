@@ -1,0 +1,2 @@
+<pre name='i_7_in' id='i_7_in' class='IFT'>h = {3, 3};
+CheckFilter[h]</pre><div class='IFU'><a name='84026659'></a>http://wolfram.com/xid/0k18vmbfsv1bofr5bpvxwru-boa9n5</div>

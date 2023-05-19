@@ -1,0 +1,7 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;benches.png&quot;;
+A = ImageRead[file, Resize -&gt; {256, 384}];
+ImagePlot[A]
+{r, c} = Dimensions[A];
+Print[&quot;The dimensions of the image are &quot;, r, &quot; x &quot;, c, &quot;.&quot;];
+Print[&quot;The total number of bits representing this image is &quot;, 8*r*c, 
+  &quot;.&quot;];</pre><div class='IFU'><a name='305733401'></a>http://wolfram.com/xid/0ck2bt1tgpszi5qmumv90y9mftkdg9nq1q0ukjlzbu-fca7or</div>

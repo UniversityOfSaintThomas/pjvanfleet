@@ -1,0 +1,4 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>data = Map[PacketFunctionData[Daub[4], #] &amp;, Range[4]];
+GraphicsColumn[
+ Map[ListPlot[#, Ticks -&gt; {Range[3], Range[-2, 2]}, Joined -&gt; True, 
+    PlotRange -&gt; All] &amp;, data], ImageSize -&gt; 200]</pre><div class='IFU'><a name='528706587'></a>http://wolfram.com/xid/0istl84i27gzdwumekudn074i-i02awd</div>

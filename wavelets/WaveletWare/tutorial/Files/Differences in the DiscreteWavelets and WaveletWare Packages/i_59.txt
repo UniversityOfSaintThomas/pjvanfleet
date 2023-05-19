@@ -1,0 +1,2 @@
+<pre name='i_59_in' id='i_59_in' class='IFT'>filters = {Daub[4], SplineFilters[2, 2], {1/2, 1/2}, {1, 3, 3, 1}};
+Map[CheckFilter, filters]</pre><div class='IFU'><a name='713341806'></a>http://wolfram.com/xid/0533vsu7qbb0ajiwwqawq9kz22kl8rc4uv1a9crxfvnihty6rtcsrbm-l2zocg</div>

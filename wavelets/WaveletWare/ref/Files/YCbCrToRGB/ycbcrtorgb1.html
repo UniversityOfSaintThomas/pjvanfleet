@@ -1,0 +1,28 @@
+<script type="text/javascript" src="../javascript/sub-pages.js"></script><div class="expandSubsubWrap closed">
+  <div class="expandSubsubOuter">
+   <h4 class="expandSubsubInner"><a class="expand" href="#" title="show">DisplayMode<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a><a class="collapse hide" href="#" title="hide">DisplayMode<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a></h4>
+   <div class="expanded hide">
+    <p><a name="113146688"></a>When <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/DisplayMode.html">DisplayMode</a></span> is set to <a href="http://reference.wolfram.com/language/ref/True.html">True</a>, the values sent to YCbCrToRGB  are <span class="IF"><span class="TI">y</span></span> <span class="special-character Element">&#8712;</span> [16,235] and <span class="IF"><span class="TI">cb</span></span>,<span class="IF"><span class="TI">cr</span></span>  <span class="special-character Element">&#8712;</span> [16,240].  These values are obtained by setting <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/DisplayMode.html">DisplayMode</a></span> to <a href="http://reference.wolfram.com/language/ref/True.html">True</a> in <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/RGBToYCbCr.html">RGBToYCbCr</a></span>.  These values are converted to <span class="IF"><span class="TI">y</span></span>',<span class="IF"><span class="TI">cb</span></span>',<span class="IF"><span class="TI">cr</span></span>' using the affine maps<br /><br /><span class="IF"><span class="TI">y</span></span>'  = (<span class="IF"><span class="TI">y</span></span>-16)/219 <br /><span class="IF"><span class="TI">cb</span></span>'= (<span class="IF"><span class="TI">cb</span></span>-128)/224<br /><span class="IF"><span class="TI">cr</span></span>' = (<span class="IF"><span class="TI">cr</span></span>-128)/224<br /><br />and then the equations described above are used to convert y',cb',cr' to r,g,b values that are integers in the set {0,1,...,255}.<br /><br />Convert a color image to YCbCr space and create integer-valued output.  Then convert back to RGB space.</p>
+    <div class="IO">
+     <table class="InCell">
+      <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+         <a name="776980810"></a>
+         <img src="Files/YCbCrToRGB/I_8.gif"
+             height="152"
+             width="331"
+             alt="Click for copyable input" />
+        </div><div id="i_7_out" class="IFL"></div></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/YCbCrToRGB/O_6.gif" height="133" width="200" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/YCbCrToRGB/O_7.gif" height="202" width="435" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/YCbCrToRGB/O_8.gif" height="133" width="200" alt="" /></td></tr>
+     </table>
+    </div>
+   </div>
+  </div>
+ </div>

@@ -1,0 +1,9 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>v = Range[256];
+iterations = 3;
+wt = WT[v, Daub[4], NumIterations -&gt; iterations];
+ShowBestBasis[WaveletTree[iterations]]
+{data, list} = 
+  WaveletRegionTake[wt, All, NumIterations -&gt; iterations, 
+   ReturnIterationList -&gt; True];
+list
+</pre><div class='IFU'><a name='361390226'></a>http://wolfram.com/xid/0ejjx9peoqvmt3kgdefqjflp2-f9f4ro</div>

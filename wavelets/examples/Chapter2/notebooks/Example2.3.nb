@@ -1,0 +1,389 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     14191,        381]
+NotebookOptionsPosition[     11669,        316]
+NotebookOutlinePosition[     12014,        331]
+CellTagsIndexPosition[     11971,        328]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Example 2.3 (Matrix Arithmetic)", "Section",
+ CellChangeTimes->{{3.6747400799154887`*^9, 3.6747400868855157`*^9}, {
+  3.6747401192115917`*^9, 3.674740124362601*^9}, {3.674823639171709*^9, 
+  3.674823640303733*^9}, {3.6748236819375725`*^9, 3.674823684099594*^9}, {
+  3.6748241486687813`*^9, 3.6748241538079395`*^9}, {3.674833786805024*^9, 
+  3.674833793820221*^9}},ExpressionUUID->"7cee7e19-5d18-4863-8706-\
+03b9608a0c93"],
+
+Cell["\<\
+Compute the sum and difference and scalar multiplications of the given \
+matrices.\
+\>", "Text",
+ CellChangeTimes->{{3.6747401116573763`*^9, 3.6747401462228427`*^9}, {
+  3.674823687935635*^9, 3.6748237135069*^9}, {3.674824162140191*^9, 
+  3.6748241660423098`*^9}, {3.6748338237688246`*^9, 
+  3.6748338335560656`*^9}},ExpressionUUID->"e4629344-4ed8-42ac-b86d-\
+61db0ce6cd99"],
+
+Cell[CellGroupData[{
+
+Cell["Reference.", "Subsubsection",
+ CellChangeTimes->{{3.6747631102003517`*^9, 
+  3.6747631125733557`*^9}},ExpressionUUID->"e30f4bed-0c7a-4d67-b482-\
+55999826d2de"],
+
+Cell["\<\
+The material for this lab is covered in Section 2.2 of the book \
+\[OpenCurlyDoubleQuote]Discrete Wavelet Transformations: An Elementary \
+Approach with Applications, 2nd Edition,\[CloseCurlyDoubleQuote] by Patrick J \
+Van Fleet.\
+\>", "Text",
+ CellChangeTimes->{{3.674763119565366*^9, 3.6747631649004583`*^9}, {
+  3.674763293323564*^9, 3.674763311554607*^9}, {3.6997856290190563`*^9, 
+  3.699785638548086*^9}, {3.72692103296169*^9, 
+  3.726921034949597*^9}},ExpressionUUID->"abebf6bb-6d4d-41c1-9fce-\
+7d2b7e9c0b1b"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["WaveletWare Commands Used in This Notebook", "Subsubsection",
+ CellChangeTimes->{{3.6747417571916847`*^9, 3.674741765831501*^9}, {
+  3.6747418595935683`*^9, 
+  3.6747419193671017`*^9}},ExpressionUUID->"78e4b11f-5a06-47fe-a74c-\
+0dc1487f5813"],
+
+Cell["Execute the line below to load the WaveletWare package.", "Text",
+ CellChangeTimes->{{3.726919365764247*^9, 
+  3.7269193911263213`*^9}},ExpressionUUID->"5bc90d1e-772c-44bb-b365-\
+12539b109092"],
+
+Cell[BoxData[
+ RowBox[{"<<", "WaveletWare`"}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.7269193243151226`*^9, 3.7269193578933735`*^9}, {
+  3.727092963430753*^9, 
+  3.727092963542017*^9}},ExpressionUUID->"8d0894c0-27fb-4c7f-962d-\
+da5de709e160"],
+
+Cell["\<\
+Execute the line below to generate quick help on WaveletWare commands used in \
+this notebook.  Click on >> for each command to access detailed documentation \
+on the command.\
+\>", "Text",
+ CellChangeTimes->{{3.726919395574725*^9, 
+  3.7269194464807606`*^9}},ExpressionUUID->"933fde15-5b08-4423-a82d-\
+9a379722a795"],
+
+Cell[BoxData[
+ RowBox[{"?", "ImagePlot"}]], "Input",
+ CellChangeTimes->{{3.7269193243151226`*^9, 
+  3.7269193578933735`*^9}},ExpressionUUID->"491ba2a0-43c8-40e3-9bb6-\
+cda385dc7bd4"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Solution.", "Subsubsection",
+ CellChangeTimes->{{3.6747401847284007`*^9, 
+  3.6747401899458103`*^9}},ExpressionUUID->"d7180c1c-e72a-4a7f-a101-\
+583b4fd7e41d"],
+
+Cell[TextData[{
+ "Matrices are defined as ",
+ StyleBox["lists of",
+  FontSlant->"Italic"],
+ " ",
+ StyleBox["lists",
+  FontSlant->"Italic"],
+ " in Mathematica.  Lists are enclosed by { }.  The matrices in Example 2.3 \
+are given below.  The Mathematica command ",
+ StyleBox["MatrixForm",
+  FontWeight->"Bold"],
+ " can be used to provide a nice printable form of a matrix.\n\n",
+ StyleBox["Important",
+  FontWeight->"Bold"],
+ " ",
+ StyleBox["Note",
+  FontWeight->"Bold"],
+ ":  If you define a matrix ",
+ StyleBox["A",
+  FontWeight->"Bold"],
+ " and \[OpenCurlyDoubleQuote]wrap it\[CloseCurlyDoubleQuote] in ",
+ StyleBox["MatrixForm",
+  FontWeight->"Bold"],
+ ", the output cannot be used in subsequent matrix computations!  ",
+ StyleBox["MatrixForm",
+  FontWeight->"Bold"],
+ " only produces printable output."
+}], "Text",
+ CellChangeTimes->{{3.674740194805643*^9, 3.6747402104415007`*^9}, {
+  3.6747402441785665`*^9, 3.6747402579060516`*^9}, {3.6748237198419676`*^9, 
+  3.6748237584134207`*^9}, {3.6748241758426056`*^9, 3.6748241762326174`*^9}, {
+  3.674833839882195*^9, 
+  3.674833987604434*^9}},ExpressionUUID->"d0738c60-334b-43ad-96f4-\
+894b9e367ae0"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"A", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"100", ",", "50", ",", "50", ",", "25"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "25", ",", "25", ",", "125"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "100", ",", "75", ",", "50"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"125", ",", "50", ",", "0", ",", "25"}], "}"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"B", "=", 
+    RowBox[{"ConstantArray", "[", 
+     RowBox[{"50", ",", 
+      RowBox[{"{", 
+       RowBox[{"4", ",", "4"}], "}"}]}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+    "C", " ", "is", " ", "a", " ", "protected", " ", "symbol", " ", "in", " ",
+      "Mathematica"}], " ", "-", " ", 
+    RowBox[{
+    "use", " ", "C1", " ", "to", " ", "name", " ", "the", " ", "last", " ", 
+     "matrix"}]}], " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"C1", "=", 
+   RowBox[{"ConstantArray", "[", 
+    RowBox[{"255", ",", 
+     RowBox[{"{", 
+      RowBox[{"4", ",", "4"}], "}"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"MatrixForm", "[", "A", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"MatrixForm", "[", "B", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"MatrixForm", "[", "C1", "]"}]}], "Input",
+ CellChangeTimes->{{3.674740213774307*^9, 3.6747402382289553`*^9}, {
+  3.6747413338552017`*^9, 3.674741342364217*^9}, {3.6747420276328416`*^9, 
+  3.6747420280550423`*^9}, {3.674823760720446*^9, 3.674823773168619*^9}, {
+  3.674824115899665*^9, 3.674824116286677*^9}, {3.6748243040946064`*^9, 
+  3.6748243181560526`*^9}, {3.67483399430357*^9, 3.674834096536193*^9}, {
+  3.674834706800985*^9, 3.6748347070609903`*^9}, {3.727092960566002*^9, 
+  3.7270929607103987`*^9}},ExpressionUUID->"ce523cb3-0172-45f2-9452-\
+e1b4c37ec5cb"],
+
+Cell["Compute the sum and difference from the example.", "Text",
+ CellChangeTimes->{{3.674740429278332*^9, 3.674740491840477*^9}, {
+  3.674823777188659*^9, 3.6748237857737494`*^9}, {3.6748238276532345`*^9, 
+  3.67482384430046*^9}, {3.6748243267603436`*^9, 3.6748243464659405`*^9}, {
+  3.674834108177436*^9, 
+  3.674834119108692*^9}},ExpressionUUID->"77f7ffbf-8497-4b66-9c5c-\
+c5cd472af876"],
+
+Cell[BoxData[{
+ RowBox[{"MatrixForm", "[", 
+  RowBox[{"A", "+", "B"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"MatrixForm", "[", 
+  RowBox[{"C1", "-", "A"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.674823788868782*^9, 3.6748237985098815`*^9}, {
+  3.674823845890476*^9, 3.674823850310524*^9}, {3.6748241176547184`*^9, 
+  3.6748241178247232`*^9}, {3.674824348787013*^9, 3.6748243636924896`*^9}, {
+  3.6748341244718018`*^9, 3.6748341382943506`*^9}, {3.674834703679922*^9, 
+  3.674834703849926*^9}, {3.727092941749092*^9, 
+  3.7270929599262824`*^9}},ExpressionUUID->"c7451884-4990-4f84-a4f2-\
+be39b803b14b"],
+
+Cell["Compute the scalar multiplications from the example.", "Text",
+ CellChangeTimes->{{3.674740429278332*^9, 3.674740491840477*^9}, {
+  3.674823777188659*^9, 3.6748237857737494`*^9}, {3.6748238276532345`*^9, 
+  3.67482384430046*^9}, {3.6748243267603436`*^9, 3.6748243464659405`*^9}, {
+  3.674834108177436*^9, 3.674834119108692*^9}, {3.6748341553297224`*^9, 
+  3.674834158610789*^9}},ExpressionUUID->"1c902d6c-071f-43eb-89a1-\
+fdc2647ae13b"],
+
+Cell[BoxData[{
+ RowBox[{"MatrixForm", "[", 
+  RowBox[{"A", "/", "5"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"MatrixForm", "[", 
+  RowBox[{"2", "A"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.6748341610599513`*^9, 3.674834177364612*^9}, {
+  3.674834701769884*^9, 3.6748347019198875`*^9}, {3.727092958245696*^9, 
+  3.7270929583901234`*^9}},ExpressionUUID->"dfd348b0-3634-4ba1-b1c0-\
+8a34c1cdaabd"],
+
+Cell[TextData[{
+ "Use the WaveletWare command ",
+ StyleBox["ImagePlot",
+  FontWeight->"Bold"],
+ " to plot each of the computations above."
+}], "Text",
+ CellChangeTimes->{{3.6748244638697925`*^9, 3.6748245285332465`*^9}, {
+  3.6748341930790033`*^9, 
+  3.674834213872498*^9}},ExpressionUUID->"8d22bbaf-2225-4159-9fbf-\
+1ab0ab6bd449"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"p", "=", 
+   RowBox[{"Map", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"ImagePlot", "[", 
+       RowBox[{"#", ",", 
+        RowBox[{"ImageSize", "\[Rule]", "100"}], ",", 
+        RowBox[{"Border", "\[Rule]", "False"}]}], "]"}], "&"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"A", ",", 
+       RowBox[{"A", "+", "B"}], ",", 
+       RowBox[{"C1", "-", "A"}], ",", 
+       RowBox[{"A", "/", "5"}], ",", 
+       RowBox[{"2", "A"}]}], "}"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"GraphicsRow", "[", "p", "]"}]}], "Input",
+ CellChangeTimes->{{3.6748245366194115`*^9, 3.674824557238858*^9}, {
+  3.67482459580068*^9, 3.6748245962406893`*^9}, {3.6748342172385683`*^9, 
+  3.674834264416028*^9}, {3.6748346982148128`*^9, 3.6748346984348173`*^9}, {
+  3.7270929570304356`*^9, 
+  3.727092957334263*^9}},ExpressionUUID->"164fa94d-3797-45d6-985f-\
+fb41cda23529"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Things To Try.", "Subsubsection",
+ CellChangeTimes->{{3.674741317287572*^9, 3.674741319527376*^9}, {
+  3.6747419524260297`*^9, 
+  3.674741953872259*^9}},ExpressionUUID->"8e57c316-741d-4434-b11f-\
+fbaaf59f809d"],
+
+Cell["\<\
+Try defining your own matrices and performing various arithmetic operations.  \
+Mathematica has some built-in matrices you can use as well:\
+\>", "Text",
+ CellChangeTimes->{{3.674741356475069*^9, 3.6747414431750774`*^9}, {
+  3.674741476278762*^9, 3.6747415170736356`*^9}, {3.6748239662840796`*^9, 
+  3.674824003645547*^9}, {3.674824380836932*^9, 3.67482441611876*^9}, {
+  3.674834355499668*^9, 
+  3.674834379900223*^9}},ExpressionUUID->"07ae61f9-8aa8-44df-804e-\
+d5556648d09d"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"A1", "=", 
+   RowBox[{"RandomInteger", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0", ",", "9"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"6", ",", "6"}], "}"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"A2", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"ConstantArray", "[", 
+      RowBox[{"k", ",", "8"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"k", ",", "1", ",", "8"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"A3", "=", 
+   RowBox[{"HilbertMatrix", "[", "5", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Map", "[", 
+  RowBox[{"MatrixForm", ",", 
+   RowBox[{"{", 
+    RowBox[{"A1", ",", "A2", ",", "A3"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.6748240064755754`*^9, 3.6748240460170555`*^9}, {
+  3.674824078792511*^9, 3.674824084806695*^9}, {3.6748241226598983`*^9, 
+  3.674824122759901*^9}, {3.6748343829413624`*^9, 3.6748344099819183`*^9}, {
+  3.674834445658642*^9, 3.6748344701631355`*^9}, {3.6748345894786615`*^9, 
+  3.6748346265444083`*^9}, {3.6748346946547413`*^9, 
+  3.6748346951347513`*^9}},ExpressionUUID->"d21e84d5-dbf4-4b4f-8345-\
+4a7e3e010a2c"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{759, 678},
+WindowMargins->{{248, Automatic}, {139, Automatic}},
+FrontEndVersion->"11.1 for Microsoft Windows (64-bit) (April 18, 2017)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 427, 6, 70, "Section", "ExpressionUUID" -> \
+"7cee7e19-5d18-4863-8706-03b9608a0c93"],
+Cell[1010, 30, 384, 8, 30, "Text", "ExpressionUUID" -> \
+"e4629344-4ed8-42ac-b86d-61db0ce6cd99"],
+Cell[CellGroupData[{
+Cell[1419, 42, 165, 3, 39, "Subsubsection", "ExpressionUUID" -> \
+"e30f4bed-0c7a-4d67-b482-55999826d2de"],
+Cell[1587, 47, 526, 10, 49, "Text", "ExpressionUUID" -> \
+"abebf6bb-6d4d-41c1-9fce-7d2b7e9c0b1b"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2150, 62, 248, 4, 39, "Subsubsection", "ExpressionUUID" -> \
+"78e4b11f-5a06-47fe-a74c-0dc1487f5813"],
+Cell[2401, 68, 199, 3, 30, "Text", "ExpressionUUID" -> \
+"5bc90d1e-772c-44bb-b365-12539b109092"],
+Cell[2603, 73, 262, 6, 46, "Input", "ExpressionUUID" -> \
+"8d0894c0-27fb-4c7f-962d-da5de709e160",
+ InitializationCell->True],
+Cell[2868, 81, 327, 7, 49, "Text", "ExpressionUUID" -> \
+"933fde15-5b08-4423-a82d-9a379722a795"],
+Cell[3198, 90, 182, 4, 30, "Input", "ExpressionUUID" -> \
+"491ba2a0-43c8-40e3-9bb6-cda385dc7bd4"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3417, 99, 164, 3, 39, "Subsubsection", "ExpressionUUID" -> \
+"d7180c1c-e72a-4a7f-a101-583b4fd7e41d"],
+Cell[3584, 104, 1150, 33, 125, "Text", "ExpressionUUID" -> \
+"d0738c60-334b-43ad-96f4-894b9e367ae0"],
+Cell[4737, 139, 1877, 46, 145, "Input", "ExpressionUUID" -> \
+"ce523cb3-0172-45f2-9452-e1b4c37ec5cb"],
+Cell[6617, 187, 390, 6, 30, "Text", "ExpressionUUID" -> \
+"77f7ffbf-8497-4b66-9c5c-c5cd472af876"],
+Cell[7010, 195, 604, 11, 50, "Input", "ExpressionUUID" -> \
+"c7451884-4990-4f84-a4f2-be39b803b14b"],
+Cell[7617, 208, 442, 6, 30, "Text", "ExpressionUUID" -> \
+"1c902d6c-071f-43eb-89a1-fdc2647ae13b"],
+Cell[8062, 216, 397, 8, 50, "Input", "ExpressionUUID" -> \
+"dfd348b0-3634-4ba1-b1c0-8a34c1cdaabd"],
+Cell[8462, 226, 331, 9, 30, "Text", "ExpressionUUID" -> \
+"8d22bbaf-2225-4159-9fbf-1ab0ab6bd449"],
+Cell[8796, 237, 899, 22, 50, "Input", "ExpressionUUID" -> \
+"164fa94d-3797-45d6-985f-fb41cda23529"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9732, 264, 216, 4, 39, "Subsubsection", "ExpressionUUID" -> \
+"8e57c316-741d-4434-b11f-fbaaf59f809d"],
+Cell[9951, 270, 487, 9, 49, "Text", "ExpressionUUID" -> \
+"07ae61f9-8aa8-44df-804e-d5556648d09d"],
+Cell[10441, 281, 1200, 31, 88, "Input", "ExpressionUUID" -> \
+"d21e84d5-dbf4-4b4f-8345-4a7e3e010a2c"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

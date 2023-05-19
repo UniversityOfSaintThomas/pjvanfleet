@@ -1,0 +1,9 @@
+<pre name='i_7_in' id='i_7_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;benches.png&quot;;
+A = ImageRead[file, Resize -&gt; {256, 384}];
+ImagePlot[A]
+lwt = LeftWT[A, Daub[4], Shift -&gt; 100];
+WaveletPlot[lwt, PlotType -&gt; Left]
+iwt = LeftInverseWT[lwt, Daub[4], Shift -&gt; 100];
+ImagePlot[iwt]
+(* Mean Squared Error *)
+MSE[A, iwt]</pre><div class='IFU'><a name='8517579'></a>http://wolfram.com/xid/0cew39zuhikyj6xdb160t39ob-fcuhp</div>

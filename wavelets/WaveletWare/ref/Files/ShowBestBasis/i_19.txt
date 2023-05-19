@@ -1,0 +1,2 @@
+<pre name='i_19_in' id='i_19_in' class='IFT'>ShowBestBasis[WaveletTree[3, InputDimension -&gt; 2], 
+ Frame -&gt; {True, False}, ImageSize -&gt; 300]</pre><div class='IFU'><a name='116528545'></a>http://wolfram.com/xid/0ju408za6tmbiu55ts1k9e6e-b7nwab</div>

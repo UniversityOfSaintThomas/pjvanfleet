@@ -1,0 +1,7 @@
+<pre name='i_9_in' id='i_9_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;chess.png&quot;;
+A = ImageRead[file, Resize -&gt; {256, 384}];
+ImagePlot[A]
+wt1 = LeftBWT[A, SplineFilters[2, 2]];
+WaveletPlot[wt1, PlotType -&gt; Left]
+wt2 = LeftBWT[A, SplineFilters[2, 2], Boundary -&gt; True];
+WaveletPlot[wt2, PlotType -&gt; Left]</pre><div class='IFU'><a name='297700709'></a>http://wolfram.com/xid/0bhd4nmewcpafuv9q08kwrnf-e7i1mf</div>

@@ -1,0 +1,2 @@
+<pre name='i_9_in' id='i_9_in' class='IFT'>ce = CE[wt];
+ListPlot[ce, Ticks -&gt; {{1/4, 1/2, 1}*r*c, {.98, .99, 1}}]</pre><div class='IFU'><a name='123872962'></a>http://wolfram.com/xid/0ck2bt1tgpszi5qmumv90y9mftkdg9nq1q0ukjlzbu-cb1a9w</div>

@@ -1,0 +1,11 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;road.png&quot;;
+A = ImageRead[file, Resize -&gt; {256, 384}];
+ImagePlot[A]
+iterations = 2;
+tree = {0, {{0, 1}, {0, 0}}, {{1, 1, 0, 0}, {1, 1, 0, 0}, {1, 1, 1, 
+     1}, {1, 1, 1, 1}}};
+{wpt, tree} = 
+  WPT[A, SplineFilters[2, 2], NumIterations -&gt; iterations, 
+   FixedTree -&gt; tree];
+WaveletPlot[wpt, tree, NumIterations -&gt; iterations]
+ShowBestBasis[tree, Show3D -&gt; False]</pre><div class='IFU'><a name='257242462'></a>http://wolfram.com/xid/0yi64acvo474e4ng6e1omk-ejfvt8</div>

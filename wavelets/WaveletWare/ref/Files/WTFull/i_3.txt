@@ -1,0 +1,9 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>(* Donoho/Johnstone Doppler function *)
+g[t_] := Sqrt[t (1 - t)]*Sin[2 Pi (1.05)/(t + .05)];
+n = 1024;
+v = g[Range[0, 1 - 1/n, 1/n]];
+ListPlot[v, Ticks -&gt; {Range[0, n, n/4], Range[-1/2, 1/2]}, 
+ PlotLabel -&gt; &quot;Data Samples&quot;]
+iterations = 4;
+wtfull = WTFull[v, Haar[], NumIterations -&gt; iterations];
+FullWaveletVectorPlot[wtfull] // TableForm</pre><div class='IFU'><a name='127267292'></a>http://wolfram.com/xid/0fn9kyau1k5szc07wu9tv6a-cd12cu</div>

@@ -1,0 +1,10 @@
+<pre name='i_31_in' id='i_31_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;fish.png&quot;;
+A = ImageRead[file, Resize -&gt; {256, 384}];
+ImagePlot[A]
+{wt, tree} = 
+  WPT[A, Daub[4], NumIterations -&gt; 3, 
+   CostFunction -&gt; NumberAboveThreshold, SecondParameter -&gt; 10];
+Map[ShowBestBasis[#, Show3D -&gt; False] &amp;, tree] // GraphicsRow
+WaveletPlot[wt, tree, 
+ Iteration -&gt; {{1, 1, 2, 1}, {1, 2, 2, 1}, {2, 3, 5, 7}, {3, 3, 1, 1}}]
+WaveletPlot[wt, tree, Iteration -&gt; {{All, 2, 2, 1}}]</pre><div class='IFU'><a name='8911738'></a>http://wolfram.com/xid/0iglzsj6g5gr1t4ex14c4bsar4ymys4uuo5d2m08201-flamk</div>

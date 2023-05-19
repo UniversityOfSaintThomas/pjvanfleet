@@ -1,0 +1,7 @@
+<pre name='i_49_in' id='i_49_in' class='IFT'>f = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;facade.png&quot;;
+A = ImageRead[f, Resize -&gt; {128, 192}];
+ImagePlot[A]
+MapThread[ImagePlot[#1, ChannelColor -&gt; #2] &amp;, {A, {Red, Green, Blue}}]
+wt = WTFull[A, Daub[4], NumIterations -&gt; 2];
+FullWaveletPlot[wt, 
+ Iteration -&gt; {All, {{1, 1, 1, 2}, {2, 1, 1, 2}, {3, 1, 1, 2}}, All}]</pre><div class='IFU'><a name='51493773'></a>http://wolfram.com/xid/0kmsg876k74fv7tus4gahxj5adn8b2m3ovcixzmeb-4xy4v</div>

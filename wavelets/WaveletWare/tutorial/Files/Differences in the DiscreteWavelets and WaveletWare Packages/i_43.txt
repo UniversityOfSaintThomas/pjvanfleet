@@ -1,0 +1,10 @@
+<pre name='i_43_in' id='i_43_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;benches.png&quot;;
+A = ImageRead[file, Resize -&gt; {256, 384}];
+ImagePlot[A]
+{wt, tree} = 
+  WPT[A, Haar[], NumIterations -&gt; 2, 
+   CostFunction -&gt; NumberAboveThreshold, SecondParameter -&gt; 20];
+ShowBestBasis[tree, Show3D -&gt; False, ImageSize -&gt; 300]
+WaveletPlot[wt, tree]
+WaveletRegionPlot[wt, tree, {{2, 3, 3}, {2, 3, 4}, {2, 4, 3}, {2, 4, 
+   4}}]</pre><div class='IFU'><a name='502251311'></a>http://wolfram.com/xid/0533vsu7qbb0ajiwwqawq9kz22kl8rc4uv1a9crxfvnihty6rtcsrbm-ila9vl</div>

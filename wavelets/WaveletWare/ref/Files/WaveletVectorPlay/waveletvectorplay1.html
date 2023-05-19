@@ -1,0 +1,109 @@
+<script type="text/javascript" src="../javascript/sub-pages.js"></script><div class="expandSubsubWrap closed">
+  <div class="expandSubsubOuter">
+   <h4 class="expandSubsubInner"><a class="expand" href="#" title="show">NumIterations<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a><a class="collapse hide" href="#" title="hide">NumIterations<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a></h4>
+   <div class="expanded hide">
+    <p><a name="13016021"></a>By default, wavelet transform functions only compute one iteration of the wavelet transform.  If the dimensions of the data are divisible by <span class="IF"><img src="Files/WaveletVectorPlay/9.png" height="17" width="12" alt="" /></span>, then up to <span class="IF"><span class="TI">p</span></span> iterations of the transform can be computed.  If p iterations of the wavelet transform have been computed, then setting <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/NumIterations.html">NumIterations</a></span> to <span class="IF"><span class="TI">p</span></span> will play the correct portions of the transform.</p>
+    <div class="IO">
+     <table class="InCell">
+      <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+         <a name="6610315"></a>
+         <img src="Files/WaveletVectorPlay/I_10.gif"
+             height="67"
+             width="338"
+             alt="Click for copyable input" />
+        </div><div id="i_9_out" class="IFL"></div></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><span id="Sound_6"><img src="Files/WaveletVectorPlay/10.gif" height="592" width="252" alt="" /></span></td></tr>
+     </table>
+    </div>
+   </div>
+  </div>
+ </div><div class="expandSubsubWrap closed">
+  <div class="expandSubsubOuter">
+   <h4 class="expandSubsubInner"><a class="expand" href="#" title="show">Iteration<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a><a class="collapse hide" href="#" title="hide">Iteration<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a></h4>
+   <div class="expanded hide">
+    <p><a name="15645395"></a>The <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/Iteration.html">Iteration</a></span> options allows the user to control which portions of the wavelet (packet) tranform is played.    The default value for <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/Iteration.html">Iteration</a></span> is <a href="http://reference.wolfram.com/language/ref/All.html">All</a>, in which case all parts of the transform are played.  The value can instead be a list of ordered pairs {<span class="IF"><span class="TI">i</span></span>,<span class="IF"><span class="TI">j</span></span>}, where <span class="IF"><span class="TI">i</span></span> indicates the iteration and <span class="IF"><span class="TI">j</span></span> indicates the portion of the iteration (<span class="IF"><span class="TI">j</span></span>=1 is lowpass, <span class="IF"><span class="TI">j</span></span>=2 is highpass) to be played.  Note that for wavelet transforms, <span class="IF"><span class="TI">j</span></span>=1 only when <span class="IF"><span class="TI">i</span></span>=<span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/NumIterations.html">NumIterations</a></span>.</p>
+    <p><a name="391931265"></a>Play the highpass portions of a wavelet transform.</p>
+    <div class="IO">
+     <table class="InCell">
+      <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+         <a name="272105602"></a>
+         <img src="Files/WaveletVectorPlay/I_12.gif"
+             height="84"
+             width="520"
+             alt="Click for copyable input" />
+        </div><div id="i_11_out" class="IFL"></div></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><a href="Files/WaveletVectorPlay/Sound_7.wav"><span id="Sound_7"><img src="Files/WaveletVectorPlay/11.gif" height="115" width="250" alt="" /></span></a></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><span id="Sound_8"><img src="Files/WaveletVectorPlay/12.gif" height="445" width="252" alt="" /></span></td></tr>
+     </table>
+    </div>
+   </div>
+  </div>
+ </div><div class="expandSubsubWrap closed">
+  <div class="expandSubsubOuter">
+   <h4 class="expandSubsubInner"><a class="expand" href="#" title="show">SampleRate<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a><a class="collapse hide" href="#" title="hide">SampleRate<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a></h4>
+   <div class="expanded hide">
+    <p><a name="70726812"></a><a href="http://reference.wolfram.com/language/ref/SampleRate.html">SampleRate</a> is a <em>Mathematica</em> option but it is modified by <span class="monospace">WaveletVectorPlay</span>.  The default value for <a href="http://reference.wolfram.com/language/ref/SampleRate.html">SampleRate</a> is 11025.  If the length of the input vector is <span class="IF"><span class="TI">n</span></span>, then portions of the transform are length <span class="IF"><span class="TI">n</span></span>/<span class="IF"><img src="Files/WaveletVectorPlay/13.png" height="17" width="12" alt="" /></span>.  For each of these regions played, the corresponding <a href="http://reference.wolfram.com/language/ref/SampleRate.html">SampleRate</a> is also divided by <span class="IF"><img src="Files/WaveletVectorPlay/14.png" height="17" width="12" alt="" /></span>.</p>
+    <div class="IO">
+     <table class="InCell">
+      <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+         <a name="562509318"></a>
+         <img src="Files/WaveletVectorPlay/I_14.gif"
+             height="118"
+             width="446"
+             alt="Click for copyable input" />
+        </div><div id="i_13_out" class="IFL"></div></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><span id="Sound_9"><img src="Files/WaveletVectorPlay/15.gif" height="592" width="252" alt="" /></span></td></tr>
+     </table>
+     <div class="Print">
+      <a name="8898480"></a>
+      <img class="FlushInput"
+          src="Files/WaveletVectorPlay/Image_16.gif"
+          alt=" " />
+     </div>
+    </div>
+   </div>
+  </div>
+ </div><div class="expandSubsubWrap closed">
+  <div class="expandSubsubOuter">
+   <h4 class="expandSubsubInner"><a class="expand" href="#" title="show">DisplayFunction<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a><a class="collapse hide" href="#" title="hide">DisplayFunction<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a></h4>
+   <div class="expanded hide">
+    <p><a name="67327092"></a>See <em>Mathematica</em> for help on <a href="http://reference.wolfram.com/language/ref/DisplayFunction.html">DisplayFunction</a>.</p>
+   </div>
+  </div>
+ </div><div class="expandSubsubWrap closed">
+  <div class="expandSubsubOuter">
+   <h4 class="expandSubsubInner"><a class="expand" href="#" title="show">Epilog<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a><a class="collapse hide" href="#" title="hide">Epilog<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a></h4>
+   <div class="expanded hide">
+    <p><a name="912604731"></a>See <em>Mathematica</em> for help on <a href="http://reference.wolfram.com/language/ref/Epilog.html">Epilog</a>.</p>
+   </div>
+  </div>
+ </div><div class="expandSubsubWrap closed">
+  <div class="expandSubsubOuter">
+   <h4 class="expandSubsubInner"><a class="expand" href="#" title="show">PlayRange<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a><a class="collapse hide" href="#" title="hide">PlayRange<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a></h4>
+   <div class="expanded hide">
+    <p><a name="39081760"></a>See <em>Mathematica</em> for help on <a href="http://reference.wolfram.com/language/ref/PlayRange.html">PlayRange</a>.</p>
+   </div>
+  </div>
+ </div><div class="expandSubsubWrap closed">
+  <div class="expandSubsubOuter">
+   <h4 class="expandSubsubInner"><a class="expand" href="#" title="show">Prolog<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a><a class="collapse hide" href="#" title="hide">Prolog<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a></h4>
+   <div class="expanded hide">
+    <p><a name="341982167"></a>See <em>Mathematica</em> for help on <a href="http://reference.wolfram.com/language/ref/Prolog.html">Prolog</a>.</p>
+   </div>
+  </div>
+ </div><div class="expandSubsubWrap closed">
+  <div class="expandSubsubOuter">
+   <h4 class="expandSubsubInner"><a class="expand" href="#" title="show">SampleDepth<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a><a class="collapse hide" href="#" title="hide">SampleDepth<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a></h4>
+   <div class="expanded hide">
+    <p><a name="45034613"></a>See <em>Mathematica</em> for help on <a href="http://reference.wolfram.com/language/ref/SampleDepth.html">SampleDepth</a>.</p>
+   </div>
+  </div>
+ </div>

@@ -1,0 +1,4 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>v = Range[80];
+h = Daub[4];
+iterations = 3;
+CheckDataFilterSize[First[CheckData[v]], v, iterations, h]</pre><div class='IFU'><a name='598282082'></a>http://wolfram.com/xid/0cxyxq3bqeau0xyde4mcpyet3td06-j6hjo0</div>

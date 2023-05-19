@@ -1,0 +1,11 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;fish.png&quot;;
+A = ImageRead[file, Resize -&gt; {128, 192}];
+ImagePlot[A]
+leftwt = LeftHWT[A];
+plots = WaveletPlot[leftwt, PlotType -&gt; Left, 
+   ChannelColor -&gt; {Red, Green, Blue}];
+Map[Show, plots]
+iwt = LeftInverseHWT[leftwt];
+ImagePlot[iwt]
+(* Mean Squared Error *)
+MSE[A, iwt]</pre><div class='IFU'><a name='15603273'></a>http://wolfram.com/xid/0byt3rd1cvx9wr2qw0r5hidunln-jkpuj</div>

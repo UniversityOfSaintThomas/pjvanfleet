@@ -1,0 +1,4 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>ImageInfo[]
+ImageInfo[ImageForm -&gt; Color, DisplayInfo -&gt; True];
+ImageInfo[ImageForm -&gt; Color, ShowThumbnails -&gt; True, 
+  ThumbnailSize -&gt; 100, ThumbnailColumns -&gt; 4];</pre><div class='IFU'><a name='403035213'></a>http://wolfram.com/xid/0533vsu7qbb0ajiwwqawq9kz22kl8rc4uv1a9crxfvnihty6rtcsrbm-gx8p8v</div>

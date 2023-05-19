@@ -1,0 +1,5 @@
+<pre name='i_49_in' id='i_49_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;benches.png&quot;;
+A = ImageRead[file, Resize -&gt; {128, 192}];
+wt = WTFull[A, Haar[], NumIterations -&gt; 2];
+FullWaveletPlot[wt, DivideLinesColor -&gt; Red]
+FullWaveletPlot[wt, DivideLinesColor -&gt; {White, Orange, Green}]</pre><div class='IFU'><a name='249374976'></a>http://wolfram.com/xid/0063dvybfwx396xn21trjec45uq-eeq88y</div>

@@ -1,0 +1,4 @@
+<pre name='i_67_in' id='i_67_in' class='IFT'>v = Range[16]^2/256;
+ListPlot[v]
+wt = BWT[v, SplineFilters[2, 2]];
+WaveletVectorPlot[wt, ImageSize -&gt; 400, PointSize -&gt; .015]</pre><div class='IFU'><a name='144344589'></a>http://wolfram.com/xid/0kmsg876k74fv7tus4gahxj5adn8b2m3ovcixzmeb-cn7297</div>

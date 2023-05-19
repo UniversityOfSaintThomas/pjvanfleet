@@ -1,0 +1,520 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     17972,        512]
+NotebookOptionsPosition[     15265,        444]
+NotebookOutlinePosition[     15610,        459]
+CellTagsIndexPosition[     15567,        456]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Example 2.4 (Matrix Multiplication)", "Section",
+ CellChangeTimes->{{3.6747400799154887`*^9, 3.6747400868855157`*^9}, {
+  3.6747401192115917`*^9, 3.674740124362601*^9}, {3.674823639171709*^9, 
+  3.674823640303733*^9}, {3.6748236819375725`*^9, 3.674823684099594*^9}, {
+  3.6748241486687813`*^9, 3.6748241538079395`*^9}, {3.674833786805024*^9, 
+  3.674833793820221*^9}, {3.67483496960868*^9, 
+  3.674834977961851*^9}},ExpressionUUID->"2abb7360-952f-4720-8dc0-\
+17ec13319f56"],
+
+Cell["Compute the products of the given matrices.", "Text",
+ CellChangeTimes->{{3.6747401116573763`*^9, 3.6747401462228427`*^9}, {
+  3.674823687935635*^9, 3.6748237135069*^9}, {3.674824162140191*^9, 
+  3.6748241660423098`*^9}, {3.6748338237688246`*^9, 3.6748338335560656`*^9}, {
+  3.6748350000142927`*^9, 
+  3.674835001045314*^9}},ExpressionUUID->"6da7d4f0-6e0d-4bb5-83e6-\
+473257f8b37e"],
+
+Cell[CellGroupData[{
+
+Cell["Reference.", "Subsubsection",
+ CellChangeTimes->{{3.6747631102003517`*^9, 
+  3.6747631125733557`*^9}},ExpressionUUID->"514c47bc-4544-4d14-b958-\
+1fdffcbe3de1"],
+
+Cell["\<\
+The material for this lab is covered in Section 2.2 of the book \
+\[OpenCurlyDoubleQuote]Discrete Wavelet Transformations: An Elementary \
+Approach with Applications, 2nd Edition,\[CloseCurlyDoubleQuote] by Patrick J \
+Van Fleet.\
+\>", "Text",
+ CellChangeTimes->{{3.674763119565366*^9, 3.6747631649004583`*^9}, {
+  3.674763293323564*^9, 3.674763311554607*^9}, {3.6997856290190563`*^9, 
+  3.699785638548086*^9}, {3.72692103296169*^9, 
+  3.726921034949597*^9}},ExpressionUUID->"11a73ffe-ac85-4acb-a31b-\
+e5ac602e763d"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["WaveletWare Commands Used in This Notebook", "Subsubsection",
+ CellChangeTimes->{{3.6747417571916847`*^9, 3.674741765831501*^9}, {
+  3.6747418595935683`*^9, 
+  3.6747419193671017`*^9}},ExpressionUUID->"b881ccec-9216-43e5-b527-\
+5a0ec4d517f7"],
+
+Cell["None.", "Text",
+ CellChangeTimes->{{3.6747419216613054`*^9, 3.6747419222229066`*^9}, {
+  3.6748347219042873`*^9, 3.674834723145313*^9}, {3.674834988453061*^9, 
+  3.6748349907731075`*^9}},ExpressionUUID->"fbc97774-2815-4485-9111-\
+5315ab3bf4d5"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Solution.", "Subsubsection",
+ CellChangeTimes->{{3.6747401847284007`*^9, 
+  3.6747401899458103`*^9}},ExpressionUUID->"3be1839c-bcc1-43f4-b549-\
+4392da247220"],
+
+Cell[TextData[{
+ "Matrices are defined as ",
+ StyleBox["lists of",
+  FontSlant->"Italic"],
+ " ",
+ StyleBox["lists",
+  FontSlant->"Italic"],
+ " in Mathematica.  Lists are enclosed by { }.  The matrices in Example 2.4 \
+are given below.  The Mathematica command ",
+ StyleBox["MatrixForm",
+  FontWeight->"Bold"],
+ " can be used to provide a nice printable form of a matrix.\n\n",
+ StyleBox["Important",
+  FontWeight->"Bold"],
+ " ",
+ StyleBox["Note",
+  FontWeight->"Bold"],
+ ":  If you define a matrix A and \[OpenCurlyDoubleQuote]wrap it\
+\[CloseCurlyDoubleQuote] in MatrixForm, the output cannot be used in \
+subsequent matrix computations!  ",
+ StyleBox["MatrixForm",
+  FontWeight->"Bold"],
+ " only produces printable output."
+}], "Text",
+ CellChangeTimes->{{3.674740194805643*^9, 3.6747402104415007`*^9}, {
+  3.6747402441785665`*^9, 3.6747402579060516`*^9}, {3.6748237198419676`*^9, 
+  3.6748237584134207`*^9}, {3.6748241758426056`*^9, 3.6748241762326174`*^9}, {
+  3.674833839882195*^9, 3.674833987604434*^9}, {3.674835007611447*^9, 
+  3.674835008991474*^9}},ExpressionUUID->"3172a15a-f5e6-40c4-ab8e-\
+61acee5e0a69"],
+
+Cell["The matrices and product from Example 2.4a.", "Text",
+ CellChangeTimes->{{3.6748350182846603`*^9, 
+  3.674835026823832*^9}},ExpressionUUID->"eeaad19f-5b47-4ea2-a8c4-\
+9f1b15c2b69c"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"A", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"1", ",", "5", ",", "2"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"-", "2"}], ",", "6", ",", "9"}], "}"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"B", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"6", ",", "0", ",", "3", ",", "7"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "2", ",", "5", ",", "4"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", 
+       RowBox[{"-", "1"}], ",", "3", ",", 
+       RowBox[{"-", "2"}]}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"P", "=", 
+   RowBox[{"A", ".", "B"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{
+   RowBox[{"MatrixForm", "[", "A", "]"}], ",", "\"\<.\>\"", ",", 
+   RowBox[{"MatrixForm", "[", "B", "]"}], ",", "\"\< = \>\"", ",", 
+   RowBox[{"MatrixForm", "[", "P", "]"}], ",", "\"\<.\>\""}], "]"}]}], "Input",
+ CellChangeTimes->{{3.674740213774307*^9, 3.6747402382289553`*^9}, {
+  3.6747413338552017`*^9, 3.674741342364217*^9}, {3.6747420276328416`*^9, 
+  3.6747420280550423`*^9}, {3.674823760720446*^9, 3.674823773168619*^9}, {
+  3.674824115899665*^9, 3.674824116286677*^9}, {3.6748243040946064`*^9, 
+  3.6748243181560526`*^9}, {3.67483399430357*^9, 3.674834096536193*^9}, {
+  3.674834706800985*^9, 3.6748347070609903`*^9}, {3.6748350336709843`*^9, 
+  3.674835105009269*^9}, {3.674835921427495*^9, 
+  3.6748359216274986`*^9}},ExpressionUUID->"f39e841d-ee24-44ca-afba-\
+9fa218065682"],
+
+Cell["The matrices and product from Example 2.4b.", "Text",
+ CellChangeTimes->{{3.6748350182846603`*^9, 3.674835026823832*^9}, {
+  3.674835121593205*^9, 
+  3.674835121653206*^9}},ExpressionUUID->"04244700-5195-461d-9e0d-\
+c7cb73eb339d"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"A", "=", 
+   RowBox[{"Map", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"ConstantArray", "[", 
+       RowBox[{"#", ",", "3"}], "]"}], "&"}], ",", 
+     RowBox[{"Range", "[", "3", "]"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"B", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"1", ",", "3", ",", 
+       RowBox[{"-", "2"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"4", ",", "2", ",", 
+       RowBox[{"-", "5"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"-", "1"}], ",", "3", ",", "0"}], "}"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"P", "=", 
+   RowBox[{"A", ".", "B"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{
+   RowBox[{"MatrixForm", "[", "A", "]"}], ",", "\"\<.\>\"", ",", 
+   RowBox[{"MatrixForm", "[", "B", "]"}], ",", "\"\< = \>\"", ",", 
+   RowBox[{"MatrixForm", "[", "P", "]"}], ",", "\"\<.\>\""}], "]"}]}], "Input",
+ CellChangeTimes->{{3.674740213774307*^9, 3.6747402382289553`*^9}, {
+  3.6747413338552017`*^9, 3.674741342364217*^9}, {3.6747420276328416`*^9, 
+  3.6747420280550423`*^9}, {3.674823760720446*^9, 3.674823773168619*^9}, {
+  3.674824115899665*^9, 3.674824116286677*^9}, {3.6748243040946064`*^9, 
+  3.6748243181560526`*^9}, {3.67483399430357*^9, 3.674834096536193*^9}, {
+  3.674834706800985*^9, 3.6748347070609903`*^9}, {3.6748350336709843`*^9, 
+  3.6748351908359823`*^9}, {3.674835919446454*^9, 
+  3.674835919666459*^9}},ExpressionUUID->"029fec47-2a8a-4c0a-8066-\
+10b986d5886b"],
+
+Cell["The matrices and product from Example 2.4c.", "Text",
+ CellChangeTimes->{{3.6748350182846603`*^9, 3.674835026823832*^9}, {
+   3.674835121593205*^9, 3.674835121653206*^9}, 
+   3.6748352067363153`*^9},ExpressionUUID->"68bcc533-7cf0-4610-b59b-\
+5b080cfe3624"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"A", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"6", ",", "11", ",", "5"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "0", ",", 
+       RowBox[{"-", "1"}]}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"B", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"3", ",", 
+       RowBox[{"-", "2"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"8", ",", 
+       RowBox[{"-", "3"}]}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"P", "=", 
+  RowBox[{"A", ".", "B"}]}]}], "Input",
+ CellChangeTimes->{{3.674740213774307*^9, 3.6747402382289553`*^9}, {
+  3.6747413338552017`*^9, 3.674741342364217*^9}, {3.6747420276328416`*^9, 
+  3.6747420280550423`*^9}, {3.674823760720446*^9, 3.674823773168619*^9}, {
+  3.674824115899665*^9, 3.674824116286677*^9}, {3.6748243040946064`*^9, 
+  3.6748243181560526`*^9}, {3.67483399430357*^9, 3.674834096536193*^9}, {
+  3.674834706800985*^9, 3.6748347070609903`*^9}, {3.6748350336709843`*^9, 
+  3.6748352464117117`*^9}, {3.6748359174164133`*^9, 
+  3.674835917576417*^9}},ExpressionUUID->"8cb8d7a4-b03d-4118-8274-\
+f2eddcf552dc"],
+
+Cell["The matrices and product from Example 2.4d.", "Text",
+ CellChangeTimes->{{3.6748350182846603`*^9, 3.674835026823832*^9}, {
+  3.674835121593205*^9, 3.674835121653206*^9}, {3.6748352557440324`*^9, 
+  3.674835255854035*^9}},ExpressionUUID->"b4151238-f374-4161-83a6-\
+1ff82768c49b"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"A", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2", ",", "5"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "3"}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"B", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"3", ",", 
+       RowBox[{"-", "5"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"-", "1"}], ",", "2"}], "}"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"P", "=", 
+   RowBox[{"A", ".", "B"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{
+   RowBox[{"MatrixForm", "[", "A", "]"}], ",", "\"\<.\>\"", ",", 
+   RowBox[{"MatrixForm", "[", "B", "]"}], ",", "\"\< = \>\"", ",", 
+   RowBox[{"MatrixForm", "[", "P", "]"}], ",", "\"\<.\>\""}], "]"}]}], "Input",
+ CellChangeTimes->{{3.674740213774307*^9, 3.6747402382289553`*^9}, {
+  3.6747413338552017`*^9, 3.674741342364217*^9}, {3.6747420276328416`*^9, 
+  3.6747420280550423`*^9}, {3.674823760720446*^9, 3.674823773168619*^9}, {
+  3.674824115899665*^9, 3.674824116286677*^9}, {3.6748243040946064`*^9, 
+  3.6748243181560526`*^9}, {3.67483399430357*^9, 3.674834096536193*^9}, {
+  3.674834706800985*^9, 3.6748347070609903`*^9}, {3.6748350336709843`*^9, 
+  3.6748351908359823`*^9}, {3.674835263384199*^9, 3.674835280591618*^9}, {
+  3.674835915494375*^9, 
+  3.6748359156543784`*^9}},ExpressionUUID->"bfa42375-1039-475f-9548-\
+295e15da81f1"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Things To Try.", "Subsubsection",
+ CellChangeTimes->{{3.674741317287572*^9, 3.674741319527376*^9}, {
+  3.6747419524260297`*^9, 
+  3.674741953872259*^9}},ExpressionUUID->"aef4e28a-cd67-452a-854c-\
+b1fe2fcf4711"],
+
+Cell[TextData[{
+ "Try defining your own matrices and computing their products.  \n\nDefine a \
+5 x 5 matrix ",
+ StyleBox["A",
+  FontWeight->"Bold"],
+ " and then compute ",
+ StyleBox["A",
+  FontWeight->"Bold"],
+ ".",
+ StyleBox["D1",
+  FontWeight->"Bold"],
+ " and ",
+ StyleBox["D1",
+  FontWeight->"Bold"],
+ ".",
+ StyleBox["A",
+  FontWeight->"Bold"],
+ " for the matrix ",
+ StyleBox["D1",
+  FontWeight->"Bold"],
+ " defined below.  Can you describe the output?"
+}], "Text",
+ CellChangeTimes->{{3.674741356475069*^9, 3.6747414431750774`*^9}, {
+  3.674741476278762*^9, 3.6747415170736356`*^9}, {3.6748239662840796`*^9, 
+  3.674824003645547*^9}, {3.674824380836932*^9, 3.67482441611876*^9}, {
+  3.674834355499668*^9, 3.674834379900223*^9}, {3.6748356330322485`*^9, 
+  3.674835637402336*^9}, {3.674835820392275*^9, 
+  3.67483586322723*^9}},ExpressionUUID->"d0ed9df2-472c-45c8-9b6a-\
+c296d3396ca4"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"D1", "=", 
+   RowBox[{"DiagonalMatrix", "[", 
+    RowBox[{"RandomInteger", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"0", ",", "9"}], "}"}], ",", "5"}], "]"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"MatrixForm", "[", "D1", "]"}]}], "Input",
+ CellChangeTimes->{{3.6748240064755754`*^9, 3.6748240460170555`*^9}, {
+  3.674824078792511*^9, 3.674824084806695*^9}, {3.6748241226598983`*^9, 
+  3.674824122759901*^9}, {3.6748343829413624`*^9, 3.6748344099819183`*^9}, {
+  3.674834445658642*^9, 3.6748344701631355`*^9}, {3.6748345894786615`*^9, 
+  3.6748346265444083`*^9}, {3.6748346946547413`*^9, 3.6748346951347513`*^9}, {
+  3.6748358694903574`*^9, 
+  3.6748359138833427`*^9}},ExpressionUUID->"4fa5a8b4-80d2-4332-98e1-\
+ecaa08bd03d0"],
+
+Cell[TextData[{
+ "Describe the relationship between the product and ",
+ StyleBox["B",
+  FontWeight->"Bold"],
+ " in the matrices from Example 2.4b.  Can you describe the product ",
+ StyleBox["B",
+  FontWeight->"Bold"],
+ ".",
+ StyleBox["A",
+  FontWeight->"Bold"],
+ "?"
+}], "Text",
+ CellChangeTimes->{{3.6748359318107076`*^9, 
+  3.674835997021076*^9}},ExpressionUUID->"bb2f378e-4a6e-4645-abfe-\
+4622fb7322e2"],
+
+Cell[TextData[{
+ "Let ",
+ StyleBox["v",
+  FontWeight->"Bold",
+  FontSlant->"Italic"],
+ " be a 16-vector.  Can you define a 8 x 16 matrix ",
+ StyleBox["W",
+  FontWeight->"Bold"],
+ " so that ",
+ StyleBox["W",
+  FontWeight->"Bold"],
+ ".",
+ StyleBox["v",
+  FontWeight->"Bold"],
+ " results in an 8-vector whose elements are averages of the consecutive \
+pairs of elements in ",
+ StyleBox["v",
+  FontWeight->"Bold"],
+ "?"
+}], "Text",
+ CellChangeTimes->{{3.6748356640528727`*^9, 
+  3.6748357856495004`*^9}},ExpressionUUID->"8408db7a-de03-4378-8893-\
+2d6c3621cdf9"],
+
+Cell[TextData[{
+ "Let ",
+ StyleBox["A",
+  FontWeight->"Bold"],
+ " and ",
+ StyleBox["Z",
+  FontWeight->"Bold"],
+ " be the 2x2 matrices defined below.  Can you find nonzero entries for ",
+ StyleBox["A",
+  FontWeight->"Bold"],
+ " that solve the equation ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox[
+    StyleBox["A",
+     FontWeight->"Bold"], "2"], TraditionalForm]],ExpressionUUID->
+  "1798c824-bfae-49a8-a795-d4a78084d227"],
+ "= ",
+ StyleBox["Z",
+  FontWeight->"Bold"],
+ "?  The Mathematica command ",
+ StyleBox["Solve",
+  FontWeight->"Bold"],
+ " will be helpful."
+}], "Text",
+ CellChangeTimes->{{3.6748360618274703`*^9, 
+  3.6748361388219643`*^9}},ExpressionUUID->"125b9bd9-fe7f-44fe-99bc-\
+7b48df29ce16"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Clear", "[", 
+   RowBox[{"A", ",", "Z", ",", "a", ",", "b", ",", "c", ",", "d"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"A", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"a", ",", "b"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"c", ",", "d"}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Z", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0"}], "}"}]}], "}"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.674836022280607*^9, 3.6748360412060533`*^9}, {
+  3.674836142365036*^9, 
+  3.6748361774640355`*^9}},ExpressionUUID->"0ac40223-ff18-4c37-af28-\
+2bfb0ff4cfd1"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{759, 678},
+WindowMargins->{{177, Automatic}, {-15, Automatic}},
+FrontEndVersion->"11.1 for Microsoft Windows (64-bit) (April 18, 2017)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 479, 7, 70, "Section", "ExpressionUUID" -> \
+"2abb7360-952f-4720-8dc0-17ec13319f56"],
+Cell[1062, 31, 388, 6, 30, "Text", "ExpressionUUID" -> \
+"6da7d4f0-6e0d-4bb5-83e6-473257f8b37e"],
+Cell[CellGroupData[{
+Cell[1475, 41, 165, 3, 39, "Subsubsection", "ExpressionUUID" -> \
+"514c47bc-4544-4d14-b958-1fdffcbe3de1"],
+Cell[1643, 46, 526, 10, 49, "Text", "ExpressionUUID" -> \
+"11a73ffe-ac85-4acb-a31b-e5ac602e763d"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2206, 61, 248, 4, 39, "Subsubsection", "ExpressionUUID" -> \
+"b881ccec-9216-43e5-b527-5a0ec4d517f7"],
+Cell[2457, 67, 250, 4, 30, "Text", "ExpressionUUID" -> \
+"fbc97774-2815-4485-9111-5315ab3bf4d5"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2744, 76, 164, 3, 39, "Subsubsection", "ExpressionUUID" -> \
+"3be1839c-bcc1-43f4-b549-4392da247220"],
+Cell[2911, 81, 1116, 29, 125, "Text", "ExpressionUUID" -> \
+"3172a15a-f5e6-40c4-ab8e-61acee5e0a69"],
+Cell[4030, 112, 187, 3, 30, "Text", "ExpressionUUID" -> \
+"eeaad19f-5b47-4ea2-a8c4-9f1b15c2b69c"],
+Cell[4220, 117, 1591, 39, 88, "Input", "ExpressionUUID" -> \
+"f39e841d-ee24-44ca-afba-9fa218065682"],
+Cell[5814, 158, 236, 4, 30, "Text", "ExpressionUUID" -> \
+"04244700-5195-461d-9e0d-c7cb73eb339d"],
+Cell[6053, 164, 1573, 40, 88, "Input", "ExpressionUUID" -> \
+"029fec47-2a8a-4c0a-8066-10b986d5886b"],
+Cell[7629, 206, 262, 4, 30, "Text", "ExpressionUUID" -> \
+"68bcc533-7cf0-4610-b59b-5b080cfe3624"],
+Cell[7894, 212, 1187, 30, 69, "Input", "ExpressionUUID" -> \
+"8cb8d7a4-b03d-4118-8274-f2eddcf552dc"],
+Cell[9084, 244, 284, 4, 30, "Text", "ExpressionUUID" -> \
+"b4151238-f374-4161-83a6-1ff82768c49b"],
+Cell[9371, 250, 1476, 37, 88, "Input", "ExpressionUUID" -> \
+"bfa42375-1039-475f-9548-295e15da81f1"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10884, 292, 216, 4, 39, "Subsubsection", "ExpressionUUID" -> \
+"aef4e28a-cd67-452a-854c-b1fe2fcf4711"],
+Cell[11103, 298, 888, 28, 87, "Text", "ExpressionUUID" -> \
+"d0ed9df2-472c-45c8-9b6a-c296d3396ca4"],
+Cell[11994, 328, 790, 17, 50, "Input", "ExpressionUUID" -> \
+"4fa5a8b4-80d2-4332-98e1-ecaa08bd03d0"],
+Cell[12787, 347, 406, 14, 49, "Text", "ExpressionUUID" -> \
+"bb2f378e-4a6e-4645-abfe-4622fb7322e2"],
+Cell[13196, 363, 557, 22, 49, "Text", "ExpressionUUID" -> \
+"8408db7a-de03-4378-8893-2d6c3621cdf9"],
+Cell[13756, 387, 708, 27, 51, "Text", "ExpressionUUID" -> \
+"125b9bd9-fe7f-44fe-99bc-7b48df29ce16"],
+Cell[14467, 416, 770, 24, 69, "Input", "ExpressionUUID" -> \
+"0ac40223-ff18-4c37-af28-2bfb0ff4cfd1"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

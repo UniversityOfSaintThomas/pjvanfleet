@@ -1,0 +1,4 @@
+<pre name='i_7_in' id='i_7_in' class='IFT'>v = Range[24];
+iterations -&gt; 3;
+wt = HWT[v, NumIterations -&gt; iterations];
+WaveletVectorPlot[wt, NumIterations -&gt; iterations]</pre><div class='IFU'><a name='326754619'></a>http://wolfram.com/xid/01ka71c7dh3coqf4zkquz-fotrrh</div>

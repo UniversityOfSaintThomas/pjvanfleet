@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>RGBToHSI&mdash;Wolfram Language Documentation</title>
+<meta name="buildnumber" content="0000000" />
+<meta name="historydata" content="{XX, , , }" />
+<meta name="keywords" content="RGBToHSI" />
+
+<meta name="description" content="RGBToHSI[{r, g, b}, opts] is a function that converts either an r,g,b triple or a list of r,g,b matrices to HSI space." />
+<script language="JavaScript" type="text/javascript">baselang='RGBToHSI';</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		 <link rel="stylesheet" type="text/css" href="../css/reference.css" />
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/core/1.6.1/jquery.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/plugins/hoverIntent/r5/jquery.hoverIntent.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/reference.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/documentation-search.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/inputs.js"></script>
+		 <script language="javaScript" type="text/javascript" src="../javascript/faster-page-load.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/plugins/jcarousel/tinycarousel/tinycarousel.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery.dotdotdot-1.5.1.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/carousel.js"></script>
+<script language="JavaScript" type="text/javascript" src="../javascript/toggle-highlight.js"></script>
+</head>
+<body id="ref" class="function">
+<a name="top"></a>
+<!--#include virtual="/common/includes/gl-header.html"--> 
+<div class="main-wrapper">
+
+
+<div class="wrapper mainOuter">
+    <div class="mainContent">
+ <div class="topContentWrap">
+  <div class="ribbonWrap">
+   <span class="ribbonOuter"><span class="ribbonInner">WAVELET WARE PACKAGE SYMBOL</span></span>
+  </div>
+  <ul class="dropdown">
+   <li>
+    <a href="#">See Also</a>
+    <ul class="sub_menu">
+     <li>
+      <a href="/language/WaveletWare/ref/HSIToRGB.html"><span class="dropdownPad">HSIToRGB</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/RGBToYCbCr.html"><span class="dropdownPad">RGBToYCbCr</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/YCbCrToRGB.html"><span class="dropdownPad">YCbCrToRGB</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/GammaCorrection.html"><span class="dropdownPad">GammaCorrection</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/HistogramEQ.html"><span class="dropdownPad">HistogramEQ</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/ImagePlot.html"><span class="dropdownPad">ImagePlot</span></a>
+     </li>
+    </ul>
+   </li>
+   <li>
+    <a href="#">Related Guides</a>
+    <ul class="sub_menu">
+     <li>
+      <a href="/language/WaveletWare/guide/List of Functions - Alphabetical.html"><span class="dropdownPad">List of Functions - Alphabetical</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/guide/List of Functions - Categorical.html"><span class="dropdownPad">List of Functions - Categorical</span></a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+  <div class="clear"><!-- --></div>
+ </div>
+ <h1>RGBToHSI</h1>
+ <div class="functionIntroWrap">
+  <div class="functionIntro">
+   <p><span class="IF"><img src="Files/RGBToHSI/1.png" height="18" width="136" alt="" /></span><br />is a function that converts either an <span class="IF"><span class="TI">r</span></span>,<span class="IF"><span class="TI">g</span></span>,<span class="IF"><span class="TI">b</span></span> triple or a list of <span class="IF"><span class="TI">r</span></span>,<span class="IF"><span class="TI">g</span></span>,<span class="IF"><span class="TI">b</span></span> matrices to HSI space.</p>
+  </div>
+ </div>
+ <div class="expandWrap closed"
+     id="DetailsAndOptions">
+  <div class="expandOuter">
+   <h2 class="expandInner"><a class="expand hide" title="show" href="#">Details</a><a class="collapse" title="hide" href="#">Details</a></h2>
+   <div class="expanded">
+    <ul class="functionList">
+     <li>The following options can be given: </li>
+     <li class="NotesTable">
+      <table>
+       <col width="1%" />
+       <col width="28%" />
+       <col width="28%" />
+       <col width="43%" />
+       <tr class="lineAbove" style=""><td /><td><a href="http://reference.wolfram.com/language/WaveletWare/ref/DisplayMode.html">DisplayMode</a></td><td><a href="http://reference.wolfram.com/language/ref/False.html">False</a></td><td><span class="TT"><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/DisplayMode.html">DisplayMode</a></span> is an option for <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/RGBToYCbCr.html">RGBToYCbCr</a></span><span class="specialcharacters"><span class="comma">,</span> </span><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/YCbCrToRGB.html">YCbCrToRGB</a></span><span class="specialcharacters"><span class="comma">,</span> </span><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/RGBToHSI.html">RGBToHSI</a></span> and <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/HSIToRGB.html">HSIToRGB</a></span><span class="specialcharacters"> that indicates whether or not the returned values are in the range 0<span class="comma">,</span>...<span class="comma">,</span>255.</span></span></td></tr>
+      </table>
+     </li>
+     <li><a name="244549680"></a>The range of the values in <span class="IF"><span class="TI">r</span></span>,<span class="IF"><span class="TI">g</span></span>,<span class="IF"><span class="TI">b</span></span> are expected to be integers 0,1,...,255.</li>
+     <li><a name="679702707"></a>The function returns an <span class="IF"><span class="TI">h</span></span>,<span class="IF"><span class="TI">s</span></span>,<span class="IF"><span class="TI">i</span></span> ordered triple or list of matrices.  These values are in the interval [0,1].</li>
+     <li><a name="513976181"></a>The conversion is as follows.  First convert r,g,b to values in [0,1] using the relations<br />&nbsp;&nbsp;&nbsp;&nbsp;<span class="IF"><span class="TI">r</span></span>' = <span class="IF"><img src="Files/RGBToHSI/2.png" height="23" width="27" alt="" /></span>, <span class="IF"><span class="TI">g</span></span>' = <span class="IF"><img src="Files/RGBToHSI/3.png" height="23" width="27" alt="" /></span>, <span class="IF"><span class="TI">b</span></span>' = <span class="IF"><img src="Files/RGBToHSI/4.png" height="23" width="27" alt="" /></span><br />and then compute <br />&nbsp;&nbsp;&nbsp;&nbsp;<span class="IF"><span class="TI">i</span></span> = (<span class="IF"><span class="TI">r</span></span>'+<span class="IF"><span class="TI">g</span></span>'+<span class="IF"><span class="TI">b</span></span>')/3<br />&nbsp;&nbsp;&nbsp;&nbsp;<span class="IF"><span class="TI">s</span></span>= 1 - <span class="IF"><img src="Files/RGBToHSI/5.png" height="23" width="33" alt="" /></span>min(<span class="IF"><span class="TI">r</span></span>',<span class="IF"><span class="TI">g</span></span>',<span class="IF"><span class="TI">b</span></span>')<br />&nbsp;&nbsp;&nbsp;&nbsp;h= <span class="IF"><img src="Files/RGBToHSI/6.png" height="31" width="148" alt="" /></span>)</li>
+     <li><a name="880375798"></a>If <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/DisplayMode.html">DisplayMode</a></span> is set to <a href="http://reference.wolfram.com/language/ref/True.html">True</a>, then the output are in the interval [0,255].</li>
+    </ul>
+   </div>
+  </div>
+ </div>
+ <div class="expandWrap"
+     id="Examples">
+  <div class="expandOuter">
+   <h2 class="expandInner"><a class="expand hide" title="show" href="#">Examples</a><a class="collapse" title="hide" href="#">Examples</a><a class="all opener" title="open all" href="#"><span>open all</span></a><a class="all closer hide" title="close all" href="#"><span>close all</span></a></h2>
+   <div class="expanded">
+    <div class="expandSubWrap">
+     <div class="expandSubOuter">
+      <h3 class="expandSubInner"><a class="expand hide" href="#" title="show">Basic Examples<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(2)</span></a><a class="collapse" href="#" title="hide">Basic Examples<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(2)</span></a></h3>
+      <div class="expanded">
+       <div class="MCap"><a name="16454449"></a>This loads the package:</div>
+       <table class="InCell">
+        <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+           <a name="861618089"></a>
+           <img src="Files/RGBToHSI/I_2.gif"
+               height="15"
+               width="93"
+               alt="Click for copyable input" />
+          </div><div id="i_1_out" class="IFL"></div></td></tr>
+       </table>
+       <p><a name="182386638"></a>Convert an RGB triple to HSI space.</p>
+       <div class="IO">
+        <table class="InCell">
+         <tr><td class="lab">In[2]:=</td><td class="Input"><div>
+            <a name="160896521"></a>
+            <img src="Files/RGBToHSI/I_4.gif"
+                height="33"
+                width="171"
+                alt="Click for copyable input" />
+           </div><div id="i_3_out" class="IFL"></div></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[2]=</td><td class="Output"><img src="Files/RGBToHSI/O_1.gif" height="15" width="137" alt="" /></td></tr>
+        </table>
+       </div>
+       <div class="ExLine"><a name="1721054"></a><!-- --></div>
+       <p><a name="653277928"></a>Convert the RGB channels of a color image to HSI.</p>
+       <div class="IO">
+        <table class="InCell">
+         <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+            <a name="524266099"></a>
+            <img src="Files/RGBToHSI/I_6.gif"
+                height="101"
+                width="400"
+                alt="Click for copyable input" />
+           </div><div id="i_5_out" class="IFL"></div></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/RGBToHSI/O_2.gif" height="133" width="200" alt="" /></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/RGBToHSI/O_3.gif" height="202" width="435" alt="" /></td></tr>
+        </table>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="expandSubWrap closed">
+     <div class="expandSubOuter">
+      <h3 class="expandSubInner"><a class="expand hide" href="#" title="show">Options<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(2)</span></a><a class="collapse" href="#" title="hide">Options<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(2)</span></a></h3>
+      <div class="expanded"></div>
+     </div>
+    </div>
+    <div class="toplink">
+     <a href="#top">Top</a>
+    </div>
+    <div class="clear"><!-- --></div>
+   </div>
+  </div>
+ </div>
+ <div class="expandWrap"
+     id="SeeAlso">
+  <div class="expandOuter">
+   <h2 class="expandInner"><a class="expand hide" title="show" href="#">See Also</a><a class="collapse" title="hide" href="#">See Also</a></h2>
+   <div class="expanded">
+    <p class="inlineFunctionList"><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/HSIToRGB.html">HSIToRGB</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/RGBToYCbCr.html">RGBToYCbCr</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/YCbCrToRGB.html">YCbCrToRGB</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/GammaCorrection.html">GammaCorrection</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/HistogramEQ.html">HistogramEQ</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/ImagePlot.html">ImagePlot</a></span></p>
+   </div>
+  </div>
+ </div>
+ <div class="expandWrap"
+     id="RelatedGuides">
+  <div class="expandOuter">
+   <h2 class="expandInner"><a class="expand hide" title="show" href="#">Related Guides</a><a class="collapse" title="hide" href="#">Related Guides</a></h2>
+   <div class="expanded">
+    <ul class="functionList">
+     <li>
+      <a name="438437498"></a>
+      <a href="http://reference.wolfram.com/language/WaveletWare/guide/List of Functions - Alphabetical.html">List of Functions - Alphabetical</a>
+     </li>
+     <li>
+      <a name="228951122"></a>
+      <a href="http://reference.wolfram.com/language/WaveletWare/guide/List of Functions - Categorical.html">List of Functions - Categorical</a>
+     </li>
+    </ul>
+   </div>
+  </div>
+ </div>
+</div>
+</div><!-- /wrapper -->
+
+	
+</div>
+
+
+</body>
+		 </html>

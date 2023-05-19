@@ -1,0 +1,9 @@
+<pre name='i_13_in' id='i_13_in' class='IFT'>v = RandomInteger[{0, 10}, 20];
+wt1 = LWT[v]
+wt2 = LWT[v, IntegerMap -&gt; True]
+ListPlot[{wt1, wt2}, 
+ PlotStyle -&gt; {{PointSize[.02], Brown}, {PointSize[.02], Green}}, 
+ ImageSize -&gt; 400, Ticks -&gt; {Range[0, 20, 5], Range[-10, 10, 2]}, 
+ PlotLegends -&gt; {&quot;Non-Integer&quot;, &quot;Integer&quot;}]
+iwt = InverseLWT[wt2, IntegerMap -&gt; True];
+iwt == v</pre><div class='IFU'><a name='100346267'></a>http://wolfram.com/xid/0bmr3yafg3z5yjy0oa0hu87-bx01yl</div>

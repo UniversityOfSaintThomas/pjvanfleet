@@ -1,0 +1,12 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;cups.png&quot;;
+A = ImageRead[file, Resize -&gt; {120, 192}];
+ImagePlot[A]
+leftwt = LeftLWT[A];
+plots = WaveletPlot[leftwt, PlotType -&gt; Left, 
+   ChannelColor -&gt; {Red, Green, Blue}];
+Map[Show, plots]
+WaveletPlot[leftwt, PlotType -&gt; Left, PlotTogether -&gt; True]
+iwt = LeftInverseLWT[leftwt];
+ImagePlot[iwt]
+(* Mean Squared Error *)
+MSE[A, iwt]</pre><div class='IFU'><a name='15603273'></a>http://wolfram.com/xid/0ejjx9peoqvmt3kgdt3rdxu13-jkpuj</div>

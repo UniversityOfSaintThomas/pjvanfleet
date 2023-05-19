@@ -1,0 +1,2 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>samples = ScalingFunctionData[Daub[4]];
+ListPlot[samples, Joined -&gt; True, Ticks -&gt; {Range[3], Range[2]}]</pre><div class='IFU'><a name='102679583'></a>http://wolfram.com/xid/0b6ekx0z8pnru3asylaru54pcy-bze2cx</div>

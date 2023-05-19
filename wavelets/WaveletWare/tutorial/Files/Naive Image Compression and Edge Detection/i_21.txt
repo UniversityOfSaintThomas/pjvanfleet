@@ -1,0 +1,2 @@
+<pre name='i_21_in' id='i_21_in' class='IFT'>wt = HWT[YCbCr, NumIterations -&gt; 3];
+Map[WaveletPlot[#, NumIterations -&gt; 3] &amp;, wt]</pre><div class='IFU'><a name='582959326'></a>http://wolfram.com/xid/0ck2bt1tgpszi5qmumv90y9mftkdg9nq1q0ukjlzbu-jxc4kw</div>

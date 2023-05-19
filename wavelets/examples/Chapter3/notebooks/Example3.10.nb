@@ -1,0 +1,379 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     15647,        371]
+NotebookOptionsPosition[     13221,        308]
+NotebookOutlinePosition[     13566,        323]
+CellTagsIndexPosition[     13523,        320]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Example 3.10 (Entropy)", "Section",
+ CellChangeTimes->{{3.6747410188032584`*^9, 3.674741042688301*^9}, {
+   3.674742552975814*^9, 3.6747425597738523`*^9}, {3.67474453723468*^9, 
+   3.674744561535725*^9}, {3.674747931751519*^9, 3.6747479370307474`*^9}, 
+   3.6747516510077415`*^9, {3.674754123065485*^9, 3.674754140322116*^9}, {
+   3.6751749126193643`*^9, 3.6751749154137692`*^9}, {3.6755147920766993`*^9, 
+   3.6755147959137897`*^9}, {3.675527343559159*^9, 3.675527350929307*^9}, {
+   3.703855438705843*^9, 
+   3.703855439540229*^9}},ExpressionUUID->"c809fd8c-42fc-4c30-9a54-\
+3f67a9be665e"],
+
+Cell["Compute the entropy of given vectors.", "Text",
+ CellChangeTimes->{{3.6747410667041707`*^9, 3.6747410805055957`*^9}, {
+  3.6747424105934367`*^9, 3.674742410733837*^9}, {3.674742572300502*^9, 
+  3.674742584222324*^9}, {3.6747445741715794`*^9, 3.6747445846113987`*^9}, {
+  3.6747479622130194`*^9, 3.674747968138232*^9}, {3.675174920421378*^9, 
+  3.6751749285570188`*^9}, {3.6755273968654437`*^9, 
+  3.6755274039395885`*^9}},ExpressionUUID->"e566d176-85a6-4a53-ac14-\
+5af244317c95"],
+
+Cell[CellGroupData[{
+
+Cell["Reference.", "Subsubsection",
+ CellChangeTimes->{{3.6747631102003517`*^9, 
+  3.6747631125733557`*^9}},ExpressionUUID->"6fccc4aa-a95d-43fa-96dc-\
+e52abf366f4e"],
+
+Cell["\<\
+The material for this lab is covered in Section 3.4 of the book \
+\[OpenCurlyDoubleQuote]Discrete Wavelet Transformations: An Elementary \
+Approach with Applications, 2nd Edition,\[CloseCurlyDoubleQuote] by Patrick J \
+Van Fleet.\
+\>", "Text",
+ CellChangeTimes->{{3.674763119565366*^9, 3.6747631649004583`*^9}, {
+   3.674763293323564*^9, 3.674763311554607*^9}, {3.6997856290190563`*^9, 
+   3.699785638548086*^9}, {3.72692103296169*^9, 3.726921034949597*^9}, {
+   3.7270063962717886`*^9, 3.727006396991242*^9}, 3.727009034200805*^9, 
+   3.7270097537181544`*^9},ExpressionUUID->"86e35ccc-9197-4414-a7ce-\
+48b8016b88b9"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["WaveletWare Commands Used in This Notebook", "Subsubsection",
+ CellChangeTimes->{{3.6747417571916847`*^9, 3.674741765831501*^9}, {
+  3.6747418595935683`*^9, 
+  3.6747419193671017`*^9}},ExpressionUUID->"5ec06b12-034d-40ba-a360-\
+e594f597686a"],
+
+Cell["Execute the line below to load the WaveletWare package.", "Text",
+ CellChangeTimes->{{3.726919365764247*^9, 
+  3.7269193911263213`*^9}},ExpressionUUID->"d56e6fd1-4427-4d92-91c4-\
+0b6121420b60"],
+
+Cell[BoxData[
+ RowBox[{"<<", "WaveletWare`"}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.7269193243151226`*^9, 3.7269193578933735`*^9}, {
+  3.7270065374179773`*^9, 3.727006537593671*^9}, {3.7270070318050675`*^9, 
+  3.7270070319488754`*^9}, {3.7270084778120003`*^9, 3.7270084779023743`*^9}, {
+  3.7270097015398407`*^9, 3.7270097017317114`*^9}, {3.727009916604597*^9, 
+  3.72700991671616*^9}},ExpressionUUID->"b1ffb13d-0265-495b-bc9e-\
+b6fa2ff667a6"],
+
+Cell["\<\
+Execute the line below to generate quick help on WaveletWare commands used in \
+this notebook.  Click on >> for each command to access detailed documentation \
+on the command.\
+\>", "Text",
+ CellChangeTimes->{{3.726919395574725*^9, 
+  3.7269194464807606`*^9}},ExpressionUUID->"3126590f-0877-4114-aad9-\
+0a7129ac5d20"],
+
+Cell[BoxData[{
+ RowBox[{"?", "Entropy2"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "ImageRead"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "PackageDirectory"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "ImagePlot"}]}], "Input",
+ CellChangeTimes->{{3.7269193243151226`*^9, 3.7269193578933735`*^9}, {
+  3.727006411728204*^9, 3.7270064146082783`*^9}, {3.7270064673326874`*^9, 
+  3.7270064795892925`*^9}, {3.727006595390209*^9, 3.727006600158367*^9}, {
+  3.72700691873085*^9, 3.7270069320111556`*^9}, {3.7270070971669283`*^9, 
+  3.72700709878319*^9}, {3.727007656662043*^9, 3.727007686295689*^9}, {
+  3.7270077238976808`*^9, 3.7270077269537964`*^9}, {3.7270077787964225`*^9, 
+  3.72700778190035*^9}, {3.727009043699129*^9, 3.7270090645469418`*^9}, {
+  3.7270095740304623`*^9, 3.727009574398796*^9}, {3.7270097581334586`*^9, 
+  3.727009772982139*^9}},ExpressionUUID->"d2744cb2-4c78-4f37-9680-\
+5cbd6f6b8d22"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Solution.", "Subsubsection",
+ CellChangeTimes->{{3.674741083458001*^9, 3.674741085127204*^9}, {
+  3.674741868740185*^9, 
+  3.674741869629386*^9}},ExpressionUUID->"5e5bd6b0-c042-411e-b486-\
+713e2946acbf"],
+
+Cell["First create the vectors.", "Text",
+ CellChangeTimes->{{3.6747411194901114`*^9, 3.6747411391369605`*^9}, {
+  3.674742623448035*^9, 3.674742630967649*^9}, {3.6747446245665*^9, 
+  3.6747446285253077`*^9}, {3.6747479738622437`*^9, 3.6747480058727283`*^9}, {
+  3.6747541466889267`*^9, 3.674754251603379*^9}, {3.6751749520373015`*^9, 
+  3.6751749586109133`*^9}, {3.6755148175042253`*^9, 3.675514819025256*^9}, {
+  3.6755148532970734`*^9, 3.6755148644122963`*^9}, {3.6755149448761034`*^9, 
+  3.675514948728182*^9}, {3.675527407049651*^9, 
+  3.675527418359915*^9}},ExpressionUUID->"774656b7-1a55-4436-865f-\
+3a8008442f7b"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"u", "=", 
+   RowBox[{"{", 
+    RowBox[{
+    "1", ",", "1", ",", "1", ",", "1", ",", "2", ",", "2", ",", "3", ",", 
+     "4"}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"v", "=", 
+   RowBox[{"UnitVector", "[", 
+    RowBox[{"65", ",", "1"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"w", "=", 
+   RowBox[{"PadRight", "[", 
+    RowBox[{
+     RowBox[{"Range", "[", "4", "]"}], ",", "8"}], "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->CompressedData["
+1:eJwdxVkow3EcAPC1oTmmRJlZjpc1icIc2Rr/yH2UPEiozfWwB0darbBCokWO
+0ixLWAqlkaM2x8jxQCNpjqS1NdfsYZo1mfL7fh8+fRKlHTWtdBqNFkfAHvNU
+OkPipOzHPQK4uVNOwSrHBP4rVB/BjP0V3LOkvIXD5lV4g6zcBQ/EynH2wa4b
+LjCavHBZ3Tc7gNxt+cFlswvv8PJY8ifsPb0pDiSLTFac/xE5FkTmZb6Mw7ZV
+mQbe7GbNwfyUfCMs5trw58soN5x7wcYnuHRNMDmtyKyFa2P+FuG1JLEO1nPk
+ESHkuOkRvPF2KOiOHPl2yIKlc6nUPZljzMDbKXv2A9nw48Yf6x2+XqmTYooq
+GH1kv8XHhPOqC0PhLaFVDYsUX3jJk04Lq87P8Cb6+hXM10Vfw+UtKj8sqMr6
+g2eUnPh+8mKOAv+d3OhSkg36HTzBtZAwSDZJJDx4eK90Fx6lKvG2XHv49omT
+0vhf8X8vZ+p0
+  "],ExpressionUUID->"28424e85-fc78-457f-98fc-58ca4c8949d7"],
+
+Cell[TextData[{
+ "Compute the entropy for each vector.  The WaveletWare function is ",
+ StyleBox["Entropy2",
+  FontWeight->"Bold"],
+ " which is simply the Mathematica function ",
+ StyleBox["Entropy",
+  FontWeight->"Bold"],
+ "[2,\[Bullet]]"
+}], "Text",
+ CellChangeTimes->{{3.6747481391318703`*^9, 3.6747481572267556`*^9}, {
+  3.6747482631312256`*^9, 3.6747482854328675`*^9}, {3.6747543729442806`*^9, 
+  3.6747544006279583`*^9}, {3.674754447143382*^9, 3.6747544609514065`*^9}, {
+  3.6747546110123515`*^9, 3.6747546204709682`*^9}, {3.674754716951002*^9, 
+  3.674754733742962*^9}, {3.6747547738516183`*^9, 3.67475477495922*^9}, {
+  3.6751752106768103`*^9, 3.6751752349458466`*^9}, {3.6751753527541943`*^9, 
+  3.6751753767402573`*^9}, {3.675514909552391*^9, 3.6755149191975856`*^9}, {
+  3.6755274787502565`*^9, 3.675527498050645*^9}, {3.6755275526097517`*^9, 
+  3.6755275805073586`*^9}},ExpressionUUID->"296efa26-49bf-494e-8c8f-\
+7b6bcce8f54a"],
+
+Cell[BoxData[{
+ RowBox[{"Entropy2", "[", "u", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Entropy2", "[", "v", "]"}], " "}], "\[IndentingNewLine]", 
+ RowBox[{"N", "[", 
+  RowBox[{"Entropy2", "[", "v", "]"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Entropy2", "[", "w", "]"}]}], "Input",
+ CellChangeTimes->{{3.6747481658821716`*^9, 3.67474824787617*^9}, {
+   3.674748287713472*^9, 3.6747482910226774`*^9}, {3.674748806752003*^9, 
+   3.6747488068686047`*^9}, {3.674754407153222*^9, 3.674754500099476*^9}, {
+   3.6747551341411896`*^9, 3.674755161482438*^9}, {3.6751752380458508`*^9, 
+   3.675175287780966*^9}, {3.67517532417909*^9, 3.675175343082149*^9}, {
+   3.675177479626586*^9, 3.6751774799465866`*^9}, {3.6755149228776608`*^9, 
+   3.675514926937742*^9}, {3.6755149993372765`*^9, 3.6755150321659794`*^9}, {
+   3.6755159264042697`*^9, 3.6755159452807646`*^9}, {3.67551604071502*^9, 
+   3.6755160428360634`*^9}, {3.675516256742465*^9, 3.675516270616066*^9}, {
+   3.675516446571789*^9, 3.675516447810789*^9}, {3.6755169020460095`*^9, 
+   3.675516917236163*^9}, {3.67551710554714*^9, 3.675517105587141*^9}, {
+   3.6755174037041955`*^9, 3.6755174040042048`*^9}, 3.6755178051993246`*^9, {
+   3.6755182508295717`*^9, 3.6755182531796656`*^9}, {3.6755198838290358`*^9, 
+   3.6755198839690385`*^9}, {3.675527501950732*^9, 3.6755275116319265`*^9}, {
+   3.675527543600569*^9, 3.675527548147661*^9}, {3.6755275873604965`*^9, 
+   3.675527602110794*^9}, {3.6755279985364184`*^9, 3.6755280208669233`*^9}, {
+   3.6755286329644237`*^9, 3.6755286333933725`*^9}, {3.7270099099495325`*^9, 
+   3.727009910329734*^9}},ExpressionUUID->"619d025a-f762-4626-b2c6-\
+611152e3f6bb"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Things To Try.", "Subsubsection",
+ CellChangeTimes->{{3.674741944310015*^9, 
+  3.67474194691722*^9}},ExpressionUUID->"09046227-4e63-4bd9-9a95-\
+9cf81996b5d5"],
+
+Cell["\<\
+You can compute the entropy of a string, vector or matrix.  Consider the \
+string \[OpenCurlyDoubleQuote]we were wet\[CloseCurlyDoubleQuote] from \
+Example 3.9.  Compute its entropy.  How does it compare to the bits per pixel \
+of the bit stream for \[OpenCurlyDoubleQuote]we were wet?\
+\[CloseCurlyDoubleQuote]\
+\>", "Text",
+ CellChangeTimes->{{3.6747420480998836`*^9, 3.6747421314892807`*^9}, {
+   3.674742175168991*^9, 3.6747422393427753`*^9}, {3.6747427897444954`*^9, 
+   3.6747428171272078`*^9}, {3.674745173965828*^9, 3.674745256220656*^9}, {
+   3.6747453489013157`*^9, 3.674745361004139*^9}, {3.6747485066380587`*^9, 
+   3.674748554059788*^9}, {3.6747548607142477`*^9, 3.6747551092495203`*^9}, {
+   3.674755174682087*^9, 3.6747551884895167`*^9}, {3.6751770788103437`*^9, 
+   3.675177119681447*^9}, {3.6755192421325593`*^9, 3.6755194071691437`*^9}, {
+   3.6755195479112806`*^9, 3.6755196349286985`*^9}, {3.675519672363483*^9, 
+   3.6755197987391973`*^9}, {3.675528066315963*^9, 3.6755280836573105`*^9}, {
+   3.6755281138969197`*^9, 3.6755281598950014`*^9}, {3.6755281959598074`*^9, 
+   3.6755282126291423`*^9}, 
+   3.7270098158163376`*^9},ExpressionUUID->"b5161033-1962-4831-a8ef-\
+a72000a73a72"],
+
+Cell["Load a grayscale image from the WaveletWare package.", "Text",
+ CellChangeTimes->{{3.6747420480998836`*^9, 3.6747421314892807`*^9}, {
+   3.674742175168991*^9, 3.6747422393427753`*^9}, {3.6747427897444954`*^9, 
+   3.6747428171272078`*^9}, {3.674745173965828*^9, 3.674745256220656*^9}, {
+   3.6747453489013157`*^9, 3.674745361004139*^9}, {3.6747485066380587`*^9, 
+   3.674748554059788*^9}, {3.6747548607142477`*^9, 3.6747551092495203`*^9}, {
+   3.674755174682087*^9, 3.6747551884895167`*^9}, {3.6751770788103437`*^9, 
+   3.675177119681447*^9}, {3.6755192421325593`*^9, 3.6755194071691437`*^9}, {
+   3.6755195479112806`*^9, 3.6755196349286985`*^9}, {3.675519672363483*^9, 
+   3.675519857361476*^9}, 3.6755281069927797`*^9, {3.675528217679243*^9, 
+   3.6755282296354885`*^9}},ExpressionUUID->"cf1e0ba3-9d10-48b6-b82b-\
+fdeee7e082f2"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"A", "=", 
+   RowBox[{"ImageRead", "[", 
+    RowBox[{
+     RowBox[{"PackageDirectory", "[", 
+      RowBox[{"DataType", "\[Rule]", "Images"}], "]"}], "<>", 
+     "\"\<chess.png\>\""}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"ImagePlot", "[", "A", "]"}]}], "Input",
+ CellChangeTimes->{{3.6755282322405925`*^9, 3.6755282662433157`*^9}, {
+  3.6755285982485476`*^9, 
+  3.675528598768485*^9}},ExpressionUUID->"46ade8ab-a342-4796-baf3-\
+e988bc972ac7"],
+
+Cell[TextData[{
+ "Compute the entropy of the image.  How does it compare to the 8bpp needed \
+to store an uncompressed version of ",
+ StyleBox["A",
+  FontWeight->"Bold"],
+ "?"
+}], "Text",
+ CellChangeTimes->{{3.6755282800695934`*^9, 
+  3.6755283180664077`*^9}},ExpressionUUID->"76536159-e1cf-4a72-b218-\
+19c318d941b0"],
+
+Cell[TextData[{
+ "Create a new image ",
+ StyleBox["B",
+  FontWeight->"Bold"],
+ " from ",
+ StyleBox["A",
+  FontWeight->"Bold"],
+ " by rounding each entry of ",
+ StyleBox["A",
+  FontWeight->"Bold"],
+ " to its nearest multiply of 20 (see the Help for ",
+ StyleBox["Round",
+  FontWeight->"Bold"],
+ ").  Use ",
+ StyleBox["ImagePlot",
+  FontWeight->"Bold"],
+ " to plot the result.  Now compute the entropy of ",
+ StyleBox["B",
+  FontWeight->"Bold"],
+ " and compare it to ",
+ StyleBox["A",
+  FontWeight->"Bold"],
+ ".  Are you surprised by the result?  Repeat the exercise for rounding \
+elements of ",
+ StyleBox["A",
+  FontWeight->"Bold"],
+ " to the nearest multiply of 50 and 100."
+}], "Text",
+ CellChangeTimes->{{3.6755283245165367`*^9, 3.6755283499241657`*^9}, 
+   3.675528384716938*^9, {3.6755284770100665`*^9, 
+   3.675528583958262*^9}},ExpressionUUID->"fcea609e-074a-418f-a155-\
+dc8d31adb2d7"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{759, 614},
+WindowMargins->{{Automatic, 329}, {Automatic, 141}},
+FrontEndVersion->"11.1 for Microsoft Windows (64-bit) (April 18, 2017)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 597, 9, 70, "Section", "ExpressionUUID" -> \
+"c809fd8c-42fc-4c30-9a54-3f67a9be665e"],
+Cell[1180, 33, 485, 7, 30, "Text", "ExpressionUUID" -> \
+"e566d176-85a6-4a53-ac14-5af244317c95"],
+Cell[CellGroupData[{
+Cell[1690, 44, 165, 3, 39, "Subsubsection", "ExpressionUUID" -> \
+"6fccc4aa-a95d-43fa-96dc-e52abf366f4e"],
+Cell[1858, 49, 627, 11, 49, "Text", "ExpressionUUID" -> \
+"86e35ccc-9197-4414-a7ce-48b8016b88b9"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2522, 65, 248, 4, 39, "Subsubsection", "ExpressionUUID" -> \
+"5ec06b12-034d-40ba-a360-e594f597686a"],
+Cell[2773, 71, 199, 3, 30, "Text", "ExpressionUUID" -> \
+"d56e6fd1-4427-4d92-91c4-0b6121420b60"],
+Cell[2975, 76, 465, 8, 46, "Input", "ExpressionUUID" -> \
+"b1ffb13d-0265-495b-bc9e-b6fa2ff667a6",
+ InitializationCell->True],
+Cell[3443, 86, 327, 7, 49, "Text", "ExpressionUUID" -> \
+"3126590f-0877-4114-aad9-0a7129ac5d20"],
+Cell[3773, 95, 895, 14, 88, "Input", "ExpressionUUID" -> \
+"d2744cb2-4c78-4f37-9680-5cbd6f6b8d22"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4705, 114, 209, 4, 39, "Subsubsection", "ExpressionUUID" -> \
+"5e5bd6b0-c042-411e-b486-713e2946acbf"],
+Cell[4917, 120, 621, 9, 30, "Text", "ExpressionUUID" -> \
+"774656b7-1a55-4436-865f-3a8008442f7b"],
+Cell[5541, 131, 1084, 26, 69, "Input", "ExpressionUUID" -> \
+"28424e85-fc78-457f-98fc-58ca4c8949d7"],
+Cell[6628, 159, 939, 18, 49, "Text", "ExpressionUUID" -> \
+"296efa26-49bf-494e-8c8f-7b6bcce8f54a"],
+Cell[7570, 179, 1662, 25, 88, "Input", "ExpressionUUID" -> \
+"619d025a-f762-4626-b2c6-611152e3f6bb"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9269, 209, 164, 3, 39, "Subsubsection", "ExpressionUUID" -> \
+"09046227-4e63-4bd9-9a95-9cf81996b5d5"],
+Cell[9436, 214, 1212, 19, 68, "Text", "ExpressionUUID" -> \
+"b5161033-1962-4831-a8ef-a72000a73a72"],
+Cell[10651, 235, 835, 11, 30, "Text", "ExpressionUUID" -> \
+"cf1e0ba3-9d10-48b6-b82b-fdeee7e082f2"],
+Cell[11489, 248, 489, 12, 50, "Input", "ExpressionUUID" -> \
+"46ade8ab-a342-4796-baf3-e988bc972ac7"],
+Cell[11981, 262, 317, 9, 49, "Text", "ExpressionUUID" -> \
+"76536159-e1cf-4a72-b218-19c318d941b0"],
+Cell[12301, 273, 892, 31, 87, "Text", "ExpressionUUID" -> \
+"fcea609e-074a-418f-a155-dc8d31adb2d7"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

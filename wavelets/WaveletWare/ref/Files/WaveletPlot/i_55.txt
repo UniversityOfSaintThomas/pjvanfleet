@@ -1,0 +1,6 @@
+<pre name='i_55_in' id='i_55_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;road.png&quot;;
+A = ImageRead[file, Resize -&gt; {128, 192}];
+ImagePlot[A]
+wt = HWT[A];
+WaveletPlot[wt]
+WaveletPlot[wt, DivideLines -&gt; False]</pre><div class='IFU'><a name='341994020'></a>http://wolfram.com/xid/0cew39zuhikyj6xdcij5apz9u-fxwej6</div>

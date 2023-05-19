@@ -1,0 +1,9 @@
+<pre name='i_9_in' id='i_9_in' class='IFT'>g[t_] := 4 Sin[4 Pi*t] - Sign[t - .3] - Sign[72 - t];
+n = 1024;
+v = g[Range[0, 1 - 1/n, 1/n]];
+ListPlot[v, Ticks -&gt; {Range[0, n, n/4], Range[-1/2, 1/2]}, 
+ PlotLabel -&gt; &quot;Data Samples&quot;]
+ListPlot[v]
+iterations = 3;
+wpt = WPTFull[v, Daub[4], NumIterations -&gt; iterations];
+FullWaveletVectorPlot[wpt]</pre><div class='IFU'><a name='29952762'></a>http://wolfram.com/xid/0istl84i27gzdwumja0goag32-r39zg</div>

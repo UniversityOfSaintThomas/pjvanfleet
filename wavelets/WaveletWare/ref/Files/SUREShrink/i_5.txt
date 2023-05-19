@@ -1,0 +1,14 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>img = ImageInfo[ImageForm -&gt; GrayScale];
+A = ImageRead[First[img]];
+Labeled[ImagePlot[A], &quot;Original Image&quot;, Top, 
+ LabelStyle -&gt; Directive[Darker[Gray], FontFamily -&gt; &quot;Helvetica&quot;]]
+sigma = 40;
+noisy = A + WhiteNoise[Dimensions[A], sigma];
+Labeled[ImagePlot[noisy], &quot;Noisy Image&quot;, Top, 
+ LabelStyle -&gt; Directive[Darker[Gray], FontFamily -&gt; &quot;Helvetica&quot;]]
+denoised = 
+  SUREShrink[noisy, Daub[4], NumIterations -&gt; 3, 
+   ThresholdByLevel -&gt; True];
+Labeled[ImagePlot[denoised, Scaling -&gt; True], &quot;Denoised Image&quot;, Top, 
+ LabelStyle -&gt; Directive[Darker[Gray], FontFamily -&gt; &quot;Helvetica&quot;]]
+</pre><div class='IFU'><a name='17568097'></a>http://wolfram.com/xid/0br3whhmcljlx93k1jq5aob808me-kqtwz</div>

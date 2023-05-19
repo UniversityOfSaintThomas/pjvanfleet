@@ -1,0 +1,7 @@
+<pre name='i_65_in' id='i_65_in' class='IFT'>v = Range[8]^2;
+wt = BWT[v, SplineFilters[2, 2]]
+Wtilde = Transpose[
+   WaveletMatrix[Reverse[SplineFilters[2, 2]], {8, 8}]];
+MatrixForm[Wtilde]
+Wtilde.wt
+InverseBWT[wt, SplineFilters[2, 2]]</pre><div class='IFU'><a name='9698799'></a>http://wolfram.com/xid/0kmsg876k74fv7tus4gahxj5adn8b2m3ovcixzmeb-f15xd</div>

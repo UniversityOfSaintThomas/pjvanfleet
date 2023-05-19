@@ -1,0 +1,3 @@
+<pre name='i_11_in' id='i_11_in' class='IFT'>v = Range[20]
+HWT[v, Computation -&gt; Symbolic]
+HWT[v, Computation -&gt; Symbolic, Shift -&gt; 1]</pre><div class='IFU'><a name='297632429'></a>http://wolfram.com/xid/01ka71c7dh3coqf4zkquz-e7hkxr</div>

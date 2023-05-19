@@ -1,0 +1,4 @@
+<pre name='i_17_in' id='i_17_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;cups.png&quot;;
+A = ImageRead[file, Resize -&gt; 300];
+ImagePlot[A, PlotTogether -&gt; False, Border -&gt; False]
+ImagePlot[A, PlotTogether -&gt; False, Border -&gt; True]</pre><div class='IFU'><a name='984800724'></a>http://wolfram.com/xid/0nxaq5tqtv6thic7hg2v2-qklzdy</div>

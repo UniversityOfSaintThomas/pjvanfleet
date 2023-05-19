@@ -1,0 +1,5 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;cups.png&quot;;
+A = ImageRead[file, Resize -&gt; {128, 192}];
+wt = HWT[A];
+WaveletPlot[wt]
+WaveletPlot[wt, PlotTogether -&gt; True]</pre><div class='IFU'><a name='381034047'></a>http://wolfram.com/xid/0yi64acvo474e4ng8oah5u-gk451d</div>

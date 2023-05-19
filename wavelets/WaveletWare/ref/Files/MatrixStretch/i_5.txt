@@ -1,0 +1,8 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;cups.png&quot;;
+A = ImageRead[file, Resize -&gt; 256];
+ImagePlot[A]
+{Y, Cb, Cr} = RGBToYCbCr[A, DisplayMode -&gt; True];
+Map[ImagePlot, {Y, Cb, Cr}]
+MapThread[
+ ImagePlot[MatrixStretch[#1, IntensityRange -&gt; #2]] &amp;, {{Y, Cb, 
+   Cr}, {{16, 235}, {16, 240}, {16, 240}}}]</pre><div class='IFU'><a name='845311601'></a>http://wolfram.com/xid/0yi64acvo474e4ng2mx6va-n9j8v3</div>

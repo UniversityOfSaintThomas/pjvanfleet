@@ -1,0 +1,6 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>ShowBestBasis[WaveletTree[3, InputDimension -&gt; 2], ColorOn -&gt; Red, 
+ ColorOff -&gt; Yellow, ImageSize -&gt; 200]
+ShowBestBasis[WaveletTree[3, InputDimension -&gt; 2], ColorOn -&gt; Red, 
+ ColorOff -&gt; Yellow, OpacityOff -&gt; .7, ImageSize -&gt; 200]
+ShowBestBasis[WaveletTree[3, InputDimension -&gt; 2], ColorOn -&gt; Red, 
+ ColorOff -&gt; Yellow, OpacityOff -&gt; 0, ImageSize -&gt; 200]</pre><div class='IFU'><a name='617086144'></a>http://wolfram.com/xid/0bsub5sf4gpwe26lzl5xj5-khokz2</div>

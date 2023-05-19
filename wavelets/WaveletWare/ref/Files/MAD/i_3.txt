@@ -1,0 +1,2 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>v = RandomInteger[{0, 5}, 20];
+MAD[v]</pre><div class='IFU'><a name='595531633'></a>http://wolfram.com/xid/08s5uh4e1e3rdx359nj-j4ulfn</div>

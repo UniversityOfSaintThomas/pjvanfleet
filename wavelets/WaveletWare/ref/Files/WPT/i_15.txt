@@ -1,0 +1,11 @@
+<pre name='i_15_in' id='i_15_in' class='IFT'>v = Range[6]^2;
+{wpt1, tree1} = 
+ WPT[v, LeGall[], CostFunction -&gt; NumberAboveThreshold, 
+  SecondParameter -&gt; 1.5]
+{wpt2, tree2} = 
+ WPT[v, LeGall[], CostFunction -&gt; NumberAboveThreshold, 
+  SecondParameter -&gt; 1.5, IntegerMap -&gt; True]
+ListPlot[{wpt1, wpt2}, 
+ PlotStyle -&gt; {{PointSize[.02], Brown}, {PointSize[.02], Green}}, 
+ ImageSize -&gt; 400, Ticks -&gt; {Range[0, 20, 5], Range[0, 36, 6]}, 
+ PlotLegends -&gt; {&quot;Non-Integer&quot;, &quot;Integer&quot;}]</pre><div class='IFU'><a name='8152300'></a>http://wolfram.com/xid/0bsub5sf4gpwe26lzrftnf-e40m2</div>

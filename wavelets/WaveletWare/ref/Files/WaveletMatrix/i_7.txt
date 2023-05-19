@@ -1,0 +1,3 @@
+<pre name='i_7_in' id='i_7_in' class='IFT'>W = Map[WaveletMatrix[Haar[], {8, 8}, MatrixBlock -&gt; #] &amp;, {Lowpass, 
+    Highpass, All}];
+Map[MatrixForm, W]</pre><div class='IFU'><a name='932741310'></a>http://wolfram.com/xid/0rbcx7yrv4nohjeyr4g6dr032-ppl524</div>

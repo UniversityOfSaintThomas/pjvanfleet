@@ -1,0 +1,5 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>h = Haar[];
+H[w_] := FiniteFourier[w, h];
+H[w]
+Plot[Abs[H[w]], {w, 0, Pi}, Ticks -&gt; {{Pi/2, Pi}, {Sqrt[2]}}]
+</pre><div class='IFU'><a name='245303291'></a>http://wolfram.com/xid/0bmr3yafg3z5yjy0n2ev1sy-ecbzil</div>

@@ -1,0 +1,6 @@
+<pre name='i_19_in' id='i_19_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;fish.png&quot;;
+A = ImageRead[file, Resize -&gt; {256, 384}];
+ImagePlot[A]
+{r, c} = Dimensions[First[A]];
+YCbCr = Map[# - 128 &amp;, RGBToYCbCr[A, DisplayMode -&gt; True]];
+Map[ImagePlot[#, Scaling -&gt; True] &amp;, YCbCr]</pre><div class='IFU'><a name='653859768'></a>http://wolfram.com/xid/0ck2bt1tgpszi5qmumv90y9mftkdg9nq1q0ukjlzbu-k3krpm</div>

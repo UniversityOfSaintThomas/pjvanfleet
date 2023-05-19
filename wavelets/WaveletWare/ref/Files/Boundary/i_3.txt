@@ -1,0 +1,6 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>v = Range[20];
+wt = BWT[v, SplineFilters[2, 2]];
+WaveletVectorPlot[wt, ImageSize -&gt; 400, PointSize -&gt; .02]
+wt = BWT[v, SplineFilters[2, 2], Boundary -&gt; True];
+WaveletVectorPlot[wt, ImageSize -&gt; 400, PointSize -&gt; .02]
+</pre><div class='IFU'><a name='530548256'></a>http://wolfram.com/xid/0do1eh55e6re23a0l3j20-i15rxu</div>

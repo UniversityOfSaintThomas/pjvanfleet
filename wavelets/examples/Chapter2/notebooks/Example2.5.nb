@@ -1,0 +1,247 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      8685,        239]
+NotebookOptionsPosition[      6892,        189]
+NotebookOutlinePosition[      7236,        204]
+CellTagsIndexPosition[      7193,        201]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Example 2.5 (Inverse of a Diagonal Matrix)", "Section",
+ CellChangeTimes->{{3.6747400799154887`*^9, 3.6747400868855157`*^9}, {
+  3.6747401192115917`*^9, 3.674740124362601*^9}, {3.674823639171709*^9, 
+  3.674823640303733*^9}, {3.6748236819375725`*^9, 3.674823684099594*^9}, {
+  3.6748241486687813`*^9, 3.6748241538079395`*^9}, {3.674833786805024*^9, 
+  3.674833793820221*^9}, {3.67483496960868*^9, 3.674834977961851*^9}, {
+  3.6748372283814373`*^9, 
+  3.6748372383986397`*^9}},ExpressionUUID->"94d8d198-de9f-4d76-8b4f-\
+33399900ee89"],
+
+Cell["Find the inverse of a diagonal matrix.", "Text",
+ CellChangeTimes->{{3.6747401116573763`*^9, 3.6747401462228427`*^9}, {
+  3.674823687935635*^9, 3.6748237135069*^9}, {3.674824162140191*^9, 
+  3.6748241660423098`*^9}, {3.6748338237688246`*^9, 3.6748338335560656`*^9}, {
+  3.6748350000142927`*^9, 3.674835001045314*^9}, {3.6748372456437855`*^9, 
+  3.6748372514349017`*^9}},ExpressionUUID->"6f92c43e-0a43-491c-b5c4-\
+f7d1ac78b536"],
+
+Cell[CellGroupData[{
+
+Cell["Reference.", "Subsubsection",
+ CellChangeTimes->{{3.6747631102003517`*^9, 
+  3.6747631125733557`*^9}},ExpressionUUID->"1bed7779-7ebc-4063-854a-\
+3cf50a3bc747"],
+
+Cell["\<\
+The material for this lab is covered in Section 2.2 of the book \
+\[OpenCurlyDoubleQuote]Discrete Wavelet Transformations: An Elementary \
+Approach with Applications, 2nd Edition,\[CloseCurlyDoubleQuote] by Patrick J \
+Van Fleet.\
+\>", "Text",
+ CellChangeTimes->{{3.674763119565366*^9, 3.6747631649004583`*^9}, {
+  3.674763293323564*^9, 3.674763311554607*^9}, {3.6997856290190563`*^9, 
+  3.699785638548086*^9}, {3.72692103296169*^9, 
+  3.726921034949597*^9}},ExpressionUUID->"3bb8768f-1d7d-475c-a60b-\
+2484cea7bec9"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["WaveletWare Commands Used in This Notebook", "Subsubsection",
+ CellChangeTimes->{{3.6747417571916847`*^9, 3.674741765831501*^9}, {
+  3.6747418595935683`*^9, 
+  3.6747419193671017`*^9}},ExpressionUUID->"7bc45931-7240-46d9-8390-\
+2e39a9d8dde6"],
+
+Cell["None.", "Text",
+ CellChangeTimes->{{3.6747419216613054`*^9, 3.6747419222229066`*^9}, {
+  3.6748347219042873`*^9, 3.674834723145313*^9}, {3.674834988453061*^9, 
+  3.6748349907731075`*^9}},ExpressionUUID->"06d08746-7853-4521-9571-\
+11bd8f9cf453"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Solution.", "Subsubsection",
+ CellChangeTimes->{{3.6747401847284007`*^9, 
+  3.6747401899458103`*^9}},ExpressionUUID->"d29111fd-4c8e-47f5-83ed-\
+848ea5db7557"],
+
+Cell[TextData[{
+ "The Mathematica command ",
+ StyleBox["DiagonalMatrix",
+  FontWeight->"Bold"],
+ " is a quick way to produce a diagonal matrix.  "
+}], "Text",
+ CellChangeTimes->{{3.6748350182846603`*^9, 3.674835026823832*^9}, {
+  3.674837263240139*^9, 
+  3.6748372832855425`*^9}},ExpressionUUID->"d4ad9c80-d063-4f53-8dc5-\
+557d6d667072"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"D1", "=", 
+   RowBox[{"DiagonalMatrix", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"-", "3"}], ",", "2", ",", "8", ",", "1"}], "}"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"MatrixForm", "[", "D1", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"D2", "=", 
+   RowBox[{"DiagonalMatrix", "[", 
+    RowBox[{"Range", "[", "6", "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"MatrixForm", "[", "D2", "]"}]}], "Input",
+ CellChangeTimes->{{3.674740213774307*^9, 3.6747402382289553`*^9}, {
+  3.6747413338552017`*^9, 3.674741342364217*^9}, {3.6747420276328416`*^9, 
+  3.6747420280550423`*^9}, {3.674823760720446*^9, 3.674823773168619*^9}, {
+  3.674824115899665*^9, 3.674824116286677*^9}, {3.6748243040946064`*^9, 
+  3.6748243181560526`*^9}, {3.67483399430357*^9, 3.674834096536193*^9}, {
+  3.674834706800985*^9, 3.6748347070609903`*^9}, {3.6748350336709843`*^9, 
+  3.674835105009269*^9}, {3.674835921427495*^9, 3.6748359216274986`*^9}, {
+  3.674837589450955*^9, 3.67483763858156*^9}, {3.6748381318588448`*^9, 
+  3.674838132002859*^9}},ExpressionUUID->"26928b26-8e35-4c45-a3ac-\
+2cc8cf992984"],
+
+Cell[TextData[{
+ "The inverse of a matrix can be computed using the ",
+ StyleBox["Inverse",
+  FontWeight->"Bold"],
+ " command in Mathematica.  Example 2.5 shows that the inverse of a diagonal \
+matrix ",
+ StyleBox["D",
+  FontWeight->"Bold"],
+ " is a diagonal matrix whose diagonal entries are the reciprocals of the \
+diagonal entries of ",
+ StyleBox["D",
+  FontWeight->"Bold"],
+ ".  We can check this as well."
+}], "Text",
+ CellChangeTimes->{{3.6748350182846603`*^9, 3.674835026823832*^9}, {
+  3.674835121593205*^9, 3.674835121653206*^9}, {3.6748376479292803`*^9, 
+  3.6748377263391867`*^9}},ExpressionUUID->"c1c317a7-d8fa-49cf-919a-\
+642128d66fa3"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"D1inv", "=", 
+   RowBox[{"Inverse", "[", "D1", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"D1inv", "\[Equal]", 
+  RowBox[{"DiagonalMatrix", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"-", "1"}], "/", "3"}], ",", 
+     RowBox[{"1", "/", "2"}], ",", 
+     RowBox[{"1", "/", "8"}], ",", "1"}], "}"}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"MatrixForm", "[", "D1inv", "]"}]}], "Input",
+ CellChangeTimes->{{3.6748377316881866`*^9, 3.674837785810187*^9}, {
+  3.6748381296746264`*^9, 
+  3.6748381298276415`*^9}},ExpressionUUID->"f42c2bfc-b956-4f3d-8a4b-\
+45902e4d0b77"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"D2inv", "=", 
+   RowBox[{"Inverse", "[", "D2", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"MatrixForm", "[", "D2inv", "]"}]}], "Input",
+ CellChangeTimes->{{3.674837792076187*^9, 3.6748378045371866`*^9}, {
+  3.6748381281384726`*^9, 
+  3.6748381283304915`*^9}},ExpressionUUID->"52f26b71-184d-47f5-97ae-\
+b042deec793d"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Things To Try.", "Subsubsection",
+ CellChangeTimes->{{3.674741317287572*^9, 3.674741319527376*^9}, {
+  3.6747419524260297`*^9, 
+  3.674741953872259*^9}},ExpressionUUID->"880b898a-cc18-4a7b-938a-\
+415e99656d77"],
+
+Cell["\<\
+Define an 8x8 diagonal matrix whose entries alternate between 1 and -1.  What \
+is the inverse matrix?
+
+Define a function that generates an n x n version of the matrix previously \
+described.  Compute the matrix and its inverse for n=5, 10,20.\
+\>", "Text",
+ CellChangeTimes->{{3.6748383009437513`*^9, 3.6748383731709733`*^9}, {
+  3.726919795698905*^9, 
+  3.7269197968348074`*^9}},ExpressionUUID->"b4f33a07-3aea-4e53-9b2b-\
+45d11d56d454"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{759, 678},
+WindowMargins->{{366, Automatic}, {44, Automatic}},
+FrontEndVersion->"11.1 for Microsoft Windows (64-bit) (April 18, 2017)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 539, 8, 70, "Section", "ExpressionUUID" -> \
+"94d8d198-de9f-4d76-8b4f-33399900ee89"],
+Cell[1122, 32, 433, 6, 30, "Text", "ExpressionUUID" -> \
+"6f92c43e-0a43-491c-b5c4-f7d1ac78b536"],
+Cell[CellGroupData[{
+Cell[1580, 42, 165, 3, 39, "Subsubsection", "ExpressionUUID" -> \
+"1bed7779-7ebc-4063-854a-3cf50a3bc747"],
+Cell[1748, 47, 526, 10, 49, "Text", "ExpressionUUID" -> \
+"3bb8768f-1d7d-475c-a60b-2484cea7bec9"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2311, 62, 248, 4, 39, "Subsubsection", "ExpressionUUID" -> \
+"7bc45931-7240-46d9-8390-2e39a9d8dde6"],
+Cell[2562, 68, 250, 4, 30, "Text", "ExpressionUUID" -> \
+"06d08746-7853-4521-9571-11bd8f9cf453"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2849, 77, 164, 3, 39, "Subsubsection", "ExpressionUUID" -> \
+"d29111fd-4c8e-47f5-83ed-848ea5db7557"],
+Cell[3016, 82, 337, 9, 30, "Text", "ExpressionUUID" -> \
+"d4ad9c80-d063-4f53-8dc5-557d6d667072"],
+Cell[3356, 93, 1154, 23, 88, "Input", "ExpressionUUID" -> \
+"26928b26-8e35-4c45-a3ac-2cc8cf992984"],
+Cell[4513, 118, 650, 17, 68, "Text", "ExpressionUUID" -> \
+"c1c317a7-d8fa-49cf-919a-642128d66fa3"],
+Cell[5166, 137, 633, 17, 69, "Input", "ExpressionUUID" -> \
+"f42c2bfc-b956-4f3d-8a4b-45902e4d0b77"],
+Cell[5802, 156, 358, 8, 50, "Input", "ExpressionUUID" -> \
+"52f26b71-184d-47f5-97ae-b042deec793d"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6197, 169, 216, 4, 39, "Subsubsection", "ExpressionUUID" -> \
+"880b898a-cc18-4a7b-938a-415e99656d77"],
+Cell[6416, 175, 448, 10, 106, "Text", "ExpressionUUID" -> \
+"b4f33a07-3aea-4e53-9b2b-45d11d56d454"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

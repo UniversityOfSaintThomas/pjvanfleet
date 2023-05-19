@@ -1,0 +1,4 @@
+<pre name='i_35_in' id='i_35_in' class='IFT'>newYCbCr[[1]] = ReplacePart[First[newYCbCr], tmp1 -&gt; 16];
+newYCbCr[[1]] = ReplacePart[First[newYCbCr], tmp2 -&gt; 235];
+Min[First[newYCbCr]]
+Max[First[newYCbCr]]</pre><div class='IFU'><a name='903257154'></a>http://wolfram.com/xid/0ck2bt1tgpszi5qmumv90y9mftkdg9nq1q0ukjlzbu-o717ys</div>

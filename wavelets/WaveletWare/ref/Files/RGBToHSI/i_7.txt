@@ -1,0 +1,2 @@
+<pre name='i_7_in' id='i_7_in' class='IFT'>RGBToHSI[{200, 100, 50}]
+RGBToHSI[{200, 100, 50}, DisplayMode -&gt; True]</pre><div class='IFU'><a name='747041419'></a>http://wolfram.com/xid/0b6ekx0z8pnru3aszp1nk4lske-mm1y4t</div>

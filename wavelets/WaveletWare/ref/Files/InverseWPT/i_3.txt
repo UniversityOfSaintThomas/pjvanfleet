@@ -1,0 +1,17 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>(* Donoho/Johnstone Doppler function *)
+g[t_] := Sqrt[t (1 - t)]*Sin[2 Pi (1.05)/(t + .05)];
+n = 1024;
+v = g[Range[0, 1 - 1/n, 1/n]];
+ListPlot[v, Ticks -&gt; {Range[0, n, n/4], Range[-1/2, 1/2]}, 
+ PlotLabel -&gt; &quot;Data Samples&quot;]
+iterations = 3;
+{wpt, tree} = 
+  WPT[v, Daub[4], NumIterations -&gt; iterations, 
+   CostFunction -&gt; NumberAboveThreshold, SecondParameter -&gt; .1];
+WaveletVectorPlot[wpt, tree, NumIterations -&gt; iterations]
+ShowBestBasis[tree]
+iwpt = InverseWPT[{wpt, tree}, Daub[4]];
+ListPlot[iwpt, Ticks -&gt; {Range[0, n, n/4], Range[-1/2, 1/2]}, 
+ PlotLabel -&gt; &quot;Inverse Packet Transform&quot;]
+(* Mean Squared Error *)
+MSE[iwpt, v]</pre><div class='IFU'><a name='491548464'></a>http://wolfram.com/xid/0bclo942dwfme8ltsw2z409ej-iexvia</div>

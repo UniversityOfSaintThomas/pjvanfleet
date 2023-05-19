@@ -1,0 +1,4 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>v = RandomInteger[{-10, 10}, 8]
+SumOfPowers[v, 2]
+SumOfPowers[v, .5]
+</pre><div class='IFU'><a name='596698103'></a>http://wolfram.com/xid/0ju408za6tmbiu55tp4mtrsm-j5jlhl</div>

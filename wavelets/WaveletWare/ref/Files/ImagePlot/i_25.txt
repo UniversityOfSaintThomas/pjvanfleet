@@ -1,0 +1,3 @@
+<pre name='i_25_in' id='i_25_in' class='IFT'>A = DiagonalMatrix[Range[0, 100]];
+ImagePlot[A]
+ImagePlot[A, Scaling -&gt; True]</pre><div class='IFU'><a name='765530428'></a>http://wolfram.com/xid/0nxaq5tqtv6thic7hg2v2-mx19ce</div>

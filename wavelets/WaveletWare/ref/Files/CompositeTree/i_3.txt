@@ -1,0 +1,13 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;facade.png&quot;;
+A = ImageRead[file, Resize -&gt; 192];
+ImagePlot[A]
+iterations = 3;
+{wpt, tree} = 
+  WPT[A, Daub[6], NumIterations -&gt; iterations, 
+   CostFunction -&gt; NumberAboveThreshold, SecondParameter -&gt; 40, 
+   CompositeTree -&gt; True];
+WaveletPlot[wpt, tree, NumIterations -&gt; iterations, ImageSize -&gt; 192, 
+ ChannelColor -&gt; {Red, Green, Blue}]
+WaveletPlot[wpt, tree, NumIterations -&gt; iterations, ImageSize -&gt; 192, 
+ PlotTogether -&gt; True]
+ShowBestBasis[tree, Show3D -&gt; False]</pre><div class='IFU'><a name='150096580'></a>http://wolfram.com/xid/0vt7gyclbhsc2k90cjpcuek-crndjq</div>

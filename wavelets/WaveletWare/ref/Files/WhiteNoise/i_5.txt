@@ -1,0 +1,2 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>noise = WhiteNoise[{100, 100}, 75];
+ImagePlot[noise]</pre><div class='IFU'><a name='708383603'></a>http://wolfram.com/xid/0cohy0yjie4alfh88axg7uvy-lz1ekl</div>

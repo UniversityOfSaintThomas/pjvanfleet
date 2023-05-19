@@ -1,0 +1,7 @@
+<pre name='i_7_in' id='i_7_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;train.png&quot;;
+A = ImageRead[file];
+ImagePlot[A]
+rwt1 = RightHWT[A];
+WaveletPlot[rwt1, PlotType -&gt; Right]
+rwt2 = RightHWT[A, Shift -&gt; 100];
+WaveletPlot[rwt2, PlotType -&gt; Right]</pre><div class='IFU'><a name='8517579'></a>http://wolfram.com/xid/0e2pnrmsqjyawkp74vruz5p3-fcuhp</div>

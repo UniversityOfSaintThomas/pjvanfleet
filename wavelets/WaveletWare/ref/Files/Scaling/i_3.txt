@@ -1,0 +1,5 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;canoes.png&quot;;
+A = ImageRead[file, Resize -&gt; {128, 192}];
+wt = HWT[A];
+WaveletPlot[wt]
+WaveletPlot[wt, Scaling -&gt; False]</pre><div class='IFU'><a name='27999917'></a>http://wolfram.com/xid/0hyhar0zcbct23kxc4f4-qye5r</div>

@@ -1,0 +1,4 @@
+<pre name='i_55_in' id='i_55_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;benches.png&quot;;
+A = ImageRead[file, Resize -&gt; {256, 384}];
+wt = WTFull[A, Haar[], NumIterations -&gt; 2];
+FullWaveletPlot[wt, Border -&gt; {True, False, True}]</pre><div class='IFU'><a name='646981462'></a>http://wolfram.com/xid/0063dvybfwx396xn21trjec45uq-kzhcdk</div>

@@ -1,0 +1,8 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;benches.png&quot;;
+A = ImageRead[file, Resize -&gt; {256, 384}];
+ImagePlot[A]
+wt = HWT[A];
+{avg, {vert, horiz, diag}} = WaveletMatrixToList[wt];
+ImagePlot[vert]
+ImagePlot[MatrixStretch[vert, IntensityRange -&gt; {50, 200}]]
+ImagePlot[MatrixStretch[vert, IntensityRange -&gt; {0, 255}]]</pre><div class='IFU'><a name='241952472'></a>http://wolfram.com/xid/0k18vmbfsv1bofr5ecmveze-eab50a</div>

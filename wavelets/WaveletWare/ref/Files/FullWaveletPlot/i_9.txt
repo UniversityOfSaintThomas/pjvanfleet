@@ -1,0 +1,4 @@
+<pre name='i_9_in' id='i_9_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;bridge.png&quot;;
+A = ImageRead[file, Resize -&gt; {256, 384}];
+wt = WPTFull[A, Haar[], NumIterations -&gt; 3];
+FullWaveletPlot[wt, PacketPlot -&gt; True]</pre><div class='IFU'><a name='229230859'></a>http://wolfram.com/xid/0063dvybfwx396xn21trjec45uq-d2rhx5</div>

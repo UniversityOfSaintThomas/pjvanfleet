@@ -1,0 +1,6 @@
+<pre name='i_15_in' id='i_15_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;road.png&quot;;
+A = ImageRead[file, Resize -&gt; {256, 384}];
+ImagePlot[A]
+iterations = 2;
+wt = BWT[A, SplineFilters[2, 2], NumIterations -&gt; iterations];
+WaveletRegionPlot[wt, All, NumIterations -&gt; iterations]</pre><div class='IFU'><a name='152391568'></a>http://wolfram.com/xid/0br3whhmcljlx93k2tbxed7vin6a-cs0kde</div>

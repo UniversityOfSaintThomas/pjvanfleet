@@ -1,0 +1,2 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>tree = FBITree[];
+ShowBestBasis[tree, ImageSize -&gt; 1000, Show3D -&gt; False]</pre><div class='IFU'><a name='665769070'></a>http://wolfram.com/xid/0ejjx9peoqvmt3kgb5ug5w6uk-lan0zk</div>

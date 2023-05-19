@@ -1,0 +1,12 @@
+<pre name='i_9_in' id='i_9_in' class='IFT'>v = Range[40];
+ListPlot[v, Ticks -&gt; {Range[0, n, n/4], Range[-1/2, 1/2]}, 
+ PlotLabel -&gt; &quot;Data Samples&quot;]
+iterations = 3;
+wptfull = WPTFull[v, SplineFilters[2, 2], NumIterations -&gt; iterations];
+GraphicsGrid[
+ Partition[FullWaveletVectorPlot[wptfull, PacketPlot -&gt; True], 2], 
+ ImageSize -&gt; 400]
+(* Logarithm of the energy cost function *)
+Cst[v_] := Total[Map[Which[# == 0, 0., True, N[Log[#^2]]] &amp;, v]];
+tree = BestBasisTree[wptfull, CostFunction -&gt; Cst]
+ShowBestBasis[tree]</pre><div class='IFU'><a name='181849447'></a>http://wolfram.com/xid/0ejjx9peoqvmt3kgd6isjkq8s-dajx7t</div>

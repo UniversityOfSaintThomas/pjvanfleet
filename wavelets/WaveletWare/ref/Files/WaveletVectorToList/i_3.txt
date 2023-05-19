@@ -1,0 +1,2 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>HWT[Range[16]]
+WaveletVectorToList[HWT[Range[16]]]</pre><div class='IFU'><a name='52821653'></a>http://wolfram.com/xid/0bgs8pq6xf2jh4szo9r0zq59ffkcd2-5qfqf</div>

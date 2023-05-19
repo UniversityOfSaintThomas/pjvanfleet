@@ -1,0 +1,2 @@
+<pre name='i_7_in' id='i_7_in' class='IFT'>gray = ImageInfo[ImageForm -&gt; GrayScale]
+clr = ImageInfo[ImageForm -&gt; Color]</pre><div class='IFU'><a name='132717383'></a>http://wolfram.com/xid/0dbed1alym5ijv2xnvsnhi-chavn9</div>

@@ -1,0 +1,8 @@
+<pre name='i_13_in' id='i_13_in' class='IFT'>(* Daub[4] filter *)
+filter = {1 + Sqrt[3], 3 + Sqrt[3], 3 - Sqrt[3], 1 - Sqrt[3]}/4/
+   Sqrt[2];
+v = Range[20];
+wt = WT[v, filter, Computation -&gt; Symbolic];
+iwt = Simplify[InverseWT[wt, filter, Computation -&gt; Symbolic]];
+v == iwt
+</pre><div class='IFU'><a name='3317315'></a>http://wolfram.com/xid/0yi64acvo474e4nhand9rv-b9dxx</div>

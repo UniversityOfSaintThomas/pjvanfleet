@@ -1,0 +1,4 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;benches.png&quot;;
+A = ImageRead[file, Resize -&gt; {128, 192}];
+ImagePlot[A]
+WaveletPlot[HWT[A], DivideLinesColor -&gt; Purple]</pre><div class='IFU'><a name='729143891'></a>http://wolfram.com/xid/0tfzr7ob3cycrf11mnryx61a-mceda9</div>

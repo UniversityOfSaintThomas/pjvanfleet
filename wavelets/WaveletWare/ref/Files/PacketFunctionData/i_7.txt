@@ -1,0 +1,4 @@
+<pre name='i_7_in' id='i_7_in' class='IFT'>samples = 
+  PacketFunctionData[Daub[4], 3, NumIterations -&gt; 15, 
+   Resolution -&gt; 100];
+ListPlot[samples, Joined -&gt; True, Ticks -&gt; {Range[3], Range[-2, 2]}]</pre><div class='IFU'><a name='67824072'></a>http://wolfram.com/xid/0istl84i27gzdwumekudn074i-benzoa</div>

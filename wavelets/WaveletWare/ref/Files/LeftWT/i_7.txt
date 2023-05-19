@@ -1,0 +1,7 @@
+<pre name='i_7_in' id='i_7_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;road.png&quot;;
+A = ImageRead[file, Resize -&gt; {256, 384}];
+ImagePlot[A]
+lwt1 = LeftWT[A, Daub[4]];
+WaveletPlot[lwt1, PlotType -&gt; Left]
+lwt2 = LeftWT[A, Daub[4], Shift -&gt; 100];
+WaveletPlot[lwt2, PlotType -&gt; Left]</pre><div class='IFU'><a name='8517579'></a>http://wolfram.com/xid/0dbed1alym5ijv2xoj0gk7-fcuhp</div>

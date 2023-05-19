@@ -1,0 +1,9 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;pigeon.png&quot;;
+A = ImageRead[file, Resize -&gt; 256];
+ImagePlot[A]
+B = DCT[A];
+ImagePlot[B]
+idct = InverseDCT[B];
+ImagePlot[idct]
+(* Mean Squared Error *)
+MSE[A, idct]</pre><div class='IFU'><a name='305238839'></a>http://wolfram.com/xid/0bmr3yafg3z5yjy0oa0hic7-fb0l2x</div>

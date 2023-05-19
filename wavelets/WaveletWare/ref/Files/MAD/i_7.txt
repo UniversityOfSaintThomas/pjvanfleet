@@ -1,0 +1,12 @@
+<pre name='i_7_in' id='i_7_in' class='IFT'>n = 1000;
+v = Sin[Range[n]*2*Pi/n];
+sigma = .2;
+ListPlot[v, PlotLabel -&gt; &quot;Original Data&quot;]
+noise = WhiteNoise[n, sigma];
+y = v + noise;
+ListPlot[y, PlotLabel -&gt; &quot;Noisy Data&quot;]
+wt = WT[y, Daub[4]];
+highpass = Drop[wt, Length[wt]/2];
+sigmahat = MAD[highpass]/.6745;
+Print[&quot;The true noise level is &quot;, sigma, 
+  &quot; and the estimated noise level is &quot;, sigmahat, &quot;.&quot;];</pre><div class='IFU'><a name='107874571'></a>http://wolfram.com/xid/08s5uh4e1e3rdx359nj-b2iet5</div>

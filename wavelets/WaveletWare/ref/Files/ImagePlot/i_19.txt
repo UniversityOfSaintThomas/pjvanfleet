@@ -1,0 +1,4 @@
+<pre name='i_19_in' id='i_19_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;pigeon.png&quot;;
+A = ImageRead[file, Resize -&gt; 300];
+ImagePlot[A]
+ImagePlot[A, BorderColor -&gt; Red]</pre><div class='IFU'><a name='271030994'></a>http://wolfram.com/xid/0nxaq5tqtv6thic7hg2v2-erne40</div>

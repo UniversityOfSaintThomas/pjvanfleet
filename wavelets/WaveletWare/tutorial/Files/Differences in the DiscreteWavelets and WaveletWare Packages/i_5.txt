@@ -1,0 +1,6 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>data = ScalingFunctionData[Daub[4]];
+ListPlot[data, Joined -&gt; True, ImageSize -&gt; 300]
+data = WaveletFunctionData[Daub[4]];
+ListPlot[data, Joined -&gt; True, ImageSize -&gt; 300]
+data = Map[PacketFunctionData[Haar[], #] &amp;, Range[0, 3]];
+Map[ListPlot[#, ImageSize -&gt; 200] &amp;, data] // GraphicsRow</pre><div class='IFU'><a name='86210802'></a>http://wolfram.com/xid/0533vsu7qbb0ajiwwqawq9kz22kl8rc4uv1a9crxfvnihty6rtcsrbm-bpl2ys</div>

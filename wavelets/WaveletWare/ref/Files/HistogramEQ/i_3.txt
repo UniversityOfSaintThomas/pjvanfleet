@@ -1,0 +1,5 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;pigeon.png&quot;;
+A = ImageRead[file, Resize -&gt; 256];
+ImagePlot[A]
+B = HistogramEQ[A];
+ImagePlot[B]</pre><div class='IFU'><a name='605730072'></a>http://wolfram.com/xid/0pe8nj71xo96wqef1jshe74gv3-kaw6lm</div>

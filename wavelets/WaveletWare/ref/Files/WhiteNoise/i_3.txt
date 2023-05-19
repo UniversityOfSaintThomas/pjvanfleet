@@ -1,0 +1,2 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>noise = WhiteNoise[1000, .75];
+ListPlot[noise, Ticks -&gt; {Range[0, 1000, 200], Range[-2, 2]}]</pre><div class='IFU'><a name='207346513'></a>http://wolfram.com/xid/0cohy0yjie4alfh88axg7uvy-dpqfvn</div>

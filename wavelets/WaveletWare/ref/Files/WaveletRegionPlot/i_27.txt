@@ -1,0 +1,7 @@
+<pre name='i_27_in' id='i_27_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;fish.png&quot;;
+A = ImageRead[file, Resize -&gt; {256, 384}];
+ImagePlot[A]
+wt = HWT[A];
+WaveletRegionPlot[wt, {{1, 1, 1, 1}, {2, 1, 2, 1}}, 
+ ChannelColor -&gt; {Red, Green}, Border -&gt; {True, False}, 
+ ImageSize -&gt; 384]</pre><div class='IFU'><a name='10023912'></a>http://wolfram.com/xid/0br3whhmcljlx93k2tbxed7vin6a-f84sa</div>

@@ -1,0 +1,5 @@
+<pre name='i_13_in' id='i_13_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;pigeon.png&quot;;
+A = ImageRead[file, Resize -&gt; {128, 192}];
+ImagePlot[A]
+wt = HWT[A, NumIterations -&gt; 3];
+WaveletPlot[wt, NumIterations -&gt; 3]</pre><div class='IFU'><a name='66782426'></a>http://wolfram.com/xid/0cew39zuhikyj6xdcij5apz9u-bd1nxo</div>

@@ -1,0 +1,4 @@
+<pre name='i_11_in' id='i_11_in' class='IFT'>v = Range[20]
+wt = HWT[v, Shift -&gt; 1];
+iwt = InverseHWT[wt, Shift -&gt; 1]
+</pre><div class='IFU'><a name='268655128'></a>http://wolfram.com/xid/0tfzr7ob3cycrf11lom6dgqj-ep8hwq</div>

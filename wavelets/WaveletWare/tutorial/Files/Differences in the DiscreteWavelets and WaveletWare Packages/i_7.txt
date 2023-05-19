@@ -1,0 +1,8 @@
+<pre name='i_7_in' id='i_7_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;church.png&quot;;
+A = ImageRead[file, Resize -&gt; {192, 128}];
+plt1 = ImagePlot[A];
+wt = HWT[A];
+plt2 = WaveletPlot[wt];
+iwt = InverseHWT[wt];
+plt3 = ImagePlot[iwt];
+GraphicsRow[{plt1, plt2, plt3}, ImageSize -&gt; 512]</pre><div class='IFU'><a name='509401737'></a>http://wolfram.com/xid/0533vsu7qbb0ajiwwqawq9kz22kl8rc4uv1a9crxfvnihty6rtcsrbm-ipki6j</div>

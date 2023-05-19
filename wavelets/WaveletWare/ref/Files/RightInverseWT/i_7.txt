@@ -1,0 +1,9 @@
+<pre name='i_7_in' id='i_7_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;train.png&quot;;
+A = ImageRead[file];
+ImagePlot[A]
+rwt = RightWT[A, Daub[4], Shift -&gt; 100];
+WaveletPlot[rwt, PlotType -&gt; Right]
+iwt = RightInverseWT[rwt, Daub[4], Shift -&gt; 100];
+ImagePlot[iwt]
+(* Mean Squared Error *)
+MSE[A, iwt]</pre><div class='IFU'><a name='8517579'></a>http://wolfram.com/xid/0ejjx9peoqvmt3kgdhdmk3hff-fcuhp</div>

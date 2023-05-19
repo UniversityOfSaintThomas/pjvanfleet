@@ -1,0 +1,1 @@
+<pre name='i_9_in' id='i_9_in' class='IFT'>ShowBestBasis[WaveletTree[4], ColorOn -&gt; Orange]</pre><div class='IFU'><a name='424650288'></a>http://wolfram.com/xid/0ju408za6tmbiu55ts1k9e6e-ha30jm</div>

@@ -1,0 +1,5 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;fingerprint.png&quot;;
+A = ImageRead[file, Resize -&gt; 256];
+ImagePlot[A]
+wt = FBIPacketTransform[A];
+WaveletPlot[wt, FBITree[], NumIterations -&gt; 5]</pre><div class='IFU'><a name='62854130'></a>http://wolfram.com/xid/0x7f5hjnbafgx7a2j8jxg76llyfm-bbpguc</div>

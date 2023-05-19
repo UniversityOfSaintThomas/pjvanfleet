@@ -1,0 +1,2 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>Map[ShowBestBasis[WaveletTree[#], ColorOn -&gt; White, 
+    ColorOff -&gt; White] &amp;, Range[0, 3]] // TableForm</pre><div class='IFU'><a name='34510957'></a>http://wolfram.com/xid/0dw3hmeolb456i3ocz9bqdb7htqim7p8o1p7qzwg41bm-uty3z</div>

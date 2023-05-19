@@ -1,0 +1,2 @@
+<pre name='i_9_in' id='i_9_in' class='IFT'>G = WaveletMatrix[Daub[4], {8, 8}, MatrixBlock -&gt; Highpass];
+MatrixForm[Chop[G.ConstantArray[1, 8]]]</pre><div class='IFU'><a name='233268276'></a>http://wolfram.com/xid/0rbcx7yrv4nohjeyr4g6dr032-d4508m</div>

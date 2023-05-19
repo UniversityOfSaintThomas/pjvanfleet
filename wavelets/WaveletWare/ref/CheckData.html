@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CheckData&mdash;Wolfram Language Documentation</title>
+<meta name="buildnumber" content="0000000" />
+<meta name="historydata" content="{XX, , , }" />
+<meta name="keywords" content="CheckData" />
+
+<meta name="description" content="CheckData[data] takes an input argument and determines whether it is a vector (1), matrix (2) or list of three matrices (3). The routine also returns the maximum number of iterations of a wavelet transform that can be performed on the input." />
+<script language="JavaScript" type="text/javascript">baselang='CheckData';</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		 <link rel="stylesheet" type="text/css" href="../css/reference.css" />
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/core/1.6.1/jquery.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/plugins/hoverIntent/r5/jquery.hoverIntent.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/reference.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/documentation-search.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/inputs.js"></script>
+		 <script language="javaScript" type="text/javascript" src="../javascript/faster-page-load.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/plugins/jcarousel/tinycarousel/tinycarousel.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery.dotdotdot-1.5.1.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/carousel.js"></script>
+<script language="JavaScript" type="text/javascript" src="../javascript/toggle-highlight.js"></script>
+</head>
+<body id="ref" class="function">
+<a name="top"></a>
+<!--#include virtual="/common/includes/gl-header.html"--> 
+<div class="main-wrapper">
+
+
+<div class="wrapper mainOuter">
+    <div class="mainContent">
+ <div class="topContentWrap">
+  <div class="ribbonWrap">
+   <span class="ribbonOuter"><span class="ribbonInner">WAVELET WARE PACKAGE SYMBOL</span></span>
+  </div>
+  <ul class="dropdown">
+   <li>
+    <a href="#">Tutorials</a>
+    <ul class="sub_menu">
+     <li>
+      <a href="/language/WaveletWare/tutorial/Data Structures in the WaveletWare Package.html"><span class="dropdownPad">Data Structures in the WaveletWare Package</span></a>
+     </li>
+    </ul>
+   </li>
+   <li>
+    <a href="#">See Also</a>
+    <ul class="sub_menu">
+     <li>
+      <a href="/language/WaveletWare/ref/MaxIts.html"><span class="dropdownPad">MaxIts</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/CheckFilter.html"><span class="dropdownPad">CheckFilter</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/CheckIterations.html"><span class="dropdownPad">CheckIterations</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/CheckDataFilterSize.html"><span class="dropdownPad">CheckDataFilterSize</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/CheckParity.html"><span class="dropdownPad">CheckParity</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/CheckTree.html"><span class="dropdownPad">CheckTree</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/CheckIterationValue.html"><span class="dropdownPad">CheckIterationValue</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/CheckColor.html"><span class="dropdownPad">CheckColor</span></a>
+     </li>
+    </ul>
+   </li>
+   <li>
+    <a href="#">Related Guides</a>
+    <ul class="sub_menu">
+     <li>
+      <a href="/language/WaveletWare/guide/List of Functions - Categorical.html"><span class="dropdownPad">List of Functions - Categorical</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/guide/List of Functions - Alphabetical.html"><span class="dropdownPad">List of Functions - Alphabetical</span></a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+  <div class="clear"><!-- --></div>
+ </div>
+ <h1>CheckData</h1>
+ <div class="functionIntroWrap">
+  <div class="functionIntro">
+   <p><span class="IF">CheckData[<span class="TI">data</span>]</span><br />takes an input argument and determines whether it is a vector (1), matrix (2) or list of three matrices (3).  The routine also returns the maximum number of iterations of a wavelet transform that can be performed on the input.</p>
+  </div>
+ </div>
+ <div class="expandWrap closed"
+     id="DetailsAndOptions">
+  <div class="expandOuter">
+   <h2 class="expandInner"><a class="expand hide" title="show" href="#">Details</a><a class="collapse" title="hide" href="#">Details</a></h2>
+   <div class="expanded">
+    <ul class="functionList">
+     <li><a name="1067943069"></a><span class="monospace">CheckData</span> is a utility routine that attempts to determine if the data are formatted correctly for use in several functions in the <a href="../WaveletWare/tutorial/WaveletWare Package.html">WaveletWare</a> package.</li>
+     <li><a name="475581"></a>The output of <span class="monospace">CheckData</span> is a list of two integers <span class="IF"><img src="Files/CheckData/1.png" height="17" width="74" alt="" /></span>.</li>
+    </ul>
+   </div>
+  </div>
+ </div>
+ <div class="expandWrap"
+     id="Examples">
+  <div class="expandOuter">
+   <h2 class="expandInner"><a class="expand hide" title="show" href="#">Examples</a><a class="collapse" title="hide" href="#">Examples</a><a class="all opener" title="open all" href="#"><span>open all</span></a><a class="all closer hide" title="close all" href="#"><span>close all</span></a></h2>
+   <div class="expanded">
+    <div class="expandSubWrap">
+     <div class="expandSubOuter">
+      <h3 class="expandSubInner"><a class="expand hide" href="#" title="show">Basic Examples<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a><a class="collapse" href="#" title="hide">Basic Examples<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a></h3>
+      <div class="expanded">
+       <div class="MCap"><a name="16454449"></a>This loads the package:</div>
+       <table class="InCell">
+        <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+           <a name="861618089"></a>
+           <img src="Files/CheckData/I_2.gif"
+               height="15"
+               width="93"
+               alt="Click for copyable input" />
+          </div><div id="i_1_out" class="IFL"></div></td></tr>
+       </table>
+       <p><a name="89136601"></a>Check that the input data is really a list of three matrices of equal dimension.</p>
+       <div class="IO">
+        <table class="InCell">
+         <tr><td class="lab">In[2]:=</td><td class="Input"><div>
+            <a name="666143689"></a>
+            <img src="Files/CheckData/I_4.gif"
+                height="50"
+                width="204"
+                alt="Click for copyable input" />
+           </div><div id="i_3_out" class="IFL"></div></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[2]=</td><td class="Output"><img src="Files/CheckData/O_1.gif" height="15" width="26" alt="" /></td></tr>
+        </table>
+       </div>
+       <p><a name="47710797"></a><span class="monospace">CheckData</span> returns 4 for datatype if the input is not a vector, matrix or a list of three matrices of equal dimensions.</p>
+       <div class="IO">
+        <table class="InCell">
+         <tr><td class="lab">In[3]:=</td><td class="Input"><div>
+            <a name="189035093"></a>
+            <img src="Files/CheckData/I_6.gif"
+                height="33"
+                width="229"
+                alt="Click for copyable input" />
+           </div><div id="i_5_out" class="IFL"></div></td></tr>
+        </table>
+        <img src="Files/CheckData/2.gif"
+            height="29"
+            width="512"
+            alt=""
+            class="Message" />
+        <table class="OCell">
+         <tr><td class="lab">Out[3]=</td><td class="Output"><img src="Files/CheckData/O_2.gif" height="15" width="26" alt="" /></td></tr>
+        </table>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="toplink">
+     <a href="#top">Top</a>
+    </div>
+    <div class="clear"><!-- --></div>
+   </div>
+  </div>
+ </div>
+ <div class="expandWrap"
+     id="SeeAlso">
+  <div class="expandOuter">
+   <h2 class="expandInner"><a class="expand hide" title="show" href="#">See Also</a><a class="collapse" title="hide" href="#">See Also</a></h2>
+   <div class="expanded">
+    <p class="inlineFunctionList"><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/MaxIts.html">MaxIts</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/CheckFilter.html">CheckFilter</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/CheckIterations.html">CheckIterations</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/CheckDataFilterSize.html">CheckDataFilterSize</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/CheckParity.html">CheckParity</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/CheckTree.html">CheckTree</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/CheckIterationValue.html">CheckIterationValue</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/CheckColor.html">CheckColor</a></span></p>
+   </div>
+  </div>
+ </div>
+ <div class="expandWrap"
+     id="Tutorials">
+  <div class="expandOuter">
+   <h2 class="expandInner"><a class="expand hide" title="show" href="#">Tutorials</a><a class="collapse" title="hide" href="#">Tutorials</a></h2>
+   <div class="expanded">
+    <ul class="functionList">
+     <li>
+      <a name="829501916"></a>
+      <a href="../WaveletWare/tutorial/Data Structures in the WaveletWare Package.html">Data Structures in the WaveletWare Package</a>
+     </li>
+    </ul>
+   </div>
+  </div>
+ </div>
+ <div class="expandWrap"
+     id="RelatedGuides">
+  <div class="expandOuter">
+   <h2 class="expandInner"><a class="expand hide" title="show" href="#">Related Guides</a><a class="collapse" title="hide" href="#">Related Guides</a></h2>
+   <div class="expanded">
+    <ul class="functionList">
+     <li>
+      <a name="352979540"></a>
+      <a href="http://reference.wolfram.com/language/WaveletWare/guide/List of Functions - Categorical.html">List of Functions - Categorical</a>
+     </li>
+     <li>
+      <a name="127409714"></a>
+      <a href="http://reference.wolfram.com/language/WaveletWare/guide/List of Functions - Alphabetical.html">List of Functions - Alphabetical</a>
+     </li>
+    </ul>
+   </div>
+  </div>
+ </div>
+</div>
+</div><!-- /wrapper -->
+
+	
+</div>
+
+
+</body>
+		 </html>

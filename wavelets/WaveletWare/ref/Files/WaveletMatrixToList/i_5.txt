@@ -1,0 +1,9 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>(* WaveletMatrixToList works only on a single matrix *)
+file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;benches.png&quot;;
+A = ImageRead[file, Resize -&gt; {256, 384}];
+wt = HWT[A];
+wtlist = WaveletMatrixToList[wt];
+Print[&quot;The dimensions of each list element are: &quot;, 
+  Map[Dimensions, wtlist], &quot;.&quot;];
+lowpass = First[wtlist];
+ImagePlot[lowpass, Scaling -&gt; True]</pre><div class='IFU'><a name='578203859'></a>http://wolfram.com/xid/0bgs8pq6xf2jh4szo9r0zq50s76aii-jui68l</div>

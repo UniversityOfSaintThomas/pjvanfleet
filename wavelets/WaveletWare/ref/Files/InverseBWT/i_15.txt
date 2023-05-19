@@ -1,0 +1,4 @@
+<pre name='i_15_in' id='i_15_in' class='IFT'>v=Range[20]
+wt=BWT[v,SplineFilters[2,2],Boundary-&gt;True];
+WaveletVectorPlot[wt,ImageSize-&gt;400,PointSize-&gt;.02]
+iwt=InverseBWT[wt,SplineFilters[2,2],Boundary-&gt;True]</pre><div class='IFU'><a name='146213409'></a>http://wolfram.com/xid/0ju408za6tmbiu55xzgpbugr-cpb49v</div>

@@ -1,0 +1,3 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>{codes, old, new} = MakeHuffmanCodes[&quot;mississippi&quot;];
+HuffmanTree[codes, ImageSize -&gt; 200]
+HuffmanTree[codes, BranchColor -&gt; Orange, ImageSize -&gt; 200]</pre><div class='IFU'><a name='122204090'></a>http://wolfram.com/xid/0bhd4nmewcpafuv9q4yqw5we-ca1jkc</div>

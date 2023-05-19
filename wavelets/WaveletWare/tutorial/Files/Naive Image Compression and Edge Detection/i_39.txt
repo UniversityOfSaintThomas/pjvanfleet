@@ -1,0 +1,5 @@
+<pre name='i_39_in' id='i_39_in' class='IFT'>plots = MapThread[
+   Labeled[ImagePlot[#1, Scaling -&gt; #3], #2] &amp;, {{A, newA, 
+     Abs[A - newA]}, {&quot;Original&quot;, &quot;Compressed&quot;, &quot;Difference&quot;}, {False,
+      False, True}}];
+FlipView[plots]</pre><div class='IFU'><a name='155829894'></a>http://wolfram.com/xid/0ck2bt1tgpszi5qmumv90y9mftkdg9nq1q0ukjlzbu-cu19eg</div>

@@ -1,0 +1,3 @@
+<pre name='i_15_in' id='i_15_in' class='IFT'>v = RandomInteger[{0, 10}, 20];
+WTFull[v, LeGall[]]
+WTFull[v, LeGall[], IntegerMap -&gt; True]</pre><div class='IFU'><a name='760473432'></a>http://wolfram.com/xid/0fn9kyau1k5szc07wu9tv6a-mu1vca</div>

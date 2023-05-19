@@ -1,0 +1,4 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>{h, ht} = SplineFilters[2, 2, DisplayInfo -&gt; True]
+Ht[w_] := FiniteFourier[w, ht, -1];
+Ht[w]
+Plot[Abs[Ht[w]], {w, 0, Pi}, Ticks -&gt; {{Pi/2, Pi}, {Sqrt[2]}}]</pre><div class='IFU'><a name='488266785'></a>http://wolfram.com/xid/0bmr3yafg3z5yjy0n2ev1sy-iczjcj</div>

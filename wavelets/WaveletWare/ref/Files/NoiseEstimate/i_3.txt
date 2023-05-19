@@ -1,0 +1,9 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>g[t_] := 4 Sin[4 Pi t] - Sign[t - .3] - Sign[.72 - t];
+{sigma, n} = {.35, 1000};
+y = g[Range[0, 1 - 1/n, 1/n]] + WhiteNoise[n, sigma];
+highpass = Drop[HWT[y, Orthogonal -&gt; True], n/2];
+sigmahat = NoiseEstimate[highpass];
+ListPlot[y, PlotLabel -&gt; &quot;Noisy Data&quot;, 
+ Ticks -&gt; {Range[0, n, n/4], Range[-4, 4, 2]}]
+Print[&quot;The true noise level is &quot;, sigma, 
+  &quot; and the estimation of this value is &quot;, sigmahat, &quot;.&quot;];</pre><div class='IFU'><a name='452025997'></a>http://wolfram.com/xid/04j60t5tk393i6ilojcbt3urcq-hrerrz</div>

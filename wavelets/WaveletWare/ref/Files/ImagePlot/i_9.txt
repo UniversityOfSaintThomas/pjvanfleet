@@ -1,0 +1,4 @@
+<pre name='i_9_in' id='i_9_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;pigeon.png&quot;;
+A = ImageRead[file, Resize -&gt; 300];
+ImagePlot[A]
+ImagePlot[A, ChannelColor -&gt; Green]</pre><div class='IFU'><a name='48298369'></a>http://wolfram.com/xid/0nxaq5tqtv6thic7hg2v2-21hjn</div>

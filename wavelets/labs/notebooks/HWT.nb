@@ -1,0 +1,906 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     33025,        898]
+NotebookOptionsPosition[     28425,        823]
+NotebookOutlinePosition[     28768,        838]
+CellTagsIndexPosition[     28725,        835]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Lab 4.1:  The Haar Wavelet Transform", "Section",
+ CellChangeTimes->{{3.6747410188032584`*^9, 3.674741042688301*^9}, {
+   3.674742552975814*^9, 3.6747425597738523`*^9}, {3.67474453723468*^9, 
+   3.674744561535725*^9}, {3.674747931751519*^9, 3.6747479370307474`*^9}, 
+   3.6747516510077415`*^9, {3.674754123065485*^9, 3.674754140322116*^9}, {
+   3.6751749126193643`*^9, 3.6751749154137692`*^9}, {3.6755147920766993`*^9, 
+   3.6755147959137897`*^9}, {3.675527343559159*^9, 3.675527350929307*^9}, {
+   3.6755288505176797`*^9, 3.675528858287467*^9}, {3.6755298287755394`*^9, 
+   3.675529837330626*^9}, 3.703855401083161*^9, {3.727011156743316*^9, 
+   3.727011160055276*^9}, {3.7270114909635525`*^9, 3.7270114966106634`*^9}, {
+   3.7298617740082817`*^9, 3.7298617804688063`*^9}, {3.7298618142457356`*^9, 
+   3.729861817366371*^9}, {3.7301979196042013`*^9, 
+   3.7301979214042344`*^9}},ExpressionUUID->"b4d3dd46-bf41-416a-8a69-\
+8d3f86104986"],
+
+Cell["\<\
+In this lab, you will write code to compute the (inverse) Haar wavelet \
+transform of a vector.\
+\>", "Text",
+ CellChangeTimes->{{3.6747410667041707`*^9, 3.6747410805055957`*^9}, {
+  3.6747424105934367`*^9, 3.674742410733837*^9}, {3.674742572300502*^9, 
+  3.674742584222324*^9}, {3.6747445741715794`*^9, 3.6747445846113987`*^9}, {
+  3.6747479622130194`*^9, 3.674747968138232*^9}, {3.675174920421378*^9, 
+  3.6751749285570188`*^9}, {3.6755273968654437`*^9, 3.6755274039395885`*^9}, {
+  3.6755288612083807`*^9, 3.6755288683421783`*^9}, {3.6755298409106617`*^9, 
+  3.6755298515318317`*^9}, {3.7270111747609496`*^9, 3.7270111855638227`*^9}, {
+  3.729861836007686*^9, 
+  3.729861854391374*^9}},ExpressionUUID->"61b27de1-8e6c-4777-a97c-\
+e405fa03ef99"],
+
+Cell[CellGroupData[{
+
+Cell["Reference", "Subsubsection",
+ CellChangeTimes->{{3.6747631102003517`*^9, 3.6747631125733557`*^9}, 
+   3.7301976305976057`*^9},ExpressionUUID->"3fffe5ac-09ce-46e2-8050-\
+8c2090c2603e"],
+
+Cell[TextData[{
+ "The material for this lab is covered in Section 4.1 of the book ",
+ ButtonBox["Discrete Wavelet Transformations: An Elementary Approach with \
+Applications, 2nd Ed.",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://www.wiley.com/en-us/Discrete+Wavelet+Transformations%3A+An+\
+Elementary+Approach+with+Applications%2C+2nd+Edition-p-9781118979310"], None},
+  ButtonNote->
+   "https://www.wiley.com/en-us/Discrete+Wavelet+Transformations%3A+An+\
+Elementary+Approach+with+Applications%2C+2nd+Edition-p-9781118979310"],
+ ", by Patrick J Van Fleet."
+}], "Text",
+ CellChangeTimes->{{3.674763119565366*^9, 3.6747631649004583`*^9}, {
+   3.674763293323564*^9, 3.674763311554607*^9}, {3.6997856290190563`*^9, 
+   3.699785638548086*^9}, {3.72692103296169*^9, 3.726921034949597*^9}, {
+   3.7270063962717886`*^9, 3.727006396991242*^9}, 3.727009034200805*^9, 
+   3.7270097537181544`*^9, {3.7270115331247635`*^9, 3.727011534185475*^9}, {
+   3.7726248226227255`*^9, 
+   3.7726248239012012`*^9}},ExpressionUUID->"6a87367e-199b-4755-909b-\
+1f0e93964a15"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["WaveletWare Commands Used in This Notebook", "Subsubsection",
+ CellChangeTimes->{{3.6747417571916847`*^9, 3.674741765831501*^9}, {
+  3.6747418595935683`*^9, 
+  3.6747419193671017`*^9}},ExpressionUUID->"f0a02de7-73c3-4fdf-9fb7-\
+3b6354eb70fb"],
+
+Cell["Execute the line below to load the WaveletWare package.", "Text",
+ CellChangeTimes->{{3.726919365764247*^9, 
+  3.7269193911263213`*^9}},ExpressionUUID->"1c2f17b5-7d52-43ea-8284-\
+97a0802ab4e4"],
+
+Cell[BoxData[
+ RowBox[{"<<", "WaveletWare`"}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.7269193243151226`*^9, 3.7269193578933735`*^9}, {
+   3.7270065374179773`*^9, 3.727006537593671*^9}, {3.7270070318050675`*^9, 
+   3.7270070319488754`*^9}, {3.7270084778120003`*^9, 
+   3.7270084779023743`*^9}, {3.7270097015398407`*^9, 
+   3.7270097017317114`*^9}, {3.727009916604597*^9, 3.72700991671616*^9}, {
+   3.7270102740659857`*^9, 3.7270102742043266`*^9}, {3.727011436528392*^9, 
+   3.727011436639927*^9}, 3.727011861141736*^9, {3.729880762923499*^9, 
+   3.729880763098421*^9}, {3.7728063371762276`*^9, 
+   3.772806337287506*^9}},ExpressionUUID->"d0fbe505-08c6-4c5e-bfcb-\
+4eebc307ea21"],
+
+Cell["\<\
+Execute the line below to generate quick help on WaveletWare commands used in \
+this notebook.  Click on >> for each command to access detailed documentation \
+on the command.\
+\>", "Text",
+ CellChangeTimes->{{3.726919395574725*^9, 
+  3.7269194464807606`*^9}},ExpressionUUID->"49e06bb1-94fd-4029-9342-\
+21f25eef50ef"],
+
+Cell[BoxData[{
+ RowBox[{"?", "HWT"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "WaveletVectorPlot"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "PackageDirectory"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "ImageRead"}]}], "Input",
+ CellChangeTimes->{{3.7269193243151226`*^9, 3.7269193578933735`*^9}, {
+  3.727006411728204*^9, 3.7270064146082783`*^9}, {3.7270064673326874`*^9, 
+  3.7270064795892925`*^9}, {3.727006595390209*^9, 3.727006600158367*^9}, {
+  3.72700691873085*^9, 3.7270069320111556`*^9}, {3.7270070971669283`*^9, 
+  3.72700709878319*^9}, {3.727007656662043*^9, 3.727007686295689*^9}, {
+  3.7270077238976808`*^9, 3.7270077269537964`*^9}, {3.7270077787964225`*^9, 
+  3.72700778190035*^9}, {3.727009043699129*^9, 3.7270090645469418`*^9}, {
+  3.7270095740304623`*^9, 3.727009574398796*^9}, {3.7270097581334586`*^9, 
+  3.727009772982139*^9}, {3.7270102276737976`*^9, 3.7270102281699533`*^9}, {
+  3.7270112026494274`*^9, 3.727011212544937*^9}, {3.77280631922294*^9, 
+  3.772806336119361*^9}},ExpressionUUID->"892245c5-7d54-4520-8f7e-\
+ff7d8734cd49"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Modules Created in this Lab", "Subsubsection",
+ CellChangeTimes->{{3.7368676701301727`*^9, 
+  3.7368676768044405`*^9}},ExpressionUUID->"d12af694-d058-4313-b3a0-\
+e9d315230d53"],
+
+Cell[TextData[{
+ StyleBox["HWT1d1",
+  FontWeight->"Bold"],
+ ",",
+ StyleBox[" InverseHWT1d1",
+  FontWeight->"Bold"]
+}], "Text",
+ CellChangeTimes->{{3.736867686442602*^9, 3.7368677111146307`*^9}, {
+  3.736867752285713*^9, 3.736867763029464*^9}, {3.73686854064227*^9, 
+  3.7368685482389035`*^9}, {3.7368686060516157`*^9, 3.73686860944287*^9}, {
+  3.736868679786914*^9, 
+  3.7368686863318667`*^9}},ExpressionUUID->"69f3ddca-a071-46de-9b72-\
+54a2cb177ab2"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Development of the Forward Transform", "Subsubsection",
+ CellChangeTimes->{{3.674741083458001*^9, 3.674741085127204*^9}, {
+   3.674741868740185*^9, 3.674741869629386*^9}, {3.7298619082330914`*^9, 
+   3.7298619154811635`*^9}, {3.7298634832691517`*^9, 3.7298634890296955`*^9}, 
+   3.730197633227455*^9},ExpressionUUID->"8a313543-5b7f-4f37-842b-\
+1e2469d6be64"],
+
+Cell[TextData[{
+ "The development of the transform is based on Problem 4.8 of the text.  That \
+is, for vectors ",
+ StyleBox["h",
+  FontWeight->"Bold"],
+ "=[1/2,1/2",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["]", "T"], TraditionalForm]],ExpressionUUID->
+  "c8717902-8206-48fe-971c-3b23dbe8fe2a"],
+ " and ",
+ StyleBox["g",
+  FontWeight->"Bold"],
+ "=[-1/2,1/2",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["]", "T"], TraditionalForm]],ExpressionUUID->
+  "9a98df69-0078-4d9f-835c-cfbd908d8115"],
+ ", we seek matrix X such that ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["W", "N"], TraditionalForm]],ExpressionUUID->
+  "b25f211e-b6db-424e-a5f9-206428260bed"],
+ StyleBox["v",
+  FontWeight->"Bold"],
+ " = ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"[", GridBox[{
+      {
+       StyleBox[
+        RowBox[{"X", 
+         StyleBox["h",
+          FontWeight->"Bold"]}]]},
+      {
+       StyleBox[
+        RowBox[{"X", 
+         StyleBox["g",
+          FontWeight->"Bold"]}]]}
+     }], "]"}], TraditionalForm]],ExpressionUUID->
+  "72e323ff-0dd9-4868-923a-d8b317c5133e"],
+ ".  Here ",
+ StyleBox["v",
+  FontWeight->"Bold"],
+ " is the input vector of even length N.  \n\nStart with the generic 8-vector \
+",
+ StyleBox["v",
+  FontWeight->"Bold"],
+ " = [",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["v", "1"], TraditionalForm]],ExpressionUUID->
+  "cc22f372-7237-4643-906b-32aecd52843a"],
+ ",...,",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["v", "8"], TraditionalForm]],ExpressionUUID->
+  "5e57db29-db94-4aa2-8067-4b79a4de230e"],
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["]", "T"], TraditionalForm]],ExpressionUUID->
+  "30f6ffbd-e90f-416b-8d87-7b3475c84d4e"],
+ " and write out ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["W", "8"], TraditionalForm]],ExpressionUUID->
+  "900adf98-5a3d-4c34-8ea3-95782f03108a"],
+ StyleBox["v",
+  FontWeight->"Bold"],
+ ".  You should be able to use this expression to determine the 4x2 matrix X. \
+ \n\nIn the cell below, create X for the given 8-vector.  The Mathematica \
+command ",
+ StyleBox["Partition",
+  FontWeight->"Bold"],
+ " should be helpful."
+}], "Text",
+ CellChangeTimes->{{3.6747411194901114`*^9, 3.6747411391369605`*^9}, {
+   3.674742623448035*^9, 3.674742630967649*^9}, {3.6747446245665*^9, 
+   3.6747446285253077`*^9}, {3.6747479738622437`*^9, 
+   3.6747480058727283`*^9}, {3.6747541466889267`*^9, 3.674754251603379*^9}, {
+   3.6751749520373015`*^9, 3.6751749586109133`*^9}, {3.6755148175042253`*^9, 
+   3.675514819025256*^9}, {3.6755148532970734`*^9, 3.6755148644122963`*^9}, {
+   3.6755149448761034`*^9, 3.675514948728182*^9}, {3.675527407049651*^9, 
+   3.675527418359915*^9}, {3.6755298600329905`*^9, 3.67552987475714*^9}, {
+   3.727011216895319*^9, 3.7270112356259713`*^9}, 3.7298619201374073`*^9, {
+   3.7298625858071938`*^9, 3.7298626252166543`*^9}, {3.729862667105684*^9, 
+   3.729863049210574*^9}},ExpressionUUID->"e149f220-85cc-4f84-b2c9-\
+aa96a593cc9d"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"v", "=", 
+   RowBox[{"Range", "[", "8", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"X", "=", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "replace", " ", "this", " ", "comment", " ", "with", " ", "your", " ", 
+    "code"}], " ", "*)"}]}]}], "Input",
+ CellChangeTimes->CompressedData["
+1:eJwd0dtL03Ech/GxmYdqF6Hgz6VlF81pJGTThRvqjzKrqYEoSKawaXQxyAMy
+GJiDlFDGQgvCPOIcgQpDZW3gPMxICw+zUjStZCgTbXqxMFGm0Pf9uXh4/QHP
+FW1lwROhQCC4yoIHntcpIo2f3/pYK4flVXoemnwtZFDZNgVF4/3kQZ9xGZ7v
+MZGPdep9+OKinuQmnAF42+U+hA+K/3EhzJqVY1L3rncXvjdf24OH099zzjBV
+bi8p+xNpDmVKU7dfwc0BXTscqRF3Qtn1LBfMiN0kN+ajAjB9jiNbYoXtEcwb
+dz1dsDDm1AIHEzOscEiiv3CWeelNE1m63Bi6yozcmRRDbWcy/4Mpcd0kn/Jb
+ijXm6HGAXH/kO6rT+vlwVa7oOfNk5SgcZj68cw7ald42qDL8Je/9snZB0+cZ
+skxoW4Qya/RXqK4wnUB5ftopfGuUXK5nWm4ZyGDrcLWROTrkIOP3e+MbmG6N
+Rgpfjt13wmY+jwz5ObwGLYpvv2GazZzayOQKuklxSVwRtIV5i+EXLmkadviS
+yXWuWfnhk5/32M3kdvaSHQ4mOB2wLjpnAQZn1aShT5EinWU/jM/k8D8ftST9
+
+  "],ExpressionUUID->"d75fa353-fec3-49dc-bf61-4097204c4fd3"],
+
+Cell[TextData[{
+ "Now we need to create ",
+ StyleBox["h",
+  FontWeight->"Bold"],
+ " and ",
+ StyleBox["g",
+  FontWeight->"Bold"],
+ " and multiply each by X on the left.  The final step is to join the two \
+products as a single vector.  The Mathematica command ",
+ StyleBox["Join",
+  FontWeight->"Bold"],
+ " should be helpful.  You should be able to do all the computations in one \
+line that is assigned the value ",
+ StyleBox["y",
+  FontWeight->"Bold"],
+ " below."
+}], "Text",
+ CellChangeTimes->{{3.7298631505242596`*^9, 3.729863188589567*^9}, {
+   3.729863227630612*^9, 3.729863280592331*^9}, 
+   3.729872265949774*^9},ExpressionUUID->"a89c75ee-d215-4618-bf90-\
+37928935e949"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"h", "=", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"1", ",", "1"}], "}"}], "/", "2"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"g", "=", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"-", "1"}], ",", "1"}], "}"}], "/", "2"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"y", "=", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "replace", " ", "this", " ", "comment", " ", "with", " ", "your", " ", 
+    "code"}], " ", "*)"}]}]}], "Input",
+ CellChangeTimes->{{3.729863202653226*^9, 3.7298632244319086`*^9}, 
+   3.729863285072747*^9, {3.7298722711176414`*^9, 
+   3.7298722711654267`*^9}},ExpressionUUID->"2f366aa1-1f75-4552-a5fa-\
+15b831654b65"],
+
+Cell[TextData[{
+ "Check your values for ",
+ StyleBox["y",
+  FontWeight->"Bold"],
+ " by applying the WaveletWare command ",
+ StyleBox["HWT",
+  FontWeight->"Bold"],
+ " to ",
+ StyleBox["v",
+  FontWeight->"Bold"],
+ ".  \n\nIf you have the correct answer, go back and try different vectors \
+for ",
+ StyleBox["v",
+  FontWeight->"Bold"],
+ ", making sure the length of ",
+ StyleBox["v",
+  FontWeight->"Bold"],
+ " is always even."
+}], "Text",
+ CellChangeTimes->{{3.7298633193927317`*^9, 3.729863348242071*^9}, {
+  3.729863384914996*^9, 3.729863410899499*^9}, {3.72987227519825*^9, 
+  3.729872277101637*^9}},ExpressionUUID->"ef3fa672-ad5f-4a06-a320-\
+f340034288ba"],
+
+Cell[BoxData[
+ RowBox[{"HWT", "[", 
+  RowBox[{"v", ",", 
+   RowBox[{"Computation", "\[Rule]", "Symbolic"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.729863357977228*^9, 
+  3.729863364947296*^9}},ExpressionUUID->"c5ae7c58-519a-4b92-8468-\
+4dd7459f4853"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Module for the Transform", "Subsubsection",
+ CellChangeTimes->{{3.729863514181957*^9, 3.729863519046232*^9}, 
+   3.7301976360020175`*^9},ExpressionUUID->"7fda26e5-b84c-4caa-b8d9-\
+59373b9d3190"],
+
+Cell[TextData[{
+ "The cell below contains code for a module that takes a vector ",
+ StyleBox["v",
+  FontWeight->"Bold"],
+ " of even length and returns its Haar wavelet transform.  You should be able \
+to take the code from the last section and create a module from it.  The \
+template for the module is given."
+}], "Text",
+ CellChangeTimes->{{3.729863523398472*^9, 
+  3.7298635878323417`*^9}},ExpressionUUID->"90ea7e0d-f878-49b7-ad56-\
+8c0317684317"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"HWT1d1", "[", "v_", "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"X", ",", "h", ",", "g", ",", "y"}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"h", "=", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"1", ",", "1"}], "}"}], "/", "2"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"g", "=", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"-", "1"}], ",", "1"}], "}"}], "/", "2"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"X", "="}], 
+      RowBox[{"(*", " ", 
+       RowBox[{
+       "replace", " ", "this", " ", "comment", " ", "with", " ", "your", " ", 
+        "code"}], " ", "*)"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"y", "="}], 
+      RowBox[{"(*", " ", 
+       RowBox[{
+       "replace", " ", "this", " ", "comment", " ", "with", " ", "your", " ", 
+        "code"}], " ", "*)"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Return", "[", "y", "]"}], ";"}]}], "\[IndentingNewLine]", 
+    "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.7298635924611235`*^9, 3.7298636663786507`*^9}, {
+  3.7298722013237877`*^9, 3.7298722014997873`*^9}, {3.729873590153146*^9, 
+  3.7298735946335196`*^9}},ExpressionUUID->"b2b01059-cc96-4d2e-817d-\
+94779b53ef9f"],
+
+Cell[TextData[{
+ "The code below allows you to test your module by comparing results of ",
+ StyleBox["MyHWT1d1",
+  FontWeight->"Bold"],
+ " and ",
+ StyleBox["HWT",
+  FontWeight->"Bold"],
+ ". "
+}], "Text",
+ CellChangeTimes->{{3.729863808254396*^9, 
+  3.7298638564958425`*^9}},ExpressionUUID->"d3a0d7af-7678-4c12-abe6-\
+8524ec3f1dee"],
+
+Cell[BoxData[{
+ RowBox[{"v", "=", 
+  RowBox[{"RandomInteger", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"0", ",", "100"}], "}"}], ",", 
+    RowBox[{"2", "*", 
+     RowBox[{"RandomInteger", "[", 
+      RowBox[{"{", 
+       RowBox[{"1", ",", "12"}], "}"}], "]"}]}]}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"y1", "=", 
+  RowBox[{"HWT1d1", "[", "v", "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"y2", "=", 
+  RowBox[{"HWT", "[", 
+   RowBox[{"v", ",", 
+    RowBox[{"Computation", "\[Rule]", "Symbolic"}]}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"y1", "\[Equal]", "y2"}]}], "Input",
+ CellChangeTimes->{{3.7298638687981567`*^9, 3.7298639749812107`*^9}, {
+  3.7298641756425605`*^9, 3.7298641918191333`*^9}, {3.7298722055792637`*^9, 
+  3.7298722057714615`*^9}, {3.7298722858541274`*^9, 3.729872293454156*^9}, {
+  3.7298807578824387`*^9, 
+  3.7298807580585327`*^9}},ExpressionUUID->"dc8fbc5e-bb20-47c4-a97b-\
+87b74ef34392"],
+
+Cell[TextData[{
+ StyleBox["Note:",
+  FontWeight->"Bold"],
+ " For vectors of large length, the computations in ",
+ StyleBox["MyHWT1d1",
+  FontWeight->"Bold"],
+ " will be faster if they are not done symbolically.  You can control this by \
+adding a decimal point after the 2 in the definitions of h and g.  In this \
+case, for comparative purposes, you should remove the ",
+ StyleBox["Computation->Symbolic",
+  FontWeight->"Bold"],
+ " option in the call to ",
+ StyleBox["HWT",
+  FontWeight->"Bold"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.7298639856677094`*^9, 
+  3.7298640774635506`*^9}},ExpressionUUID->"b067ddfe-104d-4614-b76c-\
+afbba460b4e8"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Development of the Inverse Transform", "Subsubsection",
+ CellChangeTimes->{{3.7298644305305023`*^9, 3.729864441778325*^9}, 
+   3.7301976387786565`*^9},ExpressionUUID->"c08d85a7-5ec6-4449-b7c8-\
+e3309600d692"],
+
+Cell[TextData[{
+ "The development of the inverse transform is based on Problem 4.10 in \
+Section 4.1.  You should do this problem and determine X for even length \
+vectors.   In the cell below, ",
+ StyleBox["y",
+  FontWeight->"Bold"],
+ " is created using ",
+ StyleBox["MyHWT1d1",
+  FontWeight->"Bold"],
+ ".  Use Mathematica commands to create X.  There are several ways to do this \
+- one way is to use the commands ",
+ StyleBox["Length",
+  FontWeight->"Bold"],
+ ", ",
+ StyleBox["Partition",
+  FontWeight->"Bold"],
+ " and ",
+ StyleBox["Transpose",
+  FontWeight->"Bold"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.729864446082404*^9, 3.729864579462268*^9}, 
+   3.7298713665289326`*^9},ExpressionUUID->"40c45cd9-3897-406f-9464-\
+974629319f16"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"v", "=", 
+   RowBox[{"Range", "[", "12", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"y", "=", 
+  RowBox[{"HWT1d1", "[", "v", "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"X", "=", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "replace", " ", "this", " ", "comment", " ", "with", " ", "your", " ", 
+    "code"}], " ", "*)"}]}]}], "Input",
+ CellChangeTimes->{{3.72986458496566*^9, 3.729864593191188*^9}, {
+  3.729871384240239*^9, 3.7298713951711445`*^9}, {3.729872208699457*^9, 
+  3.7298722089076176`*^9}, {3.7298807547784815`*^9, 
+  3.729880754938682*^9}},ExpressionUUID->"bb5918ce-d618-413a-9b36-\
+63f8eef324b8"],
+
+Cell[TextData[{
+ "Now that you have X, you can compute X.",
+ StyleBox["h",
+  FontWeight->"Bold"],
+ " and X.",
+ StyleBox["g",
+  FontWeight->"Bold"],
+ ".    After computing these products, you will see that unlike the forward \
+transform, the ",
+ StyleBox["Join",
+  FontWeight->"Bold"],
+ " command cannot be used to compute the inverse transform, storing the \
+result in ",
+ StyleBox["w",
+  FontWeight->"Bold"],
+ ".  The values of the products must be interlaced.    Check out the \
+Mathematica command ",
+ StyleBox["Riffle",
+  FontWeight->"Bold"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.729871793165349*^9, 3.729871898657303*^9}, {
+  3.729871988100769*^9, 3.7298719950765724`*^9}, {3.7298720896556582`*^9, 
+  3.729872096392061*^9}},ExpressionUUID->"851ba596-0442-4de3-a9bf-\
+99a9f6758e29"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"h", "=", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "1"}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"g", "=", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", 
+     RowBox[{"-", "1"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"w", "=", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "replace", " ", "this", " ", "comment", " ", "with", " ", "your", " ", 
+    "code"}], " ", "*)"}]}]}], "Input",
+ CellChangeTimes->{{3.729872058600402*^9, 3.7298720789509706`*^9}, 
+   3.729872109737131*^9, {3.7298807529065046`*^9, 
+   3.7298807530509663`*^9}},ExpressionUUID->"806d5ebe-bc1c-40a3-8014-\
+0ee91576b43e"],
+
+Cell[TextData[{
+ "If you have the correct answer, go back and try different vectors for ",
+ StyleBox["v",
+  FontWeight->"Bold"],
+ ", making sure the length of ",
+ StyleBox["v",
+  FontWeight->"Bold"],
+ " is always even."
+}], "Text",
+ CellChangeTimes->{
+  3.7298720554306316`*^9},ExpressionUUID->"9334ffa1-8c9e-4be7-93cd-\
+1f4eb7a77200"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Module for the Inverse Transform", "Subsubsection",
+ CellChangeTimes->{{3.729863514181957*^9, 3.729863519046232*^9}, {
+   3.7298721552576957`*^9, 3.729872156041913*^9}, 
+   3.73019764028012*^9},ExpressionUUID->"efc125b3-3041-4179-b838-\
+52268268cbdc"],
+
+Cell[TextData[{
+ "The cell below contains code for a module that takes a vector ",
+ StyleBox["y",
+  FontWeight->"Bold"],
+ " of even length and returns its inverse Haar wavelet transform.  You should \
+be able to take the code from the last section and create a module from it.  \
+The template for the module is given."
+}], "Text",
+ CellChangeTimes->{{3.729863523398472*^9, 3.7298635878323417`*^9}, {
+  3.7298721634820814`*^9, 
+  3.7298721706822133`*^9}},ExpressionUUID->"9c829517-018a-462c-932e-\
+629b0ab03eb5"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"InverseHWT1d1", "[", "y_", "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"X", ",", "h", ",", "g", ",", "v"}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"h", "=", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", "1"}], "}"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"g", "=", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", 
+         RowBox[{"-", "1"}]}], "}"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"X", "="}], 
+      RowBox[{"(*", " ", 
+       RowBox[{
+       "replace", " ", "this", " ", "comment", " ", "with", " ", "your", " ", 
+        "code"}], " ", "*)"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"v", "="}], 
+      RowBox[{"(*", " ", 
+       RowBox[{
+       "replace", " ", "this", " ", "comment", " ", "with", " ", "your", " ", 
+        "code"}], " ", "*)"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Return", "[", "w", "]"}], ";"}]}], "\[IndentingNewLine]", 
+    "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.7298635924611235`*^9, 3.7298636663786507`*^9}, {
+   3.7298721924592776`*^9, 3.7298722307005157`*^9}, 3.7298723122550554`*^9, {
+   3.729878458851101*^9, 3.7298784632630653`*^9}, {3.729880750650711*^9, 
+   3.729880750812053*^9}},ExpressionUUID->"c08deeae-9343-48fb-bc8a-\
+481e42a7b0c3"],
+
+Cell["Here is some code to test your module.", "Text",
+ CellChangeTimes->{{3.729878509450553*^9, 
+  3.729878514153965*^9}},ExpressionUUID->"55487ad8-df11-494b-8eda-\
+ea4075a6caae"],
+
+Cell[BoxData[{
+ RowBox[{"v", "=", 
+  RowBox[{"RandomInteger", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"0", ",", "100"}], "}"}], ",", 
+    RowBox[{"2", "*", 
+     RowBox[{"RandomInteger", "[", 
+      RowBox[{"{", 
+       RowBox[{"1", ",", "12"}], "}"}], "]"}]}]}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"y", "=", 
+   RowBox[{"HWT1d1", "[", "v", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"v1", "=", 
+  RowBox[{"InverseHWT1d1", "[", "y", "]"}]}]}], "Input",
+ CellChangeTimes->{{3.7298785325533223`*^9, 3.729878544696459*^9}, 
+   3.72987857837582*^9, {3.7298807466356945`*^9, 
+   3.7298807467944193`*^9}},ExpressionUUID->"f1eb30d4-5ebc-4b8c-958a-\
+b017707f8254"],
+
+Cell[TextData[{
+ "You can make your module run faster if you replace ",
+ StyleBox["h",
+  FontWeight->"Bold"],
+ " and ",
+ StyleBox["g",
+  FontWeight->"Bold"],
+ " by {1.,1.} and {-1.,1.}, respectively."
+}], "Text",
+ CellChangeTimes->{{3.729935622004306*^9, 
+  3.729935653333172*^9}},ExpressionUUID->"f3118f8d-a65a-4d92-9483-\
+6ed4d26e72b3"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Problems", "Subsubsection",
+ CellChangeTimes->{{3.7298793683479357`*^9, 3.7298793778969684`*^9}, 
+   3.730197642127329*^9},ExpressionUUID->"bb2c7901-765d-4bb0-91b5-\
+2c89cf3e4932"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Create a constant vector (your choice of constant) of length 32 and compute \
+its Haar wavelet transform.  Use ",
+ StyleBox["WaveletVectorPlot",
+  FontWeight->"Bold"],
+ " to plot the result.  What happens to the differences portion of the \
+transform."
+}], "ItemNumbered",
+ CellChangeTimes->{{3.7299444218945613`*^9, 
+  3.7299444227605457`*^9}},ExpressionUUID->"e5f694ac-bbaf-4a63-a159-\
+63babc5d0ab8"],
+
+Cell[TextData[{
+ "Compute the Haar wavelet transform of the vector below and plot the \
+differences portion.  How does it compare to the averages portion?  Change \
+the function to ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["x", "3"], TraditionalForm]],ExpressionUUID->
+  "51a1dbc9-19d7-4836-8b52-f0aa23e3f597"],
+ ", cos(2\[Pi]x) and sin(2\[Pi]x) and repeat the exercise.  What is your \
+general conclusion?"
+}], "ItemNumbered",
+ CellChangeTimes->{{3.7299444218945613`*^9, 
+  3.7299444367937794`*^9}},ExpressionUUID->"c03d9e29-8939-409d-b800-\
+1e9cfb1fb94f"]
+}, Open  ]],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"f", "[", "x_", "]"}], ":=", 
+   RowBox[{"x", "^", "2"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"v", "=", 
+   RowBox[{"f", "[", 
+    RowBox[{
+     RowBox[{"Range", "[", 
+      RowBox[{"0", ",", "255"}], "]"}], "/", "256"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"ListPlot", "[", "v", "]"}]}], "Input",
+ CellChangeTimes->{{3.7298795544433546`*^9, 3.729879617032895*^9}, {
+  3.7298807442512093`*^9, 
+  3.7298807444107122`*^9}},ExpressionUUID->"1c73e077-81d7-47b0-a373-\
+05a2bd8ac40b"],
+
+Cell[TextData[{
+ "In this problem, you will do some naive compression.  The code below loads \
+the first row of an image into vector ",
+ StyleBox["v",
+  FontWeight->"Bold"],
+ ".  Compute the Haar wavelet transform of ",
+ StyleBox["v",
+  FontWeight->"Bold"],
+ " calling the result ",
+ StyleBox["y",
+  FontWeight->"Bold"],
+ ".  Replace all the values of the differences portion of ",
+ StyleBox["y",
+  FontWeight->"Bold"],
+ " with zeros calling the result ",
+ StyleBox["y1",
+  FontWeight->"Bold"],
+ ".  Mathematica commands that will be helpful are ",
+ StyleBox["Take",
+  FontWeight->"Bold"],
+ ", ",
+ StyleBox["ConstantArray",
+  FontWeight->"Bold"],
+ " and ",
+ StyleBox["Join",
+  FontWeight->"Bold"],
+ ".   Next compute the inverse Haar wavelet transform of ",
+ StyleBox["y1",
+  FontWeight->"Bold"],
+ " and call the result ",
+ StyleBox["v1",
+  FontWeight->"Bold"],
+ ".    ",
+ StyleBox["ListPlot",
+  FontWeight->"Bold"],
+ " the difference of ",
+ StyleBox["v",
+  FontWeight->"Bold"],
+ " and ",
+ StyleBox["v1",
+  FontWeight->"Bold"],
+ ".  What is biggest difference (in absolute value) between these vectors?  \
+How does the entropy of ",
+ StyleBox["v1",
+  FontWeight->"Bold"],
+ " compare to that of ",
+ StyleBox["v",
+  FontWeight->"Bold"],
+ "?  (See Problem 3.37.)  Do you think the human eye could tell the \
+difference in intensities of the original first row (",
+ StyleBox["v",
+  FontWeight->"Bold"],
+ ") and those of the \
+\[OpenCurlyDoubleQuote]compressed\[CloseCurlyDoubleQuote] first row (",
+ StyleBox["v1",
+  FontWeight->"Bold"],
+ ")?"
+}], "ItemNumbered",
+ CellChangeTimes->{{3.7299444218945613`*^9, 
+  3.729944442857213*^9}},ExpressionUUID->"5f4cc62d-2ea5-4138-9264-\
+30000899d4c7"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"file", "=", 
+   RowBox[{
+    RowBox[{"PackageDirectory", "[", 
+     RowBox[{"DataType", "\[Rule]", "Images"}], "]"}], "<>", 
+    "\"\<chess.png\>\""}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"v", "=", 
+   RowBox[{"First", "[", 
+    RowBox[{"ImageRead", "[", "file", "]"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"ListPlot", "[", "v", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Print", "[", 
+   RowBox[{"\"\<The length of v is \>\"", ",", 
+    RowBox[{"Length", "[", "v", "]"}], ",", "\"\<.\>\""}], "]"}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.7298796621714015`*^9, 3.7298797315128317`*^9}, {
+  3.729880741931388*^9, 
+  3.72988074215475*^9}},ExpressionUUID->"020081fd-f2f4-4e83-8d64-\
+05f69be37384"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{759, 614},
+WindowMargins->{{58, Automatic}, {Automatic, 117}},
+FrontEndVersion->"12.0 for Microsoft Windows (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 943, 13, 67, "Section",ExpressionUUID->"b4d3dd46-bf41-416a-8a69-8d3f86104986"],
+Cell[1526, 37, 756, 13, 34, "Text",ExpressionUUID->"61b27de1-8e6c-4777-a97c-e405fa03ef99"],
+Cell[CellGroupData[{
+Cell[2307, 54, 189, 3, 44, "Subsubsection",ExpressionUUID->"3fffe5ac-09ce-46e2-8050-8c2090c2603e"],
+Cell[2499, 59, 1064, 20, 56, "Text",ExpressionUUID->"6a87367e-199b-4755-909b-1f0e93964a15"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3600, 84, 248, 4, 44, "Subsubsection",ExpressionUUID->"f0a02de7-73c3-4fdf-9fb7-3b6354eb70fb"],
+Cell[3851, 90, 199, 3, 34, "Text",ExpressionUUID->"1c2f17b5-7d52-43ea-8284-97a0802ab4e4"],
+Cell[4053, 95, 697, 12, 44, "Input",ExpressionUUID->"d0fbe505-08c6-4c5e-bfcb-4eebc307ea21",
+ InitializationCell->True],
+Cell[4753, 109, 327, 7, 56, "Text",ExpressionUUID->"49e06bb1-94fd-4029-9342-21f25eef50ef"],
+Cell[5083, 118, 1047, 16, 86, "Input",ExpressionUUID->"892245c5-7d54-4520-8f7e-ff7d8734cd49"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6167, 139, 182, 3, 44, "Subsubsection",ExpressionUUID->"d12af694-d058-4313-b3a0-e9d315230d53"],
+Cell[6352, 144, 451, 12, 34, "Text",ExpressionUUID->"69f3ddca-a071-46de-9b72-54a2cb177ab2"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6840, 161, 364, 5, 44, "Subsubsection",ExpressionUUID->"8a313543-5b7f-4f37-842b-1e2469d6be64"],
+Cell[7207, 168, 2898, 87, 205, "Text",ExpressionUUID->"e149f220-85cc-4f84-b2c9-aa96a593cc9d"],
+Cell[10108, 257, 993, 21, 48, "Input",ExpressionUUID->"d75fa353-fec3-49dc-bf61-4097204c4fd3"],
+Cell[11104, 280, 677, 20, 78, "Text",ExpressionUUID->"a89c75ee-d215-4618-bf90-37928935e949"],
+Cell[11784, 302, 702, 22, 67, "Input",ExpressionUUID->"2f366aa1-1f75-4552-a5fa-15b831654b65"],
+Cell[12489, 326, 656, 22, 100, "Text",ExpressionUUID->"ef3fa672-ad5f-4a06-a320-f340034288ba"],
+Cell[13148, 350, 252, 6, 28, "Input",ExpressionUUID->"c5ae7c58-519a-4b92-8468-4dd7459f4853"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[13437, 361, 200, 3, 44, "Subsubsection",ExpressionUUID->"7fda26e5-b84c-4caa-b8d9-59373b9d3190"],
+Cell[13640, 366, 450, 10, 78, "Text",ExpressionUUID->"90ea7e0d-f878-49b7-ad56-8c0317684317"],
+Cell[14093, 378, 1331, 36, 143, "Input",ExpressionUUID->"b2b01059-cc96-4d2e-817d-94779b53ef9f"],
+Cell[15427, 416, 331, 11, 34, "Text",ExpressionUUID->"d3a0d7af-7678-4c12-abe6-8524ec3f1dee"],
+Cell[15761, 429, 933, 24, 86, "Input",ExpressionUUID->"dc8fbc5e-bb20-47c4-a97b-87b74ef34392"],
+Cell[16697, 455, 644, 18, 100, "Text",ExpressionUUID->"b067ddfe-104d-4614-b76c-afbba460b4e8"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[17378, 478, 214, 3, 44, "Subsubsection",ExpressionUUID->"c08d85a7-5ec6-4449-b7c8-e3309600d692"],
+Cell[17595, 483, 738, 23, 100, "Text",ExpressionUUID->"40c45cd9-3897-406f-9464-974629319f16"],
+Cell[18336, 508, 643, 15, 67, "Input",ExpressionUUID->"bb5918ce-d618-413a-9b36-63f8eef324b8"],
+Cell[18982, 525, 788, 24, 100, "Text",ExpressionUUID->"851ba596-0442-4de3-a9bf-99a9f6758e29"],
+Cell[19773, 551, 643, 18, 67, "Input",ExpressionUUID->"806d5ebe-bc1c-40a3-8014-0ee91576b43e"],
+Cell[20419, 571, 335, 11, 56, "Text",ExpressionUUID->"9334ffa1-8c9e-4be7-93cd-1f4eb7a77200"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[20791, 587, 257, 4, 44, "Subsubsection",ExpressionUUID->"efc125b3-3041-4179-b838-52268268cbdc"],
+Cell[21051, 593, 511, 11, 78, "Text",ExpressionUUID->"9c829517-018a-462c-932e-629b0ab03eb5"],
+Cell[21565, 606, 1339, 33, 143, "Input",ExpressionUUID->"c08deeae-9343-48fb-bc8a-481e42a7b0c3"],
+Cell[22907, 641, 180, 3, 34, "Text",ExpressionUUID->"55487ad8-df11-494b-8eda-ea4075a6caae"],
+Cell[23090, 646, 693, 19, 67, "Input",ExpressionUUID->"f1eb30d4-5ebc-4b8c-958a-b017707f8254"],
+Cell[23786, 667, 338, 11, 34, "Text",ExpressionUUID->"f3118f8d-a65a-4d92-9483-6ed4d26e72b3"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[24161, 683, 186, 3, 44, "Subsubsection",ExpressionUUID->"bb2c7901-765d-4bb0-91b5-2c89cf3e4932"],
+Cell[CellGroupData[{
+Cell[24372, 690, 420, 10, 71, "ItemNumbered",ExpressionUUID->"e5f694ac-bbaf-4a63-a159-63babc5d0ab8"],
+Cell[24795, 702, 562, 13, 71, "ItemNumbered",ExpressionUUID->"c03d9e29-8939-409d-b800-1e9cfb1fb94f"]
+}, Open  ]],
+Cell[25372, 718, 558, 16, 67, "Input",ExpressionUUID->"1c73e077-81d7-47b0-a373-05a2bd8ac40b"],
+Cell[25933, 736, 1686, 60, 171, "ItemNumbered",ExpressionUUID->"5f4cc62d-2ea5-4138-9264-30000899d4c7"],
+Cell[27622, 798, 775, 21, 86, "Input",ExpressionUUID->"020081fd-f2f4-4e83-8d64-05f69be37384"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

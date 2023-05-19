@@ -1,0 +1,10 @@
+<pre name='i_49_in' id='i_49_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;cups.png&quot;;
+A = ImageRead[file, Resize -&gt; {128, 192}];
+ImagePlot[A]
+WaveletPlot[HWT[A], ChannelColor -&gt; {Red, Green, Blue}, 
+ Iteration -&gt; {{All, 1, 1, 1}}, Dimming -&gt; White]
+WaveletPlot[HWT[A], ChannelColor -&gt; {Red, Green, Blue}, 
+ Iteration -&gt; {{All, 1, 1, 1}}, 
+ Dimming -&gt; {Orange, Pink, Lighter[Gray]}]
+WaveletPlot[HWT[A], PlotTogether -&gt; True, 
+ Iteration -&gt; {{All, 1, 1, 1}}, Dimming -&gt; Orange]</pre><div class='IFU'><a name='325020159'></a>http://wolfram.com/xid/0cew39zuhikyj6xdcij5apz9u-fnslf1</div>

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>WaveletWare Package&mdash;Wolfram Language Documentation</title>
+<meta name="buildnumber" content="0000000" />
+<meta name="historydata" content="{0.0, , , }" />
+<meta name="keywords" content="WaveletWare Package" />
+
+<meta name="description" content="(top) The WaveletWare package is a set of routines that supplement the ideas and applications in the texts " />
+<script language="JavaScript" type="text/javascript">baselang='WaveletWare Package';</script>
+<script language="JavaScript" type="text/javascript">packagename='WaveletWare';</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		 <link rel="stylesheet" type="text/css" href="../css/reference.css" />
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/core/1.6.1/jquery.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/plugins/hoverIntent/r5/jquery.hoverIntent.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/reference.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/documentation-search.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/inputs.js"></script>
+		 <script language="javaScript" type="text/javascript" src="../javascript/faster-page-load.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/plugins/jcarousel/tinycarousel/tinycarousel.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery.dotdotdot-1.5.1.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/carousel.js"></script>
+</head>
+<body id="tutorial">
+<a name="top"></a>
+<!--#include virtual="/common/includes/gl-header.html"--> 
+<div class="main-wrapper">
+
+
+<div class="wrapper mainOuter">
+    <div class="mainContent">
+ <div class="topContentWrap">
+  <div class="ribbonWrap">
+   <span class="ribbonOuter"><span class="ribbonInner">WAVELET WARE TUTORIAL</span></span>
+  </div>
+  <ul class="dropdown">
+   <li>
+    <a href="#">Tutorials</a>
+    <ul class="sub_menu">
+     <li>
+      <a href="/language/WaveletWare/tutorial/Computing and Plotting Wavelet Packet Transforms.html"><span class="dropdownPad">Computing and Plotting Wavelet Packet Transformations</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/tutorial/Computing and Plotting Wavelet Transformations.html"><span class="dropdownPad">Computing and Plotting Wavelet Transformations</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/tutorial/Data Structures in the WaveletWare Package.html"><span class="dropdownPad">Data Structures in the WaveletWare Package</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/tutorial/Differences in the DiscreteWavelets and WaveletWare Packages.html"><span class="dropdownPad">Differences in the DiscreteWavelets and WaveletWare Package</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/tutorial/Managing Image, Audio and Data Files in WaveletWare.html"><span class="dropdownPad">Managing Multimedia Files in the WaveletWare Package</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/tutorial/Naive Image Compression and Edge Detection.html"><span class="dropdownPad">Naive Image Compression and Edge Detection</span></a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+  <div class="clear"><!-- --></div>
+ </div>
+ <h1 class="Title"><a name="509267359"></a>WaveletWare Package</h1>
+ <div class="TutorialJumpBox">
+  <table class="nogridboxdividers">
+   <col />
+   <col />
+   <tr class="lineAbove" style=""><td><a href="../tutorial/WaveletWare Package.html#311706299">Overview</a></td><td><a href="../tutorial/WaveletWare Package.html#16562595">Quick Start</a></td></tr>
+  </table>
+ </div>
+ <h2 class="Section"><a name="311706299"></a>Overview</h2>
+ <p class="Text">
+  <a name="272836252"></a>
+  <a href="#main">(top)</a>
+ </p>
+ <p class="Text"><a name="165902894"></a>The <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> package is a set of routines that supplement the ideas and applications in the texts</p>
+ <p class="Text"><a name="740417777"></a><br /><img src="Files/WaveletWare Package/1.gif" height="240" width="150" alt="" /><br /><br /><a href="http://www.wiley.com/WileyCDA/WileyTitle/productCd-047018311X.html">Discrete Wavelet Transformations: An Elementary Approach with Applications</a> <br />by Patrick Van Fleet (Wiley, 2008) <br /></p>
+ <p class="Text"><a name="556009803"></a><br />and </p>
+ <p class="Text"><a name="489887271"></a><img src="Files/WaveletWare Package/2.gif" height="240" width="150" alt="" /><br /><br /><a href="http://www.wiley.com/WileyCDA/WileyTitle/productCd-0470388404.html">Wavelet Theory: An Elementary Approach with Applications</a> <br />by David Ruch and Patrick Van Fleet (Wiley, 2009).  </p>
+ <p class="Text"><a name="180150420"></a><br />The author of the WaveletWare package is <a href="http://personal.stthomas.edu/pjvanfleet">Patrick Van Fleet</a>.<br /><br />The WaveletWare package is the next iteration of the DiscreteWavelets package.  The DiscreteWavelets package was written as a supplement of the text <a href="http://www.wiley.com/WileyCDA/WileyTitle/productCd-047018311X.html">Discrete Wavelet Transformations: An Elementary Approach with Applications</a> by Patrick Van Fleet.<br /><br />The WaveletWare package contains several (bi)orthgonal filters and functions that can compute an orthogonal, biorthogonal or wavelet packet transform of a vector, matrix or list of three matrices each of the same dimension.  Several vizualization routines are included as well.<br /><br />The WaveletWare package also contains routines for image processing, signal/image denoising and the approximation of continuous scaling, wavelet and wavelet packet functions.</p>
+ <h3 class="Subsection"><a name="628600378"></a>Reference Guides</h3>
+ <p class="Text"><a name="545485846"></a>For reference, the WaveletWare package contains three guides:<br /><br />1) <a href="../tutorial/WaveletWareOverview.html">WaveletWare Overview</a><br />2<span class="BulletedText"><a href="../guide/List of Functions - Alphabetical.html">) List of Functions - Alphabetical</a></span><br />3) <a href="../guide/List of Functions - Categorical.html">List of Functions - Categorical</a><br />4) <a href="../guide/List of Options and Values.html">List of Options and Values</a><br />Several tutorials are included with the package.  See the list at the bottom of this page under Related Tutorials.  In particular, the tutorial <a href="../tutorial/Differences in the DiscreteWavelets and WaveletWare Packages.html">Differences in the DiscreteWavelets and WaveletWare Packages</a> describes changes, enhancements, and additions in moving from the DiscreteWavelets package to the WaveletWare package.</p>
+ <div class="MCap"><a name="16454449"></a>This loads the package:</div>
+ <table class="InCell">
+  <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+     <a name="861618089"></a>
+     <img src="Files/WaveletWare Package/I_2.gif"
+         height="15"
+         width="93"
+         alt="Click for copyable input" />
+    </div><div id="i_1_out" class="IFL"></div></td></tr>
+ </table>
+ <h2 class="Section"><a name="16562595"></a>Quick Start</h2>
+ <p class="Text">
+  <a name="341814157"></a>
+  <a href="#main">(top)</a>
+ </p>
+ <h3 class="Subsection"><a name="684693401"></a>Filters</h3>
+ <p class="Text">
+  <a name="644748384"></a>
+  <a href="#top">(top of section)</a>
+ </p>
+ <p class="Text"><a name="33213190"></a>Here are some filters from the <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> package:</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+      <a name="104177860"></a>
+      <img src="Files/WaveletWare Package/I_4.gif"
+          height="84"
+          width="93"
+          alt="Click for copyable input" />
+     </div><div id="i_3_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletWare Package/O_1.gif" height="37" width="66" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[2]=</td><td class="Output"><img src="Files/WaveletWare Package/O_2.gif" height="15" width="418" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[3]=</td><td class="Output"><img src="Files/WaveletWare Package/O_3.gif" height="33" width="322" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[4]=</td><td class="Output"><img src="Files/WaveletWare Package/O_4.gif" height="37" width="340" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[5]=</td><td class="Output"><img src="Files/WaveletWare Package/O_5.gif" height="33" width="524" alt="" /></td></tr>
+  </table>
+ </div>
+ <h3 class="Subsection"><a name="278627324"></a>Computing and Plotting Wavelet Transformations</h3>
+ <p class="Text">
+  <a name="32745635"></a>
+  <a href="#top">(top of section)</a>
+ </p>
+ <p class="Text"><a name="1534169418"></a>In the cell below, an image is loaded and its wavelet transformation is computed and plotted.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[6]:=</td><td class="Input"><div>
+      <a name="172063481"></a>
+      <img src="Files/WaveletWare Package/I_6.gif"
+          height="101"
+          width="321"
+          alt="Click for copyable input" />
+     </div><div id="i_5_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[8]=</td><td class="Output"><img src="Files/WaveletWare Package/O_6.gif" height="256" width="384" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[10]=</td><td class="Output"><img src="Files/WaveletWare Package/O_7.gif" height="256" width="384" alt="" /></td></tr>
+  </table>
+ </div>
+ <h3 class="Subsection"><a name="4968788"></a>Wavelet Packet Transformations</h3>
+ <p class="Text">
+  <a name="38143222"></a>
+  <a href="#top">(top of section)</a>
+ </p>
+ <p class="Text"><a name="144792097"></a>Load an image and compute and plot its wavelet packet transformation.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[11]:=</td><td class="Input"><div>
+      <a name="793382775"></a>
+      <img src="Files/WaveletWare Package/I_8.gif"
+          height="135"
+          width="397"
+          alt="Click for copyable input" />
+     </div><div id="i_7_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[13]=</td><td class="Output"><img src="Files/WaveletWare Package/O_8.gif" height="328" width="493" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[15]=</td><td class="Output"><img src="Files/WaveletWare Package/O_9.gif" height="126" width="493" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[16]=</td><td class="Output"><img src="Files/WaveletWare Package/O_10.gif" height="328" width="493" alt="" /></td></tr>
+  </table>
+ </div>
+ <h3 class="Subsection"><a name="2227113"></a>Image Processing</h3>
+ <p class="Text">
+  <a name="851924250"></a>
+  <a href="#top">(top of section)</a>
+ </p>
+ <p class="Text"><a name="206446285"></a>The cell below illustrates some different image processing tools available in the package.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[17]:=</td><td class="Input"><div>
+      <a name="10226755"></a>
+      <img src="Files/WaveletWare Package/I_10.gif"
+          height="152"
+          width="336"
+          alt="Click for copyable input" />
+     </div><div id="i_9_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[19]=</td><td class="Output"><img src="Files/WaveletWare Package/O_11.gif" height="256" width="384" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[21]=</td><td class="Output"><img src="Files/WaveletWare Package/O_12.gif" height="256" width="384" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[23]=</td><td class="Output"><img src="Files/WaveletWare Package/O_13.gif" height="256" width="384" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="450851320"></a>Color images can be converted to different color spaces.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[24]:=</td><td class="Input"><div>
+      <a name="185403809"></a>
+      <img src="Files/WaveletWare Package/I_12.gif"
+          height="169"
+          width="329"
+          alt="Click for copyable input" />
+     </div><div id="i_11_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[26]=</td><td class="Output"><img src="Files/WaveletWare Package/O_14.gif" height="256" width="384" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[27]=</td><td class="Output"><img src="Files/WaveletWare Package/O_15.gif" height="252" width="386" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[29]=</td><td class="Output"><img src="Files/WaveletWare Package/O_16.gif" height="252" width="386" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[31]=</td><td class="Output"><img src="Files/WaveletWare Package/O_17.gif" height="252" width="386" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="346246704"></a>Huffman codes can be computed and visualized.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[35]:=</td><td class="Input"><div>
+      <a name="388590638"></a>
+      <img src="Files/WaveletWare Package/I_14.gif"
+          height="50"
+          width="247"
+          alt="Click for copyable input" />
+     </div><div id="i_13_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[37]=</td><td class="Output"><img src="Files/WaveletWare Package/O_18.gif" height="464" width="300" alt="" /></td></tr>
+  </table>
+ </div>
+ <h3 class="Subsection"><a name="219741217"></a>Approximating Scaling and Wavelet Functions</h3>
+ <p class="Text">
+  <a name="589945229"></a>
+  <a href="#top">(top of section)</a>
+ </p>
+ <p class="Text"><a name="270323851"></a>The Cascade Algorithm is programmed into the package and can be used to approximate scaling and wavelet functions.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[46]:=</td><td class="Input"><div>
+      <a name="575933248"></a>
+      <img src="Files/WaveletWare Package/I_16.gif"
+          height="101"
+          width="445"
+          alt="Click for copyable input" />
+     </div><div id="i_15_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[47]=</td><td class="Output"><img src="Files/WaveletWare Package/O_19.gif" height="241" width="400" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[49]=</td><td class="Output"><img src="Files/WaveletWare Package/O_20.gif" height="245" width="400" alt="" /></td></tr>
+  </table>
+ </div>
+ <h3 class="Subsection"><a name="428492740"></a>Denoising</h3>
+ <p class="Text">
+  <a name="460875940"></a>
+  <a href="#top">(top of section)</a>
+ </p>
+ <p class="Text"><a name="555345712"></a>Sample a function, add noise and then use wavelet methods to remove the noise.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[50]:=</td><td class="Input"><div>
+      <a name="68427063"></a>
+      <img src="Files/WaveletWare Package/I_18.gif"
+          height="169"
+          width="489"
+          alt="Click for copyable input" />
+     </div><div id="i_17_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[53]=</td><td class="Output"><img src="Files/WaveletWare Package/O_21.gif" height="153" width="240" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[55]=</td><td class="Output"><img src="Files/WaveletWare Package/O_22.gif" height="153" width="240" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[57]=</td><td class="Output"><img src="Files/WaveletWare Package/O_23.gif" height="153" width="240" alt="" /></td></tr>
+  </table>
+ </div>
+ <div class="expandWrap"
+     id="RelatedTutorials">
+  <div class="expandOuter">
+   <h2 class="expandInner"><a class="expand hide" title="show" href="#">Related Tutorials</a><a class="collapse" title="hide" href="#">Related Tutorials</a></h2>
+   <div class="expanded">
+    <ul class="functionList">
+     <li>
+      <a name="806871991"></a>
+      <a href="../tutorial/Computing and Plotting Wavelet Packet Transforms.html">Computing and Plotting Wavelet Packet Transformations</a>
+     </li>
+     <li>
+      <a name="606149202"></a>
+      <a href="../tutorial/Computing and Plotting Wavelet Transformations.html">Computing and Plotting Wavelet Transformations</a>
+     </li>
+     <li>
+      <a name="390479971"></a>
+      <a href="../tutorial/Data Structures in the WaveletWare Package.html">Data Structures in the WaveletWare Package</a>
+     </li>
+     <li>
+      <a name="175784427"></a>
+      <a href="../tutorial/Differences in the DiscreteWavelets and WaveletWare Packages.html">Differences in the DiscreteWavelets and WaveletWare Package</a>
+     </li>
+     <li>
+      <a name="538266167"></a>
+      <a href="../tutorial/Managing Image, Audio and Data Files in WaveletWare.html">Managing Multimedia Files in the WaveletWare Package</a>
+     </li>
+     <li>
+      <a name="326660638"></a>
+      <a href="../tutorial/Naive Image Compression and Edge Detection.html">Naive Image Compression and Edge Detection</a>
+     </li>
+    </ul>
+   </div>
+  </div>
+ </div>
+</div>
+</div><!-- /wrapper -->
+
+
+	
+</div>
+
+
+</body>
+		 </html>

@@ -1,0 +1,93 @@
+<script type="text/javascript" src="../javascript/sub-pages.js"></script><div class="expandSubsubWrap closed">
+  <div class="expandSubsubOuter">
+   <h4 class="expandSubsubInner"><a class="expand" href="#" title="show">CostFunction<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(2)</span></a><a class="collapse hide" href="#" title="hide">CostFunction<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(2)</span></a></h4>
+   <div class="expanded hide">
+    <p><a name="136239078"></a>The <a href="../WaveletWare/tutorial/WaveletWare Package.html">WaveletWare</a> package comes with four cost functions:  <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/ShannonEntropy.html">ShannonEntropy</a></span>, <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/SumOfPowers.html">SumOfPowers</a></span>, <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/NumberAboveThreshold.html">NumberAboveThreshold</a></span>, and <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/NumberNonzero.html">NumberNonzero</a></span> (default).  Any of these (or a user-constructed cost function) can be used to compute the best basis tree by setting the <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/CostFunction.html">CostFunction</a></span> option.</p>
+    <div class="IO">
+     <table class="InCell">
+      <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+         <a name="498875522"></a>
+         <img src="Files/BestBasisTree/I_8.gif"
+             height="169"
+             width="515"
+             alt="Click for copyable input" />
+        </div><div id="i_7_out" class="IFL"></div></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/BestBasisTree/O_8.gif" height="168" width="240" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/BestBasisTree/O_9.gif" height="248" width="400" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/BestBasisTree/O_10.gif" height="15" width="206" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/BestBasisTree/O_11.gif" height="125" width="240" alt="" /></td></tr>
+     </table>
+    </div>
+    <div class="ExLine"><a name="335270761"></a><!-- --></div>
+    <p><a name="23758204"></a>Find the best basis tree with a user-defined cost function.  The cost function Cst must satisfy <br />
+Cst(<span class="IF"><img src="Files/BestBasisTree/4.png" height="17" width="35" alt="" /></span>) = Cst(a) + Cst(b)<br /><br />and Cst(0) = 0.  </p>
+    <div class="IO">
+     <table class="InCell">
+      <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+         <a name="181849447"></a>
+         <img src="Files/BestBasisTree/I_10.gif"
+             height="186"
+             width="515"
+             alt="Click for copyable input" />
+        </div><div id="i_9_out" class="IFL"></div></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/BestBasisTree/O_12.gif" height="168" width="240" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/BestBasisTree/O_13.gif" height="248" width="400" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/BestBasisTree/O_14.gif" height="15" width="206" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/BestBasisTree/O_15.gif" height="125" width="240" alt="" /></td></tr>
+     </table>
+    </div>
+   </div>
+  </div>
+ </div><div class="expandSubsubWrap closed">
+  <div class="expandSubsubOuter">
+   <h4 class="expandSubsubInner"><a class="expand" href="#" title="show">SecondParameter<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a><a class="collapse hide" href="#" title="hide">SecondParameter<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a></h4>
+   <div class="expanded hide">
+    <p><a name="14018720"></a>Some costs functions (e.g., <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/NumberAboveThreshold.html">NumberAboveThreshold</a></span> or <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/SumOfPowers.html">SumOfPowers</a></span>) require a second parameter.</p>
+    <div class="IO">
+     <table class="InCell">
+      <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+         <a name="79184216"></a>
+         <img src="Files/BestBasisTree/I_12.gif"
+             height="220"
+             width="464"
+             alt="Click for copyable input" />
+        </div><div id="i_11_out" class="IFL"></div></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/BestBasisTree/O_16.gif" height="168" width="240" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/BestBasisTree/O_17.gif" height="248" width="400" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/BestBasisTree/O_18.gif" height="15" width="206" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/BestBasisTree/O_19.gif" height="125" width="240" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/BestBasisTree/O_20.gif" height="15" width="206" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/BestBasisTree/O_21.gif" height="125" width="240" alt="" /></td></tr>
+     </table>
+    </div>
+   </div>
+  </div>
+ </div>

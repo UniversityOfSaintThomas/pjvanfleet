@@ -1,0 +1,7 @@
+<pre name='i_25_in' id='i_25_in' class='IFT'>f = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;car.png&quot;;
+A = ImageRead[f, Resize -&gt; {128, 192}];
+ImagePlot[A]
+wt = HWT[A, NumIterations -&gt; 3];
+WaveletPlot[wt, NumIterations -&gt; 3]
+WaveletPlot[wt, NumIterations -&gt; 3, 
+ Iteration -&gt; {{1, 2, 2}, {2, 1, 2}, {3, 1, 1}, {3, 1, 2}}]</pre><div class='IFU'><a name='282085728'></a>http://wolfram.com/xid/0dw3hmeolb456i3ocz9bqdb7htqim7p8o1p7qzwg41bm-ex8c0y</div>

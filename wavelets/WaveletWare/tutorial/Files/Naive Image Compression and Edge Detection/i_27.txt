@@ -1,0 +1,5 @@
+<pre name='i_27_in' id='i_27_in' class='IFT'>codes = Map[MakeHuffmanCodes[# - Min[#]] &amp;, newwt];
+newlength = Map[Last, codes];
+bpp = Round[Total[newlength]/3./r/c, .01];
+Print[&quot;The bits per pixel of the encoded quantized transforms is &quot;, 
+  bpp, &quot;.&quot;];</pre><div class='IFU'><a name='322688699'></a>http://wolfram.com/xid/0ck2bt1tgpszi5qmumv90y9mftkdg9nq1q0ukjlzbu-fmemg9</div>

@@ -1,0 +1,8 @@
+<pre name='i_37_in' id='i_37_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;pigeon.png&quot;;
+A = ImageRead[file, Resize -&gt; {256, 384}];
+ImagePlot[A]
+wt = HWT[A];
+WaveletRegionPlot[wt, {{1, 1, 2}, {1, 2, 2}}, Scaling -&gt; False, 
+ ImageSize -&gt; 384]
+WaveletRegionPlot[wt, {{1, 1, 2}, {1, 2, 2}}, Scaling -&gt; True, 
+ ImageSize -&gt; 384]</pre><div class='IFU'><a name='409093329'></a>http://wolfram.com/xid/0br3whhmcljlx93k2tbxed7vin6a-g1ukpv</div>

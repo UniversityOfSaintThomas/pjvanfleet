@@ -1,0 +1,8 @@
+<pre name='i_11_in' id='i_11_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;goats.png&quot;;
+A = ImageRead[file, Resize -&gt; {256, 384}];
+ImagePlot[A]
+ImagePlot[A, ChannelColor -&gt; {Red, Green, Blue}]
+YCbCr = RGBToYCbCr[A, DisplayMode -&gt; True];
+ImagePlot[YCbCr, PlotTogether -&gt; False]
+HSI = RGBToHSI[A, DisplayMode -&gt; True];
+ImagePlot[HSI, PlotTogether -&gt; False]</pre><div class='IFU'><a name='185403809'></a>http://wolfram.com/xid/0bb24v1bavfeg9e1n9wtvw85xzwkij2-dcn4r3</div>

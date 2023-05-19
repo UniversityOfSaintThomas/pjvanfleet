@@ -1,0 +1,2 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>h = SplineFilters[3, 3];
+CheckFilter[h]</pre><div class='IFU'><a name='23346646'></a>http://wolfram.com/xid/0k18vmbfsv1bofr5bpvxwru-n6on8</div>

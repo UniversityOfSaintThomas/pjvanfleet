@@ -1,0 +1,4 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>h = {1 + Sqrt[3], 3 + Sqrt[3], 3 - Sqrt[3], 1 - Sqrt[3]}/4/
+   Sqrt[2] ;(* D4 filter *)
+WT[Range[20], h]
+WT[Range[20], h, Computation -&gt; Symbolic] // Simplify</pre><div class='IFU'><a name='601680247'></a>http://wolfram.com/xid/0hyhar0zcbct23kxeahe-j8idqh</div>

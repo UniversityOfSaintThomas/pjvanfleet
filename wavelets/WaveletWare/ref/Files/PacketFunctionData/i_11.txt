@@ -1,0 +1,5 @@
+<pre name='i_11_in' id='i_11_in' class='IFT'>h = Haar[];
+Manipulate[
+ ListPlot[PacketFunctionData[h, n], Joined -&gt; True, 
+  Ticks -&gt; {Range[0, 3], Range[-1, 2]}, ImageSize -&gt; 400], {n, 0, 8, 
+  1}]</pre><div class='IFU'><a name='13441053'></a>http://wolfram.com/xid/0istl84i27gzdwumekudn074i-iadgv</div>

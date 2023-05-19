@@ -1,0 +1,9 @@
+<pre name='i_27_in' id='i_27_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;waves.png&quot;;
+A = ImageRead[file, Resize -&gt; {256, 384}];
+ImagePlot[A]
+Map[ImagePlot, A] // GraphicsRow
+{wt, tree} = 
+  WPT[A, Daub[4], NumIterations -&gt; 3, 
+   CostFunction -&gt; NumberAboveThreshold, SecondParameter -&gt; 10];
+Map[ShowBestBasis[#, Show3D -&gt; False] &amp;, tree] // GraphicsRow
+WaveletPlot[wt, tree] // GraphicsRow</pre><div class='IFU'><a name='315446876'></a>http://wolfram.com/xid/0iglzsj6g5gr1t4ex14c4bsar4ymys4uuo5d2m08201-fh3eni</div>

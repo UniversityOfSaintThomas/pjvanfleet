@@ -1,0 +1,9 @@
+<pre name='i_7_in' id='i_7_in' class='IFT'>(* Donoho Heaviside function *)
+g[t_] := 4 Sin[4 Pi*t] - Sign[t - .3] - Sign[.72 - t];
+n = 1024;
+v = g[Range[0, 1 - 1/n, 1/n]];
+ListPlot[v, Ticks -&gt; {Range[0, n, n/4], Range[-1/2, 1/2]}, 
+ PlotLabel -&gt; &quot;Data Samples&quot;]
+iterations = 3;
+wt = HWT[v, NumIterations -&gt; iterations];
+WaveletVectorPlot[wt, NumIterations -&gt; iterations]</pre><div class='IFU'><a name='60765266'></a>http://wolfram.com/xid/0063dvybfwx396xojs3ub848rfm-bago2c</div>

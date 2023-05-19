@@ -1,0 +1,5 @@
+<pre name='i_11_in' id='i_11_in' class='IFT'>h = Daub[4];
+Manipulate[
+ ListPlot[ScalingFunctionData[h, NumIterations -&gt; iteration], 
+  Joined -&gt; True, Ticks -&gt; {Range[0, 3], Range[-1, 2]}, 
+  ImageSize -&gt; 400], {iteration, 1, 10, 1}]</pre><div class='IFU'><a name='166233213'></a>http://wolfram.com/xid/0b6ekx0z8pnru3asylaru54pcy-c088nj</div>

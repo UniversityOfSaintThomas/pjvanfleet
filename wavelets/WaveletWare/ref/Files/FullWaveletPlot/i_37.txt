@@ -1,0 +1,8 @@
+<pre name='i_37_in' id='i_37_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;benches.png&quot;;
+A = ImageRead[file, Resize -&gt; {256, 384}];
+wt = WTFull[A, Haar[]];
+FullWaveletPlot[wt, Iteration -&gt; {All, {{1, 1, 1}}}]
+FullWaveletPlot[wt, Iteration -&gt; {All, {{1, 1, 1}}}, 
+ DimmingRange -&gt; {230, 255}]
+FullWaveletPlot[wt, Iteration -&gt; {All, {{1, 1, 1}}}, 
+ DimmingRange -&gt; {100, 150}]</pre><div class='IFU'><a name='936202721'></a>http://wolfram.com/xid/0063dvybfwx396xn21trjec45uq-procxf</div>

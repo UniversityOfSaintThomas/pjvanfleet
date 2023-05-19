@@ -1,0 +1,4 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>v = RandomInteger[{-10, 10}, 8];
+w = ShrinkageFunction[v, 3];
+TableForm[Transpose[{v, w}], TableAlignments -&gt; Right, 
+ TableHeadings -&gt; {None, {&quot;t&quot;, &quot;s(t,3)&quot;}}]</pre><div class='IFU'><a name='786592695'></a>http://wolfram.com/xid/04j60t5tk393i6ik25ab3xrseq-nalo3d</div>

@@ -1,0 +1,16 @@
+<pre name='i_7_in' id='i_7_in' class='IFT'>img = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;benches.png&quot;;
+A = ImageRead[img, Resize -&gt; {256, 384}];
+ImagePlot[A]
+iterations = 2;
+wt = HWT[A, NumIterations -&gt; iterations];
+WaveletPlot[wt, NumIterations -&gt; iterations]
+wtlist = WaveletMatrixToList[wt, NumIterations -&gt; iterations];
+(* Replace the lowpass portion with a 0 matrix *)
+newwtlist = 
+  Prepend[Rest[wtlist], ConstantArray[0, Dimensions[A]/2^iterations]];
+(* Convert back to a matrix *)
+newwt = WaveletListToMatrix[newwtlist, NumIterations -&gt; iterations];
+WaveletPlot[newwt, NumIterations -&gt; iterations]
+(* Compute the inverse transform and plot edges *)
+iwt = InverseHWT[newwt, NumIterations -&gt; iterations];
+ImagePlot[iwt, Scaling -&gt; True]</pre><div class='IFU'><a name='303340133'></a>http://wolfram.com/xid/0bgs8pq6xf2jh4szo9r0zq56tpyd8y-favw03</div>

@@ -1,0 +1,2 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>A = RandomInteger[{0, 255}, {100, 100}];
+ImagePlot[A]</pre><div class='IFU'><a name='416363347'></a>http://wolfram.com/xid/0nxaq5tqtv6thic7hg2v2-g56eat</div>

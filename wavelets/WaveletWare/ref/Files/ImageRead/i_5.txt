@@ -1,0 +1,4 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>img = ImageInfo[ImageForm -&gt; Color];
+A = ImageRead[First[img]];
+Dimensions[A]
+ImagePlot[A]</pre><div class='IFU'><a name='72791144'></a>http://wolfram.com/xid/0bsub5sf4gpwe26ly21g5m-bhmgai</div>

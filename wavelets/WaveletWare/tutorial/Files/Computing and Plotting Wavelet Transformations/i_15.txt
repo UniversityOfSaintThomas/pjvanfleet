@@ -1,0 +1,9 @@
+<pre name='i_15_in' id='i_15_in' class='IFT'>(* Donoho/Johnstone Doppler function *)
+g[t_] := Sqrt[t (1 - t)]*Sin[2 Pi (1.05)/(t + .05)];
+n = 1000;
+v = g[Range[0, 1 - 1/n, 1/n]];
+wt = WT[v, Daub[4], NumIterations -&gt; 3];
+(* Plot the third iteration *)
+WaveletRegionPlot[wt, {{3, 1}, {3, 2}}, NumIterations -&gt; 3]
+(* Plot the highpass portion of the first iteration *)
+WaveletRegionPlot[wt, {{1, 2}}, NumIterations -&gt; 3]</pre><div class='IFU'><a name='153124086'></a>http://wolfram.com/xid/0kmsg876k74fv7tus4gahxj5adn8b2m3ovcixzmeb-ctf9k4</div>

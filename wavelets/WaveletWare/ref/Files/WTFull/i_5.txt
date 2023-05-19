@@ -1,0 +1,6 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;train.png&quot;;
+A = ImageRead[file];
+iterations = 3;
+wtfull = WTFull[A, SplineFilters[2, 2], NumIterations -&gt; iterations];
+FullWaveletPlot[wtfull]  // TableForm
+</pre><div class='IFU'><a name='780640912'></a>http://wolfram.com/xid/0fn9kyau1k5szc07wu9tv6a-m614n2</div>

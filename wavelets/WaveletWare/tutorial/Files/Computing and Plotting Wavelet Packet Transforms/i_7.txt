@@ -1,0 +1,4 @@
+<pre name='i_7_in' id='i_7_in' class='IFT'>trees = {{0, {1, 1}, {0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0}}, {0, {0, 
+     0}, {1, 0, 0, 1}, {0, 0, 1, 1, 1, 1, 0, 0}}, {0, {0, 0}, {0, 0, 
+     0, 1}, {1, 1, 1, 1, 1, 1, 0, 0}}, WaveletTree[3]};
+Map[ShowBestBasis, trees] // TableForm</pre><div class='IFU'><a name='52476015'></a>http://wolfram.com/xid/0iglzsj6g5gr1t4ex14c4bsar4ymys4uuo5d2m08201-5i01d</div>

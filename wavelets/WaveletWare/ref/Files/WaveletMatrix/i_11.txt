@@ -1,0 +1,6 @@
+<pre name='i_11_in' id='i_11_in' class='IFT'>{h, ht} = SplineFilters[2, 2];
+H = WaveletMatrix[{h, ht}, {8, 8}];
+MatrixForm[H]
+Ht = WaveletMatrix[{ht, h}, {8, 8}];
+MatrixForm[Ht]
+H.Transpose[Ht] == IdentityMatrix[8]</pre><div class='IFU'><a name='705837846'></a>http://wolfram.com/xid/0rbcx7yrv4nohjeyr4g6dr032-lyit84</div>

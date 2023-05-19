@@ -1,0 +1,4 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>A = RandomInteger[{-10, 10}, {8, 8}];
+MatrixForm[A]
+newA = QuantizeCE[A, 5];
+MatrixForm[newA]</pre><div class='IFU'><a name='311958238'></a>http://wolfram.com/xid/0rbcx7yrv4nohjeytx0ay0ec9-ff0msw</div>

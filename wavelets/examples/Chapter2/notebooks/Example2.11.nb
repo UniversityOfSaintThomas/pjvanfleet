@@ -1,0 +1,321 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     10837,        313]
+NotebookOptionsPosition[      9278,        269]
+NotebookOutlinePosition[      9622,        284]
+CellTagsIndexPosition[      9579,        281]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Example 2.11 (Block Matrix Multiplication)", "Section",
+ CellChangeTimes->{{3.6747400799154887`*^9, 3.6747400868855157`*^9}, {
+   3.6747401192115917`*^9, 3.674740124362601*^9}, {3.674823639171709*^9, 
+   3.674823640303733*^9}, {3.6748236819375725`*^9, 3.674823684099594*^9}, {
+   3.6748241486687813`*^9, 3.6748241538079395`*^9}, {3.674833786805024*^9, 
+   3.674833793820221*^9}, {3.67483496960868*^9, 3.674834977961851*^9}, {
+   3.6748372283814373`*^9, 3.6748372383986397`*^9}, {3.6748385806297417`*^9, 
+   3.6748385857348447`*^9}, {3.6748397883317714`*^9, 
+   3.6748397983939004`*^9}, {3.674840306273494*^9, 3.674840319442063*^9}, {
+   3.6749053385239134`*^9, 3.6749053446960697`*^9}, {3.6749076621445403`*^9, 
+   3.6749076643771744`*^9}, {3.6749079569710503`*^9, 3.674907957131055*^9}, 
+   3.7269226356112165`*^9},ExpressionUUID->"61441dcd-c124-4728-9627-\
+fe95dfa30ee1"],
+
+Cell["Compute the product of the given matrices using blocks.", "Text",
+ CellChangeTimes->{{3.6747401116573763`*^9, 3.6747401462228427`*^9}, {
+  3.674823687935635*^9, 3.6748237135069*^9}, {3.674824162140191*^9, 
+  3.6748241660423098`*^9}, {3.6748338237688246`*^9, 3.6748338335560656`*^9}, {
+  3.6748350000142927`*^9, 3.674835001045314*^9}, {3.6748372456437855`*^9, 
+  3.6748372514349017`*^9}, {3.674838592312978*^9, 3.674838602418185*^9}, {
+  3.6748398031289864`*^9, 3.6748398101000853`*^9}, {3.6748403296173935`*^9, 
+  3.6748403482264524`*^9}, {3.6749053485382376`*^9, 3.674905362536563*^9}, {
+  3.6749079664623704`*^9, 
+  3.674907977009245*^9}},ExpressionUUID->"ffd013fd-03fd-445a-a4d1-\
+95a0242f09b0"],
+
+Cell[CellGroupData[{
+
+Cell["Reference.", "Subsubsection",
+ CellChangeTimes->{{3.6747631102003517`*^9, 
+  3.6747631125733557`*^9}},ExpressionUUID->"ab3ce69c-85bd-4b8f-b7ee-\
+37b8a74faa09"],
+
+Cell["\<\
+The material for this lab is covered in Section 2.3 of the book \
+\[OpenCurlyDoubleQuote]Discrete Wavelet Transformations: An Elementary \
+Approach with Applications, 2nd Edition,\[CloseCurlyDoubleQuote] by Patrick J \
+Van Fleet.\
+\>", "Text",
+ CellChangeTimes->{{3.674763119565366*^9, 3.6747631649004583`*^9}, {
+   3.674763293323564*^9, 3.674763311554607*^9}, {3.6997856290190563`*^9, 
+   3.699785638548086*^9}, {3.72692103296169*^9, 3.726921034949597*^9}, 
+   3.7269211368903008`*^9},ExpressionUUID->"071ecca0-6276-4002-bd63-\
+6766fbd307d9"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["WaveletWare Commands Used in This Notebook", "Subsubsection",
+ CellChangeTimes->{{3.6747417571916847`*^9, 3.674741765831501*^9}, {
+  3.6747418595935683`*^9, 
+  3.6747419193671017`*^9}},ExpressionUUID->"14166fb2-5df0-4cb7-bdc7-\
+ebdcac9fc8df"],
+
+Cell["None.", "Text",
+ CellChangeTimes->{{3.6747419216613054`*^9, 3.6747419222229066`*^9}, {
+  3.6748347219042873`*^9, 3.674834723145313*^9}, {3.674834988453061*^9, 
+  3.6748349907731075`*^9}},ExpressionUUID->"47384da6-eb94-4255-845d-\
+95e71d44a104"],
+
+Cell[TextData[{
+ "Create ",
+ StyleBox["A",
+  FontWeight->"Bold"],
+ ", ",
+ StyleBox["B",
+  FontWeight->"Bold"],
+ " and the blocks. We use the second partitioning of ",
+ StyleBox["B",
+  FontWeight->"Bold"],
+ " since the first one is worked out in the text."
+}], "Text",
+ CellChangeTimes->{{3.674840400458351*^9, 3.6748404059380217`*^9}, {
+  3.6749054324554214`*^9, 3.6749054496912513`*^9}, {3.674905527883494*^9, 
+  3.6749055499922853`*^9}, {3.6749079900016356`*^9, 3.6749079954042974`*^9}, {
+  3.674908165471346*^9, 
+  3.6749081798661423`*^9}},ExpressionUUID->"e09137de-5cdd-4e7a-9e3b-\
+5c6063c06239"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"A", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2", ",", "1", ",", 
+       RowBox[{"-", "1"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "3", ",", "1"}], "}"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"A11", "=", 
+  RowBox[{"Take", "[", 
+   RowBox[{"A", ",", 
+    RowBox[{"{", 
+     RowBox[{"1", ",", "2"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"1", ",", "2"}], "}"}]}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"A12", "=", 
+   RowBox[{"Take", "[", 
+    RowBox[{"A", ",", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "2"}], "}"}], ",", 
+     RowBox[{"{", "3", "}"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Map", "[", 
+   RowBox[{"MatrixForm", ",", 
+    RowBox[{"{", 
+     RowBox[{"A", ",", "A11", ",", "A12"}], "}"}]}], "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"B", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2", ",", "1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"-", "1"}], ",", "0"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"5", ",", "4"}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"B11", "=", 
+   RowBox[{"Take", "[", 
+    RowBox[{"B", ",", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "2"}], "}"}], ",", "All"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"B21", "=", 
+   RowBox[{"Take", "[", 
+    RowBox[{"B", ",", 
+     RowBox[{"{", "3", "}"}], ",", "All"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Map", "[", 
+   RowBox[{"MatrixForm", ",", 
+    RowBox[{"{", 
+     RowBox[{"B", ",", "B11", ",", "B21"}], "}"}]}], "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.674840420123604*^9, 3.6748404468341465`*^9}, {
+  3.67484270198967*^9, 3.6748427021416845`*^9}, {3.6749054680450697`*^9, 
+  3.6749055250305223`*^9}, {3.6749055579942055`*^9, 3.674905583673958*^9}, {
+  3.6749072589936466`*^9, 3.674907259133649*^9}, {3.674908003725048*^9, 
+  3.67490811950928*^9}, {3.674908185630776*^9, 3.674908226920637*^9}, {
+  3.6749088356014795`*^9, 
+  3.6749088357314777`*^9}},ExpressionUUID->"4916c0df-b01d-464a-819b-\
+f74b87c77076"],
+
+Cell[TextData[{
+ "For this partitioning, the product is ",
+ StyleBox["A",
+  FontWeight->"Bold"],
+ ".",
+ StyleBox["B",
+  FontWeight->"Bold"],
+ " = ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox[
+    StyleBox["A",
+     FontWeight->"Bold",
+     FontSlant->"Plain"], "11"], TraditionalForm]],ExpressionUUID->
+  "d6f41294-3716-4a9c-8e64-3502ab63813e"],
+ ".",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox[
+    StyleBox["B",
+     FontWeight->"Bold",
+     FontSlant->"Plain"], "11"], TraditionalForm]],ExpressionUUID->
+  "76c03e1d-dbe4-41a1-aa39-9f156d020251"],
+ " + ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox[
+    StyleBox["A",
+     FontWeight->"Bold",
+     FontSlant->"Plain"], "12"], TraditionalForm]],ExpressionUUID->
+  "3be3ba0d-7c78-4b9c-94fb-631ec53b7f06"],
+ ".",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox[
+     StyleBox["B",
+      FontWeight->"Bold",
+      FontSlant->"Plain"], "21"], "."}], TraditionalForm]],ExpressionUUID->
+  "9e88138c-b450-42d9-b6cb-e853d2a4ab74"]
+}], "Text",
+ CellChangeTimes->{{3.6749083672023816`*^9, 3.6749083852892585`*^9}, {
+  3.6749084174749374`*^9, 
+  3.6749084413849196`*^9}},ExpressionUUID->"dee9bb5a-b75a-4573-be24-\
+e9c5e994ba5c"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"P", "=", 
+   RowBox[{
+    RowBox[{"A11", ".", "B11"}], "+", 
+    RowBox[{"A12", ".", "B21"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"MatrixForm", "[", "P", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"MatrixForm", "[", 
+  RowBox[{"A", ".", "B"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.674908445467501*^9, 3.674908462209908*^9}, {
+  3.674908833651499*^9, 
+  3.674908833891496*^9}},ExpressionUUID->"6b5d9466-7214-40d1-b5a2-\
+36914f340a5f"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Things To Try.", "Subsubsection",
+ CellChangeTimes->{{3.674741317287572*^9, 3.674741319527376*^9}, {
+  3.6747419524260297`*^9, 
+  3.674741953872259*^9}},ExpressionUUID->"3d914ddd-2173-4b18-a0fb-\
+8def8d05b15d"],
+
+Cell[TextData[{
+ "Try the different partitions of ",
+ StyleBox["A",
+  FontWeight->"Bold"],
+ " and ",
+ StyleBox["B",
+  FontWeight->"Bold"],
+ " described in the example and verify the block matrix products agree with \
+the product ",
+ StyleBox["A",
+  FontWeight->"Bold"],
+ ".",
+ StyleBox["B",
+  FontWeight->"Bold"],
+ ". "
+}], "Text",
+ CellChangeTimes->{{3.6748383009437513`*^9, 3.6748383731709733`*^9}, {
+  3.6748389723562517`*^9, 3.674839064125486*^9}, {3.6748391007188053`*^9, 
+  3.6748392077448697`*^9}, {3.6748392857906094`*^9, 3.674839286530624*^9}, {
+  3.6748399687509212`*^9, 3.6748400469621396`*^9}, {3.6748400779338293`*^9, 
+  3.67484014470061*^9}, {3.6748408962580833`*^9, 3.6748409181073637`*^9}, {
+  3.6748424866451416`*^9, 3.6748425358820734`*^9}, {3.6748425838065343`*^9, 
+  3.674842686707467*^9}, {3.674906875255028*^9, 3.6749069415424557`*^9}, {
+  3.6749087451889963`*^9, 3.674908787530957*^9}, {3.6749088212266226`*^9, 
+  3.674908821706618*^9}},ExpressionUUID->"236362d1-a1db-46c0-81c3-\
+641eb3c0f851"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{759, 678},
+WindowMargins->{{366, Automatic}, {44, Automatic}},
+FrontEndVersion->"11.1 for Microsoft Windows (64-bit) (April 18, 2017)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 879, 12, 70, "Section", "ExpressionUUID" -> \
+"61441dcd-c124-4728-9627-fe95dfa30ee1"],
+Cell[1462, 36, 704, 10, 30, "Text", "ExpressionUUID" -> \
+"ffd013fd-03fd-445a-a4d1-95a0242f09b0"],
+Cell[CellGroupData[{
+Cell[2191, 50, 165, 3, 39, "Subsubsection", "ExpressionUUID" -> \
+"ab3ce69c-85bd-4b8f-b7ee-37b8a74faa09"],
+Cell[2359, 55, 553, 10, 49, "Text", "ExpressionUUID" -> \
+"071ecca0-6276-4002-bd63-6766fbd307d9"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2949, 70, 248, 4, 39, "Subsubsection", "ExpressionUUID" -> \
+"14166fb2-5df0-4cb7-bdc7-ebdcac9fc8df"],
+Cell[3200, 76, 250, 4, 30, "Text", "ExpressionUUID" -> \
+"47384da6-eb94-4255-845d-95e71d44a104"],
+Cell[3453, 82, 600, 17, 49, "Text", "ExpressionUUID" -> \
+"e09137de-5cdd-4e7a-9e3b-5c6063c06239"],
+Cell[4056, 101, 2265, 68, 221, "Input", "ExpressionUUID" -> \
+"4916c0df-b01d-464a-819b-f74b87c77076"],
+Cell[6324, 171, 1173, 44, 30, "Text", "ExpressionUUID" -> \
+"dee9bb5a-b75a-4573-be24-e9c5e994ba5c"],
+Cell[7500, 217, 477, 12, 69, "Input", "ExpressionUUID" -> \
+"6b5d9466-7214-40d1-b5a2-36914f340a5f"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8014, 234, 216, 4, 39, "Subsubsection", "ExpressionUUID" -> \
+"3d914ddd-2173-4b18-a0fb-8def8d05b15d"],
+Cell[8233, 240, 1017, 25, 49, "Text", "ExpressionUUID" -> \
+"236362d1-a1db-46c0-81c3-641eb3c0f851"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

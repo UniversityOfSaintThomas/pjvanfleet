@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>WaveletRegionTake&mdash;Wolfram Language Documentation</title>
+<meta name="buildnumber" content="0000000" />
+<meta name="historydata" content="{XX, , , }" />
+<meta name="keywords" content="WaveletRegionTake" />
+
+<meta name="description" content="WaveletRegionTake[a,iter] or WaveletRegionTake[a,tree,iter] returns portions of the wavelet transforms as prescribed by the list of regions iter." />
+<script language="JavaScript" type="text/javascript">baselang='WaveletRegionTake';</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		 <link rel="stylesheet" type="text/css" href="../css/reference.css" />
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/core/1.6.1/jquery.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/plugins/hoverIntent/r5/jquery.hoverIntent.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/reference.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/documentation-search.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/inputs.js"></script>
+		 <script language="javaScript" type="text/javascript" src="../javascript/faster-page-load.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/plugins/jcarousel/tinycarousel/tinycarousel.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery.dotdotdot-1.5.1.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/carousel.js"></script>
+<script language="JavaScript" type="text/javascript" src="../javascript/toggle-highlight.js"></script>
+</head>
+<body id="ref" class="function">
+<a name="top"></a>
+<!--#include virtual="/common/includes/gl-header.html"--> 
+<div class="main-wrapper">
+
+
+<div class="wrapper mainOuter">
+    <div class="mainContent">
+ <div class="topContentWrap">
+  <div class="ribbonWrap">
+   <span class="ribbonOuter"><span class="ribbonInner">WAVELET WARE PACKAGE SYMBOL</span></span>
+  </div>
+  <ul class="dropdown">
+   <li>
+    <a href="#">See Also</a>
+    <ul class="sub_menu">
+     <li>
+      <a href="/language/WaveletWare/ref/WaveletRegionList.html"><span class="dropdownPad">WaveletRegionList</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/WaveletRegionPlot.html"><span class="dropdownPad">WaveletRegionPlot</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/WaveletVectorToList.html"><span class="dropdownPad">WaveletVectorToList</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/WaveletListToVector.html"><span class="dropdownPad">WaveletListToVector</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/WaveletMatrixToList.html"><span class="dropdownPad">WaveletMatrixToList</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/WaveletListToMatrix.html"><span class="dropdownPad">WaveletListToMatrix</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/WaveletTree.html"><span class="dropdownPad">WaveletTree</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/WT.html"><span class="dropdownPad">WT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/WPT.html"><span class="dropdownPad">WPT</span></a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+  <div class="clear"><!-- --></div>
+ </div>
+ <h1>WaveletRegionTake</h1>
+ <div class="functionIntroWrap">
+  <div class="functionIntro">
+   <p>WaveletRegionTake[<span class="IF"><span class="TI">a</span></span>,<span class="IF"><span class="TI">iter</span></span>]<br />or WaveletRegionTake[<span class="IF"><span class="TI">a</span></span>,<span class="IF"><span class="TI">tree</span></span>,<span class="IF"><span class="TI">iter</span></span>] returns portions of the wavelet transforms as prescribed by the list of regions <span class="IF"><span class="TI">iter</span></span>.</p>
+  </div>
+ </div>
+ <div class="expandWrap closed"
+     id="DetailsAndOptions">
+  <div class="expandOuter">
+   <h2 class="expandInner"><a class="expand hide" title="show" href="#">Details</a><a class="collapse" title="hide" href="#">Details</a></h2>
+   <div class="expanded">
+    <ul class="functionList">
+     <li>The following options can be given: </li>
+     <li class="NotesTable">
+      <a name="480404195"></a>
+      <table>
+       <col width="1%" />
+       <col width="28%" />
+       <col width="28%" />
+       <col width="43%" />
+       <tr class="lineAbove" style=""><td /><td><a href="http://reference.wolfram.com/language/WaveletWare/ref/NumIterations.html">NumIterations</a></td><td>1</td><td><span class="TT"><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/NumIterations.html">NumIterations</a></span> is an option used by several functions in the <a href="../WaveletWare/tutorial/WaveletWare Package.html">WaveletWare</a> package.  It indicates the number of iterations of the wavelet transform performed on the data.</span></td></tr>
+       <tr class="" style=""><td /><td><a href="http://reference.wolfram.com/language/WaveletWare/ref/ReturnIterationList.html">ReturnIterationList</a></td><td>False</td><td><span class="TT"><a href="http://reference.wolfram.com/language/WaveletWare/ref/ReturnIterationList.html">ReturnIterationList</a> is an option for <span class="monospace">WaveletRegionTake</span> that when set to <a href="http://reference.wolfram.com/language/ref/True.html">True</a><span class="specialcharacters"> <span class="openparenthesis">(</span>default is </span><a href="http://reference.wolfram.com/language/ref/False.html">False</a><span class="specialcharacters"><span class="closeparenthesis">)</span><span class="comma">,</span> returns the list of regions that were extracted from the input data.</span></span></td></tr>
+      </table>
+     </li>
+     <li><a name="960839790"></a>The input data <span class="IF"><span class="TI">a</span></span> must be a vector, a matrix or a list of three matrices of equal dimensions.</li>
+     <li><a name="117589757"></a>If <span class="IF"><span class="TI">tree</span></span> is not given, <span class="monospace">WaveletRegionTake</span> assumes the data a is a (bi)orthogonal wavelet transformation.  In the case where <span class="IF"><span class="TI">tree</span></span> is given, it must be a packet tree for one- or two-dimensional data in the case were <span class="IF"><span class="TI">a</span></span> is a vector or matrix, respectively.  If the input data <span class="IF"><span class="TI">a</span></span> is a list of three matrices then <span class="IF"><span class="TI">tree</span></span> is either a single tree (appropriate for a matrix) or a list of three trees of the same dimension.  </li>
+     <li><a name="1067943069"></a><span class="IF"><span class="TI">iter</span></span> is a list of ordered pairs in the case that <span class="IF"><span class="TI">a</span></span> is one-dimensional data.  If <span class="IF"><span class="TI">a</span></span> is a matrix, then <span class="IF"><span class="TI">iter</span></span> is a list of ordered triples.  If tree is a list of three trees, then <span class="IF"><span class="TI">iter</span></span> should be a list of 4-tuples.  If <span class="IF"><span class="TI">tree</span></span> is a single tree, then <span class="IF"><span class="TI">iter</span></span> should be a list of ordered triples.</li>
+     <li><a name="653322795"></a>The value of <span class="IF"><span class="TI">iter</span></span> can be set to <a href="http://reference.wolfram.com/language/ref/All.html">All</a>.  In this case, all regions of the wavelet (packet) transform are returned.</li>
+     <li><a name="306434918"></a>If <span class="IF"><span class="TI">a</span></span> is one-dimensional input, then the elements of <span class="IF"><span class="TI">iter</span></span> are of the form <span class="IF"><img src="Files/WaveletRegionTake/1.png" height="17" width="24" alt="" /></span>, where <span class="IF"><span class="TI">i</span></span> is the iteration number and <span class="IF"><span class="TI">j</span></span> is the region of the transform.  If <span class="IF"><span class="TI">a</span></span> is matrix or <span class="IF"><span class="TI">a</span></span> is a list of three matrices and only one tree is given, then the elements of <span class="IF"><span class="TI">iter</span></span> are of the form <span class="IF"><img src="Files/WaveletRegionTake/2.png" height="17" width="38" alt="" /></span> where <span class="IF"><span class="TI">i</span></span> is the iteration, and <span class="IF"><img src="Files/WaveletRegionTake/3.png" height="17" width="28" alt="" /></span> is the block of the desired region of the transformation.  If <span class="IF"><span class="TI">a</span></span> is a list of three matrices, then the elements of <span class="IF"><span class="TI">iter</span></span> are of the form <span class="IF"><img src="Files/WaveletRegionTake/4.png" height="17" width="50" alt="" /></span> where <span class="IF"><span class="TI">c</span></span> is the channel 1,2,3, <span class="IF"><span class="TI">i</span></span> is the iteration and <span class="IF"><img src="Files/WaveletRegionTake/5.png" height="17" width="28" alt="" /></span> is the block of the desired transformation.</li>
+     <li><a name="99259182"></a>In the case when <span class="IF"><span class="TI">a</span></span> is a list of matrices, an element of <span class="IF"><span class="TI">iter</span></span> can be <span class="IF"><span class="openbrace">{</span><a href="http://reference.wolfram.com/language/ref/All.html">All</a><span class="comma">,</span><span class="TI">i</span><span class="comma">,</span><span class="TI">j</span><span class="comma">,</span><span class="TI">k</span><span class="closebrace">}</span></span>.  In this case, the regions <span class="IF"><img src="Files/WaveletRegionTake/6.png" height="17" width="50" alt="" /></span> are extracted where <span class="IF"><span class="TI">c</span></span>=1,2,3.</li>
+     <li><a name="82637674"></a>When a value is given for <span class="IF"><span class="TI">tree</span></span>, the option <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/NumIterations.html">NumIterations</a></span> need not be set.  The number of iterations is read from the tree structure.</li>
+    </ul>
+   </div>
+  </div>
+ </div>
+ <div class="expandWrap"
+     id="Examples">
+  <div class="expandOuter">
+   <h2 class="expandInner"><a class="expand hide" title="show" href="#">Examples</a><a class="collapse" title="hide" href="#">Examples</a><a class="all opener" title="open all" href="#"><span>open all</span></a><a class="all closer hide" title="close all" href="#"><span>close all</span></a></h2>
+   <div class="expanded">
+    <div class="expandSubWrap">
+     <div class="expandSubOuter">
+      <h3 class="expandSubInner"><a class="expand hide" href="#" title="show">Basic Examples<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(6)</span></a><a class="collapse" href="#" title="hide">Basic Examples<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(6)</span></a></h3>
+      <div class="expanded">
+       <div class="MCap"><a name="16454449"></a>This loads the package:</div>
+       <table class="InCell">
+        <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+           <a name="861618089"></a>
+           <img src="Files/WaveletRegionTake/I_2.gif"
+               height="15"
+               width="93"
+               alt="Click for copyable input" />
+          </div><div id="i_1_out" class="IFL"></div></td></tr>
+       </table>
+       <p><a name="67166416"></a>Extract the lowpass portion of the wavelet transform of one-dimensional data.</p>
+       <div class="IO">
+        <table class="InCell">
+         <tr><td class="lab">In[2]:=</td><td class="Input"><div>
+            <a name="315539979"></a>
+            <img src="Files/WaveletRegionTake/I_4.gif"
+                height="186"
+                width="464"
+                alt="Click for copyable input" />
+           </div><div id="i_3_out" class="IFL"></div></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[2]=</td><td class="Output"><img src="Files/WaveletRegionTake/O_1.gif" height="163" width="240" alt="" /></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[2]=</td><td class="Output"><img src="Files/WaveletRegionTake/O_2.gif" height="125" width="240" alt="" /></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[2]=</td><td class="Output"><img src="Files/WaveletRegionTake/O_3.gif" height="144" width="240" alt="" /></td></tr>
+        </table>
+       </div>
+       <div class="ExLine"><a name="610451879"></a><!-- --></div>
+       <p><a name="167376803"></a>Extract all the regions of a wavelet packet transformation.</p>
+       <div class="IO">
+        <table class="InCell">
+         <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+            <a name="222429576"></a>
+            <img src="Files/WaveletRegionTake/I_6.gif"
+                height="203"
+                width="464"
+                alt="Click for copyable input" />
+           </div><div id="i_5_out" class="IFL"></div></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletRegionTake/O_4.gif" height="163" width="240" alt="" /></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletRegionTake/O_5.gif" height="125" width="240" alt="" /></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletRegionTake/O_6.gif" height="127" width="493" alt="" /></td></tr>
+        </table>
+       </div>
+       <div class="ExLine"><a name="48138069"></a><!-- --></div>
+       <p><a name="530718957"></a>Extract the highpass portions of a two-dimensional wavelet transformation.</p>
+       <div class="IO">
+        <table class="InCell">
+         <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+            <a name="31475669"></a>
+            <img src="Files/WaveletRegionTake/I_8.gif"
+                height="169"
+                width="490"
+                alt="Click for copyable input" />
+           </div><div id="i_7_out" class="IFL"></div></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletRegionTake/O_7.gif" height="256" width="384" alt="" /></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletRegionTake/O_8.gif" height="132" width="384" alt="" /></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletRegionTake/O_9.gif" height="136" width="325" alt="" /></td></tr>
+        </table>
+       </div>
+       <div class="ExLine"><a name="587896865"></a><!-- --></div>
+       <p><a name="574071261"></a>Extract regions from a 3-channel wavelet packet transform that was created using a single tree.  Plot the regions separately and as color regions.</p>
+       <div class="IO">
+        <table class="InCell">
+         <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+            <a name="23948330"></a>
+            <img src="Files/WaveletRegionTake/I_10.gif"
+                height="220"
+                width="518"
+                alt="Click for copyable input" />
+           </div><div id="i_9_out" class="IFL"></div></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletRegionTake/O_10.gif" height="128" width="192" alt="" /></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletRegionTake/O_11.gif" height="66" width="192" alt="" /></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletRegionTake/O_12.gif" height="65" width="493" alt="" /></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletRegionTake/O_13.gif" height="66" width="164" alt="" /></td></tr>
+        </table>
+       </div>
+       <div class="ExLine"><a name="11812364"></a><!-- --></div>
+       <p><a name="841312869"></a>Extract regions from a wavelet packet transform of a color image.  Here each channel has its own best basis tree.  </p>
+       <div class="IO">
+        <table class="InCell">
+         <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+            <a name="794985905"></a>
+            <img src="Files/WaveletRegionTake/I_12.gif"
+                height="203"
+                width="389"
+                alt="Click for copyable input" />
+           </div><div id="i_11_out" class="IFL"></div></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletRegionTake/O_14.gif" height="128" width="192" alt="" /></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletRegionTake/O_15.gif" height="33" width="396" alt="" /></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletRegionTake/O_16.gif" height="34" width="116" alt="" /></td></tr>
+        </table>
+       </div>
+       <div class="ExLine"><a name="277231323"></a><!-- --></div>
+       <p><a name="769066328"></a>Note in the previous example, the region {3,1,1} appears in each channel.  We can extract all these regions using All as the first argument of an ordered 4-tuple.</p>
+       <div class="IO">
+        <table class="InCell">
+         <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+            <a name="857348657"></a>
+            <img src="Files/WaveletRegionTake/I_14.gif"
+                height="220"
+                width="389"
+                alt="Click for copyable input" />
+           </div><div id="i_13_out" class="IFL"></div></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletRegionTake/O_17.gif" height="128" width="192" alt="" /></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletRegionTake/O_18.gif" height="33" width="396" alt="" /></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletRegionTake/O_19.gif" height="69" width="326" alt="" /></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletRegionTake/O_20.gif" height="67" width="100" alt="" /></td></tr>
+        </table>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="expandSubWrap closed">
+     <div class="expandSubOuter">
+      <h3 class="expandSubInner"><a class="expand hide" href="#" title="show">Options<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(2)</span></a><a class="collapse" href="#" title="hide">Options<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(2)</span></a></h3>
+      <div class="expanded"></div>
+     </div>
+    </div>
+    <div class="toplink">
+     <a href="#top">Top</a>
+    </div>
+    <div class="clear"><!-- --></div>
+   </div>
+  </div>
+ </div>
+ <div class="expandWrap"
+     id="SeeAlso">
+  <div class="expandOuter">
+   <h2 class="expandInner"><a class="expand hide" title="show" href="#">See Also</a><a class="collapse" title="hide" href="#">See Also</a></h2>
+   <div class="expanded">
+    <p class="inlineFunctionList"><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/WaveletRegionList.html">WaveletRegionList</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/WaveletRegionPlot.html">WaveletRegionPlot</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/WaveletVectorToList.html">WaveletVectorToList</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/WaveletListToVector.html">WaveletListToVector</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/WaveletMatrixToList.html">WaveletMatrixToList</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/WaveletListToMatrix.html">WaveletListToMatrix</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/WaveletTree.html">WaveletTree</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/WT.html">WT</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/WPT.html">WPT</a></span></p>
+   </div>
+  </div>
+ </div>
+</div>
+</div><!-- /wrapper -->
+
+	
+</div>
+
+
+</body>
+		 </html>

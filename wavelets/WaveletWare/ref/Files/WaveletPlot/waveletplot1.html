@@ -1,0 +1,786 @@
+<script type="text/javascript" src="../javascript/sub-pages.js"></script><div class="expandSubsubWrap closed">
+  <div class="expandSubsubOuter">
+   <h4 class="expandSubsubInner"><a class="expand" href="#" title="show">PlotType<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a><a class="collapse hide" href="#" title="hide">PlotType<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a></h4>
+   <div class="expanded hide">
+    <p><a name="23521945"></a>The option <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/PlotType.html">PlotType</a></span> can be set to <a href="http://reference.wolfram.com/language/ref/Left.html">Left</a> or <a href="http://reference.wolfram.com/language/ref/Right.html">Right</a> (rather than the default value of <a href="http://reference.wolfram.com/language/ref/Automatic.html">Automatic</a>) to indicate that the input <span class="IF"><span class="TI">a</span></span> is a left or right wavelet transform, respectively:</p>
+    <div class="IO">
+     <table class="InCell">
+      <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+         <a name="246688157"></a>
+         <img src="Files/WaveletPlot/I_12.gif"
+             height="118"
+             width="332"
+             alt="Click for copyable input" />
+        </div><div id="i_11_out" class="IFL"></div></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_9.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_10.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_11.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+    </div>
+   </div>
+  </div>
+ </div><div class="expandSubsubWrap closed">
+  <div class="expandSubsubOuter">
+   <h4 class="expandSubsubInner"><a class="expand" href="#" title="show">NumIterations<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(2)</span></a><a class="collapse hide" href="#" title="hide">NumIterations<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(2)</span></a></h4>
+   <div class="expanded hide">
+    <p><a name="5657469"></a>By default, wavelet transform functions only compute one iteration of the wavelet transform.  If the dimensions of the data are divisible by <span class="IF"><img src="Files/WaveletPlot/5.png" height="17" width="12" alt="" /></span>, then up to <span class="IF"><span class="TI">p</span></span> iterations of the transform can be computed.  <span class="monospace">WaveletPlot</span>, by way of <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/NumIterations.html">NumIterations</a></span>, can be instructed to plot all of these iterations:</p>
+    <div class="IO">
+     <table class="InCell">
+      <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+         <a name="66782426"></a>
+         <img src="Files/WaveletPlot/I_14.gif"
+             height="101"
+             width="332"
+             alt="Click for copyable input" />
+        </div><div id="i_13_out" class="IFL"></div></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_12.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_13.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+    </div>
+    <div class="ExLine"><a name="538003269"></a><!-- --></div>
+    <p><a name="548854255"></a><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/NumIterations.html">NumIterations</a></span> need not be set for wavelet packet plots.  The value is read from the packet tree(s).</p>
+    <div class="IO">
+     <table class="InCell">
+      <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+         <a name="315452529"></a>
+         <img src="Files/WaveletPlot/I_16.gif"
+             height="152"
+             width="389"
+             alt="Click for copyable input" />
+        </div><div id="i_15_out" class="IFL"></div></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_14.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_15.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+    </div>
+   </div>
+  </div>
+ </div><div class="expandSubsubWrap closed">
+  <div class="expandSubsubOuter">
+   <h4 class="expandSubsubInner"><a class="expand" href="#" title="show">Iteration<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(5)</span></a><a class="collapse hide" href="#" title="hide">Iteration<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(5)</span></a></h4>
+   <div class="expanded hide">
+    <p><a name="8142659"></a>The option <span class="IF"><span class="TI">iter</span></span> can be set to highlight particular portions of the wavelet transform.</p>
+    <p><a name="574853446"></a>If <span class="IF"><span class="TI">a</span></span> is a matrix, then <span class="IF"><span class="TI">iter</span></span> is a list of ordered triples.  If tree is a list of three trees, then <span class="IF"><span class="TI">iter</span></span> should be a list of 4-tuples.  If <span class="IF"><span class="TI">tree</span></span> is a single tree, then <span class="IF"><span class="TI">iter</span></span> should be a list of ordered triples.</p>
+    <p><a name="308153252"></a>If <span class="IF"><span class="TI">a</span></span> is matrix or <span class="IF"><span class="TI">a</span></span> is a list of three matrices and only one tree is given, then the elements of <span class="IF"><span class="TI">iter</span></span> are of the form <span class="IF"><img src="Files/WaveletPlot/6.png" height="17" width="38" alt="" /></span> where <span class="IF"><span class="TI">i</span></span> is the iteration, and <span class="IF"><img src="Files/WaveletPlot/7.png" height="17" width="28" alt="" /></span> is the block of the desired region of the transformation.  If <span class="IF"><span class="TI">a</span></span> is a list of three matrices, then the elements of <span class="IF"><span class="TI">iter</span></span> are of the form <span class="IF"><img src="Files/WaveletPlot/8.png" height="17" width="50" alt="" /></span> where <span class="IF"><span class="TI">c</span></span> is the channel 1,2,3, <span class="IF"><span class="TI">i</span></span> is the iteration and <span class="IF"><img src="Files/WaveletPlot/9.png" height="17" width="28" alt="" /></span> is the block of the desired transformation.</p>
+    <p><a name="15638939"></a>In the case when <span class="IF"><span class="TI">a</span></span> is a list of matrices and <span class="IF"><span class="TI">tree</span></span> is a list of three trees, an element of <span class="IF"><span class="TI">iter</span></span> can be <span class="IF"><span class="specialcharacters"><span class="openbrace">{</span></span><a href="http://reference.wolfram.com/language/ref/All.html">All</a><span class="specialcharacters"><span class="comma">,</span></span><span class="TI">i</span><span class="specialcharacters"><span class="comma">,</span></span><span class="TI">j</span><span class="specialcharacters"><span class="comma">,</span></span><span class="TI">k</span><span class="specialcharacters"><span class="closebrace">}</span></span></span>.  In this case, the regions <span class="IF"><img src="Files/WaveletPlot/10.png" height="17" width="50" alt="" /></span> are extracted where <span class="IF"><span class="TI">c</span></span>=1,2,3.</p>
+    <div class="IO">
+     <table class="InCell">
+      <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+         <a name="89002666"></a>
+         <img src="Files/WaveletPlot/I_18.gif"
+             height="118"
+             width="332"
+             alt="Click for copyable input" />
+        </div><div id="i_17_out" class="IFL"></div></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_16.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_17.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_18.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+    </div>
+    <div class="ExLine"><a name="523135131"></a><!-- --></div>
+    <p><a name="184485779"></a><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/Iteration.html">Iteration</a></span> can be set when <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/PlotType.html">PlotType</a></span> is <a href="http://reference.wolfram.com/language/ref/Left.html">Left</a> or <a href="http://reference.wolfram.com/language/ref/Right.html">Right</a> as well.</p>
+    <div class="IO">
+     <table class="InCell">
+      <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+         <a name="11256049"></a>
+         <img src="Files/WaveletPlot/I_20.gif"
+             height="118"
+             width="362"
+             alt="Click for copyable input" />
+        </div><div id="i_19_out" class="IFL"></div></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_19.gif" height="256" width="384" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_20.gif" height="256" width="384" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_21.gif" height="256" width="384" alt="" /></td></tr>
+     </table>
+    </div>
+    <div class="ExLine"><a name="64057030"></a><!-- --></div>
+    <p><a name="687507128"></a><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/Iteration.html">Iteration</a></span> can be set for color images.  Here the lowpass portions of the wavelet transform are highlighted.</p>
+    <div class="IO">
+     <table class="InCell">
+      <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+         <a name="177254020"></a>
+         <img src="Files/WaveletPlot/I_22.gif"
+             height="101"
+             width="337"
+             alt="Click for copyable input" />
+        </div><div id="i_21_out" class="IFL"></div></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_22.gif" height="256" width="384" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_23.gif" height="252" width="386" alt="" /></td></tr>
+     </table>
+    </div>
+    <div class="ExLine"><a name="585632723"></a><!-- --></div>
+    <p><a name="359003561"></a><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/Iteration.html">Iteration</a></span> can also be set for packet transforms.</p>
+    <div class="IO">
+     <table class="InCell">
+      <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+         <a name="69838926"></a>
+         <img src="Files/WaveletPlot/I_24.gif"
+             height="135"
+             width="441"
+             alt="Click for copyable input" />
+        </div><div id="i_23_out" class="IFL"></div></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_24.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_25.gif" height="66" width="192" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_26.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+    </div>
+    <div class="ExLine"><a name="71595900"></a><!-- --></div>
+    <p><a name="181246306"></a>Plot particular regions for a color wavelet packet transform.</p>
+    <div class="IO">
+     <table class="InCell">
+      <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+         <a name="407825468"></a>
+         <img src="Files/WaveletPlot/I_26.gif"
+             height="135"
+             width="460"
+             alt="Click for copyable input" />
+        </div><div id="i_25_out" class="IFL"></div></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_27.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_28.gif" height="111" width="426" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_29.gif" height="66" width="324" alt="" /></td></tr>
+     </table>
+    </div>
+   </div>
+  </div>
+ </div><div class="expandSubsubWrap closed">
+  <div class="expandSubsubOuter">
+   <h4 class="expandSubsubInner"><a class="expand" href="#" title="show">PlotTogether<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(5)</span></a><a class="collapse hide" href="#" title="hide">PlotTogether<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(5)</span></a></h4>
+   <div class="expanded hide">
+    <p><a name="475660748"></a>In certain cases, <span class="monospace">WaveletPlot</span> can be instructed to create a color plot from the transformed data.  Such cases are color wavelet transforms when <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/Iteration.html">Iteration</a></span> is set to <a href="http://reference.wolfram.com/language/ref/All.html">All</a> or the same regions from each channel are selected, a wavelet packet transform that was computed using the <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/CompositeTree.html">CompositeTree</a></span> option set to <a href="http://reference.wolfram.com/language/ref/True.html">True</a>, or a wavelet packet transform where the same region(s) is(are) picked from each channel.  <span class="monospace">WaveletPlot</span> does its best to determine if matrices can be combined when <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/PlotTogether.html">PlotTogether</a></span> is set to <a href="http://reference.wolfram.com/language/ref/True.html">True</a>, and if it is not possible, resets <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/PlotTogether.html">PlotTogether</a></span> to <a href="http://reference.wolfram.com/language/ref/False.html">False</a>.</p>
+    <p><a name="84718907"></a>Plot a color wavelet transform with individual channels and as a color image.</p>
+    <div class="IO">
+     <table class="InCell">
+      <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+         <a name="873659639"></a>
+         <img src="Files/WaveletPlot/I_28.gif"
+             height="118"
+             width="315"
+             alt="Click for copyable input" />
+        </div><div id="i_27_out" class="IFL"></div></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_30.gif" height="256" width="384" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_31.gif" height="252" width="386" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_32.gif" height="256" width="384" alt="" /></td></tr>
+     </table>
+    </div>
+    <div class="ExLine"><a name="102955652"></a><!-- --></div>
+    <p><a name="231153381"></a>Plot the lowpass regions of a color wavelet transform.</p>
+    <div class="IO">
+     <table class="InCell">
+      <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+         <a name="261629312"></a>
+         <img src="Files/WaveletPlot/I_30.gif"
+             height="101"
+             width="456"
+             alt="Click for copyable input" />
+        </div><div id="i_29_out" class="IFL"></div></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_33.gif" height="256" width="384" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_34.gif" height="256" width="384" alt="" /></td></tr>
+     </table>
+    </div>
+    <div class="ExLine"><a name="1581347"></a><!-- --></div>
+    <p><a name="62056462"></a><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/PlotTogether.html">PlotTogether</a></span> will revert to <a href="http://reference.wolfram.com/language/ref/False.html">False</a> if the requested regions to plot in color don't align.</p>
+    <div class="IO">
+     <table class="InCell">
+      <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+         <a name="1989474"></a>
+         <img src="Files/WaveletPlot/I_32.gif"
+             height="101"
+             width="518"
+             alt="Click for copyable input" />
+        </div><div id="i_31_out" class="IFL"></div></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_35.gif" height="256" width="384" alt="" /></td></tr>
+     </table>
+     <img src="Files/WaveletPlot/11.gif"
+         height="44"
+         width="454"
+         alt=""
+         class="Message" />
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_36.gif" height="252" width="386" alt="" /></td></tr>
+     </table>
+    </div>
+    <div class="ExLine"><a name="272465281"></a><!-- --></div>
+    <p><a name="52151876"></a>In the case of a packet transform of a color image when a single tree was used, Iteration should be given in the form {<span class="IF"><span class="TI">i</span></span>,<span class="IF"><span class="TI">j</span></span>,<span class="IF"><span class="TI">k</span></span>}.</p>
+    <div class="IO">
+     <table class="InCell">
+      <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+         <a name="27058153"></a>
+         <img src="Files/WaveletPlot/I_34.gif"
+             height="152"
+             width="518"
+             alt="Click for copyable input" />
+        </div><div id="i_33_out" class="IFL"></div></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_37.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_38.gif" height="52" width="200" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_39.gif" height="66" width="324" alt="" /></td></tr>
+     </table>
+    </div>
+    <div class="ExLine"><a name="446928494"></a><!-- --></div>
+    <p><a name="438665527"></a>You can work around the composite tree and have more control over individual regions plotted by passing a list of trees to <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/WaveletPlot.html">WaveletPlot</a></span>:</p>
+    <div class="IO">
+     <table class="InCell">
+      <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+         <a name="263920534"></a>
+         <img src="Files/WaveletPlot/I_36.gif"
+             height="152"
+             width="518"
+             alt="Click for copyable input" />
+        </div><div id="i_35_out" class="IFL"></div></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_40.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_41.gif" height="52" width="200" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_42.gif" height="66" width="324" alt="" /></td></tr>
+     </table>
+    </div>
+   </div>
+  </div>
+ </div><div class="expandSubsubWrap closed">
+  <div class="expandSubsubOuter">
+   <h4 class="expandSubsubInner"><a class="expand" href="#" title="show">Scaling<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a><a class="collapse hide" href="#" title="hide">Scaling<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a></h4>
+   <div class="expanded hide">
+    <p><a name="5965194"></a>By default, <span class="monospace">WaveletPlot</span> applies <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/MatrixStretch.html">MatrixStretch</a></span> to every portion of the wavelet transform before plotting it.  Setting <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/Scaling.html">Scaling</a></span> to <a href="http://reference.wolfram.com/language/ref/False.html">False</a> will turn off this feature.</p>
+    <div class="IO">
+     <table class="InCell">
+      <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+         <a name="308636758"></a>
+         <img src="Files/WaveletPlot/I_38.gif"
+             height="118"
+             width="340"
+             alt="Click for copyable input" />
+        </div><div id="i_37_out" class="IFL"></div></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_43.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_44.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_45.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+    </div>
+   </div>
+  </div>
+ </div><div class="expandSubsubWrap closed">
+  <div class="expandSubsubOuter">
+   <h4 class="expandSubsubInner"><a class="expand" href="#" title="show">ChannelColor<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(4)</span></a><a class="collapse hide" href="#" title="hide">ChannelColor<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(4)</span></a></h4>
+   <div class="expanded hide">
+    <p><a name="63017044"></a>For single matrix plots or individual plots of three matrices, <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/ChannelColor.html">ChannelColor</a></span> can be used to color the plot(s).    <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/ChannelColor.html">ChannelColor</a></span> can be set to any valid <em>Mathematica</em> color.</p>
+    <div class="IO">
+     <table class="InCell">
+      <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+         <a name="7751365"></a>
+         <img src="Files/WaveletPlot/I_40.gif"
+             height="84"
+             width="340"
+             alt="Click for copyable input" />
+        </div><div id="i_39_out" class="IFL"></div></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_46.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_47.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+    </div>
+    <div class="ExLine"><a name="72250955"></a><!-- --></div>
+    <p><a name="24923262"></a>A single value can be used for plotting three matrices.</p>
+    <div class="IO">
+     <table class="InCell">
+      <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+         <a name="540018707"></a>
+         <img src="Files/WaveletPlot/I_42.gif"
+             height="84"
+             width="321"
+             alt="Click for copyable input" />
+        </div><div id="i_41_out" class="IFL"></div></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_48.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_49.gif" height="66" width="324" alt="" /></td></tr>
+     </table>
+    </div>
+    <div class="ExLine"><a name="199765286"></a><!-- --></div>
+    <p><a name="190614129"></a>A more realistic use of <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/ChannelColor.html">ChannelColor</a></span> for a plot of three matrices is to use their natural colors.</p>
+    <div class="IO">
+     <table class="InCell">
+      <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+         <a name="71270956"></a>
+         <img src="Files/WaveletPlot/I_44.gif"
+             height="84"
+             width="321"
+             alt="Click for copyable input" />
+        </div><div id="i_43_out" class="IFL"></div></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_50.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_51.gif" height="66" width="324" alt="" /></td></tr>
+     </table>
+    </div>
+    <div class="ExLine"><a name="158686986"></a><!-- --></div>
+    <p><a name="638772999"></a>Any triple of colors can be used when plotting a list of three matrices.</p>
+    <div class="IO">
+     <table class="InCell">
+      <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+         <a name="30390201"></a>
+         <img src="Files/WaveletPlot/I_46.gif"
+             height="84"
+             width="458"
+             alt="Click for copyable input" />
+        </div><div id="i_45_out" class="IFL"></div></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_52.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_53.gif" height="66" width="324" alt="" /></td></tr>
+     </table>
+    </div>
+   </div>
+  </div>
+ </div><div class="expandSubsubWrap closed">
+  <div class="expandSubsubOuter">
+   <h4 class="expandSubsubInner"><a class="expand" href="#" title="show">Dimming<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(2)</span></a><a class="collapse hide" href="#" title="hide">Dimming<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(2)</span></a></h4>
+   <div class="expanded hide">
+    <p><a name="514053890"></a>When only particular regions of a wavelet transform are plotted, those not plotted are displayed in a lighter gray color.  The default value for the <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/Dimming.html">Dimming</a></span> option is <a href="http://reference.wolfram.com/language/ref/GrayLevel.html">GrayLevel</a>[.8], but it can be set to any valid <em>Mathematica</em> color.</p>
+    <div class="IO">
+     <table class="InCell">
+      <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+         <a name="40996908"></a>
+         <img src="Files/WaveletPlot/I_48.gif"
+             height="118"
+             width="361"
+             alt="Click for copyable input" />
+        </div><div id="i_47_out" class="IFL"></div></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_54.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_55.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_56.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+    </div>
+    <div class="ExLine"><a name="229011842"></a><!-- --></div>
+    <p><a name="499974298"></a>For color images, a single color or a list of three colors can be given for <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/Dimming.html">Dimming</a></span>.</p>
+    <div class="IO">
+     <table class="InCell">
+      <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+         <a name="325020159"></a>
+         <img src="Files/WaveletPlot/I_50.gif"
+             height="152"
+             width="484"
+             alt="Click for copyable input" />
+        </div><div id="i_49_out" class="IFL"></div></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_57.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_58.gif" height="66" width="324" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_59.gif" height="66" width="324" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_60.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+    </div>
+   </div>
+  </div>
+ </div><div class="expandSubsubWrap closed">
+  <div class="expandSubsubOuter">
+   <h4 class="expandSubsubInner"><a class="expand" href="#" title="show">DimmingRange<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(2)</span></a><a class="collapse hide" href="#" title="hide">DimmingRange<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(2)</span></a></h4>
+   <div class="expanded hide">
+    <p><a name="824494904"></a><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/DimmingRange.html">DimmingRange</a></span> is the value assigned to <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/IntensityRange.html">IntensityRange</a></span> in the <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/MatrixStretch.html">MatrixStretch</a></span> function.  All dimmed portions of the transform are scaled by default.  The default value of <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/DimmingRange.html">DimmingRange</a></span> is {200,255} which scales the region in a lighter tone of the dimming color.  <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/DimmingRange.html">DimmingRange</a></span> must be of the form {<span class="IF"><span class="TI">a</span></span>,<span class="IF"><span class="TI">b</span></span>},  where <span class="IF"><span class="TI">a</span></span> <span class="special-character LessSlantEqual">&#10877;</span> <span class="IF"><span class="TI">b</span></span> are integers in the range 0,...,255.</p>
+    <p><a name="15031992"></a>Use <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/DimmingRange.html">DimmingRange</a></span> to set the scaling used by plotted regions of the transform.</p>
+    <div class="IO">
+     <table class="InCell">
+      <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+         <a name="308618018"></a>
+         <img src="Files/WaveletPlot/I_52.gif"
+             height="118"
+             width="384"
+             alt="Click for copyable input" />
+        </div><div id="i_51_out" class="IFL"></div></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_61.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_62.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+    </div>
+    <div class="ExLine"><a name="330016474"></a><!-- --></div>
+    <p><a name="30219320"></a>Use <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/DimmingRange.html">DimmingRange</a></span> to produce a solid color in those regions not plotted.</p>
+    <div class="IO">
+     <table class="InCell">
+      <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+         <a name="18809032"></a>
+         <img src="Files/WaveletPlot/I_54.gif"
+             height="152"
+             width="366"
+             alt="Click for copyable input" />
+        </div><div id="i_53_out" class="IFL"></div></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_63.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_64.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_65.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+    </div>
+   </div>
+  </div>
+ </div><div class="expandSubsubWrap closed">
+  <div class="expandSubsubOuter">
+   <h4 class="expandSubsubInner"><a class="expand" href="#" title="show">DivideLines<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(2)</span></a><a class="collapse hide" href="#" title="hide">DivideLines<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(2)</span></a></h4>
+   <div class="expanded hide">
+    <p><a name="177524555"></a>By default <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/DivideLines.html">DivideLines</a></span> is set to <a href="http://reference.wolfram.com/language/ref/True.html">True</a> so that dividing lines indicating the region of the transform are included in the plot.  The divide lines can be switched off by setting <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/DivideLines.html">DivideLines</a></span> to <a href="http://reference.wolfram.com/language/ref/False.html">False</a>.</p>
+    <div class="IO">
+     <table class="InCell">
+      <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+         <a name="341994020"></a>
+         <img src="Files/WaveletPlot/I_56.gif"
+             height="118"
+             width="321"
+             alt="Click for copyable input" />
+        </div><div id="i_55_out" class="IFL"></div></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_66.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_67.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_68.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+    </div>
+    <div class="ExLine"><a name="449789832"></a><!-- --></div>
+    <p><a name="142220641"></a><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/DivideLines.html">DivideLines</a></span> works on wavelet packet plots.</p>
+    <div class="IO">
+     <table class="InCell">
+      <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+         <a name="180433100"></a>
+         <img src="Files/WaveletPlot/I_58.gif"
+             height="152"
+             width="389"
+             alt="Click for copyable input" />
+        </div><div id="i_57_out" class="IFL"></div></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_69.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_70.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+    </div>
+   </div>
+  </div>
+ </div><div class="expandSubsubWrap closed">
+  <div class="expandSubsubOuter">
+   <h4 class="expandSubsubInner"><a class="expand" href="#" title="show">DivideLinesColor<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(3)</span></a><a class="collapse hide" href="#" title="hide">DivideLinesColor<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(3)</span></a></h4>
+   <div class="expanded hide">
+    <p><a name="311865355"></a>When <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/DivideLines.html">DivideLines</a></span> is set to <a href="http://reference.wolfram.com/language/ref/True.html">True</a>, divide lines separting the different regions of the transform are superimposed on the plot.  In this case, the color(s) of the divide lines can be controlled by <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/DivideLinesColor.html">DivideLinesColor</a></span>.  The default color is <a href="http://reference.wolfram.com/language/ref/White.html">White</a>, but <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/DivideLinesColor.html">DivideLinesColor</a></span> can be set to any valid <em>Mathematica</em> color or in the case when a list of three matrices is plotted, either a single color or a list of three colors.</p>
+    <div class="IO">
+     <table class="InCell">
+      <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+         <a name="258504386"></a>
+         <img src="Files/WaveletPlot/I_60.gif"
+             height="84"
+             width="340"
+             alt="Click for copyable input" />
+        </div><div id="i_59_out" class="IFL"></div></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_71.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_72.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+    </div>
+    <div class="ExLine"><a name="286064590"></a><!-- --></div>
+    <p><a name="4254354"></a><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/DivideLinesColor.html">DivideLinesColor</a></span> can be set to a single color for all plots.</p>
+    <div class="IO">
+     <table class="InCell">
+      <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+         <a name="125804073"></a>
+         <img src="Files/WaveletPlot/I_62.gif"
+             height="118"
+             width="389"
+             alt="Click for copyable input" />
+        </div><div id="i_61_out" class="IFL"></div></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_73.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_74.gif" height="66" width="324" alt="" /></td></tr>
+     </table>
+    </div>
+    <div class="ExLine"><a name="86968497"></a><!-- --></div>
+    <p><a name="52852019"></a>A list of three colors can be given for rendering the divide lines for each matrix plotted.</p>
+    <div class="IO">
+     <table class="InCell">
+      <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+         <a name="589871"></a>
+         <img src="Files/WaveletPlot/I_64.gif"
+             height="135"
+             width="389"
+             alt="Click for copyable input" />
+        </div><div id="i_63_out" class="IFL"></div></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_75.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_76.gif" height="66" width="324" alt="" /></td></tr>
+     </table>
+    </div>
+   </div>
+  </div>
+ </div><div class="expandSubsubWrap closed">
+  <div class="expandSubsubOuter">
+   <h4 class="expandSubsubInner"><a class="expand" href="#" title="show">Border<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a><a class="collapse hide" href="#" title="hide">Border<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a></h4>
+   <div class="expanded hide">
+    <p><a name="931577502"></a>By default, all plots created by <span class="monospace">WaveletPlot</span> are wrapped with a black border.  Setting <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/Border.html">Border</a></span> to <a href="http://reference.wolfram.com/language/ref/False.html">False</a> removes the border.</p>
+    <div class="IO">
+     <table class="InCell">
+      <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+         <a name="310358222"></a>
+         <img src="Files/WaveletPlot/I_66.gif"
+             height="101"
+             width="340"
+             alt="Click for copyable input" />
+        </div><div id="i_65_out" class="IFL"></div></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_77.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_78.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_79.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+    </div>
+   </div>
+  </div>
+ </div><div class="expandSubsubWrap closed">
+  <div class="expandSubsubOuter">
+   <h4 class="expandSubsubInner"><a class="expand" href="#" title="show">BorderColor<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(2)</span></a><a class="collapse hide" href="#" title="hide">BorderColor<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(2)</span></a></h4>
+   <div class="expanded hide">
+    <p><a name="546892004"></a>If set to <a href="http://reference.wolfram.com/language/ref/True.html">True</a>, a border is rendered around each plot and <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/BorderColor.html">BorderColor</a></span> can be set to any valid <em>Mathematica</em> color (or list of three colors for color plots).</p>
+    <div class="IO">
+     <table class="InCell">
+      <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+         <a name="118223640"></a>
+         <img src="Files/WaveletPlot/I_68.gif"
+             height="84"
+             width="340"
+             alt="Click for copyable input" />
+        </div><div id="i_67_out" class="IFL"></div></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_80.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_81.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+    </div>
+    <div class="ExLine"><a name="51371700"></a><!-- --></div>
+    <p><a name="533111325"></a>For plots of three matrices, either a single color or a list of three border colors can be provided.</p>
+    <div class="IO">
+     <table class="InCell">
+      <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+         <a name="140657365"></a>
+         <img src="Files/WaveletPlot/I_70.gif"
+             height="101"
+             width="391"
+             alt="Click for copyable input" />
+        </div><div id="i_69_out" class="IFL"></div></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_82.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_83.gif" height="269" width="408" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_84.gif" height="269" width="408" alt="" /></td></tr>
+     </table>
+    </div>
+   </div>
+  </div>
+ </div><div class="expandSubsubWrap closed">
+  <div class="expandSubsubOuter">
+   <h4 class="expandSubsubInner"><a class="expand" href="#" title="show">ImageSize<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a><a class="collapse hide" href="#" title="hide">ImageSize<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a></h4>
+   <div class="expanded hide">
+    <p><a name="756497062"></a><a href="http://reference.wolfram.com/language/ref/ImageSize.html">ImageSize</a> is a built-in option in <em>Mathematica</em>, but an example of its use is provided below.</p>
+    <div class="IO">
+     <table class="InCell">
+      <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+         <a name="507011207"></a>
+         <img src="Files/WaveletPlot/I_72.gif"
+             height="118"
+             width="315"
+             alt="Click for copyable input" />
+        </div><div id="i_71_out" class="IFL"></div></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_85.gif" height="128" width="192" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_86.gif" height="66" width="324" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_87.gif" height="269" width="408" alt="" /></td></tr>
+     </table>
+    </div>
+   </div>
+  </div>
+ </div><div class="expandSubsubWrap closed">
+  <div class="expandSubsubOuter">
+   <h4 class="expandSubsubInner"><a class="expand" href="#" title="show">AlignmentPoint<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a><a class="collapse hide" href="#" title="hide">AlignmentPoint<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a></h4>
+   <div class="expanded hide">
+    <p><a name="120914266"></a>See <em>Mathematica</em> help for <a href="http://reference.wolfram.com/language/ref/AlignmentPoint.html">AlignmentPoint</a>.</p>
+   </div>
+  </div>
+ </div><div class="expandSubsubWrap closed">
+  <div class="expandSubsubOuter">
+   <h4 class="expandSubsubInner"><a class="expand" href="#" title="show">BaselinePosition<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a><a class="collapse hide" href="#" title="hide">BaselinePosition<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a></h4>
+   <div class="expanded hide">
+    <p><a name="45648742"></a>See <em>Mathematica</em> help for <a href="http://reference.wolfram.com/language/ref/BaselinePosition.html">BaselinePosition</a>.</p>
+   </div>
+  </div>
+ </div><div class="expandSubsubWrap closed">
+  <div class="expandSubsubOuter">
+   <h4 class="expandSubsubInner"><a class="expand" href="#" title="show">ColorSpace<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a><a class="collapse hide" href="#" title="hide">ColorSpace<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a></h4>
+   <div class="expanded hide">
+    <p><a name="246758180"></a>See <em>Mathematica</em> help for <a href="http://reference.wolfram.com/language/ref/ColorSpace.html">ColorSpace</a>.</p>
+   </div>
+  </div>
+ </div><div class="expandSubsubWrap closed">
+  <div class="expandSubsubOuter">
+   <h4 class="expandSubsubInner"><a class="expand" href="#" title="show">ImageResolution<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a><a class="collapse hide" href="#" title="hide">ImageResolution<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a></h4>
+   <div class="expanded hide">
+    <p><a name="585388274"></a>See <em>Mathematica</em> help for <a href="http://reference.wolfram.com/language/ref/ImageResolution.html">ImageResolution</a>.</p>
+   </div>
+  </div>
+ </div><div class="expandSubsubWrap closed">
+  <div class="expandSubsubOuter">
+   <h4 class="expandSubsubInner"><a class="expand" href="#" title="show">Interleaving<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a><a class="collapse hide" href="#" title="hide">Interleaving<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a></h4>
+   <div class="expanded hide">
+    <p><a name="194675624"></a>See <em>Mathematica</em> help for <a href="http://reference.wolfram.com/language/ref/Interleaving.html">Interleaving</a>.</p>
+   </div>
+  </div>
+ </div><div class="expandSubsubWrap closed">
+  <div class="expandSubsubOuter">
+   <h4 class="expandSubsubInner"><a class="expand" href="#" title="show">Magnification<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a><a class="collapse hide" href="#" title="hide">Magnification<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a></h4>
+   <div class="expanded hide">
+    <p><a name="48959139"></a>See <em>Mathematica</em> help for <a href="http://reference.wolfram.com/language/ref/Magnification.html">Magnification</a>.</p>
+   </div>
+  </div>
+ </div><div class="expandSubsubWrap closed">
+  <div class="expandSubsubOuter">
+   <h4 class="expandSubsubInner"><a class="expand" href="#" title="show">MetaInformation<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a><a class="collapse hide" href="#" title="hide">MetaInformation<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a></h4>
+   <div class="expanded hide">
+    <p><a name="338213663"></a>See <em>Mathematica</em> help for <a href="http://reference.wolfram.com/language/ref/MetaInformation.html">MetaInformation</a>.</p>
+   </div>
+  </div>
+ </div><div class="expandSubsubWrap closed">
+  <div class="expandSubsubOuter">
+   <h4 class="expandSubsubInner"><a class="expand" href="#" title="show">TaggingRules<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a><a class="collapse hide" href="#" title="hide">TaggingRules<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a></h4>
+   <div class="expanded hide">
+    <p><a name="378256495"></a>See <em>Mathematica</em> help for <a href="http://reference.wolfram.com/language/ref/TaggingRules.html">TaggingRules</a>.</p>
+   </div>
+  </div>
+ </div><div class="expandSubsubWrap closed">
+  <div class="expandSubsubOuter">
+   <h4 class="expandSubsubInner"><a class="expand" href="#" title="show">ColorFunction<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a><a class="collapse hide" href="#" title="hide">ColorFunction<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a></h4>
+   <div class="expanded hide">
+    <p><a name="267618493"></a>See <em>Mathematica</em> help for <a href="http://reference.wolfram.com/language/ref/ColorFunction.html">ColorFunction</a>.</p>
+   </div>
+  </div>
+ </div><div class="expandSubsubWrap closed">
+  <div class="expandSubsubOuter">
+   <h4 class="expandSubsubInner"><a class="expand" href="#" title="show">ColorFunctionScaling<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a><a class="collapse hide" href="#" title="hide">ColorFunctionScaling<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a></h4>
+   <div class="expanded hide">
+    <p><a name="182207257"></a>See <em>Mathematica</em> help for <a href="http://reference.wolfram.com/language/WaveletWare/ref/ColorScalingFunction.html">ColorScalingFunction</a>.</p>
+   </div>
+  </div>
+ </div>

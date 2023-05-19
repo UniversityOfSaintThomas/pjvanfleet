@@ -1,0 +1,3 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>v = Floor[Range[0, 9.9, .1]];
+ListPlot[v, Ticks -&gt; {Range[0, 100, 20], Range[0, 8, 2]}]
+N[Entropy2[v] ]</pre><div class='IFU'><a name='488458564'></a>http://wolfram.com/xid/0rbcx7yrv4nohjeyjip83rwf6-ic3nbq</div>

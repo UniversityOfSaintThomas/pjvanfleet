@@ -1,0 +1,9 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>v = Range[20];
+{h, ht} = SplineFilters[2, 2];
+wt = BWT[v, {h, ht}];
+(* Create the highpass filter *)
+hp = ht*Table[(-1)^k, {k, 0, 2}];
+(* Partition the data *)
+{vt, vb} = Partition[wt, 10];
+(* Do the inverse transform *)
+iwt = InverseBWTAux[vt, h, 0] + InverseBWTAux[vb, hp, 1]</pre><div class='IFU'><a name='147182881'></a>http://wolfram.com/xid/0kw0v5if2qck8wymwcitre8ljr2qz-cpwxbn</div>

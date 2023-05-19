@@ -1,0 +1,8 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;facade.png&quot;;
+{r, g, b} = ImageRead[file, Resize -&gt; 200];
+ImagePlot[{r, g, b}]
+{y, cb, cr} = RGBToYCbCr[{r, g, b}];
+Map[ImagePlot[#, Scaling -&gt; True, ImageSize -&gt; Dimensions[r]] &amp;, {y, 
+  cb, cr}]
+{r, g, b} = YCbCrToRGB[{y, cb, cr}];
+ImagePlot[{r, g, b}]</pre><div class='IFU'><a name='524266099'></a>http://wolfram.com/xid/0f9kq23mjjbkx9jhhodw5bq2w2fe-iye4lh</div>

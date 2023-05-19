@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Differences in the DiscreteWavelets and WaveletWare Packages&mdash;Wolfram Language Documentation</title>
+<meta name="buildnumber" content="0000000" />
+<meta name="historydata" content="{0.0, , , }" />
+<meta name="keywords" content="Differences in the DiscreteWavelets and WaveletWare Packages" />
+
+<meta name="description" content="There are many new changes from the DiscreteWavelets package to the WaveletWare package. Many of these changes are documented in this tutorial. The reader is encouraged to view the help for particular functions as it is always more detailed than the information found in this tutorial. Two important notes to be considered before proceeding: Mathematia 10.0 or above is required for the WaveletWare package. This is because many WaveletWare functions make use of the Mathematica command AllTrue for error checking. The documentation for the WaveletWare package has been completely overhauled and updated and can be fully integrated into Mathematica once the package is installed. The table below lists the major differences between the DiscreteWavelets package and the WaveletWare package. This loads the package: (top)" />
+<script language="JavaScript" type="text/javascript">baselang='Differences in the DiscreteWavelets and WaveletWare Packages';</script>
+<script language="JavaScript" type="text/javascript">packagename='WaveletWare';</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		 <link rel="stylesheet" type="text/css" href="../css/reference.css" />
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/core/1.6.1/jquery.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/plugins/hoverIntent/r5/jquery.hoverIntent.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/reference.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/documentation-search.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/inputs.js"></script>
+		 <script language="javaScript" type="text/javascript" src="../javascript/faster-page-load.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/plugins/jcarousel/tinycarousel/tinycarousel.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery.dotdotdot-1.5.1.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/carousel.js"></script>
+</head>
+<body id="tutorial">
+<a name="top"></a>
+<!--#include virtual="/common/includes/gl-header.html"--> 
+<div class="main-wrapper">
+
+
+<div class="wrapper mainOuter">
+    <div class="mainContent">
+ <div class="topContentWrap">
+  <div class="ribbonWrap">
+   <span class="ribbonOuter"><span class="ribbonInner">WAVELET WARE TUTORIAL</span></span>
+  </div>
+  <ul class="dropdown">
+   <li>
+    <a href="#">Functions</a>
+    <ul class="sub_menu">
+     <li>
+      <a href="/language/WaveletWare/ref/AudioInfo.html"><span class="dropdownPad">AudioInfo</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/BestBasisTree.html"><span class="dropdownPad">BestBasisTree</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/BWT.html"><span class="dropdownPad">BWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/DataInfo.html"><span class="dropdownPad">DataInfo</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/FBIPacketTransform.html"><span class="dropdownPad">FBIPacketTransform</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/FBITree.html"><span class="dropdownPad">FBITree</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/FullWaveletPlot.html"><span class="dropdownPad">FullWaveletPlot</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/FullWaveletVectorPlot.html"><span class="dropdownPad">FullWaveletVectorPlot</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/HWT.html"><span class="dropdownPad">HWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/ImageInfo.html"><span class="dropdownPad">ImageInfo</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/ImagePlot.html"><span class="dropdownPad">ImagePlot</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/InverseBWT.html"><span class="dropdownPad">InverseBWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/InverseFBIPacketTransform.html"><span class="dropdownPad">InverseFBIPacketTransform</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/InverseHWT.html"><span class="dropdownPad">InverseHWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/InverseLWT.html"><span class="dropdownPad">InverseLWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/InverseWPT.html"><span class="dropdownPad">InverseWPT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/InverseWT.html"><span class="dropdownPad">InverseWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/LeftBWT.html"><span class="dropdownPad">LeftBWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/LeftHWT.html"><span class="dropdownPad">LeftHWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/LeftInverseBWT.html"><span class="dropdownPad">LeftInverseBWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/LeftInverseHWT.html"><span class="dropdownPad">LeftInverseHWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/LeftInverseLWT.html"><span class="dropdownPad">LeftInverseLWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/LeftInverseWT.html"><span class="dropdownPad">LeftInverseWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/LeftLWT.html"><span class="dropdownPad">LeftLWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/LeftWT.html"><span class="dropdownPad">LeftWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/LWT.html"><span class="dropdownPad">LWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/NumberAboveThreshold.html"><span class="dropdownPad">NumberAboveThreshold</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/NumberNonzero.html"><span class="dropdownPad">NumberNonzero</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/PacketFunctionData.html"><span class="dropdownPad">PacketFunctionData</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/ScalingFunctionData.html"><span class="dropdownPad">ScalingFunctionData</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/ShannonEntropy.html"><span class="dropdownPad">ShannonEntropy</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/ShowBestBasis.html"><span class="dropdownPad">ShowBestBasis</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/SumOfPowers.html"><span class="dropdownPad">SumOfPowers</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/WaveletFunctionData.html"><span class="dropdownPad">WaveletFunctionData</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/WaveletPlot.html"><span class="dropdownPad">WaveletPlot</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/WaveletRegionPlot.html"><span class="dropdownPad">WaveletRegionPlot</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/WaveletVectorPlot.html"><span class="dropdownPad">WaveletVectorPlot</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/WPT.html"><span class="dropdownPad">WPT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/WPTFull.html"><span class="dropdownPad">WPTFull</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/WT.html"><span class="dropdownPad">WT</span></a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+  <div class="clear"><!-- --></div>
+ </div>
+ <h1 class="Title"><a name="509267359"></a>Differences in the DiscreteWavelets and WaveletWare Packages</h1>
+ <div class="TutorialJumpBox">
+  <table class="nogridboxdividers">
+   <col />
+   <col />
+   <tr class="lineAbove" style=""><td><a href="../tutorial/Differences in the DiscreteWavelets and WaveletWare Packages.html#236024063">Accessing Multimedia Files</a></td><td><a href="../tutorial/Differences in the DiscreteWavelets and WaveletWare Packages.html#563135203">Modifications for the Haar Wavelet Transformation</a></td></tr>
+   <tr class="" style=""><td><a href="../tutorial/Differences in the DiscreteWavelets and WaveletWare Packages.html#32046898">Continuous Scaling and Wavelet Functions</a></td><td><a href="../tutorial/Differences in the DiscreteWavelets and WaveletWare Packages.html#671537810">Replacement of and Improvements to Quantization Functions</a></td></tr>
+   <tr class="" style=""><td><a href="../tutorial/Differences in the DiscreteWavelets and WaveletWare Packages.html#19785884">Wavelet Packet Transforms</a></td><td><a href="../tutorial/Differences in the DiscreteWavelets and WaveletWare Packages.html#257561459">New Visualization Functions and Improved Graphics</a></td></tr>
+   <tr class="" style=""><td><a href="../tutorial/Differences in the DiscreteWavelets and WaveletWare Packages.html#389666502">Consolidation of Wavelet Transform Routines</a></td><td><a href="../tutorial/Differences in the DiscreteWavelets and WaveletWare Packages.html#9182496">Improved Error Handling</a></td></tr>
+   <tr class="" style=""><td><a href="../tutorial/Differences in the DiscreteWavelets and WaveletWare Packages.html#453666235">Naming Convention for Inverse Wavelet Transformations</a></td><td><a href="../tutorial/Differences in the DiscreteWavelets and WaveletWare Packages.html#9186083">Other New Functions </a></td></tr>
+   <tr class="" style=""><td><a href="../tutorial/Differences in the DiscreteWavelets and WaveletWare Packages.html#321236168">More Left- and Right-Wavelet Transformation Routines</a></td><td></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="472084969"></a>There are many new changes from the DiscreteWavelets package to the <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> package.  Many of these changes are documented in this tutorial.  The reader is encouraged to view the help for particular functions as it is always more detailed than the information found in this tutorial.  <br /><br /><br />Two important notes to be considered before proceeding:<br /><br /><strong>Mathematia 10.0</strong> <strong>or above</strong> is required for the <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> package.  This is because many <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> functions make use of the Mathematica command AllTrue for error checking.<br /><br />The documentation for the <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> package has been completely overhauled and updated and can be fully integrated into Mathematica once the package is installed.<br /><br />The table below lists the major differences between the DiscreteWavelets package and the <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> package.</p>
+ <div class="MCap"><a name="16454449"></a>This loads the package:</div>
+ <table class="InCell">
+  <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+     <a name="861618089"></a>
+     <img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/I_2.gif"
+         height="15"
+         width="93"
+         alt="Click for copyable input" />
+    </div><div id="i_1_out" class="IFL"></div></td></tr>
+ </table>
+ <h2 class="Section"><a name="236024063"></a>Accessing Multimedia Files</h2>
+ <p class="Text">
+  <a name="942883"></a>
+  <a href="#main">(top)</a>
+ </p>
+ <p class="Text"><a name="256470035"></a>The DiscreteWavelets package has several routines that provide information and location of multimedia files that come with the package.  The <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> consolidates these routines into three routines (one each for audio, data and images).  The chart below shows the new functions for accessing multimedia files.</p>
+ <div class="MathTable DefinitionBox">
+  <a name="302754334"></a>
+  <table class="nogridboxdividers">
+   <col width="40%" />
+   <col width="60%" />
+   <tr class="lineAbove" style=""><td><span class="Subsubsection">WaveletWare</span></td><td><span class="TT"><span class="Subsubsection">DiscreteWavelets</span></span></td></tr>
+   <tr class="" style=""><td><a href="../ref/AudioInfo.html">AudioInfo</a><span class="openbracket">[</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT"><span class="specialcharacters">AudioList<span class="comma">,</span> AudioNames</span></span></td></tr>
+   <tr class="" style=""><td><a href="../ref/DataInfo.html">DataInfo</a><span class="openbracket">[</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT"><span class="specialcharacters">DataList<span class="comma">,</span> DataNames</span></span></td></tr>
+   <tr class="" style=""><td><a href="../ref/ImageInfo.html">ImageInfo</a><span class="openbracket">[</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT"><span class="specialcharacters">ImageList<span class="comma">,</span> ImageInfo</span></span></td></tr>
+  </table>
+ </div>
+ <p class="Caption"><a name="101678878"></a>Routines for accessing multimedia files.</p>
+ <p class="Text"><a name="54139419"></a>The tutorial <a href="../tutorial/Managing Image, Audio and Data Files in WaveletWare.html">Managing Image, Audio and Data Files in WaveletWare</a> gives more detailed information on the uses of the functions in the above table.  Some simple calls are given below.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+      <a name="403035213"></a>
+      <img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/I_4.gif"
+          height="67"
+          width="426"
+          alt="Click for copyable input" />
+     </div><div id="i_3_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_1.gif" height="441" width="424" alt="" /></td></tr>
+  </table>
+  <div class="Print">
+   <a name="150498463"></a>
+   <img class="FlushInput"
+       src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/Image_1.gif"
+       alt=" " />
+  </div>
+  <div class="Print">
+   <a name="469845827"></a>
+   <img class="FlushInput"
+       src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/Image_2.gif"
+       alt=" " />
+  </div>
+ </div>
+ <h2 class="Section"><a name="32046898"></a>Continuous Scaling and Wavelet Functions</h2>
+ <p class="Text">
+  <a name="622193415"></a>
+  <a href="#main">(top)</a>
+ </p>
+ <p class="Text"><a name="14104550"></a>The <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> package contains routines that allow users to compute approximations of scaling, wavelet and packet functions.</p>
+ <div class="MathTable DefinitionBox">
+  <a name="282938948"></a>
+  <table class="nogridboxdividers">
+   <col width="40%" />
+   <col width="60%" />
+   <tr class="lineAbove" style=""><td><a href="../ref/PacketFunctionData.html">PacketFunctionData</a><span class="openbracket">[</span><span class="TI">filter</span><span class="comma">,</span><span class="TI">n</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Generate data to approximate a packet function</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/ScalingFunctionData.html">ScalingFunctionData</a><span class="openbracket">[</span><span class="TI">filter</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Generate data to approximate a scaling function</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/WaveletFunctionData.html">WaveletFunctionData</a><span class="openbracket">[</span><span class="TI">filter</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Generate data to approximate a wavelet function</span></td></tr>
+  </table>
+ </div>
+ <p class="Caption"><a name="7399654"></a>Approximating scaling and wavelet functions.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[4]:=</td><td class="Input"><div>
+      <a name="86210802"></a>
+      <img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/I_6.gif"
+          height="135"
+          width="320"
+          alt="Click for copyable input" />
+     </div><div id="i_5_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[5]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_2.gif" height="177" width="300" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[7]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_3.gif" height="181" width="300" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[9]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_4.gif" height="80" width="493" alt="" /></td></tr>
+  </table>
+ </div>
+ <h2 class="Section"><a name="19785884"></a>Wavelet Packet Transforms</h2>
+ <p class="Text">
+  <a name="241285700"></a>
+  <a href="#main">(top)</a>
+ </p>
+ <p class="Text"><a name="242792959"></a>The <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> package contains many new functions that can be used to compute wavelet packet transformation and their inverses and visualize the results.  An entire tutorial is dedicated to these new functions (see <a href="../tutorial/Computing and Plotting Wavelet Packet Transforms.html">Computing and Plotting Wavelet Packet Transforms</a>) and the new packet functions are given in the <a href="../guide/List of Functions - Categorical.html">List of Functions by Category Guide</a>.  They are listed here as well for convenience.</p>
+ <div class="MathTable DefinitionBox">
+  <a name="560102298"></a>
+  <table class="nogridboxdividers">
+   <col width="40%" />
+   <col width="60%" />
+   <tr class="lineAbove" style=""><td><a href="../ref/BestBasisTree.html">BestBasisTree</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Generate the best basis for a packet transform</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/FBIPacketTransform.html">FBIPacketTransform</a><span class="openbracket">[</span><span class="TI">data</span><span class="closebracket">]</span></td><td><span class="TT">Wavelet packet transform for fingerprint compression</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/FBITree.html">FBITree</a><span class="openbracket">[</span><span class="closebracket">]</span></td><td><span class="TT">Best basis tree for FBI packet transform</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/InverseFBIPacketTransform.html">InverseFBIPacketTransform</a><span class="openbracket">[</span><span class="openbrace">{</span><span class="TI">wt</span><span class="comma">,</span><span class="TI">t</span><span class="closebrace">}</span><span class="closebracket">]</span></td><td><span class="TT">Inverse FBI packet transform </span></td></tr>
+   <tr class="" style=""><td><a href="../ref/InverseWPT.html">InverseWPT</a><span class="openbracket">[</span><span class="openbrace">{</span><span class="TI">wt</span><span class="comma">,</span><span class="TI">t</span><span class="closebrace">}</span><span class="comma">,</span><span class="TI">filter</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Inverse wavelet packet transform</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/NumberAboveThreshold.html">NumberAboveThreshold</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">p</span><span class="closebracket">]</span></td><td><span class="TT">Cost function for computing the best basis </span></td></tr>
+   <tr class="" style=""><td><a href="../ref/NumberNonzero.html">NumberNonzero</a><span class="openbracket">[</span><span class="TI">data</span><span class="closebracket">]</span></td><td><span class="TT">Cost function for computing the best basis</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/ShannonEntropy.html">ShannonEntropy</a><span class="openbracket">[</span><span class="TI">data</span><span class="closebracket">]</span></td><td><span class="TT">Cost function for computing the best basis</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/SumOfPowers.html">SumOfPowers</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">p</span><span class="closebracket">]</span></td><td><span class="TT">Cost function for computing the best basis</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/WPT.html">WPT</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">filter</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Wavelet packet transform</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/WPTFull.html">WPTFull</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">filter</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Full packet decomposition of data</span></td></tr>
+  </table>
+ </div>
+ <p class="Caption"><a name="231442877"></a>Wavelet packet functions.</p>
+ <h2 class="Section"><a name="389666502"></a>Consolidation of Wavelet Transform Routines</h2>
+ <p class="Text">
+  <a name="73263808"></a>
+  <a href="#main">(top)</a>
+ </p>
+ <p class="Text"><a name="154478213"></a>One cumbersome feature of the DiscreteWavelets package was the many different routines associated with a single type of wavelet transformation.  <br /><br />For example, computation of the Haar wavelet transform would require the use of HWT1D1, HWT1D, HWT2D1, or HWT2D based on the dimension of the data (vector or matrix) or the number of iterations to compute.  The Mathematica <a href="http://reference.wolfram.com/language/ref/Map.html">Map</a> command was needed as well if the input was a list of three matrices from a color space.<br /><br />In the <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> package, all of these variants of the Haar wavelet transform have been replaced by the single routine <span class="IF"><a href="../ref/HWT.html">HWT</a></span>.  The <span class="IF"><a href="../ref/HWT.html">HWT</a></span> function takes as input a vector, matrix or list of three matrices each of the same dimension.  Moreover, the number of iterations can be stipulated as an option.<br /><br />Below is a summary of the wavelet transform routines in the <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> package and the routines they have replaced.</p>
+ <div class="MathTable DefinitionBox">
+  <a name="76840525"></a>
+  <table class="nogridboxdividers">
+   <col width="40%" />
+   <col width="60%" />
+   <tr class="lineAbove" style=""><td><span class="Subsubsection">WaveletWare</span></td><td><span class="TT"><span class="Subsubsection">DiscreteWavelets</span></span></td></tr>
+   <tr class="" style=""><td><a href="../ref/HWT.html">HWT</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT"><span class="specialcharacters">HWT1D1<span class="comma">,</span> HWT1D<span class="comma">,</span> HWT2D1<span class="comma">,</span> HWT2D</span></span></td></tr>
+   <tr class="" style=""><td><a href="../ref/WT.html">WT</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">filter</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT"><span class="specialcharacters">WT1D1<span class="comma">,</span> WT1D<span class="comma">,</span> WT2D1<span class="comma">,</span> WT2D</span></span></td></tr>
+   <tr class="" style=""><td><a href="../ref/BWT.html">BWT</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">filter</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT"><span class="specialcharacters">BWT1D1<span class="comma">,</span> BWT1D<span class="comma">,</span> BWT2D1<span class="comma">,</span> BWT2D</span></span></td></tr>
+   <tr class="" style=""><td><a href="../ref/LWT.html">LWT</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT"><span class="specialcharacters">LWT1D1<span class="comma">,</span> LWT1D<span class="comma">,</span> LWT2D1<span class="comma">,</span> LWT2D</span></span></td></tr>
+  </table>
+ </div>
+ <p class="Caption"><a name="627372393"></a>Wavelet transform routines in the <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> package.</p>
+ <h2 class="Section"><a name="453666235"></a>Naming Convention for Inverse Wavelet Transformations</h2>
+ <p class="Text">
+  <a name="511224317"></a>
+  <a href="#main">(top)</a>
+ </p>
+ <p class="Text"><a name="5118878"></a>Inverse wavelet transformation routines in the DiscreteWavelets package started with the letter I and followed the convention described above so that several different names were needed to describe a single transformation.  In the <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> package, inverse wavelet transform routines have been consolidated so that a single routine performs many tasks.  Moreover, inverse routines now start with the word &quot;Inverse&quot; rather than &quot;I.&quot;  The chart below summarizes the changes:</p>
+ <div class="MathTable DefinitionBox">
+  <a name="102694420"></a>
+  <table class="nogridboxdividers">
+   <col width="40%" />
+   <col width="60%" />
+   <tr class="lineAbove" style=""><td><span class="Subsubsection">WaveletWare</span></td><td><span class="TT"><span class="Subsubsection">DiscreteWavelets</span></span></td></tr>
+   <tr class="" style=""><td><a href="../ref/InverseHWT.html">InverseHWT</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT"><span class="specialcharacters">IHWT1D1<span class="comma">,</span> IHWT1D<span class="comma">,</span> IHWT2D1</span></span></td></tr>
+   <tr class="" style=""><td><a href="../ref/InverseWT.html">InverseWT</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">filter</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT"><span class="specialcharacters">IWT1D1<span class="comma">,</span> IWT1D<span class="comma">,</span> IWT2D1<span class="comma">,</span> IWT2DI</span></span></td></tr>
+   <tr class="" style=""><td><a href="../ref/InverseBWT.html">InverseBWT</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">filter</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT"><span class="specialcharacters">IBWT1D1<span class="comma">,</span> IBWT1D<span class="comma">,</span> IBWT2D1<span class="comma">,</span> IBWT2D</span></span></td></tr>
+   <tr class="" style=""><td><a href="../ref/InverseLWT.html">InverseLWT</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT"><span class="specialcharacters">ILWT1D1<span class="comma">,</span> ILWT1D<span class="comma">,</span> ILWT2D1<span class="comma">,</span> ILWT2D</span></span></td></tr>
+  </table>
+ </div>
+ <p class="Caption"><a name="578231570"></a>Inverse wavelet transform routines in the <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> package.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[10]:=</td><td class="Input"><div>
+      <a name="509401737"></a>
+      <img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/I_8.gif"
+          height="169"
+          width="338"
+          alt="Click for copyable input" />
+     </div><div id="i_7_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[17]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_5.gif" height="170" width="493" alt="" /></td></tr>
+  </table>
+ </div>
+ <h2 class="Section"><a name="321236168"></a>More Left- and Right-Wavelet Transformation Routines</h2>
+ <p class="Text">
+  <a name="418907516"></a>
+  <a href="#main">(top)</a>
+ </p>
+ <p class="Text"><a name="12038374"></a>The DiscreteWavelets package contained the routines LeftHWT, RightHWT, LeftWT and RightWT.  These routines are for pedagogical use - in the case of the left-transform routines, the output is <span class="IF"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/3.png" height="18" width="11" alt="" /></span><span class="IF"><a href="http://reference.wolfram.com/language/Global/ref/A.html">A</a></span> where <span class="IF"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/4.png" height="18" width="11" alt="" /></span> is the associated matrix and <span class="IF"><a href="http://reference.wolfram.com/language/Global/ref/A.html">A</a></span> is an input matrix.  For the right-transform routines, the output is <span class="IF"><a href="http://reference.wolfram.com/language/Global/ref/A.html">A</a></span><span class="IF"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/5.png" height="18" width="17" alt="" /></span>.  Inverse routines LeftIHWT, RightIHWT, LeftIWT and RightIWT were also provided.<br /><br />The <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> package contains these routines as well as left- and right-wavelet transform routines (and inverses) for the biorthogonal wavelet transform and the LeGall wavelet transform.  The inverse routines contain &quot;Inverse&quot; rather than &quot;I.&quot;</p>
+ <div class="MathTable DefinitionBox">
+  <a name="506584173"></a>
+  <table class="nogridboxdividers">
+   <col width="40%" />
+   <col width="60%" />
+   <tr class="lineAbove" style=""><td><a href="../ref/LeftHWT.html">LeftHWT</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Left Haar wavelet transform</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/LeftWT.html">LeftWT</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">filter</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Left wavelet transform</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/LeftBWT.html">LeftBWT</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">filter</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Left biorthogonal wavelet transform</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/LeftLWT.html">LeftLWT</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Left LeGall wavelet transform</span></td></tr>
+  </table>
+ </div>
+ <p class="Caption"><a name="358003637"></a>Left wavelet transforms.</p>
+ <div class="MathTable DefinitionBox">
+  <a name="20663006"></a>
+  <table class="nogridboxdividers">
+   <col width="40%" />
+   <col width="60%" />
+   <tr class="lineAbove" style=""><td><a href="../ref/LeftInverseHWT.html">LeftInverseHWT</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Left inverse Haar wavelet transform</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/LeftInverseWT.html">LeftInverseWT</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">filter</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Left inverse wavelet transform</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/LeftInverseBWT.html">LeftInverseBWT</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">filter</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Left inverse biorthogonal wavelet transform</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/LeftInverseLWT.html">LeftInverseLWT</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Left inverse LeGall wavelet transform</span></td></tr>
+  </table>
+ </div>
+ <p class="Caption"><a name="687087615"></a>Left inverse wavelet transforms.</p>
+ <p class="Text"><a name="94903945"></a>Replacing &quot;Left&quot; with &quot;Right&quot; in the two tables above give all the right-wavelet transform routines and their inverses.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[18]:=</td><td class="Input"><div>
+      <a name="130662272"></a>
+      <img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/I_10.gif"
+          height="186"
+          width="329"
+          alt="Click for copyable input" />
+     </div><div id="i_9_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[25]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_6.gif" height="170" width="493" alt="" /></td></tr>
+  </table>
+ </div>
+ <h2 class="Section"><a name="563135203"></a>Modifications for the Haar Wavelet Transformation</h2>
+ <p class="Text">
+  <a name="14782819"></a>
+  <a href="#main">(top)</a>
+ </p>
+ <p class="Text"><a name="246872191"></a>For pedagogical purposes, the discrete Haar wavelet transform is sometimes motivated using the filter <span class="IF"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/6.png" height="26" width="14" alt="" /></span>, <span class="IF"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/7.png" height="26" width="9" alt="" /></span>) rather than the orthogonal version ( <span class="IF"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/8.png" height="32" width="21" alt="" /></span>, <span class="IF"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/9.png" height="32" width="21" alt="" /></span>).  The <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> version of the <span class="IF"><a href="../ref/HWT.html">HWT</a></span> routine reflects this approach and the cell below shows the matrix used (for data of length/dimension <span class="IF"><span class="TI">n</span></span>) for the <span class="IF"><a href="../ref/HWT.html">HWT</a></span> computation.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[26]:=</td><td class="Input"><div>
+      <a name="747302974"></a>
+      <img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/I_12.gif"
+          height="50"
+          width="208"
+          alt="Click for copyable input" />
+     </div><div id="i_11_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td colspan="2"><div class="celllabelTableForm">Out[28]//MatrixForm=</div></td></tr>
+   <tr><td class="lab"> </td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_7.gif" width="158" height="197" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="569016331"></a>The <span class="IF"><a href="../ref/Orthogonal.html">Orthogonal</a></span> option can be set to <a href="http://reference.wolfram.com/language/ref/True.html">True</a> and then the orthogonal filter ( <span class="IF"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/10.png" height="32" width="21" alt="" /></span>, <span class="IF"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/11.png" height="32" width="21" alt="" /></span>) is used for computation.  The cell below indicates the different outputs based on the value of the <span class="IF"><a href="../ref/Orthogonal.html">Orthogonal</a></span> option.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[29]:=</td><td class="Input"><div>
+      <a name="488174730"></a>
+      <img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/I_14.gif"
+          height="50"
+          width="362"
+          alt="Click for copyable input" />
+     </div><div id="i_13_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[30]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_8.gif" height="32" width="176" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[31]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_9.gif" height="37" width="298" alt="" /></td></tr>
+  </table>
+ </div>
+ <h2 class="Section"><a name="671537810"></a>Replacement of and Improvements to Quantization Functions</h2>
+ <p class="Text">
+  <a name="263335943"></a>
+  <a href="#main">(top)</a>
+ </p>
+ <p class="Text"><a name="172064266"></a>The DiscreteWavelets package had functions <span class="IF"><a href="../ref/nCE.html">nCE</a></span> and <span class="IF"><a href="../ref/Comp.html">Comp</a></span> that could be used to quantize data for image compression examples.  The functions are still part of the <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> package.  They have been improved (for efficiency and accuracy) and also redundantly renamed in the <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> package as <span class="IF"><a href="../ref/PercentCE.html">PercentCE</a></span> (<span class="IF"><a href="../ref/nCE.html">nCE</a></span>) and <span class="IF"><a href="../ref/QuantizeCE.html">QuantizeCE</a></span> (<span class="IF"><a href="../ref/Comp.html">Comp</a></span>).   The cell below shows how these functions can be used.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[32]:=</td><td class="Input"><div>
+      <a name="68217098"></a>
+      <img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/I_16.gif"
+          height="305"
+          width="447"
+          alt="Click for copyable input" />
+     </div><div id="i_15_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[34]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_10.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[36]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_11.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+  <div class="Print">
+   <a name="141753157"></a>
+   <img class="FlushInput"
+       src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/Image_12.gif"
+       alt=" " />
+  </div>
+  <div class="Print">
+   <a name="460343621"></a>
+   <img class="FlushInput"
+       src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/Image_13.gif"
+       alt=" " />
+  </div>
+  <table class="OCell">
+   <tr><td class="lab">Out[42]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_12.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[44]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_13.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+ </div>
+ <h2 class="Section"><a name="257561459"></a>New Visualization Functions and Improved Graphics</h2>
+ <p class="Text">
+  <a name="57890639"></a>
+  <a href="#main">(top)</a>
+ </p>
+ <p class="Text"><a name="119464793"></a>The <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> package includes vastly improved graphics capabilities compared to the DiscreteWavelets package.  Several improvements have been made to the plotting routines <span class="IF"><a href="../ref/ImagePlot.html">ImagePlot</a></span>, <span class="IF"><a href="../ref/WaveletPlot.html">WaveletPlot</a></span> (WaveletDensityPlot in the DiscreteWaveletsPackage) and <span class="IF"><a href="../ref/WaveletVectorPlot.html">WaveletVectorPlot</a></span> and new routines have been added.  Visualization routines for the <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> package are listed below.<br /><br />The &quot;old&quot; routines <span class="IF"><a href="../ref/WaveletPlot.html">WaveletPlot</a></span> and <span class="IF"><a href="../ref/WaveletVectorPlot.html">WaveletVectorPlot</a></span> along with the new routine <span class="IF"><a href="../ref/WaveletRegionPlot.html">WaveletRegionPlot</a></span> all contain an option argument <span class="IF"><span class="TI">tree</span></span>.  If this argument is present, these routines will plot a wavelet packet transform (or parts of it, if desired).</p>
+ <div class="MathTable DefinitionBox">
+  <a name="45904971"></a>
+  <table class="nogridboxdividers">
+   <col width="40%" />
+   <col width="60%" />
+   <tr class="lineAbove" style=""><td><a href="../ref/ImagePlot.html">ImagePlot</a><span class="openbracket">[</span><span class="TI">img</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Plot an image</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/WaveletVectorPlot.html">WaveletVectorPlot</a><span class="openbracket">[</span><span class="TI">v</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Plot the wavelet transform of a vector</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/WaveletVectorPlot.html">WaveletVectorPlot</a><span class="openbracket">[</span><span class="TI">v</span><span class="comma">,</span><span class="TI">tree</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Plot the wavelet packet transform of a vector</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/WaveletPlot.html">WaveletPlot</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Plot the wavelet transform of a matrix or 3 matrices</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/WaveletPlot.html">WaveletPlot</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">tree</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Plot the wavelet packet transform of a matrix or 3 matrices</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/WaveletRegionPlot.html">WaveletRegionPlot</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">iter</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT"><span class="specialcharacters">Plot a particular region<span class="openparenthesis">(</span>s<span class="closeparenthesis">)</span> of a wavelet transform</span></span></td></tr>
+   <tr class="" style=""><td><a href="../ref/WaveletRegionPlot.html">WaveletRegionPlot</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">tree</span><span class="comma">,</span><span class="TI">iter</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT"><span class="specialcharacters">Plot a particular region<span class="openparenthesis">(</span>s<span class="closeparenthesis">)</span> of a wavelet packet transform</span></span></td></tr>
+   <tr class="" style=""><td><a href="../ref/FullWaveletPlot.html">FullWaveletPlot</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT"><span class="specialcharacters">Plot iterations of the <span class="openparenthesis">(</span>packet<span class="closeparenthesis">)</span> transform of a matrix or matrices</span></span></td></tr>
+   <tr class="" style=""><td><a href="../ref/FullWaveletVectorPlot.html">FullWaveletVectorPlot</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT"><span class="specialcharacters">Plot iterations of the <span class="openparenthesis">(</span>packet<span class="closeparenthesis">)</span> transform of a vector</span></span></td></tr>
+   <tr class="" style=""><td><a href="../ref/ShowBestBasis.html">ShowBestBasis</a><span class="openbracket">[</span><span class="TI">tree</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Plot the best basis decomposition of a packet transform</span></td></tr>
+  </table>
+ </div>
+ <p class="Caption"><a name="443530784"></a>Visualization routines in the <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> package.</p>
+ <h3 class="Subsection"><a name="543778470"></a>ImagePlot</h3>
+ <p class="Text">
+  <a name="455687076"></a>
+  <a href="#visual">(top of section)</a>
+ </p>
+ <p class="Text"><a name="146619966"></a><span class="IF"><a href="../ref/ImagePlot.html">ImagePlot</a></span> can be used to plot grayscale or color images.  The input must be a matrix or list of three matrices each of the same dimensions.  The command below gives the options for <span class="IF"><a href="../ref/ImagePlot.html">ImagePlot</a></span>.  The first 5 are <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> specific with the remainder being options for Mathematica's <a href="http://reference.wolfram.com/language/ref/Raster.html">Raster</a> and <a href="http://reference.wolfram.com/language/ref/Image.html">Image</a> functions.  Of the first five, the <span class="IF"><a href="../ref/Scaling.html">Scaling</a></span> and <span class="IF"><a href="../ref/PlotTogether.html">PlotTogether</a></span> options are new in <a href="../tutorial/WaveletWare Package.html">WaveletWare</a>.  <br /><br />The <span class="IF"><a href="../ref/Scaling.html">Scaling</a></span> option uses the <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> command <span class="IF"><a href="../ref/MatrixStretch.html">MatrixStretch</a></span> to apply a linear map that sends the min/max of each channel to prescribed values (the defaults are 0/255).  <span class="IF"><a href="../ref/PlotTogether.html">PlotTogether</a></span> can be used for color images.  By default, a color image is plotted using all three color channels but setting <span class="IF"><a href="../ref/PlotTogether.html">PlotTogether</a></span> to <a href="http://reference.wolfram.com/language/ref/False.html">False</a> instructs <span class="IF"><a href="../ref/ImagePlot.html">ImagePlot</a></span> to plot color channels separately.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[12]:=</td><td class="Input"><div>
+      <a name="408103969"></a>
+      <img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/I_18.gif"
+          height="15"
+          width="104"
+          alt="Click for copyable input" />
+     </div><div id="i_17_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[12]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_14.gif" height="84" width="432" alt="" /></td></tr>
+  </table>
+ </div>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[45]:=</td><td class="Input"><div>
+      <a name="95035499"></a>
+      <img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/I_20.gif"
+          height="101"
+          width="391"
+          alt="Click for copyable input" />
+     </div><div id="i_19_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[47]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_15.gif" height="256" width="384" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[48]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_16.gif" height="252" width="386" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[49]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_17.gif" height="252" width="386" alt="" /></td></tr>
+  </table>
+ </div>
+ <h3 class="Subsection"><a name="158457175"></a>WaveletVectorPlot</h3>
+ <p class="Text">
+  <a name="769682603"></a>
+  <a href="#visual">(top of section)</a>
+ </p>
+ <p class="Text"><a name="312541379"></a>The output of the cell below shows the options for <span class="IF"><a href="../ref/WaveletVectorPlot.html">WaveletVectorPlot</a></span>.  The options <a href="http://reference.wolfram.com/language/ref/ImageSize.html">ImageSize</a>, <a href="http://reference.wolfram.com/language/ref/Background.html">Background</a>, <a href="http://reference.wolfram.com/language/ref/Joined.html">Joined</a>, <a href="http://reference.wolfram.com/language/ref/PointSize.html">PointSize</a> and <a href="http://reference.wolfram.com/language/ref/Ticks.html">Ticks</a> and Mathematica options for the <a href="http://reference.wolfram.com/language/ref/ListPlot.html">ListPlot</a> functions.  All other options are part of the <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> package.  Of these <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> options, <span class="IF"><a href="../ref/Iteration.html">Iteration</a></span> is explained in detail in the tutorial <a href="../tutorial/Data Structures in the WaveletWare Package.html">Data Structures in the WaveletWare Package</a> and <span class="IF"><a href="../ref/Dimming.html">Dimming</a></span> is a new option.  The <span class="IF"><a href="../ref/Colors.html">Colors</a></span> option is a consolidation of the options UseColors and ColorList for WaveletVectorPlot from the DiscreteWavelets package.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[50]:=</td><td class="Input"><div>
+      <a name="763700995"></a>
+      <img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/I_22.gif"
+          height="15"
+          width="150"
+          alt="Click for copyable input" />
+     </div><div id="i_21_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[50]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_18.gif" height="67" width="536" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="106270661"></a>In the case where particular iterations are specified to be plotted, the color value for <span class="IF"><a href="../ref/Dimming.html">Dimming</a></span> indicates the color to use for regions not plotted.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[51]:=</td><td class="Input"><div>
+      <a name="701767963"></a>
+      <img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/I_24.gif"
+          height="220"
+          width="464"
+          alt="Click for copyable input" />
+     </div><div id="i_23_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[54]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_19.gif" height="163" width="240" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[56]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_20.gif" height="135" width="240" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[57]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_21.gif" height="135" width="240" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[58]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_22.gif" height="135" width="240" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[59]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_23.gif" height="135" width="240" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="332426989"></a><span class="IF"><a href="../ref/WaveletVectorPlot.html">WaveletVectorPlot</a></span> can also plot wavelet packet transforms - all that is needed is the optional second argument <span class="IF"><span class="TI">tree</span></span>.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[60]:=</td><td class="Input"><div>
+      <a name="386528111"></a>
+      <img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/I_26.gif"
+          height="220"
+          width="472"
+          alt="Click for copyable input" />
+     </div><div id="i_25_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[63]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_24.gif" height="163" width="240" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[65]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_25.gif" height="104" width="200" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[66]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_26.gif" height="117" width="200" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[67]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_27.gif" height="117" width="200" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[68]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_28.gif" height="117" width="200" alt="" /></td></tr>
+  </table>
+ </div>
+ <h3 class="Subsection"><a name="157894121"></a>WaveletPlot</h3>
+ <p class="Text">
+  <a name="350523065"></a>
+  <a href="#visual">(top of section)</a>
+ </p>
+ <p class="Text"><a name="197566886"></a>The output of the cell below displays all the options for the <span class="IF"><a href="../ref/WaveletPlot.html">WaveletPlot</a></span> function.  The first 12 options are from the <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> package while the remaining options are for the Mathematica functions <a href="http://reference.wolfram.com/language/ref/Raster.html">Raster</a> and <a href="http://reference.wolfram.com/language/ref/Image.html">Image</a>.<br /><br />The <span class="IF"><a href="../ref/Iteration.html">Iteration</a></span> option consolidates the Region and Iteration option for WaveletDensityPlot in the DiscreteWavelets package and is described in detail in the tutorial <a href="../tutorial/Data Structures in the WaveletWare Package.html">Data Structures in the WaveletWare Package</a>.  New options are <span class="IF"><a href="../ref/PlotTogether.html">PlotTogether</a></span>, <span class="IF"><a href="../ref/Scaling.html">Scaling</a></span>, <span class="IF"><a href="../ref/Dimming.html">Dimming</a></span>, <span class="IF"><a href="../ref/DimmingRange.html">DimmingRange</a></span> and <span class="IF"><a href="../ref/PlotType.html">PlotType</a></span>.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[69]:=</td><td class="Input"><div>
+      <a name="4364600"></a>
+      <img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/I_28.gif"
+          height="15"
+          width="114"
+          alt="Click for copyable input" />
+     </div><div id="i_27_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[69]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_29.gif" height="101" width="529" alt="" /></td></tr>
+  </table>
+ </div>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[70]:=</td><td class="Input"><div>
+      <a name="22496938"></a>
+      <img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/I_30.gif"
+          height="203"
+          width="532"
+          alt="Click for copyable input" />
+     </div><div id="i_29_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[72]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_30.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[74]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_31.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[75]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_32.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[76]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_33.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[77]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_34.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[78]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_35.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="115973827"></a>The <span class="IF"><a href="../ref/PlotType.html">PlotType</a></span> option can be set to <a href="http://reference.wolfram.com/language/ref/Left.html">Left</a> or <a href="http://reference.wolfram.com/language/ref/Right.html">Right</a> if a left- or right-wavelet transform is to be plotted.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[79]:=</td><td class="Input"><div>
+      <a name="542495286"></a>
+      <img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/I_32.gif"
+          height="101"
+          width="332"
+          alt="Click for copyable input" />
+     </div><div id="i_31_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[81]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_36.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[83]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_37.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="612782257"></a><span class="IF"><a href="../ref/WaveletPlot.html">WaveletPlot</a></span> can also be used with color images.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[84]:=</td><td class="Input"><div>
+      <a name="16876592"></a>
+      <img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/I_34.gif"
+          height="169"
+          width="538"
+          alt="Click for copyable input" />
+     </div><div id="i_33_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[86]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_38.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[88]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_39.gif" height="66" width="324" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[89]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_40.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[90]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_41.gif" height="66" width="324" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[91]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_42.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="41689071"></a>If <span class="IF"><a href="../ref/WaveletPlot.html">WaveletPlot</a></span> is provided with the option second argument <span class="IF"><span class="TI">tree</span></span>, it can plot wavelet packet transformations.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[92]:=</td><td class="Input"><div>
+      <a name="88819395"></a>
+      <img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/I_36.gif"
+          height="203"
+          width="476"
+          alt="Click for copyable input" />
+     </div><div id="i_35_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[94]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_43.gif" height="256" width="384" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[96]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_44.gif" height="132" width="384" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[97]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_45.gif" height="256" width="384" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[98]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_46.gif" height="256" width="384" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[99]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_47.gif" height="256" width="384" alt="" /></td></tr>
+  </table>
+ </div>
+ <h3 class="Subsection"><a name="56630685"></a>WaveletRegionPlot</h3>
+ <p class="Text">
+  <a name="17433984"></a>
+  <a href="#visual">(top of section)</a>
+ </p>
+ <p class="Text"><a name="19627320"></a><span class="IF"><a href="../ref/WaveletRegionPlot.html">WaveletRegionPlot</a></span> is a new routine in the <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> package.  There are redundancies between it and <span class="IF"><a href="../ref/WaveletPlot.html">WaveletPlot</a></span> and <span class="IF"><a href="../ref/FullWaveletVectorPlot.html">FullWaveletVectorPlot</a></span>, but the major difference is <span class="IF"><a href="../ref/WaveletRegionPlot.html">WaveletRegionPlot</a></span> produces individual plots of prescribed regions of a wavelet (packet) transformation.  The options for <span class="IF"><a href="../ref/WaveletRegionPlot.html">WaveletRegionPlot</a></span> are contained in the output of the cell below.  <br /><br />Note that all options are part of the <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> package except <a href="http://reference.wolfram.com/language/ref/Background.html">Background</a>, <a href="http://reference.wolfram.com/language/ref/Joined.html">Joined</a>, <a href="http://reference.wolfram.com/language/ref/PointSize.html">PointSize</a>, <a href="http://reference.wolfram.com/language/ref/Ticks.html">Ticks</a> and <a href="http://reference.wolfram.com/language/ref/ImageSize.html">ImageSize</a>.  The last option, <span class="IF"><a href="../ref/PresentationStyle.html">PresentationStyle</a></span>, allows the output to be formatted using either <a href="http://reference.wolfram.com/language/ref/GraphicsColumn.html">GraphicsColumn</a>, <a href="http://reference.wolfram.com/language/ref/GraphicsRow.html">GraphicsRow</a>, or <a href="http://reference.wolfram.com/language/ref/FlipView.html">FlipView</a>.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[100]:=</td><td class="Input"><div>
+      <a name="256837949"></a>
+      <img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/I_38.gif"
+          height="15"
+          width="150"
+          alt="Click for copyable input" />
+     </div><div id="i_37_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[100]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_48.gif" height="84" width="536" alt="" /></td></tr>
+  </table>
+ </div>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[101]:=</td><td class="Input"><div>
+      <a name="35830213"></a>
+      <img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/I_40.gif"
+          height="169"
+          width="482"
+          alt="Click for copyable input" />
+     </div><div id="i_39_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[104]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_49.gif" height="163" width="240" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[106]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_50.gif" height="135" width="240" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[107]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_51.gif" height="62" width="265" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[108]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_52.gif" height="137" width="240" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="174911902"></a><span class="IF"><a href="../ref/WaveletRegionPlot.html">WaveletRegionPlot</a></span> can be used for images as well.  </p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[109]:=</td><td class="Input"><div>
+      <a name="104379396"></a>
+      <img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/I_42.gif"
+          height="186"
+          width="471"
+          alt="Click for copyable input" />
+     </div><div id="i_41_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[111]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_53.gif" height="256" width="384" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[113]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_54.gif" height="256" width="384" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[114]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_55.gif" height="66" width="416" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[115]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_56.gif" height="64" width="96" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="111081527"></a>Adding the second optional argument <span class="IF"><span class="TI">tree</span></span> allows <span class="IF"><a href="../ref/WaveletRegionPlot.html">WaveletRegionPlot</a></span> to plot portions of wavelet packet transformations.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[116]:=</td><td class="Input"><div>
+      <a name="502251311"></a>
+      <img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/I_44.gif"
+          height="169"
+          width="397"
+          alt="Click for copyable input" />
+     </div><div id="i_43_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[118]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_57.gif" height="256" width="384" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[120]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_58.gif" height="103" width="300" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[121]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_59.gif" height="256" width="384" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[122]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_60.gif" height="66" width="416" alt="" /></td></tr>
+  </table>
+ </div>
+ <h3 class="Subsection"><a name="34819625"></a>FullWaveletVectorPlot and FullWaveletPlot</h3>
+ <p class="Text">
+  <a name="126100593"></a>
+  <a href="#visual">(top of section)</a>
+ </p>
+ <p class="Text"><a name="303855540"></a><span class="IF"><a href="../ref/FullWaveletPlot.html">FullWaveletPlot</a></span> and <span class="IF"><a href="../ref/FullWaveletVectorPlot.html">FullWaveletVectorPlot</a></span> are two new visualization routines in the <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> package.  They allow the user to plot several iterations of a wavelet transform or the full wavelet packet decomposition to a prescribed number of levels.<br /><br />The options for <span class="IF"><a href="../ref/FullWaveletVectorPlot.html">FullWaveletVectorPlot</a></span> are contained in the output of the cell below.  The options <a href="http://reference.wolfram.com/language/ref/Joined.html">Joined</a>, <a href="http://reference.wolfram.com/language/ref/PointSize.html">PointSize</a>, <a href="http://reference.wolfram.com/language/ref/ImageSize.html">ImageSize</a> and <a href="http://reference.wolfram.com/language/ref/Ticks.html">Ticks</a> are Mathematica options for <a href="http://reference.wolfram.com/language/ref/ListPlot.html">ListPlot</a>.  Of the remaining <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> options, most coincide with options for <span class="IF"><a href="../ref/WaveletVectorPlot.html">WaveletVectorPlot</a></span> with the exceptions being <span class="IF"><a href="../ref/PacketPlot.html">PacketPlot</a></span> (set to <a href="http://reference.wolfram.com/language/ref/True.html">True</a> if the input data is from a wavelet packet transform) and <span class="IF"><a href="../ref/PresentationStyle.html">PresentationStyle</a></span> (see the <span class="IF"><a href="../ref/WaveletRegionPlot.html">WaveletRegionPlot</a></span> section above).<br /><br />The input data for <span class="IF"><a href="../ref/FullWaveletVectorPlot.html">FullWaveletVectorPlot</a></span> must be generated from either <span class="IF"><a href="../ref/WTFull.html">WTFull</a></span> or <span class="IF"><a href="../ref/WPTFull.html">WPTFull</a></span>.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[123]:=</td><td class="Input"><div>
+      <a name="390028543"></a>
+      <img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/I_46.gif"
+          height="15"
+          width="169"
+          alt="Click for copyable input" />
+     </div><div id="i_45_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[123]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_61.gif" height="67" width="536" alt="" /></td></tr>
+  </table>
+ </div>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[124]:=</td><td class="Input"><div>
+      <a name="112862814"></a>
+      <img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/I_48.gif"
+          height="169"
+          width="348"
+          alt="Click for copyable input" />
+     </div><div id="i_47_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[128]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_62.gif" height="132" width="397" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[129]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_63.gif" height="135" width="240" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="271242613"></a>For wavelet packet plots, set <span class="IF"><a href="../ref/PacketPlot.html">PacketPlot</a></span> to <a href="http://reference.wolfram.com/language/ref/True.html">True</a>.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[130]:=</td><td class="Input"><div>
+      <a name="493486605"></a>
+      <img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/I_50.gif"
+          height="135"
+          width="419"
+          alt="Click for copyable input" />
+     </div><div id="i_49_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[134]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_64.gif" height="132" width="397" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[135]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_65.gif" height="135" width="240" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="104849722"></a>The options for <span class="IF"><a href="../ref/FullWaveletPlot.html">FullWaveletPlot</a></span> are shown in the output of the cell below.  The options <span class="IF"><a href="../ref/PacketPlot.html">PacketPlot</a></span>, <span class="IF"><a href="../ref/Iteration.html">Iteration</a></span>, <span class="IF"><a href="../ref/PlotTogether.html">PlotTogether</a></span>, <span class="IF"><a href="../ref/Scaling.html">Scaling</a></span>, <span class="IF"><a href="../ref/Dimming.html">Dimming</a></span>, <span class="IF"><a href="../ref/DimmingRange.html">DimmingRange</a></span>, <span class="IF"><a href="../ref/DivideLines.html">DivideLines</a></span>, <span class="IF"><a href="../ref/DivideLinesColor.html">DivideLinesColor</a></span>, <span class="IF"><a href="../ref/Border.html">Border</a></span>, <span class="IF"><a href="../ref/BorderColor.html">BorderColor</a></span>, <span class="IF"><a href="../ref/ChannelColor.html">ChannelColor</a></span> and <span class="IF"><a href="../ref/PresentationStyle.html">PresentationStyle</a></span> are all part of the <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> package.  The remaining options are Mathematica options for the <a href="http://reference.wolfram.com/language/ref/Image.html">Image</a> and <a href="http://reference.wolfram.com/language/ref/Raster.html">Raster</a> functions.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[137]:=</td><td class="Input"><div>
+      <a name="262330826"></a>
+      <img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/I_52.gif"
+          height="15"
+          width="133"
+          alt="Click for copyable input" />
+     </div><div id="i_51_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[137]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_66.gif" height="101" width="507" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="155554337"></a>The input data for <span class="IF"><a href="../ref/FullWaveletPlot.html">FullWaveletPlot</a></span> should be generated by <span class="IF"><a href="../ref/WTFull.html">WTFull</a></span> or <span class="IF"><a href="../ref/WPTFull.html">WPTFull</a></span>.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[138]:=</td><td class="Input"><div>
+      <a name="373633072"></a>
+      <img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/I_54.gif"
+          height="203"
+          width="338"
+          alt="Click for copyable input" />
+     </div><div id="i_53_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[141]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_67.gif" height="171" width="493" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[145]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_68.gif" height="276" width="339" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[146]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_69.gif" height="66" width="431" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="184273876"></a>To plot wavelet packet transforms, set the <span class="IF"><a href="../ref/PacketPlot.html">PacketPlot</a></span> option to <a href="http://reference.wolfram.com/language/ref/True.html">True</a>.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[147]:=</td><td class="Input"><div>
+      <a name="72644652"></a>
+      <img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/I_56.gif"
+          height="84"
+          width="329"
+          alt="Click for copyable input" />
+     </div><div id="i_55_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[150]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_70.gif" height="194" width="544" alt="" /></td></tr>
+  </table>
+ </div>
+ <h2 class="Section"><a name="9182496"></a>Improved Error Handling</h2>
+ <p class="Text">
+  <a name="45628329"></a>
+  <a href="#main">(top)</a>
+ </p>
+ <p class="Text"><a name="526202158"></a>While most will not use such routines, the <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> package comes with more robust error handling than DiscreteWavelets.  The <a href="../guide/List of Functions - Categorical.html">List of Functions by Category Guide</a> lists all the error handling functions.  A couple of the more popular ones are listed below.  <br /><br /><span class="IF"><a href="../ref/CheckData.html">CheckData</a></span> returns a list of two numbers.  The first is the data type (1=vector, 2=matrix, 3=list of three matrices, 4=other) and the second is the max number of iterations of a wavelet transform that can be performed on the data.<br /><br /><span class="IF"><a href="../ref/CheckFilter.html">CheckFilter</a></span> returns a 1 if the filter is (near) orthogonal, a 2 if it is a biorthogonal filter pair, or -1 otherwise.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[151]:=</td><td class="Input"><div>
+      <a name="472364711"></a>
+      <img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/I_58.gif"
+          height="101"
+          width="165"
+          alt="Click for copyable input" />
+     </div><div id="i_57_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[155]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_71.gif" height="15" width="130" alt="" /></td></tr>
+  </table>
+ </div>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[156]:=</td><td class="Input"><div>
+      <a name="713341806"></a>
+      <img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/I_60.gif"
+          height="33"
+          width="326"
+          alt="Click for copyable input" />
+     </div><div id="i_59_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[157]=</td><td class="Output"><img src="Files/Differences in the DiscreteWavelets and WaveletWare Packages/O_72.gif" height="15" width="58" alt="" /></td></tr>
+  </table>
+ </div>
+ <h2 class="Section"><a name="9186083"></a>Other New Functions </h2>
+ <p class="Text">
+  <a name="39211511"></a>
+  <a href="#main">(top)</a>
+ </p>
+ <p class="Text"><a name="117804386"></a>Several new functions, not mentioned above, have been added to the <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> package.  They are listed below.</p>
+ <div class="MathTable DefinitionBox">
+  <a name="470524979"></a>
+  <table class="nogridboxdividers">
+   <col width="40%" />
+   <col width="60%" />
+   <tr class="lineAbove" style=""><td>AudioFormats<span class="openbracket">[</span><span class="closebracket">]</span></td><td><span class="TT">List of Mathematica audio formats</span></td></tr>
+   <tr class="" style=""><td>DataFormats<span class="openbracket">[</span><span class="closebracket">]</span></td><td><span class="TT">List of Mathematica data formats</span></td></tr>
+   <tr class="" style=""><td>ImageFormats<span class="openbracket">[</span><span class="closebracket">]</span></td><td><span class="TT">List of Mathematica image formats</span></td></tr>
+   <tr class="" style=""><td>RGBToHSI<span class="openbracket">[</span><span class="TI">data</span><span class="closebracket">]</span></td><td><span class="TT">Convert from RGB to HSI color space</span></td></tr>
+   <tr class="" style=""><td>HSIToRGB<span class="openbracket">[</span><span class="TI">data</span><span class="closebracket">]</span></td><td><span class="TT">Convert from HSI to RGB color space</span></td></tr>
+   <tr class="" style=""><td>PackageDirectory<span class="openbracket">[</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">File path for WaveletWare installation</span></td></tr>
+   <tr class="" style=""><td>WhiteNoise<span class="openbracket">[</span><span class="TI">n</span><span class="comma">,</span><span class="TI">sigma</span><span class="closebracket">]</span></td><td><span class="TT">Generate white noise</span></td></tr>
+   <tr class="" style=""><td>WaveletMatrix<span class="openbracket">[</span><span class="TI">filter</span><span class="comma">,</span><span class="openbrace">{</span><span class="TI">n</span><span class="comma">,</span><span class="TI">m</span><span class="closebrace">}</span><span class="closebracket">]</span></td><td><span class="TT">Create a wavelet matrix</span></td></tr>
+   <tr class="" style=""><td>WaveletTree<span class="openbracket">[</span><span class="TI">n</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Wavelet tree basis decomposition for packet transform</span></td></tr>
+   <tr class="" style=""><td>WTFull<span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">filter</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Compute several different iterations of wavelet transform</span></td></tr>
+  </table>
+ </div>
+ <p class="Caption"><a name="781720401"></a>Other new <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> functions.</p>
+</div>
+</div><!-- /wrapper -->
+
+
+	
+</div>
+
+
+</body>
+		 </html>

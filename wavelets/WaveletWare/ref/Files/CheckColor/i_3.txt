@@ -1,0 +1,4 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>color = White;
+datatype = 1;
+together = True;
+CheckColor[color, datatype, together]</pre><div class='IFU'><a name='549790136'></a>http://wolfram.com/xid/0nxaq5tqtv6thic7dsb9q-jdl62i</div>

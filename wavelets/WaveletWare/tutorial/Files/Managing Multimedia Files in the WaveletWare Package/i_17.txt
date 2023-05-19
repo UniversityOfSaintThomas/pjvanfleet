@@ -1,0 +1,6 @@
+<pre name='i_17_in' id='i_17_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;bridge.png&quot;;
+A = ImageRead[file];
+ImagePlot[A]
+A = ImageRead[file, Resize -&gt; {128, 192}, DisplayInfo -&gt; True];
+ImagePlot[A]
+WaveletPlot[HWT[A], PlotTogether -&gt; True]</pre><div class='IFU'><a name='263710882'></a>http://wolfram.com/xid/093b2zotwtgp1kohoumsxygckfwrulbitwbhjwkhlefyamuei6g132-enaiwk</div>

@@ -1,0 +1,9 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>g[t_] := 4 Sin[4 Pi t] - Sign[t - .3] - Sign[.72 - t];
+{sigma, n} = {.35, 1000};
+y = g[Range[0, 1 - 1/n, 1/n]] + WhiteNoise[n, sigma];
+{lowpass, highpass} = WaveletVectorToList[HWT[y]];
+ListPlot[lowpass]
+Print[&quot;TestSparseness returned &quot;, TestSparseness[lowpass], &quot;.&quot;];
+ListPlot[highpass]
+Print[&quot;TestSparseness returned &quot;, TestSparseness[highpass], &quot;.&quot;];
+</pre><div class='IFU'><a name='65988292'></a>http://wolfram.com/xid/0bclo942dwfme8ltsr9utbjj2-bdkm6e</div>

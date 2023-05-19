@@ -1,0 +1,18 @@
+<pre name='i_7_in' id='i_7_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;benches.png&quot;;
+A = ImageRead[file, Resize -&gt; {128, 192}];
+ImagePlot[A]
+B = HWT[A];
+WaveletPlot[B]
+ce = CE[B];
+ListPlot[ce, PlotRange -&gt; All, 
+ Ticks -&gt; {Range[0, 192*128, 192*128/4], Range[0, 1, .25]}, 
+ PlotLabel -&gt; &quot;Cumulative Energy&quot;]
+k = PercentCE[ce, .99];
+newB = QuantizeCE[B, k];
+z = Length[Position[newB, 0]];
+Print[z, &quot; values in B converted to 0.&quot;];
+WaveletPlot[newB]
+newA = InverseHWT[newB];
+ImagePlot[newA]
+Print[&quot;The peak signal-to-noise ration between the images is &quot;, 
+  PSNR[A, newA], &quot;.&quot;];</pre><div class='IFU'><a name='672719029'></a>http://wolfram.com/xid/0rbcx7yrv4nohjeytx0ay0ec9-leszlz</div>

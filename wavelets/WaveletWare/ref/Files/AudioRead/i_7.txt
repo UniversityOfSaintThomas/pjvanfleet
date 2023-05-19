@@ -1,0 +1,5 @@
+<pre name='i_7_in' id='i_7_in' class='IFT'>files = PackageDirectory[DataType -&gt; Sounds] &lt;&gt; &quot;rooster.wav&quot;;
+{samples, rate} = AudioRead[file];
+Mod[Length[samples], 16]
+{samples, rate} = AudioRead[file, PowersOfTwo -&gt; 4];
+Mod[Length[samples], 16]</pre><div class='IFU'><a name='294672595'></a>http://wolfram.com/xid/0gcihsaxmz0qthvk1zkd8q-e5p435</div>

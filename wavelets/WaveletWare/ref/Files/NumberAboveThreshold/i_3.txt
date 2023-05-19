@@ -1,0 +1,4 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>v = RandomInteger[{-10, 10}, 8]
+NumberAboveThreshold[v, 2]
+NumberAboveThreshold[v, 6]
+</pre><div class='IFU'><a name='596698103'></a>http://wolfram.com/xid/0ioo24aieze7t3bazd62slrx3qms64x-j5jlhl</div>

@@ -1,0 +1,675 @@
+(************** Content-type: application/mathematica **************
+                     CreatedBy='Mathematica 5.2'
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used with any Mathematica-compatible
+application, such as Mathematica, MathReader or Publicon. The data
+for the notebook starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do
+one of the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the
+  application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing
+the word CacheID, otherwise Mathematica-compatible applications may
+try to use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+*******************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[     17088,        525]*)
+(*NotebookOutlinePosition[     17854,        551]*)
+(*  CellTagsIndexPosition[     17810,        547]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Denoising", "Title"],
+
+Cell["\<\
+Wavelet Workshop
+June 7-10, 2006
+University of St. Thomas\
+\>", "Subtitle"],
+
+Cell["Objectives", "Subsubtitle"],
+
+Cell[TextData[{
+  "The purpose of this notebook is to introduce you to some basic \
+wavelet-based denoising methods.\n\nThe notebook also contains a \
+module-writing lab that makes up part of ",
+  StyleBox["Computer Session Three",
+    FontWeight->"Bold"],
+  "."
+}], "Text"],
+
+Cell[CellGroupData[{
+
+Cell["WaveletFunctions", "Subsubtitle",
+  InitializationCell->True],
+
+Cell[TextData[{
+  "This cell initializes every time you open the notebook.  It loads the ",
+  StyleBox["Mathematica",
+    FontSlant->"Italic"],
+  " package ",
+  StyleBox["WaveletFunctions",
+    FontFamily->"Courier"],
+  " for use in subsequent computations."
+}], "Text",
+  InitializationCell->True],
+
+Cell[BoxData[{
+    \(<< WaveletFunctions`WaveletFunctions`\), "\[IndentingNewLine]", 
+    \(<< LinearAlgebra`MatrixManipulation`\), "\[IndentingNewLine]", 
+    \(<< Graphics`Graphics`\[IndentingNewLine]\), "\[IndentingNewLine]", 
+    \(<< Statistics`ContinuousDistributions`\), "\n", 
+    \(<< Statistics`DescriptiveStatistics`\n\), "\[IndentingNewLine]", 
+    \(\(Needs["\<Miscellaneous`Audio`\>"];\)\[IndentingNewLine]\n\
+\[IndentingNewLine]\), "\[IndentingNewLine]", 
+    \(\(flashdir = "\<F:/WaveletWorkshop06/Images/\>";\)\), "\
+\[IndentingNewLine]", 
+    \(\(sounddir = "\<F:/WaveletWorkshop06/Sounds/\>";\)\), "\
+\[IndentingNewLine]", 
+    \(\(Print["\<The flash drive directory is \>", 
+        flashdir, "\<.\>"];\)\[IndentingNewLine]\), "\[IndentingNewLine]", 
+    \(\(imgurl = \
+"\<http://cam.mathlab.stthomas.edu/pvf/Math316/TestImages/\>";\)\), "\
+\[IndentingNewLine]", 
+    \(\(Print["\<The URL for images is \>", imgurl, "\<.\>"];\)\)}], "Input",
+  InitializationCell->True]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Help on WaveletFunctions", "Subsubtitle"],
+
+Cell[TextData[{
+  "If you ever need help with ",
+  StyleBox["WaveletFunctions",
+    FontFamily->"Courier"],
+  ", go to ",
+  StyleBox["Help",
+    FontSlant->"Italic"],
+  ", then ",
+  StyleBox["Help Browser",
+    FontSlant->"Italic"],
+  ", and click on ",
+  StyleBox["AddOns & Links",
+    FontSlant->"Italic"],
+  ".  If you scroll down you will find ",
+  StyleBox["WaveletFunctions",
+    FontFamily->"Courier"],
+  ".  "
+}], "Text"],
+
+Cell[CellGroupData[{
+
+Cell["The Shrinkage Function", "Section"],
+
+Cell["\<\
+Here is the shrinkage function defined and plotted for \[Lambda]=2.\
+\>", "Text"],
+
+Cell[BoxData[{
+    \(\(shrink[v_, lambda_] := 
+        Which[v > lambda, v - lambda, v < \(-lambda\), v + lambda, True, 
+          0];\)\[IndentingNewLine]\), "\[IndentingNewLine]", 
+    \(\(Plot[shrink[v, 2], {v, \(-5\), 5}, 
+        Ticks \[Rule] {{\(-4\), \(-3\), \(-2\), \(-1\), 1, 2, 3, 
+              4}, {\(-3\), \(-2\), \(-1\), 1, 2, 3}}, 
+        PlotStyle \[Rule] Blue];\)\)}], "Input"],
+
+Cell["Let's try it on an example", "Text"],
+
+Cell[BoxData[{
+    \(v = {\(-3.2\), \(-2.5\), 1, 1, 1.1, 5, 3.2, 
+        1.9, \(-4\), \(-6\)}\[IndentingNewLine]\), "\[IndentingNewLine]", 
+    \(\(lambda = 2;\)\), "\[IndentingNewLine]", 
+    \(Map[shrink[#, lambda] &, v]\[IndentingNewLine]\[IndentingNewLine] (*\ 
+      another\ way\ to\ do\ it\ *) \[IndentingNewLine]\), \
+"\[IndentingNewLine]", 
+    \(\(shrink2[v_] := shrink[v, lambda];\)\), "\[IndentingNewLine]", 
+    \(Map[shrink2, v]\)}], "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["A Sample Signal ", "Section"],
+
+Cell["\<\
+For our example, we will use a sample signal suggested by Donoho.  He calls \
+this function the Heavisine function.
+    \
+\>", "Text"],
+
+Cell[BoxData[
+    \(\(heavisine[t_] := 
+        4*Sin[4*Pi*t] - Sign[t -  .3] - Sign[ .72 - t];\)\)], "Input"],
+
+Cell[TextData[{
+  "Let's sample this function to create our true signal ",
+  StyleBox["v",
+    FontWeight->"Bold"],
+  " and then ",
+  StyleBox["ListPlot",
+    FontWeight->"Bold"],
+  " it."
+}], "Text"],
+
+Cell[BoxData[{
+    \(\(n = 2048;\)\), "\n", 
+    \(\(v = 
+        Table[heavisine[k/n], {k, 0, n - 1}];\)\), "\[IndentingNewLine]", 
+    \(\(ListPlot[v, PlotStyle \[Rule] Maroon];\)\)}], "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Creating Noise", "Section"],
+
+Cell["Now we need some Gaussian white noise.", "Text"],
+
+Cell[BoxData[{
+    \(\(nd = NormalDistribution[0. , 1. ];\)\), "\n", 
+    \(\(SeedRandom[];\)\), "\n", 
+    \(\(noise = Table[Random[nd], {k, 1, n}];\)\), "\[IndentingNewLine]", 
+    \(\(xv = Table[k/n, {k, 0, n - 1}];\)\n\), "\[IndentingNewLine]", 
+    \(\(plt = 
+        ListPlot[Transpose[{xv, v}], 
+          Ticks \[Rule] {{0,  .2,  .4,  .6,  .8, 1}, {\(-6\), \(-4\), \(-2\), 
+                0, 2, 4, 6}}];\)\)}], "Input"],
+
+Cell["If you want, you can actually \"play\" the noise:", "Text"],
+
+Cell[BoxData[
+    \(\(ListPlay[noise, SampleRate \[Rule] 11025];\)\)], "Input"],
+
+Cell["\<\
+We create the noisy vector by picking a noise level and simply adding v to a \
+scaled version of the noise.\
+\>", "Text"],
+
+Cell[BoxData[{
+    \(\(sigma =  .5;\)\), "\[IndentingNewLine]", 
+    \(\(y = v + sigma*noise;\)\n\), "\[IndentingNewLine]", 
+    \(\(plt = 
+        ListPlot[Transpose[{xv, y}], 
+          Ticks \[Rule] {{0,  .2,  .4,  .6,  .8, 1}, {\(-6\), \(-4\), \(-2\), 
+                0, 2, 4, 6}}, PlotStyle \[Rule] Brown];\)\)}], "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Estimating the Noise Level", "Section"],
+
+Cell[TextData[{
+  "To estimate the noise level, we use the built-in ",
+  StyleBox["MedianDeviation",
+    FontWeight->"Bold"],
+  " function in the statistics package.  We have to first compute the wavelet \
+transform.  We'll use the Daubechies 4 filter for this example and compute 2 \
+iterations."
+}], "Text"],
+
+Cell[BoxData[{
+    \(\(h = N[Daub[4]];\)\), "\[IndentingNewLine]", 
+    \(\(Print["\<We will use the Daubechies 4-term filter: \>", 
+        h, "\<.\>"];\)\[IndentingNewLine]\), "\[IndentingNewLine]", 
+    \(\(its = 5;\)\), "\[IndentingNewLine]", 
+    \(\(wt = 
+        WT1D[y, h, NumIterations \[Rule] its];\)\), "\[IndentingNewLine]", 
+    \(\(WaveletVectorPlot[wt, NumIterations \[Rule] its, Frame \[Rule] True, 
+        DivideLines \[Rule] True, UseColors \[Rule] True, 
+        PlotRange \[Rule] All];\)\)}], "Input"],
+
+Cell[TextData[{
+  "We need to extract the first highpass portion.  There is a command in ",
+  StyleBox["WaveletFunctions",
+    FontFamily->"Courier"],
+  " to do this:"
+}], "Text"],
+
+Cell[BoxData[{
+    \(\(hp1 = 
+        ExtractVectorPart[wt, NumIterations \[Rule] its, Iteration \[Rule] 1, 
+          Region \[Rule] 
+            HighPass];\)\[IndentingNewLine]\), "\[IndentingNewLine]", 
+    \(\(ListPlot[hp1, PlotStyle \[Rule] Olive];\)\)}], "Input"],
+
+Cell["Now we estimate the noise:", "Text"],
+
+Cell[BoxData[{
+    \(\(sigmahat = 
+        MedianDeviation[
+            hp1]/ .6745;\)\[IndentingNewLine]\), "\[IndentingNewLine]", 
+    \(\(Print["\<Our estimate of the noise is \>", 
+        sigmahat, "\<.\>"];\)\)}], "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["VISUShrink", "Section"],
+
+Cell["\<\
+To perform VISUShrink, we compute the universal tolerance and use it in the \
+shrink functions on the highpass portions.  
+
+We use the UNDOCUMENTED function WaveletVectorToList to easily extract all \
+the highpass portions.\
+\>", "Text"],
+
+Cell[BoxData[{
+    \(\(wtlist = 
+        WaveletVectorToList[wt, 
+          NumIterations \[Rule] its];\)\), "\[IndentingNewLine]", 
+    \(\(lowpass = First[wtlist];\)\), "\[IndentingNewLine]", 
+    \(\(highpass = 
+        Flatten[Drop[wtlist, 
+            1]];\)\[IndentingNewLine]\), "\[IndentingNewLine]", 
+    \(\(lambda = 
+        sigmahat*Sqrt[2*Log[Length[highpass]]];\)\), "\[IndentingNewLine]", 
+    \(\(Print["\<The value of the universal threshold is \>", 
+        lambda, "\<.\>"];\)\[IndentingNewLine]\), "\[IndentingNewLine]", 
+    \(\(shrink2[v_] := 
+        shrink[v, lambda];\)\[IndentingNewLine]\), "\[IndentingNewLine]", 
+    \(\(newhighpass = 
+        Map[shrink2, 
+          highpass];\)\[IndentingNewLine]\), "\[IndentingNewLine]", 
+    \(\(newwt = Join[lowpass, newhighpass];\)\), "\[IndentingNewLine]", 
+    \(\(WaveletVectorPlot[newwt, NumIterations \[Rule] its, 
+        DivideLines \[Rule] True, Frame \[Rule] True, UseColors \[Rule] True, 
+        PlotRange \[Rule] All];\)\)}], "Input"],
+
+Cell["\<\
+We apply the inverse wavelet transform to obtain our estimate of v:\
+\>", "Text"],
+
+Cell[BoxData[{
+    \(\(vhat = 
+        IWT1D[newwt, h, 
+          NumIterations \[Rule] its];\)\), "\[IndentingNewLine]", 
+    \(\(ListPlot[vhat, PlotStyle \[Rule] Brown];\)\)}], "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["SUREShrink", "Section"],
+
+Cell["\<\
+To apply SUREShrink, we need the following function to find \[Lambda]\
+\>", "Text"],
+
+Cell[BoxData[
+    \(\(DonohoSure[v_] := 
+        Module[{n, a, b, c, k, s, r, idx}, n = Length[v]; 
+          a = Sort[v^2]; \[IndentingNewLine]b\  = 
+            Drop[FoldList[Plus, 0, a], 1]; \[IndentingNewLine]c\  = 
+            Reverse[Table[k, {k, 0, n - 1}]]; \n\ \ \ \ \ \ \ s\  = 
+            b + c*a; \n\ \ \ \ \ \ \ r\  = 
+            n - 2*Table[k, {k, 1, n}] + 
+              s; \[IndentingNewLine]idx = \(Flatten[
+                Position[r, Min[r]]]\)[\([1]\)]; \[IndentingNewLine]Return[
+            Sqrt[a[\([idx]\)]]];\n];\)\)], "Input"],
+
+Cell[TextData[{
+  "Remember we want to compute a different \[Lambda] for each highpass \
+portion.  Let's first redefine the highpass portion from wtlist without ",
+  StyleBox["Flatten",
+    FontWeight->"Bold"],
+  ".  Now highpass is a list of ",
+  StyleBox["its",
+    FontWeight->"Bold"],
+  " elements."
+}], "Text"],
+
+Cell[BoxData[
+    \(\(highpass = Drop[wtlist, 1];\)\)], "Input"],
+
+Cell[TextData[{
+  "Remember, for Stein's theorem to work, the variance must be one.    So we \
+need to divide all the highpass portions by ",
+  StyleBox["sigmahat",
+    FontWeight->"Bold"],
+  " when computing the tolerances.  We will do all the computations with a ",
+  StyleBox["Map",
+    FontWeight->"Bold"],
+  " command:"
+}], "Text"],
+
+Cell[BoxData[{
+    \(\(lambdaS = 
+        Map[DonohoSure, highpass/sigmahat];\)\), "\[IndentingNewLine]", 
+    \(\(Table[
+        Print["\<The SURE threshold for highpass portion \>", 
+          its - k + 1, "\< is \>", lambdaS[\([k]\)], "\<.\n\>"], {k, 1, 
+          its}];\)\)}], "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Apply the SUREShrink Threshold", "Section"],
+
+Cell["\<\
+We will again use a Table to apply the tolerances to each of the highpass \
+portions:\
+\>", "Text"],
+
+Cell[BoxData[
+    \(\(newhighpass = 
+        Table[Map[shrink[#, lambdaS[\([k]\)]] &, 
+            highpass[\([k]\)]/sigmahat], {k, 1, its}];\)\)], "Input"],
+
+Cell["Now we put the wavelet transform back together and plot it:", "Text"],
+
+Cell[BoxData[{
+    \(\(newwt = 
+        Join[lowpass, 
+          Flatten[newhighpass]];\)\[IndentingNewLine]\[IndentingNewLine]\), "\
+\n", 
+    \(\(WaveletVectorPlot[wt, Frame \[Rule] True, PlotRange \[Rule] All, 
+        DivideLines \[Rule] True, UseColors \[Rule] True, 
+        NumIterations \[Rule] its];\)\n\), "\[IndentingNewLine]", 
+    \(\(WaveletVectorPlot[newwt, Frame \[Rule] True, PlotRange \[Rule] All, 
+        DivideLines \[Rule] True, UseColors \[Rule] True, 
+        NumIterations \[Rule] its];\)\)}], "Input"],
+
+Cell["Finally, we invert to obtained the denoised signal.", "Text"],
+
+Cell[BoxData[{
+    \(\(vhat = 
+        IWT1D[newwt, h, 
+          NumIterations \[Rule] its];\)\), "\[IndentingNewLine]", 
+    \(\(ListPlot[vhat, PlotStyle \[Rule] Brown];\)\)}], "Input"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Computer Session Three", "Title"],
+
+Cell["\<\
+There are two tasks in this computer session.  You will re-visit image \
+compression using Daubechies filters and you will write modules to perform \
+the 1D Daubechies transform and its inverse.\
+\>", "Text"],
+
+Cell[CellGroupData[{
+
+Cell["Task One", "Subtitle"],
+
+Cell[TextData[{
+  "Repeat the demos above using the Daubechies 6-term filter and the Coiflet \
+6-term filter.  Remember the Coiflet 6-term filter generates an orthogonal \
+matrix but its Fourier series satisfies H(0) = ",
+  Cell[BoxData[
+      \(\@2\)]],
+  ", H'(0) = 0, H(\[Pi]) = H'(\[Pi]) = 0.  Which filter did a better job \
+denoising?  Which method?  Try varying the number of iterations.\n\nHere is \
+some more on the Coiflet 6-term filter:\n"
+}], "Text"],
+
+Cell[BoxData[{
+    \(\(h = Coif[1];\)\), "\[IndentingNewLine]", 
+    \(\(Print["\<The Coiflet 6-term filter is \>", 
+        h, "\<.  It is not causal - the first index is -2\>"];\)\
+\[IndentingNewLine]\), "\[IndentingNewLine]", 
+    \(\(H[w_] := 
+        h . Table[
+            E^\((I*k*w)\), {k, \(-2\), 3}];\)\), "\[IndentingNewLine]", 
+    \(\(Plot[Abs[H[w]], {w, 0, Pi}, 
+        Ticks \[Rule] {{0, Pi/2, Pi}, {Sqrt[2]/2, 
+              Sqrt[2]}}];\)\[IndentingNewLine]\), "\[IndentingNewLine]", 
+    \(H[0]\  // Simplify\), "\[IndentingNewLine]", 
+    \(\(H'\)[0]\  // Simplify\), "\[IndentingNewLine]", 
+    \(H[Pi]\  // Simplify\), "\[IndentingNewLine]", 
+    \(\(H'\)[Pi]\  // Simplify\)}], "Input"],
+
+Cell[BoxData[
+    \( (*\ Put\ your\ Mathematica\ code\ \(\(here\)\(.\)\)\ *) \)], "Input",
+  FontColor->RGBColor[0, 0, 1]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Task Two", "Subtitle"],
+
+Cell["\<\
+Let's try denoising on an audio file.  The cell below reads, chops, and plays \
+an audio file for you:\
+\>", "Text"],
+
+Cell[BoxData[{
+    \(\(data = 
+        ReadSoundFile[sounddir <> "\<wargames.wav\>", 
+          PrintHeader \[Rule] True];\)\), "\[IndentingNewLine]", 
+    \(\(v = 
+        ChopVector[data, PowersOfTwo \[Rule] 6];\)\), "\[IndentingNewLine]", 
+    \(\(n = Length[v];\)\[IndentingNewLine]\), "\[IndentingNewLine]", 
+    \(\(Print["\<The length of data is now \>", 
+        n, "\< and we can perform as many as 6 iterations of the wavelet \
+transform.\>"];\)\[IndentingNewLine]\), "\[IndentingNewLine]", 
+    \(\(ListPlay[v, SampleRate \[Rule] 16000];\)\)}], "Input"],
+
+Cell["\<\
+In the cell below, add some noise to the audio file - I picked sigma=1000 - \
+feel free to change it.\
+\>", "Text"],
+
+Cell[BoxData[{
+    \(\(nd = NormalDistribution[0. , 1. ];\)\), "\n", 
+    \(\(SeedRandom[];\)\), "\n", 
+    \(\(noise = 
+        Table[Random[nd], {k, 1, 
+            n}];\)\[IndentingNewLine]\), "\[IndentingNewLine]", 
+    \(\(sigma = 1000;\)\), "\[IndentingNewLine]", 
+    \(\(y = v + sigma*noise;\)\[IndentingNewLine]\), "\[IndentingNewLine]", 
+    \(\(ListPlay[y, SampleRate \[Rule] 16000];\)\)}], "Input"],
+
+Cell["", "Text"],
+
+Cell["\<\
+In the cell below, use either VISUShrink or SUREShrink to denoise the \
+audio:\
+\>", "Text"],
+
+Cell[BoxData[
+    \( (*\ Mathematica\ commands\ go\ here\ *) \)], "Input",
+  FontColor->RGBColor[0, 0, 1]],
+
+Cell[CellGroupData[{
+
+Cell["Extra Credit Problem", "Section"],
+
+Cell[TextData[{
+  "Go to the Math 316 web site and under Media Files, copy the \
+LaurelHardy.wav file to your flashdrive Sounds directory.  This is an OLD \
+recording and is very noisy.  Thus we don't need to add any noise!  See how \
+good a job you can do denoising it!\n\nSuggestion:  The file is long - after \
+reading it in, use the ",
+  StyleBox["Take ",
+    FontWeight->"Bold"],
+  "command to grab the first quarter of the file.  Just work with that."
+}], "Text"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+FrontEndVersion->"5.2 for Microsoft Windows",
+ScreenRectangle->{{0, 1024}, {0, 685}},
+AutoGeneratedPackage->None,
+ScreenStyleEnvironment->"Presentation",
+WindowSize->{1016, 651},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+ShowSelection->True,
+StyleDefinitions -> "Report.nb"
+]
+
+(*******************************************************************
+Cached data follows.  If you edit this Notebook file directly, not
+using Mathematica, you must remove the line containing CacheID at
+the top of  the file.  The cache data will then be recreated when
+you save this file from within Mathematica.
+*******************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+
+(*NotebookFileOutline
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[1776, 53, 26, 0, 117, "Title"],
+Cell[1805, 55, 85, 4, 143, "Subtitle"],
+Cell[1893, 61, 33, 0, 67, "Subsubtitle"],
+Cell[1929, 63, 274, 7, 84, "Text"],
+
+Cell[CellGroupData[{
+Cell[2228, 74, 67, 1, 67, "Subsubtitle",
+  InitializationCell->True],
+Cell[2298, 77, 298, 9, 63, "Text",
+  InitializationCell->True],
+Cell[2599, 88, 989, 18, 467, "Input",
+  InitializationCell->True]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[3625, 111, 47, 0, 67, "Subsubtitle"],
+Cell[3675, 113, 429, 17, 64, "Text"],
+
+Cell[CellGroupData[{
+Cell[4129, 134, 41, 0, 96, "Section"],
+Cell[4173, 136, 91, 2, 40, "Text"],
+Cell[4267, 140, 396, 7, 155, "Input"],
+Cell[4666, 149, 42, 0, 40, "Text"],
+Cell[4711, 151, 457, 8, 259, "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[5205, 164, 35, 0, 96, "Section"],
+Cell[5243, 166, 144, 4, 62, "Text"],
+Cell[5390, 172, 110, 2, 51, "Input"],
+Cell[5503, 176, 200, 8, 40, "Text"],
+Cell[5706, 186, 195, 4, 103, "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[5938, 195, 33, 0, 96, "Section"],
+Cell[5974, 197, 54, 0, 40, "Text"],
+Cell[6031, 199, 428, 8, 207, "Input"],
+Cell[6462, 209, 65, 0, 40, "Text"],
+Cell[6530, 211, 79, 1, 51, "Input"],
+Cell[6612, 214, 131, 3, 40, "Text"],
+Cell[6746, 219, 328, 6, 155, "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[7111, 230, 45, 0, 96, "Section"],
+Cell[7159, 232, 309, 7, 62, "Text"],
+Cell[7471, 241, 522, 9, 207, "Input"],
+Cell[7996, 252, 179, 5, 41, "Text"],
+Cell[8178, 259, 269, 5, 129, "Input"],
+Cell[8450, 266, 42, 0, 40, "Text"],
+Cell[8495, 268, 228, 5, 103, "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[8760, 278, 29, 0, 96, "Section"],
+Cell[8792, 280, 247, 6, 84, "Text"],
+Cell[9042, 288, 1015, 20, 389, "Input"],
+Cell[10060, 310, 91, 2, 40, "Text"],
+Cell[10154, 314, 187, 4, 77, "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[10378, 323, 29, 0, 96, "Section"],
+Cell[10410, 325, 93, 2, 40, "Text"],
+Cell[10506, 329, 554, 10, 259, "Input"],
+Cell[11063, 341, 315, 9, 62, "Text"],
+Cell[11381, 352, 64, 1, 51, "Input"],
+Cell[11448, 355, 336, 9, 62, "Text"],
+Cell[11787, 366, 290, 6, 103, "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[12114, 377, 49, 0, 96, "Section"],
+Cell[12166, 379, 109, 3, 40, "Text"],
+Cell[12278, 384, 156, 3, 77, "Input"],
+Cell[12437, 389, 75, 0, 40, "Text"],
+Cell[12515, 391, 527, 10, 233, "Input"],
+Cell[13045, 403, 67, 0, 40, "Text"],
+Cell[13115, 405, 187, 4, 77, "Input"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[13363, 416, 39, 0, 117, "Title"],
+Cell[13405, 418, 218, 4, 62, "Text"],
+
+Cell[CellGroupData[{
+Cell[13648, 426, 28, 0, 61, "Subtitle"],
+Cell[13679, 428, 462, 9, 151, "Text"],
+Cell[14144, 439, 708, 14, 311, "Input"],
+Cell[14855, 455, 122, 2, 51, "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[15014, 462, 28, 0, 61, "Subtitle"],
+Cell[15045, 464, 126, 3, 40, "Text"],
+Cell[15174, 469, 564, 10, 233, "Input"],
+Cell[15741, 481, 125, 3, 40, "Text"],
+Cell[15869, 486, 410, 8, 233, "Input"],
+Cell[16282, 496, 16, 0, 40, "Text"],
+Cell[16301, 498, 102, 3, 40, "Text"],
+Cell[16406, 503, 106, 2, 51, "Input"],
+
+Cell[CellGroupData[{
+Cell[16537, 509, 39, 0, 96, "Section"],
+Cell[16579, 511, 469, 9, 150, "Text"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+
+
+(*******************************************************************
+End of Mathematica Notebook file.
+*******************************************************************)
+

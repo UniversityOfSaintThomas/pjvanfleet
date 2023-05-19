@@ -1,0 +1,5 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>g[t_] := Sqrt[t (1 - t)]*Sin[2 Pi (1.05)/(t + .05)];
+n = 1024;
+v = g[Range[0, 1 - 1/n, 1/n]];
+wptfull = WPTFull[v, Haar[], NumIterations -&gt; 3];
+FullWaveletVectorPlot[wptfull, PacketPlot -&gt; True] // TableForm</pre><div class='IFU'><a name='266377956'></a>http://wolfram.com/xid/0iglzsj6g5gr1t4ex14c4bsar4ymys4uuo5d2m08201-eovoty</div>

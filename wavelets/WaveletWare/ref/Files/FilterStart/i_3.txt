@@ -1,0 +1,2 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>data = ScalingFunctionData[Coif[1], FilterStart -&gt; -2];
+ListPlot[data]</pre><div class='IFU'><a name='42491862'></a>http://wolfram.com/xid/0e2pnrmsqjyawkp73al3o03u-zk07s</div>

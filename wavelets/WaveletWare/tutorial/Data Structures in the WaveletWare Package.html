@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Data Structures in the WaveletWare Package&mdash;Wolfram Language Documentation</title>
+<meta name="buildnumber" content="0000000" />
+<meta name="historydata" content="{0.0, , , }" />
+<meta name="keywords" content="Data Structures in the WaveletWare Package" />
+
+<meta name="description" content="There are three special data structures used in the WaveletWare package. Each are described in this tutorial. This loads the package: (top)" />
+<script language="JavaScript" type="text/javascript">baselang='Data Structures in the WaveletWare Package';</script>
+<script language="JavaScript" type="text/javascript">packagename='WaveletWare';</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		 <link rel="stylesheet" type="text/css" href="../css/reference.css" />
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/core/1.6.1/jquery.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/plugins/hoverIntent/r5/jquery.hoverIntent.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/reference.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/documentation-search.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/inputs.js"></script>
+		 <script language="javaScript" type="text/javascript" src="../javascript/faster-page-load.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/plugins/jcarousel/tinycarousel/tinycarousel.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery.dotdotdot-1.5.1.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/carousel.js"></script>
+</head>
+<body id="tutorial">
+<a name="top"></a>
+<!--#include virtual="/common/includes/gl-header.html"--> 
+<div class="main-wrapper">
+
+
+<div class="wrapper mainOuter">
+    <div class="mainContent">
+ <div class="topContentWrap">
+  <div class="ribbonWrap">
+   <span class="ribbonOuter"><span class="ribbonInner">WAVELET WARE TUTORIAL</span></span>
+  </div>
+  <ul class="dropdown">
+   <li>
+    <a href="#">Functions</a>
+    <ul class="sub_menu">
+     <li>
+      <a href="/language/WaveletWare/ref/CheckData.html"><span class="dropdownPad">CheckData</span></a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+  <div class="clear"><!-- --></div>
+ </div>
+ <h1 class="Title"><a name="509267359"></a>Data Structures in the WaveletWare Package</h1>
+ <div class="TutorialJumpBox">
+  <table class="nogridboxdividers">
+   <col />
+   <col />
+   <tr class="lineAbove" style=""><td><a href="../tutorial/Data Structures in the WaveletWare Package.html#452404853">Input for Computing and Plotting</a></td><td><a href="../tutorial/Data Structures in the WaveletWare Package.html#472374342">The Iteration Option</a></td></tr>
+   <tr class="" style=""><td><a href="../tutorial/Data Structures in the WaveletWare Package.html#375198715">Trees in WaveletWare</a></td><td></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="351997640"></a>There are three special data structures used in the <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> package.  Each are described in this tutorial.</p>
+ <div class="MCap"><a name="16454449"></a>This loads the package:</div>
+ <table class="InCell">
+  <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+     <a name="861618089"></a>
+     <img src="Files/Data Structures in the WaveletWare Package/I_2.gif"
+         height="15"
+         width="93"
+         alt="Click for copyable input" />
+    </div><div id="i_1_out" class="IFL"></div></td></tr>
+ </table>
+ <h2 class="Section"><a name="452404853"></a>Input for Computing and Plotting</h2>
+ <p class="Text">
+  <a name="215660715"></a>
+  <a href="#main">(top)</a>
+ </p>
+ <p class="Text"><a name="652223285"></a>Routines that compute (biorthogonal) wavelet (packet) transformations expect input data in one of the following formats:  a vector (list), a matrix or a list of three matrices each of which has the same dimensions.  <br /><br />The function <span class="IF"><a href="../ref/CheckData.html">CheckData</a></span> can be used (and is used internally by many <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> functions) to determine if input data is in one of the correct formats.</p>
+ <div class="MathTable DefinitionBox">
+  <a name="330828408"></a>
+  <table class="nogridboxdividers">
+   <col width="40%" />
+   <col width="60%" />
+   <tr class="lineAbove" style=""><td><a href="../ref/CheckData.html">CheckData</a></td><td><span class="TT">Determines format of data</span></td></tr>
+  </table>
+ </div>
+ <p class="Caption"><a name="359926226"></a>Checking data format.</p>
+ <p class="Text"><a name="797054838"></a><span class="IF"><a href="../ref/CheckData.html">CheckData</a></span> always returns a list of length 2.  The first number is 1,2,3,4 depending on if the input data is a vector, matrix, list of three matrices of equal dimensions, or none of the above.  The second value is the maximum number of iterations that can be performed on the input data.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+      <a name="524583373"></a>
+      <img src="Files/Data Structures in the WaveletWare Package/I_4.gif"
+          height="254"
+          width="165"
+          alt="Click for copyable input" />
+     </div><div id="i_3_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[2]=</td><td class="Output"><img src="Files/Data Structures in the WaveletWare Package/O_1.gif" height="15" width="26" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[4]=</td><td class="Output"><img src="Files/Data Structures in the WaveletWare Package/O_2.gif" height="15" width="26" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[6]=</td><td class="Output"><img src="Files/Data Structures in the WaveletWare Package/O_3.gif" height="15" width="26" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[8]=</td><td class="Output"><img src="Files/Data Structures in the WaveletWare Package/O_4.gif" height="15" width="26" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[11]=</td><td class="Output"><img src="Files/Data Structures in the WaveletWare Package/O_5.gif" height="15" width="26" alt="" /></td></tr>
+  </table>
+ </div>
+ <h2 class="Section"><a name="375198715"></a>Trees in WaveletWare</h2>
+ <p class="Text">
+  <a name="58880813"></a>
+  <a href="#main">(top)</a>
+ </p>
+ <p class="Text"><a name="339546398"></a>A <em>tree</em> in the <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> package is a structure that indicates a basis decomposition of a wavelet packet transformation.  Since a wavelet decomposition is a wavelet packet decomposition, a tree can be defined for a wavelet transform as well.<br /><br />All values in a tree are either 0 or 1.  A 0/1 indicates that a certain portion of the transform is not/is part of the decomposition.  </p>
+ <h3 class="Subsection"><a name="49593908"></a>One-Dimensional Data</h3>
+ <p class="Text">
+  <a name="615161190"></a>
+  <a href="#trees">(top of section)</a>
+ </p>
+ <p class="Text"><a name="181874559"></a>Let's start with one-dimensional data and assume that <span class="IF"><span class="TI">k</span></span> iterations of a full wavelet packet transformation are computed.  Then counting the original data, there are <span class="IF"><span class="TI">k</span></span>+1 vectors in the output (with the original data counting as the 0th iteration).  At level <span class="IF"><span class="TI">k</span></span>, the data are decomposed into <span class="IF"><img src="Files/Data Structures in the WaveletWare Package/1.png" height="18" width="13" alt="" /></span>blocks, each of equal length.  The cell below illustrates this process for k=0,1,2,3.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[12]:=</td><td class="Input"><div>
+      <a name="34510957"></a>
+      <img src="Files/Data Structures in the WaveletWare Package/I_6.gif"
+          height="33"
+          width="504"
+          alt="Click for copyable input" />
+     </div><div id="i_5_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td colspan="2"><div class="celllabelTableForm">Out[12]//TableForm=</div></td></tr>
+   <tr><td class="lab"> </td><td class="Output"><div class="TableForm">
+      <img src="Files/Data Structures in the WaveletWare Package/O_6.gif"
+          width="120"
+          height="411"
+          alt="" />
+     </div></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="377850524"></a>A tree is a list of length <span class="IF"><span class="TI">k</span></span>+1 with 0 and 1 used to indicate which portions of the decomposition are not/are included in the best-basis representation.  The first element in the tree is either a 0 or 1.  Subsequent elements in the tree are lists of length 2,4,8,... and the values in any sublists are either 0 or 1.  <br /><br />For example the wavelet decomposition for k=3 iterations is given below.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[13]:=</td><td class="Input"><div>
+      <a name="129347472"></a>
+      <img src="Files/Data Structures in the WaveletWare Package/I_8.gif"
+          height="33"
+          width="115"
+          alt="Click for copyable input" />
+     </div><div id="i_7_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[13]=</td><td class="Output"><img src="Files/Data Structures in the WaveletWare Package/O_7.gif" height="15" width="206" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[14]=</td><td class="Output"><img src="Files/Data Structures in the WaveletWare Package/O_8.gif" height="125" width="240" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="32781295"></a>Trees cannot be comprised of arbitrary 0's and 1's.  A simple check of the validity is to start at the bottom level, partition it into groups of length 2, total each group and divide by 2.  Add this list to the next-to-last level and repeat.  When the process ends, the resulting value should be 1.   </p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[15]:=</td><td class="Input"><div>
+      <a name="232279420"></a>
+      <img src="Files/Data Structures in the WaveletWare Package/I_10.gif"
+          height="101"
+          width="289"
+          alt="Click for copyable input" />
+     </div><div id="i_9_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[17]=</td><td class="Output"><img src="Files/Data Structures in the WaveletWare Package/O_9.gif" height="15" width="22" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="101002417"></a>The <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> function <span class="IF"><a href="../ref/CheckTree.html">CheckTree</a></span> can be used to check the validity of a tree.  The input for this function is the tree and the datatype (1 since the tree was created from one-dimensional data).  If the tree is valid, <span class="IF"><a href="../ref/CheckTree.html">CheckTree</a></span> returns the number of iterations for the tree.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[18]:=</td><td class="Input"><div>
+      <a name="69897103"></a>
+      <img src="Files/Data Structures in the WaveletWare Package/I_12.gif"
+          height="33"
+          width="119"
+          alt="Click for copyable input" />
+     </div><div id="i_11_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[19]=</td><td class="Output"><img src="Files/Data Structures in the WaveletWare Package/O_10.gif" height="15" width="6" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="49256618"></a>In the cell below, the tree for the computed wavelet packet transform is displayed.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[20]:=</td><td class="Input"><div>
+      <a name="72157926"></a>
+      <img src="Files/Data Structures in the WaveletWare Package/I_14.gif"
+          height="169"
+          width="464"
+          alt="Click for copyable input" />
+     </div><div id="i_13_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[23]=</td><td class="Output"><img src="Files/Data Structures in the WaveletWare Package/O_11.gif" height="163" width="240" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[25]=</td><td class="Output"><img src="Files/Data Structures in the WaveletWare Package/O_12.gif" height="15" width="206" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[26]=</td><td class="Output"><img src="Files/Data Structures in the WaveletWare Package/O_13.gif" height="125" width="240" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[27]=</td><td class="Output"><img src="Files/Data Structures in the WaveletWare Package/O_14.gif" height="143" width="240" alt="" /></td></tr>
+  </table>
+ </div>
+ <h3 class="Subsection"><a name="505123677"></a>Two-Dimensional Data</h3>
+ <p class="Text">
+  <a name="198010789"></a>
+  <a href="#trees">(top of section)</a>
+ </p>
+ <p class="Text"><a name="250745354"></a>For two-dimensional data, the tree structure starts with a 0 or 1, but lists of length 2,4,8,... are replaced by matrices of dimension 2x2, 4x4, 8x8, ...</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[28]:=</td><td class="Input"><div>
+      <a name="332979607"></a>
+      <img src="Files/Data Structures in the WaveletWare Package/I_16.gif"
+          height="33"
+          width="234"
+          alt="Click for copyable input" />
+     </div><div id="i_15_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[28]=</td><td class="Output"><img src="Files/Data Structures in the WaveletWare Package/O_15.gif" height="15" width="318" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[29]=</td><td class="Output"><img src="Files/Data Structures in the WaveletWare Package/O_16.gif" height="83" width="240" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="68081862"></a>The next cell illustrates the tree resulting from the wavelet packet transform.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[30]:=</td><td class="Input"><div>
+      <a name="163170288"></a>
+      <img src="Files/Data Structures in the WaveletWare Package/I_18.gif"
+          height="152"
+          width="397"
+          alt="Click for copyable input" />
+     </div><div id="i_17_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[32]=</td><td class="Output"><img src="Files/Data Structures in the WaveletWare Package/O_17.gif" height="256" width="384" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[34]=</td><td class="Output"><img src="Files/Data Structures in the WaveletWare Package/O_18.gif" height="15" width="318" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[35]=</td><td class="Output"><img src="Files/Data Structures in the WaveletWare Package/O_19.gif" height="132" width="384" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[36]=</td><td class="Output"><img src="Files/Data Structures in the WaveletWare Package/O_20.gif" height="256" width="384" alt="" /></td></tr>
+  </table>
+ </div>
+ <h2 class="Section"><a name="472374342"></a>The Iteration Option</h2>
+ <p class="Text">
+  <a name="395750447"></a>
+  <a href="#main">(top)</a>
+ </p>
+ <p class="Text"><a name="753935736"></a>In visualization routines such as <span class="IF"><a href="../ref/WaveletVectorPlot.html">WaveletVectorPlot</a></span>, <span class="IF"><a href="../ref/WaveletPlot.html">WaveletPlot</a></span>, <span class="IF"><a href="../ref/FullWaveletVectorPlot.html">FullWaveletVectorPlot</a></span> and <span class="IF"><a href="../ref/FullWaveletPlot.html">FullWaveletPlot</a></span>, the <span class="IF"><a href="../ref/Iteration.html">Iteration</a></span> option can be set to indicate particular portions of the transformed data to be plotted.</p>
+ <h3 class="Subsection"><a name="210020778"></a>WaveletVectorPlot and FullWaveletVectorPlot</h3>
+ <p class="Text">
+  <a name="569608226"></a>
+  <a href="#iteration">(top of section)</a>
+ </p>
+ <p class="Text"><a name="486658460"></a>To view a particular region or regions of a wavelet transformation, the <span class="IF"><a href="../ref/Iteration.html">Iteration</a></span> option can be set.  In the case of <span class="IF"><a href="../ref/WaveletVectorPlot.html">WaveletVectorPlot</a></span>, the value for <span class="IF"><a href="../ref/Iteration.html">Iteration</a></span> is a list of lists each of length two.  If {<span class="IF"><span class="TI">i</span></span>,<span class="IF"><span class="TI">j</span></span>} is a particular list element, then <span class="IF"><span class="TI">i</span></span> is the iteration for the region to be plotted and <span class="IF"><span class="TI">j</span></span>=1,...,<span class="IF"><img src="Files/Data Structures in the WaveletWare Package/2.png" height="18" width="10" alt="" /></span>.  Note that {<span class="IF"><span class="TI">i</span></span>,<span class="IF"><span class="TI">j</span></span>} must represent a valid portion of the transform data.  </p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[37]:=</td><td class="Input"><div>
+      <a name="436026"></a>
+      <img src="Files/Data Structures in the WaveletWare Package/I_20.gif"
+          height="186"
+          width="547"
+          alt="Click for copyable input" />
+     </div><div id="i_19_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[40]=</td><td class="Output"><img src="Files/Data Structures in the WaveletWare Package/O_21.gif" height="163" width="240" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[42]=</td><td class="Output"><img src="Files/Data Structures in the WaveletWare Package/O_22.gif" height="125" width="240" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[43]=</td><td class="Output"><img src="Files/Data Structures in the WaveletWare Package/O_23.gif" height="181" width="300" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[44]=</td><td class="Output"><img src="Files/Data Structures in the WaveletWare Package/O_24.gif" height="181" width="300" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="276242209"></a><span class="IF"><a href="../ref/FullWaveletVectorPlot.html">FullWaveletVectorPlot</a></span> plots data generated by <span class="IF"><a href="../ref/WTFull.html">WTFull</a></span> or <span class="IF"><a href="../ref/WPTFull.html">WPTFull</a></span>.  The function <span class="IF"><a href="../ref/WTFull.html">WTFull</a></span> creates wavelet transforms for a prescribed number of iterations <span class="IF"><span class="TI">i</span></span> (so each level is an iterated transform) and <span class="IF"><a href="../ref/WPTFull.html">WPTFull</a></span> generates a full decomposition at each level.  While regions in the output of <span class="IF"><a href="../ref/WPTFull.html">WPTFull</a></span> could be identified with lists of length 2, regions in the output of <span class="IF"><a href="../ref/WTFull.html">WTFull</a></span> need lists of length 3.  Thus for <span class="IF"><a href="../ref/FullWaveletVectorPlot.html">FullWaveletVectorPlot</a></span>, the <span class="IF"><a href="../ref/Iteration.html">Iteration</a></span> option value is a list of lists each of length three.<br /><br /> If a particular list element is {<span class="IF"><span class="TI">i</span></span>,<span class="IF"><span class="TI">j</span></span>,<span class="IF"><span class="TI">k</span></span>}, then <span class="IF"><span class="TI">i</span></span> is the level of the output and {<span class="IF"><span class="TI">j</span></span>,<span class="IF"><span class="TI">k</span></span>} is the iteration and region as described for <span class="IF"><a href="../ref/WaveletVectorPlot.html">WaveletVectorPlot</a></span>.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[51]:=</td><td class="Input"><div>
+      <a name="41500037"></a>
+      <img src="Files/Data Structures in the WaveletWare Package/I_22.gif"
+          height="135"
+          width="507"
+          alt="Click for copyable input" />
+     </div><div id="i_21_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td colspan="2"><div class="celllabelTableForm">Out[55]//TableForm=</div></td></tr>
+   <tr><td class="lab"> </td><td class="Output"><div class="TableForm">
+      <img src="Files/Data Structures in the WaveletWare Package/O_25.gif"
+          width="120"
+          height="258"
+          alt="" />
+     </div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td colspan="2"><div class="celllabelTableForm">Out[56]//TableForm=</div></td></tr>
+   <tr><td class="lab"> </td><td class="Output"><div class="TableForm">
+      <img src="Files/Data Structures in the WaveletWare Package/O_26.gif"
+          width="120"
+          height="258"
+          alt="" />
+     </div></td></tr>
+  </table>
+ </div>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[57]:=</td><td class="Input"><div>
+      <a name="283491897"></a>
+      <img src="Files/Data Structures in the WaveletWare Package/I_24.gif"
+          height="135"
+          width="366"
+          alt="Click for copyable input" />
+     </div><div id="i_23_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td colspan="2"><div class="celllabelTableForm">Out[61]//TableForm=</div></td></tr>
+   <tr><td class="lab"> </td><td class="Output"><div class="TableForm">
+      <img src="Files/Data Structures in the WaveletWare Package/O_27.gif"
+          width="120"
+          height="258"
+          alt="" />
+     </div></td></tr>
+  </table>
+ </div>
+ <h3 class="Subsection"><a name="574631370"></a>WaveletPlot and FullWaveletPlot</h3>
+ <p class="Text">
+  <a name="600577554"></a>
+  <a href="#iteration">(top of section)</a>
+ </p>
+ <p class="Text"><a name="297849837"></a>For matrix output plotted by <span class="IF"><a href="../ref/WaveletPlot.html">WaveletPlot</a></span>, the <span class="IF"><a href="../ref/Iteration.html">Iteration</a></span> option can be set to highlight only particular regions of the plot.  In this case the value of <span class="IF"><a href="../ref/Iteration.html">Iteration</a></span> is a list of lists of length 3.  If {<span class="IF"><span class="TI">i</span></span>,<span class="IF"><span class="TI">j</span></span>,<span class="IF"><span class="TI">k</span></span>} is a list element, then <span class="IF"><span class="TI">i</span></span> is the iteration of the region and then {<span class="IF"><span class="TI">j</span></span>,<span class="IF"><span class="TI">k</span></span>} represents the block location of the region.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[62]:=</td><td class="Input"><div>
+      <a name="282085728"></a>
+      <img src="Files/Data Structures in the WaveletWare Package/I_26.gif"
+          height="135"
+          width="471"
+          alt="Click for copyable input" />
+     </div><div id="i_25_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[64]=</td><td class="Output"><img src="Files/Data Structures in the WaveletWare Package/O_28.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[66]=</td><td class="Output"><img src="Files/Data Structures in the WaveletWare Package/O_29.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[67]=</td><td class="Output"><img src="Files/Data Structures in the WaveletWare Package/O_30.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="14820529"></a>When <span class="IF"><a href="../ref/FullWaveletPlot.html">FullWaveletPlot</a></span> is used to plot output from <span class="IF"><a href="../ref/WTFull.html">WTFull</a></span> or <span class="IF"><a href="../ref/WPTFull.html">WPTFull</a></span>, the value for the Iteration option depends on the number of iterations that were computed of the transform.  If <span class="IF"><span class="TI">n</span></span> iterations were computed, then the value of <span class="IF"><a href="../ref/Iteration.html">Iteration</a></span> is a list of length <span class="IF"><span class="TI">n</span></span>+1.  Each list is then itself a list of ordered triples where the triples are described in the above section.  The value <a href="http://reference.wolfram.com/language/ref/All.html">All</a> can be used to plot all regions at a particular level and {} can be used to indicated no regions at the particular level are to be plotted.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[68]:=</td><td class="Input"><div>
+      <a name="84619497"></a>
+      <img src="Files/Data Structures in the WaveletWare Package/I_28.gif"
+          height="101"
+          width="501"
+          alt="Click for copyable input" />
+     </div><div id="i_27_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td colspan="2"><div class="celllabelTableForm">Out[71]//TableForm=</div></td></tr>
+   <tr><td class="lab"> </td><td class="Output"><div class="TableForm">
+      <img src="Files/Data Structures in the WaveletWare Package/O_31.gif"
+          width="96"
+          height="204"
+          alt="" />
+     </div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td colspan="2"><div class="celllabelTableForm">Out[72]//TableForm=</div></td></tr>
+   <tr><td class="lab"> </td><td class="Output"><div class="TableForm">
+      <img src="Files/Data Structures in the WaveletWare Package/O_32.gif"
+          width="96"
+          height="204"
+          alt="" />
+     </div></td></tr>
+  </table>
+ </div>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[73]:=</td><td class="Input"><div>
+      <a name="182613932"></a>
+      <img src="Files/Data Structures in the WaveletWare Package/I_30.gif"
+          height="67"
+          width="486"
+          alt="Click for copyable input" />
+     </div><div id="i_29_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td colspan="2"><div class="celllabelTableForm">Out[76]//TableForm=</div></td></tr>
+   <tr><td class="lab"> </td><td class="Output"><div class="TableForm">
+      <img src="Files/Data Structures in the WaveletWare Package/O_33.gif"
+          width="96"
+          height="204"
+          alt="" />
+     </div></td></tr>
+  </table>
+ </div>
+ <h3 class="Subsection"><a name="389715011"></a>WaveletPlot and FullWaveletPlot with Color Images</h3>
+ <p class="Text">
+  <a name="424303947"></a>
+  <a href="#iteration">(top of section)</a>
+ </p>
+ <p class="Text"><a name="1045024"></a>For color images with <span class="IF"><a href="../ref/WaveletPlot.html">WaveletPlot</a></span>, the value of <span class="IF"><a href="../ref/Iteration.html">Iteration</a></span> is a list of lists each of length 4.  If {<span class="IF"><span class="TI">c</span></span>,<span class="IF"><span class="TI">i</span></span>,<span class="IF"><span class="TI">j</span></span>,<span class="IF"><span class="TI">k</span></span>} is a list element, then <span class="IF"><span class="TI">c</span></span> is the channel to be plotted and {<span class="IF"><span class="TI">i</span></span>,<span class="IF"><span class="TI">j</span></span>,<span class="IF"><span class="TI">k</span></span>} is as described for a list value for Iteration when plotting matrices (see above).  In the case where the plotted data is from a wavelet transform or the regions in a packet transform are to all be plotted, the value <a href="http://reference.wolfram.com/language/ref/All.html">All</a> can be substituted for <span class="IF"><span class="TI">c</span></span>.  </p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[77]:=</td><td class="Input"><div>
+      <a name="878154778"></a>
+      <img src="Files/Data Structures in the WaveletWare Package/I_32.gif"
+          height="135"
+          width="461"
+          alt="Click for copyable input" />
+     </div><div id="i_31_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[79]=</td><td class="Output"><img src="Files/Data Structures in the WaveletWare Package/O_34.gif" height="256" width="384" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[81]=</td><td class="Output"><img src="Files/Data Structures in the WaveletWare Package/O_35.gif" height="252" width="386" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[82]=</td><td class="Output"><img src="Files/Data Structures in the WaveletWare Package/O_36.gif" height="256" width="384" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="30875426"></a>For color images with <span class="IF"><a href="../ref/FullWaveletPlot.html">FullWaveletPlot</a></span>, the value of <span class="IF"><a href="../ref/Iteration.html">Iteration</a></span> depends on the number of iterations <span class="IF"><span class="TI">n</span></span> of the transform that have been computed.  In this case, the value of <span class="IF"><a href="../ref/Iteration.html">Iteration</a></span> is a list of length <span class="IF"><span class="TI">n</span></span>+1 and each element in this list is as described for color images and <span class="IF"><a href="../ref/WaveletPlot.html">WaveletPlot</a></span> in the above section.  <a href="http://reference.wolfram.com/language/ref/All.html">All</a> and {} can be used in lieu of a list item to plot all or none of the regions at a particular level.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[83]:=</td><td class="Input"><div>
+      <a name="349940870"></a>
+      <img src="Files/Data Structures in the WaveletWare Package/I_34.gif"
+          height="101"
+          width="487"
+          alt="Click for copyable input" />
+     </div><div id="i_33_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[86]=</td><td class="Output"><img src="Files/Data Structures in the WaveletWare Package/O_37.gif" height="206" width="339" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[87]=</td><td class="Output"><img src="Files/Data Structures in the WaveletWare Package/O_38.gif" height="66" width="324" alt="" /></td></tr>
+  </table>
+ </div>
+</div>
+</div><!-- /wrapper -->
+
+
+	
+</div>
+
+
+</body>
+		 </html>

@@ -1,0 +1,8 @@
+<pre name='i_9_in' id='i_9_in' class='IFT'>{h, ht} = SplineFilters[2, 2, DisplayInfo -&gt; True];
+samples = 
+  MapThread[
+   ScalingFunctionData[#1, FilterStart -&gt; #2] &amp;, {{h, ht}, {-2, -1}}];
+plts = Map[
+   ListPlot[#, Joined -&gt; True, 
+     Ticks -&gt; {Range[-3, 3], Range[-2.5, 2.5]}] &amp;, samples];
+GraphicsRow[plts, ImageSize -&gt; 500]</pre><div class='IFU'><a name='55918304'></a>http://wolfram.com/xid/0b6ekx0z8pnru3asylaru54pcy-7ks4i</div>

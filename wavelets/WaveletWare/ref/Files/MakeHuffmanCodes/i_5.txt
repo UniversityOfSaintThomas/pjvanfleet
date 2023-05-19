@@ -1,0 +1,6 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;canoes.png&quot;;
+A = ImageRead[file];
+ImagePlot[A]
+{codes, old, new} = MakeHuffmanCodes[A];
+Print[&quot;The original bit stream was &quot;, old, 
+  &quot; and the new bit stream length is &quot;, new, &quot;.&quot;];</pre><div class='IFU'><a name='130392698'></a>http://wolfram.com/xid/0flnk7wc6ibfrlmgjk7d2kmzqbnel-cfw1xo</div>

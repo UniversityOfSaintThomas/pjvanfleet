@@ -1,0 +1,4 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>A = RandomInteger[{0, 6}, {10, 10}];
+MatrixForm[A]
+{codes, old, new} = MakeHuffmanCodes[A];
+HuffmanTree[codes, ImageSize -&gt; 500]</pre><div class='IFU'><a name='168597186'></a>http://wolfram.com/xid/04j60t5tk393i6ilsrjb0u0320-c2nwpg</div>

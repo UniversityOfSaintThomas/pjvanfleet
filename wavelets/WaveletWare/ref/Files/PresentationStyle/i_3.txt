@@ -1,0 +1,6 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;benches.png&quot;;
+A = ImageRead[file, Resize -&gt; {128, 192}];
+wt = WTFull[A, Haar[], NumIterations -&gt; 3];
+FullWaveletPlot[wt]
+FullWaveletPlot[wt, PresentationStyle -&gt; GraphicsColumn]
+FullWaveletPlot[wt, PresentationStyle -&gt; FlipView]</pre><div class='IFU'><a name='810322187'></a>http://wolfram.com/xid/0cohy0yjie4alfh86yvtzpni-noqavx</div>

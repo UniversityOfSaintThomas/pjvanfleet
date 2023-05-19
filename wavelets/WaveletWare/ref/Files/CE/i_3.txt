@@ -1,0 +1,4 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>&lt;&lt; WaveletWare`;
+v = Range[32];
+CE[v]
+ListPlot[%]</pre><div class='IFU'><a name='31128734'></a>http://wolfram.com/xid/0iwz6b8tg2hnj68rau1-sthdc</div>

@@ -1,0 +1,2 @@
+<pre name='i_31_in' id='i_31_in' class='IFT'>ShowBestBasis[WaveletTree[3, InputDimension -&gt; 2], ImageSize -&gt; 300]
+ShowBestBasis[WaveletTree[3, InputDimension -&gt; 2], Show3D -&gt; False]</pre><div class='IFU'><a name='141394590'></a>http://wolfram.com/xid/0ju408za6tmbiu55ts1k9e6e-cmgu1s</div>

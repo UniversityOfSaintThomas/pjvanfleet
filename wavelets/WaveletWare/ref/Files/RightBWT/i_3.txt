@@ -1,0 +1,5 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;road.png&quot;;
+A = ImageRead[file, Resize -&gt; {128, 192}];
+ImagePlot[A]
+rwt = RightBWT[A, SplineFilters[3, 3]];
+WaveletPlot[rwt, PlotType -&gt; Right]</pre><div class='IFU'><a name='35045565'></a>http://wolfram.com/xid/0cohy0yjie4alfh87k01m6yj-u5fl7</div>

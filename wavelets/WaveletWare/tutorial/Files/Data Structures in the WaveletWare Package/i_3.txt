@@ -1,0 +1,11 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>v = 7;
+CheckData[v]
+v = &quot;Hello&quot;;
+CheckData[v]
+v = Range[16];
+CheckData[v]
+v = ConstantArray[6, {12, 15}];
+CheckData[v]
+t = ConstantArray[0, {8, 8}];
+v = ConstantArray[t, 3];
+CheckData[v]</pre><div class='IFU'><a name='524583373'></a>http://wolfram.com/xid/0dw3hmeolb456i3ocz9bqdb7htqim7p8o1p7qzwg41bm-iylxen</div>

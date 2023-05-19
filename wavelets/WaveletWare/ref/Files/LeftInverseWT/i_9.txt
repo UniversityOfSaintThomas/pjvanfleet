@@ -1,0 +1,10 @@
+<pre name='i_9_in' id='i_9_in' class='IFT'>(* Daub[4] filter *)
+filter = {1 + Sqrt[3], 3 + Sqrt[3], 3 - Sqrt[3], 1 - Sqrt[3]}/4/
+   Sqrt[2];
+filter == Daub[4]
+A = RandomInteger[{0, 10}, {8, 8}];
+MatrixForm[A]
+wt = Simplify[LeftWT[A, filter, Computation -&gt; Symbolic]];
+MatrixForm[wt]
+Simplify[LeftInverseWT[wt, filter, 
+   Computation -&gt; Symbolic]] // MatrixForm</pre><div class='IFU'><a name='3317315'></a>http://wolfram.com/xid/0cew39zuhikyj6xdb160t39ob-b9dxx</div>

@@ -1,0 +1,2 @@
+<pre name='i_33_in' id='i_33_in' class='IFT'>tmp1 = Position[First[newYCbCr], n_ /; MemberQ[{13, 14, 15}, n]]
+tmp2 = Position[First[newYCbCr], n_ /; MemberQ[{236, 237}, n]]</pre><div class='IFU'><a name='236404020'></a>http://wolfram.com/xid/0ck2bt1tgpszi5qmumv90y9mftkdg9nq1q0ukjlzbu-d608sm</div>

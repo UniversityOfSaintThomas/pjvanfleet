@@ -1,0 +1,6 @@
+<pre name='i_9_in' id='i_9_in' class='IFT'>v = Range[16];
+wt = Chop[WPTFull[v, Haar[], NumIterations -&gt; 3]];
+tree1 = BestBasisTree[wt];
+tree2 = BestBasisTree[wt, CostFunction -&gt; NumberAboveThreshold, 
+   SecondParameter -&gt; 5];
+Map[ShowBestBasis, {tree1, tree2}] // TableForm</pre><div class='IFU'><a name='33998388'></a>http://wolfram.com/xid/0iglzsj6g5gr1t4ex14c4bsar4ymys4uuo5d2m08201-uizly</div>

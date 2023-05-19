@@ -1,0 +1,8 @@
+<pre name='i_9_in' id='i_9_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;chess.png&quot;;
+A = ImageRead[file, Resize -&gt; {192, 128}];
+plt1 = ImagePlot[A];
+lwt = LeftLWT[A];
+plt2 = WaveletPlot[lwt, PlotType -&gt; Left];
+rwt = RightLWT[A];
+plt3 = WaveletPlot[rwt, PlotType -&gt; Right];
+GraphicsRow[{plt1, plt2, plt3}, ImageSize -&gt; 512]</pre><div class='IFU'><a name='130662272'></a>http://wolfram.com/xid/0533vsu7qbb0ajiwwqawq9kz22kl8rc4uv1a9crxfvnihty6rtcsrbm-cf2txu</div>

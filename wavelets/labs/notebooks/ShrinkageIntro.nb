@@ -1,0 +1,840 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     32663,        832]
+NotebookOptionsPosition[     28606,        758]
+NotebookOutlinePosition[     28949,        773]
+CellTagsIndexPosition[     28906,        770]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Lab 6.1: An Overview of Wavelet Shrinkage", "Section",
+ CellChangeTimes->{{3.6747410188032584`*^9, 3.674741042688301*^9}, {
+   3.674742552975814*^9, 3.6747425597738523`*^9}, {3.67474453723468*^9, 
+   3.674744561535725*^9}, {3.674747931751519*^9, 3.6747479370307474`*^9}, 
+   3.6747516510077415`*^9, {3.674754123065485*^9, 3.674754140322116*^9}, {
+   3.6751749126193643`*^9, 3.6751749154137692`*^9}, {3.6755147920766993`*^9, 
+   3.6755147959137897`*^9}, {3.675527343559159*^9, 3.675527350929307*^9}, {
+   3.6755288505176797`*^9, 3.675528858287467*^9}, {3.6755298287755394`*^9, 
+   3.675529837330626*^9}, 3.703855401083161*^9, {3.727011156743316*^9, 
+   3.727011160055276*^9}, {3.7270114909635525`*^9, 3.7270114966106634`*^9}, {
+   3.7298617740082817`*^9, 3.7298617804688063`*^9}, {3.7298618142457356`*^9, 
+   3.729861817366371*^9}, {3.729936061603035*^9, 3.729936065090923*^9}, {
+   3.730197863129013*^9, 3.7301978954844265`*^9}, {3.7318408662267294`*^9, 
+   3.7318408668665113`*^9}, 3.733655762505674*^9, {3.7336569182444115`*^9, 
+   3.7336569268211536`*^9}, {3.733674394006934*^9, 
+   3.733674394454896*^9}},ExpressionUUID->"b4d3dd46-bf41-416a-8a69-\
+8d3f86104986"],
+
+Cell["\<\
+In this lab, you will implement Algorithm 6.1 to denoise signals.  In the \
+process you will learn how to add noise to a signal and apply the soft \
+threshold function.\
+\>", "Text",
+ CellChangeTimes->{{3.6747410667041707`*^9, 3.6747410805055957`*^9}, {
+  3.6747424105934367`*^9, 3.674742410733837*^9}, {3.674742572300502*^9, 
+  3.674742584222324*^9}, {3.6747445741715794`*^9, 3.6747445846113987`*^9}, {
+  3.6747479622130194`*^9, 3.674747968138232*^9}, {3.675174920421378*^9, 
+  3.6751749285570188`*^9}, {3.6755273968654437`*^9, 3.6755274039395885`*^9}, {
+  3.6755288612083807`*^9, 3.6755288683421783`*^9}, {3.6755298409106617`*^9, 
+  3.6755298515318317`*^9}, {3.7270111747609496`*^9, 3.7270111855638227`*^9}, {
+  3.729861836007686*^9, 3.729861854391374*^9}, {3.7299360749950047`*^9, 
+  3.7299360763870363`*^9}, {3.730198023850702*^9, 3.7301980498871727`*^9}, {
+  3.733656968527128*^9, 
+  3.733657024518409*^9}},ExpressionUUID->"61b27de1-8e6c-4777-a97c-\
+e405fa03ef99"],
+
+Cell[CellGroupData[{
+
+Cell["Reference", "Subsubsection",
+ CellChangeTimes->{{3.6747631102003517`*^9, 3.6747631125733557`*^9}, 
+   3.730197716407202*^9},ExpressionUUID->"3fffe5ac-09ce-46e2-8050-\
+8c2090c2603e"],
+
+Cell[TextData[{
+ "The material for this lab is covered in Section 6.1 of the book ",
+ ButtonBox["Discrete Wavelet Transformations: An Elementary Approach with \
+Applications, 2nd Ed.",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://www.wiley.com/en-us/Discrete+Wavelet+Transformations%3A+An+\
+Elementary+Approach+with+Applications%2C+2nd+Edition-p-9781118979310"], None},
+  ButtonNote->
+   "https://www.wiley.com/en-us/Discrete+Wavelet+Transformations%3A+An+\
+Elementary+Approach+with+Applications%2C+2nd+Edition-p-9781118979310"],
+ ", by Patrick J Van Fleet."
+}], "Text",
+ CellChangeTimes->{{3.674763119565366*^9, 3.6747631649004583`*^9}, {
+   3.674763293323564*^9, 3.674763311554607*^9}, {3.6997856290190563`*^9, 
+   3.699785638548086*^9}, {3.72692103296169*^9, 3.726921034949597*^9}, {
+   3.7270063962717886`*^9, 3.727006396991242*^9}, 3.727009034200805*^9, 
+   3.7270097537181544`*^9, {3.7270115331247635`*^9, 3.727011534185475*^9}, {
+   3.729936081107809*^9, 3.729936081203467*^9}, {3.73019789874003*^9, 
+   3.7301979003322897`*^9}, {3.733657027501221*^9, 3.733657027891911*^9}, {
+   3.7726249732780395`*^9, 
+   3.7726249736211405`*^9}},ExpressionUUID->"6a87367e-199b-4755-909b-\
+1f0e93964a15"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["WaveletWare Commands Used in This Notebook", "Subsubsection",
+ CellChangeTimes->{{3.6747417571916847`*^9, 3.674741765831501*^9}, {
+  3.6747418595935683`*^9, 
+  3.6747419193671017`*^9}},ExpressionUUID->"f0a02de7-73c3-4fdf-9fb7-\
+3b6354eb70fb"],
+
+Cell["Execute the line below to load the WaveletWare package.", "Text",
+ CellChangeTimes->{{3.726919365764247*^9, 
+  3.7269193911263213`*^9}},ExpressionUUID->"1c2f17b5-7d52-43ea-8284-\
+97a0802ab4e4"],
+
+Cell[BoxData[
+ RowBox[{"<<", "WaveletWare`"}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.7269193243151226`*^9, 3.7269193578933735`*^9}, {
+   3.7270065374179773`*^9, 3.727006537593671*^9}, {3.7270070318050675`*^9, 
+   3.7270070319488754`*^9}, {3.7270084778120003`*^9, 
+   3.7270084779023743`*^9}, {3.7270097015398407`*^9, 
+   3.7270097017317114`*^9}, {3.727009916604597*^9, 3.72700991671616*^9}, {
+   3.7270102740659857`*^9, 3.7270102742043266`*^9}, {3.727011436528392*^9, 
+   3.727011436639927*^9}, 3.727011861141736*^9, {3.729880762923499*^9, 
+   3.729880763098421*^9}, {3.729944604988558*^9, 3.7299446052435875`*^9}, {
+   3.731346422962227*^9, 3.7313464231599517`*^9}, {3.732037657952439*^9, 
+   3.732037658623538*^9}, {3.732288796028294*^9, 3.7322887961236305`*^9}, {
+   3.7336738043457527`*^9, 
+   3.733673804473096*^9}},ExpressionUUID->"d0fbe505-08c6-4c5e-bfcb-\
+4eebc307ea21"],
+
+Cell["\<\
+Execute the line below to generate quick help on WaveletWare commands used in \
+this notebook.  Click on >> for each command to access detailed documentation \
+on the command.\
+\>", "Text",
+ CellChangeTimes->{{3.726919395574725*^9, 
+  3.7269194464807606`*^9}},ExpressionUUID->"49e06bb1-94fd-4029-9342-\
+21f25eef50ef"],
+
+Cell[BoxData[{
+ RowBox[{"?", "PackageDirectory"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "AudioRead"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "WhiteNoise"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "Daub"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "WT"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "WaveletVectorPlot"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "WaveletVectorToList"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "InverseWT"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "WaveletShrinkage"}]}], "Input",
+ CellChangeTimes->{{3.7269193243151226`*^9, 3.7269193578933735`*^9}, {
+  3.727006411728204*^9, 3.7270064146082783`*^9}, {3.7270064673326874`*^9, 
+  3.7270064795892925`*^9}, {3.727006595390209*^9, 3.727006600158367*^9}, {
+  3.72700691873085*^9, 3.7270069320111556`*^9}, {3.7270070971669283`*^9, 
+  3.72700709878319*^9}, {3.727007656662043*^9, 3.727007686295689*^9}, {
+  3.7270077238976808`*^9, 3.7270077269537964`*^9}, {3.7270077787964225`*^9, 
+  3.72700778190035*^9}, {3.727009043699129*^9, 3.7270090645469418`*^9}, {
+  3.7270095740304623`*^9, 3.727009574398796*^9}, {3.7270097581334586`*^9, 
+  3.727009772982139*^9}, {3.7270102276737976`*^9, 3.7270102281699533`*^9}, {
+  3.7270112026494274`*^9, 3.727011212544937*^9}, {3.730199660620434*^9, 
+  3.7301996632461357`*^9}, {3.7313463897755346`*^9, 3.7313463969156823`*^9}, {
+  3.733673756808423*^9, 3.7336738379136896`*^9}, {3.7337466675162344`*^9, 
+  3.7337466707319803`*^9}},ExpressionUUID->"274fa8e9-9ea5-489e-93a8-\
+dbe841fdbfb4"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Modules Created in this Lab", "Subsubsection",
+ CellChangeTimes->{{3.7368676701301727`*^9, 
+  3.7368676768044405`*^9}},ExpressionUUID->"b66fd0ec-6b02-49d4-b559-\
+baa5c8bab5b2"],
+
+Cell["None", "Text",
+ CellChangeTimes->{{3.736867686442602*^9, 3.7368677111146307`*^9}, {
+  3.736867752285713*^9, 3.736867763029464*^9}, {3.73686854064227*^9, 
+  3.7368685482389035`*^9}, {3.7368686060516157`*^9, 3.73686860944287*^9}, {
+  3.736868679786914*^9, 3.7368686863318667`*^9}, {3.7368687492695093`*^9, 
+  3.736868750017728*^9}, {3.7368688112538695`*^9, 3.736868849768462*^9}, {
+  3.736868926029128*^9, 3.736868961631447*^9}, {3.7368690231292324`*^9, 
+  3.736869032529519*^9}, {3.7368690960599732`*^9, 3.7368691722231145`*^9}, {
+  3.736869292654642*^9, 3.7368693920362573`*^9}, {3.7368694947177744`*^9, 
+  3.7368695231923943`*^9}, {3.7368697263486347`*^9, 
+  3.7368697268292418`*^9}},ExpressionUUID->"b868248a-addb-4960-8bbf-\
+89b769cbd333"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Recommended Work", "Subsubsection",
+ CellChangeTimes->{{3.7299360942599783`*^9, 3.7299360976676846`*^9}, {
+  3.73019816063396*^9, 
+  3.730198162516494*^9}},ExpressionUUID->"366897d0-0f48-439b-8880-\
+59184618ccd2"],
+
+Cell[TextData[{
+ "If you completed ",
+ ButtonBox["Lab 5.3",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://personal.stthomas.edu/pjvanfleet/wavelets/labs/notebooks/\
+DLFilter.nb"], None},
+  ButtonNote->
+   "http://personal.stthomas.edu/pjvanfleet/wavelets/labs/notebooks/DLFilter.\
+nb"],
+ ", then copy and paste the modules ",
+ StyleBox["DaubFilter",
+  FontWeight->"Bold"],
+ ", ",
+ StyleBox["WT1d",
+  FontWeight->"Bold"],
+ ", and ",
+ StyleBox["InverseWT1d",
+  FontWeight->"Bold"],
+ " in the cell below.  Otherwise you can use the WaveletWare functions ",
+ StyleBox["Daub",
+  FontWeight->"Bold"],
+ ", ",
+ StyleBox["WT",
+  FontWeight->"Bold"],
+ ", and ",
+ StyleBox["InverseWT",
+  FontWeight->"Bold"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.729936102067706*^9, 3.7299361291091156`*^9}, {
+  3.7301981661642923`*^9, 3.730198254525116*^9}, {3.731321305179064*^9, 
+  3.7313213551154733`*^9}, {3.7313214520687075`*^9, 3.731321476928274*^9}, {
+  3.7313215396639967`*^9, 3.73132155981809*^9}, {3.732034697180997*^9, 
+  3.7320346982845373`*^9}, {3.7336744060712647`*^9, 3.7336744199758234`*^9}, {
+  3.733742107377937*^9, 3.7337421315231743`*^9}, {3.733742167508559*^9, 
+  3.7337422187427177`*^9}, {3.7337422492085657`*^9, 3.7337422531605954`*^9}, {
+  3.7337430439088535`*^9, 3.7337430577183*^9}, {3.7747109227116537`*^9, 
+  3.774710951307229*^9}, {3.776086375420889*^9, 
+  3.7760863754218917`*^9}},ExpressionUUID->"be27016b-342e-442a-bb4c-\
+8e05c2965288"],
+
+Cell[BoxData[
+ RowBox[{"(*", " ", 
+  RowBox[{
+  "replace", " ", "this", " ", "comment", " ", "with", " ", "code", " ", 
+   "for", " ", "the", " ", "modules", " ", "mentioned", " ", "above"}], " ", 
+  "*)"}]], "Input",
+ CellChangeTimes->{{3.7337422633271503`*^9, 
+  3.733742278697648*^9}},ExpressionUUID->"c6e4580d-a97c-4309-99db-\
+6f83dfa9e142"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Input a Signal", "Subsubsection",
+ CellChangeTimes->{{3.674741083458001*^9, 3.674741085127204*^9}, {
+   3.674741868740185*^9, 3.674741869629386*^9}, {3.7298619082330914`*^9, 
+   3.7298619154811635`*^9}, {3.7298634832691517`*^9, 3.7298634890296955`*^9}, 
+   3.730197718738076*^9, {3.730198264837225*^9, 3.7301982692290983`*^9}, {
+   3.73365703765174*^9, 
+   3.7336570406734295`*^9}},ExpressionUUID->"8a313543-5b7f-4f37-842b-\
+1e2469d6be64"],
+
+Cell[TextData[{
+ "We start by importing an audio clip.  We will use one from the WaveletWare \
+package.  Note that AudioRead inputs the ",
+ StyleBox["samples",
+  FontWeight->"Bold"],
+ " value as a list of lists (accounting for the possibility of stereo sound). \
+ In the case of a mono signal, ",
+ StyleBox["samples",
+  FontWeight->"Bold"],
+ " is of the form {",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["s", "1"], TraditionalForm]],ExpressionUUID->
+  "ddc257ce-9d19-4519-9610-037601812355"],
+ ", ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["s", "2"], TraditionalForm]],ExpressionUUID->
+  "15999009-eb83-4cb4-80f0-18968ab73440"],
+ ", ...,",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["s", "N"], TraditionalForm]],ExpressionUUID->
+  "465254d2-0875-4e2b-b03e-ef4de434a619"],
+ "} and in the case of stereo, ",
+ StyleBox["samples",
+  FontWeight->"Bold"],
+ " is of the form {{",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["l", "1"], TraditionalForm]],ExpressionUUID->
+  "6365449a-11a9-49ad-895d-05c6d2c73e12"],
+ ", ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["l", "2"], TraditionalForm]],ExpressionUUID->
+  "04480941-3dfc-404b-9acb-fca5b65b3a4c"],
+ ", ...,",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["l", "N"], TraditionalForm]],ExpressionUUID->
+  "0aa52c31-2f0a-4692-8e7d-174a5986d84c"],
+ "},{",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["r", "1"], TraditionalForm]],ExpressionUUID->
+  "eb8b6717-1c74-418f-8546-19139fad3d15"],
+ ", ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["r", "2"], TraditionalForm]],ExpressionUUID->
+  "acc2b875-809a-4c98-ac70-516e5f32cedc"],
+ ", ...,",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["r", "N"], TraditionalForm]],ExpressionUUID->
+  "90022d27-df71-4720-879f-2268c8a6dfe4"],
+ "}}. You can issue the command ",
+ StyleBox["AudioInfo",
+  FontWeight->"Bold"],
+ "[",
+ StyleBox["DisplayInfo",
+  FontWeight->"Bold"],
+ "->",
+ StyleBox["True",
+  FontWeight->"Bold"],
+ "] to see information on all WaveletWare package audio files.\n\nWe will \
+apply the iterated wavelet transform to our noisy data.  Assuming we want to \
+apply i iterations, we need to ensure that the length of samples is divisible \
+by ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["2", "k"], TraditionalForm]],ExpressionUUID->
+  "9f73ea66-6389-443f-98cd-08f586238fe8"],
+ " where ",
+ StyleBox["k",
+  FontSlant->"Italic"],
+ " > ",
+ StyleBox["i",
+  FontSlant->"Italic"],
+ ".  We can add the option ",
+ StyleBox["PowersOfTwo",
+  FontWeight->"Bold"],
+ " to ",
+ StyleBox["AudioRead",
+  FontWeight->"Bold"],
+ ".  If the value of ",
+ StyleBox["PowersOfTwo",
+  FontWeight->"Bold"],
+ " is ",
+ StyleBox["k",
+  FontSlant->"Italic"],
+ ", then a minimum number of values are ",
+ StyleBox["Drop",
+  FontWeight->"Bold"],
+ "ped from the end of ",
+ StyleBox["samples",
+  FontWeight->"Bold"],
+ " so that its length is divisible by ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["2", "k"], TraditionalForm]],ExpressionUUID->
+  "f6b3c884-2b94-472a-8280-e3c095f9d5f6"],
+ ". "
+}], "Text",
+ CellChangeTimes->{{3.6747411194901114`*^9, 3.6747411391369605`*^9}, {
+   3.674742623448035*^9, 3.674742630967649*^9}, {3.6747446245665*^9, 
+   3.6747446285253077`*^9}, {3.6747479738622437`*^9, 
+   3.6747480058727283`*^9}, {3.6747541466889267`*^9, 3.674754251603379*^9}, {
+   3.6751749520373015`*^9, 3.6751749586109133`*^9}, {3.6755148175042253`*^9, 
+   3.675514819025256*^9}, {3.6755148532970734`*^9, 3.6755148644122963`*^9}, {
+   3.6755149448761034`*^9, 3.675514948728182*^9}, {3.675527407049651*^9, 
+   3.675527418359915*^9}, {3.6755298600329905`*^9, 3.67552987475714*^9}, {
+   3.727011216895319*^9, 3.7270112356259713`*^9}, 3.7298619201374073`*^9, {
+   3.7298625858071938`*^9, 3.7298626252166543`*^9}, {3.729862667105684*^9, 
+   3.729863049210574*^9}, {3.729936428767338*^9, 3.729936555060206*^9}, {
+   3.7301984744642096`*^9, 3.7301985392157187`*^9}, {3.7336570542729473`*^9, 
+   3.733657082414249*^9}, {3.7336574378184767`*^9, 3.733657472955165*^9}, {
+   3.7336575646348014`*^9, 3.73365762399784*^9}, {3.7336595163440943`*^9, 
+   3.733659768176016*^9}},ExpressionUUID->"e149f220-85cc-4f84-b2c9-\
+aa96a593cc9d"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"file", "=", 
+   RowBox[{
+    RowBox[{"PackageDirectory", "[", 
+     RowBox[{"DataType", "\[Rule]", "Sounds"}], "]"}], "<>", 
+    "\"\<bark.wav\>\""}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"samples", ",", " ", "rate"}], "}"}], "=", 
+   RowBox[{"AudioRead", "[", 
+    RowBox[{"file", ",", 
+     RowBox[{"PowersOfTwo", "\[Rule]", "4"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"ListPlay", "[", 
+  RowBox[{"samples", ",", 
+   RowBox[{"SampleRate", "\[Rule]", "rate"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Length", "[", "samples", "]"}], "/", 
+  RowBox[{"2", "^", "4"}]}]}], "Input",
+ CellChangeTimes->{{3.733657115004718*^9, 3.7336571282703424`*^9}, {
+  3.733657237448758*^9, 3.733657261705015*^9}, {3.733657627293722*^9, 
+  3.7336576340127363`*^9}, {3.7336576741121874`*^9, 3.733657716160082*^9}, {
+  3.733657748080803*^9, 3.733657831570017*^9}, {3.7336579144212203`*^9, 
+  3.7336579205656867`*^9}, {3.7336579757833786`*^9, 3.7336579760862255`*^9}, {
+  3.7336580439444275`*^9, 3.733658063352566*^9}, {3.733659471143098*^9, 
+  3.7336594899279413`*^9}, {3.733659789505457*^9, 3.733659795632925*^9}, {
+  3.7336737451120477`*^9, 
+  3.733673745207958*^9}},ExpressionUUID->"5c78dcda-07ad-4a1b-b911-\
+b6a74f3d064b"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Adding Gaussian White Noise", "Subsubsection",
+ CellChangeTimes->{{3.7336598233455353`*^9, 
+  3.733659829681607*^9}},ExpressionUUID->"30164bbd-dc6a-4780-baf8-\
+b9b4bc26773a"],
+
+Cell[TextData[{
+ "WaveletWare has a built-in function called WhiteNoise that can be used to \
+generate Gaussian white noise.  In the cell below, create a noisy signal ",
+ StyleBox["y",
+  FontWeight->"Bold"],
+ " by adding a noisy vector ",
+ StyleBox["e",
+  FontWeight->"Bold"],
+ " to ",
+ StyleBox["samples",
+  FontWeight->"Bold"],
+ ".  Using noise level ",
+ StyleBox["sigma",
+  FontWeight->"Bold"],
+ "=0.1;"
+}], "Text",
+ CellChangeTimes->{{3.7336598346258926`*^9, 3.7336598412346835`*^9}, {
+  3.733659874259584*^9, 3.7336599363898726`*^9}, {3.733660019624701*^9, 
+  3.7336600203456454`*^9}},ExpressionUUID->"4abeb4e3-abb0-4a27-9240-\
+f304f5938908"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"sigma", "=", ".1"}], ";"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+    "replace", " ", "this", " ", "comment", " ", "with", " ", "code", " ", 
+     "to", " ", "generate", " ", "the", " ", "white", " ", "noise", " ", 
+     "vector", " ", "e", " ", "and", " ", "the", " ", "noisy", " ", "vector", 
+     " ", "y"}], " ", "=", " ", 
+    RowBox[{"samples", " ", "+", " ", "e"}]}], " ", 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{"ListPlay", "[", 
+  RowBox[{"e", ",", 
+   RowBox[{"SampleRate", "\[Rule]", "rate"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"ListPlay", "[", 
+  RowBox[{"y", ",", 
+   RowBox[{"SampleRate", "\[Rule]", "rate"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.733659949305723*^9, 3.733660013898131*^9}, {
+  3.7336737436728334`*^9, 3.733673743751545*^9}, {3.733674463832926*^9, 
+  3.7336744895136204`*^9}},ExpressionUUID->"e85b0dd8-2ad4-43ee-9499-\
+0b2789d20f2c"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Compute the Iterated Wavelet Transform of the Noisy Signal", \
+"Subsubsection",
+ CellChangeTimes->{{3.7336605598106527`*^9, 
+  3.7336605734417343`*^9}},ExpressionUUID->"83300fe7-887d-4121-aafb-\
+e0b1063acb4b"],
+
+Cell[TextData[{
+ "The first step in Algorithm 6.1 is to apply ",
+ StyleBox["i",
+  FontWeight->"Bold"],
+ " iterations of the wavelet transform to ",
+ StyleBox["y",
+  FontWeight->"Bold"],
+ ".    Do this computation in the cell below using the D4 filter with ",
+ StyleBox["i",
+  FontWeight->"Bold"],
+ "=4.  You can use the functions ",
+ StyleBox["DaubFilter",
+  FontWeight->"Bold"],
+ " and ",
+ StyleBox["WT1d",
+  FontWeight->"Bold"],
+ " from your previous lab work to complete the task.  Otherwise you can use \
+the WaveletWare functions ",
+ StyleBox["Daub",
+  FontWeight->"Bold"],
+ " and ",
+ StyleBox["WT",
+  FontWeight->"Bold"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.733660575826048*^9, 3.733660718786535*^9}, {
+  3.733745148905053*^9, 
+  3.733745177194433*^9}},ExpressionUUID->"021430a6-76bc-45c7-bf45-\
+e538984582b2"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"its", "=", "4"}], ";"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "replace", " ", "this", " ", "comment", " ", "with", " ", "code", " ", 
+    "to", " ", "compute", " ", "the", " ", "wavelet", " ", "transform", " ", 
+    "using", " ", "the", " ", "D4", " ", "filter", " ", "of", " ", 
+    RowBox[{"samples", ".", "  ", "Call"}], " ", "the", " ", "result", " ", 
+    RowBox[{"w", "."}]}], " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{"WaveletVectorPlot", "[", 
+  RowBox[{"w", ",", 
+   RowBox[{"NumIterations", "\[Rule]", "its"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.7336720882079067`*^9, 3.7336721170580883`*^9}, {
+  3.7336721501633077`*^9, 3.7336721709154406`*^9}, {3.733673742168844*^9, 
+  3.7336737422475195`*^9}, {3.733674499196969*^9, 
+  3.7336745235318513`*^9}},ExpressionUUID->"c24de3ac-eec1-4be6-a6d9-\
+d9792dbcd013"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Soft Threshold Function", "Subsubsection",
+ CellChangeTimes->{{3.733672197123994*^9, 
+  3.7336721998917065`*^9}},ExpressionUUID->"1b80ad5c-8e24-41c1-8edb-\
+2d9b5ca9c813"],
+
+Cell[TextData[{
+ "The third step of Algorithm 6.1 is to apply the soft threshold function \
+given in (6.3) to the differences portions of the transform vector ",
+ StyleBox["w",
+  FontWeight->"Bold"],
+ ".  Towards this end, we need to define the soft threshold function and \
+split w into its different portions.  We can use the WaveletWare function ",
+ StyleBox["WaveletVectorToList",
+  FontWeight->"Bold"],
+ " to split ",
+ StyleBox["w",
+  FontWeight->"Bold"],
+ " into its various portions.    Create two new variables - ",
+ StyleBox["lp",
+  FontWeight->"Bold"],
+ " holds the lowpass portion of the transform while ",
+ StyleBox["hp",
+  FontWeight->"Bold"],
+ " is a list of the i highpass portions of the transform.  Define the soft \
+threshold function in the cell below as well.  The ",
+ StyleBox["SetAttributes",
+  FontWeight->"Bold"],
+ " command is included so that ",
+ StyleBox["SoftT",
+  FontWeight->"Bold"],
+ " can be applied to an entire list of values."
+}], "Text",
+ CellChangeTimes->{{3.733672215748749*^9, 3.733672278134865*^9}, {
+  3.733672362154611*^9, 3.733672418188589*^9}, {3.7336725369772778`*^9, 
+  3.733672610388214*^9}, {3.7336732211917915`*^9, 
+  3.733673237433468*^9}},ExpressionUUID->"054ea78a-919a-4a4e-9f9e-\
+cddb192ab12c"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "replace", " ", "this", " ", "comment", " ", "with", " ", "code", " ", 
+    "to", " ", "define", " ", "lp", " ", "and", " ", 
+    RowBox[{"hp", ".", "  ", "Also"}], " ", "define", " ", "the", " ", 
+    "function", " ", "SoftT"}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"SetAttributes", "[", 
+     RowBox[{"SoftT", ",", "Listable"}], "]"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"SoftT", "[", 
+      RowBox[{"t", ",", "2"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", 
+       RowBox[{"-", "6"}], ",", "6"}], "}"}], ",", 
+     RowBox[{"Ticks", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Range", "[", 
+         RowBox[{
+          RowBox[{"-", "6"}], ",", "6", ",", "2"}], "]"}], ",", 
+        RowBox[{"Range", "[", 
+         RowBox[{
+          RowBox[{"-", "4"}], ",", "4", ",", "2"}], "]"}]}], "}"}]}]}], 
+    "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.7336726122654347`*^9, 3.7336728286676416`*^9}, {
+  3.733673188103673*^9, 3.7336731962476254`*^9}, {3.7336737404410315`*^9, 
+  3.7336737405682077`*^9}, {3.733674530586976*^9, 
+  3.7336745531641583`*^9}},ExpressionUUID->"a2994df6-4011-4421-bb11-\
+3d44ffb0adc8"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Apply Soft Threshold Function to Highpass Data", "Subsubsection",
+ CellChangeTimes->{{3.7336728450194874`*^9, 
+  3.7336728557560587`*^9}},ExpressionUUID->"2d366a38-a77a-4b17-b1f0-\
+2cd84c48d244"],
+
+Cell[TextData[{
+ "Create the modified highpass portions of the transform by choosing a value \
+\[Lambda] of and then applying ",
+ StyleBox["SoftT",
+  FontWeight->"Bold"],
+ " to each highpass portion using this \[Lambda].  Create the modified \
+highpass portions in the cell below.    You can easily create the new \
+highpass portions using the ",
+ StyleBox["Map",
+  FontWeight->"Bold"],
+ " function in conjunction with ",
+ StyleBox["SoftT",
+  FontWeight->"Bold"],
+ ".  You can then create the modified wavelet transform by ",
+ StyleBox["Join",
+  FontWeight->"Bold"],
+ "ing the new highpass portions with lp and then ",
+ StyleBox["Flatten",
+  FontWeight->"Bold"],
+ "ing the result."
+}], "Text",
+ CellChangeTimes->{{3.7336728613731427`*^9, 3.7336729496317816`*^9}, {
+  3.7336729913293343`*^9, 
+  3.7336730605148153`*^9}},ExpressionUUID->"86d1c234-9b80-4163-9c17-\
+794c6485f12e"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"lambda", "=", "1"}], ";"}], "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "replace", " ", "this", " ", "comment", " ", "with", " ", "code", " ", 
+    "to", " ", "create", " ", "the", " ", "new", " ", "hp", " ", "portions", 
+    " ", 
+    RowBox[{"(", "newhp", ")"}], " ", "and", " ", "the", " ", "new", " ", 
+    "wavelet", " ", "transform", " ", 
+    RowBox[{"(", "neww", ")"}]}], " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{"WaveletVectorPlot", "[", 
+  RowBox[{"neww", ",", 
+   RowBox[{"NumIterations", "\[Rule]", "its"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.733672955987015*^9, 3.733672988592602*^9}, {
+  3.7336730716990056`*^9, 3.7336731255256147`*^9}, {3.733673737592602*^9, 
+  3.733673737687846*^9}, {3.733674558331438*^9, 
+  3.7336745977581415`*^9}},ExpressionUUID->"c4b0e1c1-32ce-407d-ba0e-\
+346e9ed6fbfc"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Recover the Denoised Signal", "Subsubsection",
+ CellChangeTimes->{{3.7336732512084427`*^9, 
+  3.733673255880405*^9}},ExpressionUUID->"8292ab1a-8909-4922-ab0c-\
+d3627abf50a6"],
+
+Cell[TextData[{
+ "The last step in Algorithm 6.1 is to apply the inverse wavelet transform to \
+",
+ StyleBox["neww",
+  FontWeight->"Bold"],
+ ".  You can use ",
+ StyleBox["DaubFilter",
+  FontWeight->"Bold"],
+ " and ",
+ StyleBox["InverseWTd1",
+  FontWeight->"Bold"],
+ " to perform this task from previous lab work.  Otherwise you can use the \
+WaveletWare functions ",
+ StyleBox["Daub",
+  FontWeight->"Bold"],
+ " and ",
+ StyleBox["InverseWT",
+  FontWeight->"Bold"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.733673263304799*^9, 3.7336733129067574`*^9}, {
+  3.733745197466338*^9, 
+  3.7337452178990393`*^9}},ExpressionUUID->"74b7c75d-eccd-45eb-ac12-\
+4102b8a32855"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "replace", " ", "this", " ", "comment", " ", "with", " ", "code", " ", 
+    "to", " ", "compute", " ", "the", " ", "inverse", " ", "wavelet", " ", 
+    RowBox[{"transformation", ".", "  ", "Call"}], " ", "the", " ", "result", 
+    " ", "newsamples"}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"ListPlay", "[", 
+   RowBox[{"newsamples", ",", 
+    RowBox[{"SampleRate", "\[Rule]", "rate"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.7336733257599297`*^9, 3.7336733702370896`*^9}, {
+  3.7336737355440807`*^9, 3.733673735639632*^9}, {3.733674611357067*^9, 
+  3.7336746346377573`*^9}},ExpressionUUID->"9a227ff5-0f9d-45f3-a300-\
+05d303b30d8d"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Problems", "Subsubsection",
+ CellChangeTimes->{{3.7298793683479357`*^9, 3.7298793778969684`*^9}, 
+   3.7301977286516953`*^9},ExpressionUUID->"bb2c7901-765d-4bb0-91b5-\
+2c89cf3e4932"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Redo the lab trying different values of \[Lambda] (this is simple trial and \
+error - methods for selecting \[Lambda] are discussed in Sections 6.2 and \
+6.3).  You can also change the number of iterations (don\[CloseCurlyQuote]t \
+forget to make sure the length of ",
+ StyleBox["samples",
+  FontWeight->"Bold"],
+ " is adequately even) and even try different Daubechies filters.  What \
+combination seems to produce the most comparable sound to that of the \
+original ",
+ StyleBox["samples",
+  FontWeight->"Bold"],
+ "?"
+}], "ItemNumbered",
+ CellChangeTimes->{{3.7299442327684207`*^9, 3.72994439914141*^9}, {
+  3.7313269794125786`*^9, 3.7313270816316895`*^9}, {3.7313271451000643`*^9, 
+  3.7313271451000643`*^9}, {3.7336733998687882`*^9, 3.7336734786558657`*^9}, {
+  3.7336735231057997`*^9, 
+  3.7336735769858456`*^9}},ExpressionUUID->"11521c41-6f36-4c76-a770-\
+1429cb9c836f"],
+
+Cell[TextData[{
+ "Write a module called ",
+ StyleBox["DeNoise",
+  FontWeight->"Bold"],
+ " that takes as input a noisy vector ",
+ StyleBox["y",
+  FontWeight->"Bold"],
+ ", a threshold value \[Lambda], number of iterations ",
+ StyleBox["i",
+  FontWeight->"Bold"],
+ " and a filter ",
+ StyleBox["h",
+  FontWeight->"Bold"],
+ " and uses Algorithm 6.1 to return a denoised version of the original \
+signal.  Test your module on ",
+ StyleBox["y",
+  FontWeight->"Bold"],
+ " above.  Compare your results to those obtained by the WaveletWare function \
+",
+ StyleBox["WaveletShrinkage",
+  FontWeight->"Bold"],
+ "."
+}], "ItemNumbered",
+ CellChangeTimes->{{3.7299442327684207`*^9, 3.72994439914141*^9}, {
+  3.7313269794125786`*^9, 3.7313270816316895`*^9}, {3.7313271451000643`*^9, 
+  3.7313271451000643`*^9}, {3.7336733998687882`*^9, 3.7336734786558657`*^9}, {
+  3.7336735231057997`*^9, 3.7336736532541466`*^9}, {3.7336736839104805`*^9, 
+  3.7336737115434785`*^9}},ExpressionUUID->"5216f53d-881a-4e4f-b829-\
+77f0be70edbf"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{759, 614},
+WindowMargins->{{124, Automatic}, {91, Automatic}},
+FrontEndVersion->"12.0 for Microsoft Windows (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 1172, 16, 67, "Section",ExpressionUUID->"b4d3dd46-bf41-416a-8a69-8d3f86104986"],
+Cell[1755, 40, 979, 16, 56, "Text",ExpressionUUID->"61b27de1-8e6c-4777-a97c-e405fa03ef99"],
+Cell[CellGroupData[{
+Cell[2759, 60, 187, 3, 44, "Subsubsection",ExpressionUUID->"3fffe5ac-09ce-46e2-8050-8c2090c2603e"],
+Cell[2949, 65, 1211, 22, 56, "Text",ExpressionUUID->"6a87367e-199b-4755-909b-1f0e93964a15"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4197, 92, 248, 4, 44, "Subsubsection",ExpressionUUID->"f0a02de7-73c3-4fdf-9fb7-3b6354eb70fb"],
+Cell[4448, 98, 199, 3, 34, "Text",ExpressionUUID->"1c2f17b5-7d52-43ea-8284-97a0802ab4e4"],
+Cell[4650, 103, 899, 15, 44, "Input",ExpressionUUID->"d0fbe505-08c6-4c5e-bfcb-4eebc307ea21",
+ InitializationCell->True],
+Cell[5552, 120, 327, 7, 56, "Text",ExpressionUUID->"49e06bb1-94fd-4029-9342-21f25eef50ef"],
+Cell[5882, 129, 1481, 23, 181, "Input",ExpressionUUID->"274fa8e9-9ea5-489e-93a8-dbe841fdbfb4"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7400, 157, 182, 3, 44, "Subsubsection",ExpressionUUID->"b66fd0ec-6b02-49d4-b559-baa5c8bab5b2"],
+Cell[7585, 162, 748, 11, 34, "Text",ExpressionUUID->"b868248a-addb-4960-8bbf-89b769cbd333"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8370, 178, 219, 4, 44, "Subsubsection",ExpressionUUID->"366897d0-0f48-439b-8880-59184618ccd2"],
+Cell[8592, 184, 1455, 40, 56, "Text",ExpressionUUID->"be27016b-342e-442a-bb4c-8e05c2965288"],
+Cell[10050, 226, 345, 8, 28, "Input",ExpressionUUID->"c6e4580d-a97c-4309-99db-6f83dfa9e142"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10432, 239, 445, 7, 44, "Subsubsection",ExpressionUUID->"8a313543-5b7f-4f37-842b-1e2469d6be64"],
+Cell[10880, 248, 4074, 120, 232, "Text",ExpressionUUID->"e149f220-85cc-4f84-b2c9-aa96a593cc9d"],
+Cell[14957, 370, 1319, 30, 86, "Input",ExpressionUUID->"5c78dcda-07ad-4a1b-b911-b6a74f3d064b"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[16313, 405, 180, 3, 44, "Subsubsection",ExpressionUUID->"30164bbd-dc6a-4780-baf8-b9b4bc26773a"],
+Cell[16496, 410, 647, 19, 78, "Text",ExpressionUUID->"4abeb4e3-abb0-4a27-9240-f304f5938908"],
+Cell[17146, 431, 964, 22, 105, "Input",ExpressionUUID->"e85b0dd8-2ad4-43ee-9499-0b2789d20f2c"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[18147, 458, 215, 4, 44, "Subsubsection",ExpressionUUID->"83300fe7-887d-4121-aafb-e0b1063acb4b"],
+Cell[18365, 464, 819, 28, 100, "Text",ExpressionUUID->"021430a6-76bc-45c7-bf45-e538984582b2"],
+Cell[19187, 494, 900, 18, 86, "Input",ExpressionUUID->"c24de3ac-eec1-4be6-a6d9-d9792dbcd013"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[20124, 517, 176, 3, 44, "Subsubsection",ExpressionUUID->"1b80ad5c-8e24-41c1-8edb-2d9b5ca9c813"],
+Cell[20303, 522, 1247, 31, 166, "Text",ExpressionUUID->"054ea78a-919a-4a4e-9f9e-cddb192ab12c"],
+Cell[21553, 555, 1283, 33, 86, "Input",ExpressionUUID->"a2994df6-4011-4421-bb11-3d44ffb0adc8"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[22873, 593, 201, 3, 44, "Subsubsection",ExpressionUUID->"2d366a38-a77a-4b17-b1f0-2cd84c48d244"],
+Cell[23077, 598, 876, 24, 122, "Text",ExpressionUUID->"86d1c234-9b80-4163-9c17-794c6485f12e"],
+Cell[23956, 624, 870, 19, 86, "Input",ExpressionUUID->"c4b0e1c1-32ce-407d-ba0e-346e9ed6fbfc"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[24863, 648, 180, 3, 44, "Subsubsection",ExpressionUUID->"8292ab1a-8909-4922-ab0c-d3627abf50a6"],
+Cell[25046, 653, 659, 23, 78, "Text",ExpressionUUID->"74b7c75d-eccd-45eb-ac12-4102b8a32855"],
+Cell[25708, 678, 705, 14, 67, "Input",ExpressionUUID->"9a227ff5-0f9d-45f3-a300-05d303b30d8d"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[26450, 697, 188, 3, 44, "Subsubsection",ExpressionUUID->"bb2c7901-765d-4bb0-91b5-2c89cf3e4932"],
+Cell[CellGroupData[{
+Cell[26663, 704, 893, 19, 91, "ItemNumbered",ExpressionUUID->"11521c41-6f36-4c76-a770-1429cb9c836f"],
+Cell[27559, 725, 1007, 28, 91, "ItemNumbered",ExpressionUUID->"5216f53d-881a-4e4f-b829-77f0be70edbf"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

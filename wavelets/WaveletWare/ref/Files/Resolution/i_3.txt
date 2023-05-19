@@ -1,0 +1,3 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>data = Map[
+   ScalingFunctionData[Daub[4], Resolution -&gt; #] &amp;, {20, 50, 200}];
+Map[ListPlot, data]</pre><div class='IFU'><a name='509280934'></a>http://wolfram.com/xid/0pmoa9roecfdvwvkol5e-iphxyw</div>

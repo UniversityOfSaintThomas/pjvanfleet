@@ -1,0 +1,526 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     22217,        518]
+NotebookOptionsPosition[     19354,        466]
+NotebookOutlinePosition[     19698,        481]
+CellTagsIndexPosition[     19655,        478]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Lab 3.4: Cumulative Energy", "Section",
+ CellChangeTimes->{{3.6747410188032584`*^9, 3.674741042688301*^9}, {
+   3.674742552975814*^9, 3.6747425597738523`*^9}, {3.67474453723468*^9, 
+   3.674744561535725*^9}, {3.674747931751519*^9, 3.6747479370307474`*^9}, 
+   3.6747516510077415`*^9, {3.674754123065485*^9, 3.674754140322116*^9}, {
+   3.6751749126193643`*^9, 3.6751749154137692`*^9}, {3.6755147920766993`*^9, 
+   3.6755147959137897`*^9}, {3.675527343559159*^9, 3.675527350929307*^9}, {
+   3.6755288505176797`*^9, 3.675528858287467*^9}, {3.6755298287755394`*^9, 
+   3.675529837330626*^9}, 3.703855401083161*^9, {3.727011156743316*^9, 
+   3.727011160055276*^9}, {3.7270114909635525`*^9, 3.7270114966106634`*^9}, {
+   3.7298617740082817`*^9, 3.7298617804688063`*^9}, {3.7298618142457356`*^9, 
+   3.729861817366371*^9}, {3.729936061603035*^9, 3.729936065090923*^9}, {
+   3.730197863129013*^9, 3.7301978954844265`*^9}, {3.7318408662267294`*^9, 
+   3.7318408668665113`*^9}, 3.733655762505674*^9, {3.7336569182444115`*^9, 
+   3.7336569268211536`*^9}, {3.7337417827920628`*^9, 3.7337417928549447`*^9}, 
+   3.733747003208581*^9, {3.733942267083254*^9, 3.7339422932909765`*^9}, {
+   3.7341087702041264`*^9, 3.7341087706679077`*^9}, {3.734446571834507*^9, 
+   3.7344465825063868`*^9}, {3.7355596071445446`*^9, 
+   3.7355596127254887`*^9}, {3.7356454415585933`*^9, 3.735645442604954*^9}, {
+   3.735648757812158*^9, 3.7356487643398743`*^9}, {3.7356499964861507`*^9, 
+   3.7356499969502015`*^9}},ExpressionUUID->"b4d3dd46-bf41-416a-8a69-\
+8d3f86104986"],
+
+Cell["\<\
+In this lab, you will develop code to compute the cumulative energy of a \
+vector or matrix.\
+\>", "Text",
+ CellChangeTimes->CompressedData["
+1:eJxTTMoPSmViYGAQBmIQPbEjTJM58bXjdV0BbRCd/zfoIoieUR0OprfN7XwK
+ot1l2Z+D6Cm1R++zgOgJwg9BNN9Ft3Y2IJ2Ww9IBot9V8zJeB9KSlwWZQPT2
+jbNlmpNeO8oI1smCaL7Vyy6DaIXPXVdAtIqKrF8LkD7CUugPojdH3liz9chr
+x2tcRutA9He7hpmqp147KredmQ2iRa7H3/QE0rOSesD0Z4vfB04C6R3JNkdA
+tM09gY1JF187npsmsANESxTdlekB0krz+RVBtLLGcpZ3IPHvZpwgetHlffZP
+Lr12/PBxhhOI3ufqsoP56mtHi60hu0H0o+cJDvpAWuJmrBOIBgBA7ZvA
+  "],ExpressionUUID->"61b27de1-8e6c-4777-a97c-e405fa03ef99"],
+
+Cell[CellGroupData[{
+
+Cell["Reference", "Subsubsection",
+ CellChangeTimes->{{3.6747631102003517`*^9, 3.6747631125733557`*^9}, 
+   3.730197716407202*^9},ExpressionUUID->"3fffe5ac-09ce-46e2-8050-\
+8c2090c2603e"],
+
+Cell[TextData[{
+ "The material for this lab is covered in Section 3.4 of the book ",
+ ButtonBox["Discrete Wavelet Transformations: An Elementary Approach with \
+Applications, 2nd Ed.",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://www.wiley.com/en-us/Discrete+Wavelet+Transformations%3A+An+\
+Elementary+Approach+with+Applications%2C+2nd+Edition-p-9781118979310"], None},
+  ButtonNote->
+   "https://www.wiley.com/en-us/Discrete+Wavelet+Transformations%3A+An+\
+Elementary+Approach+with+Applications%2C+2nd+Edition-p-9781118979310"],
+ ", by Patrick J Van Fleet."
+}], "Text",
+ CellChangeTimes->{{3.674763119565366*^9, 3.6747631649004583`*^9}, {
+   3.674763293323564*^9, 3.674763311554607*^9}, {3.6997856290190563`*^9, 
+   3.699785638548086*^9}, {3.72692103296169*^9, 3.726921034949597*^9}, {
+   3.7270063962717886`*^9, 3.727006396991242*^9}, 3.727009034200805*^9, 
+   3.7270097537181544`*^9, {3.7270115331247635`*^9, 3.727011534185475*^9}, {
+   3.729936081107809*^9, 3.729936081203467*^9}, {3.73019789874003*^9, 
+   3.7301979003322897`*^9}, {3.733657027501221*^9, 3.733657027891911*^9}, 
+   3.733741816664074*^9, 3.7339423044137287`*^9, {3.7344466164445457`*^9, 
+   3.7344466169881816`*^9}, 3.7355596683772316`*^9, {3.7726246584059668`*^9, 
+   3.7726246742514014`*^9}},ExpressionUUID->"6a87367e-199b-4755-909b-\
+1f0e93964a15"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["WaveletWare Commands Used in This Notebook", "Subsubsection",
+ CellChangeTimes->{{3.6747417571916847`*^9, 3.674741765831501*^9}, {
+  3.6747418595935683`*^9, 
+  3.6747419193671017`*^9}},ExpressionUUID->"f0a02de7-73c3-4fdf-9fb7-\
+3b6354eb70fb"],
+
+Cell["Execute the line below to load the WaveletWare package.", "Text",
+ CellChangeTimes->{{3.726919365764247*^9, 
+  3.7269193911263213`*^9}},ExpressionUUID->"1c2f17b5-7d52-43ea-8284-\
+97a0802ab4e4"],
+
+Cell[BoxData[
+ RowBox[{"<<", "WaveletWare`"}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.7269193243151226`*^9, 3.7269193578933735`*^9}, {
+   3.7270065374179773`*^9, 3.727006537593671*^9}, {3.7270070318050675`*^9, 
+   3.7270070319488754`*^9}, {3.7270084778120003`*^9, 
+   3.7270084779023743`*^9}, {3.7270097015398407`*^9, 
+   3.7270097017317114`*^9}, {3.727009916604597*^9, 3.72700991671616*^9}, {
+   3.7270102740659857`*^9, 3.7270102742043266`*^9}, {3.727011436528392*^9, 
+   3.727011436639927*^9}, 3.727011861141736*^9, {3.729880762923499*^9, 
+   3.729880763098421*^9}, {3.729944604988558*^9, 3.7299446052435875`*^9}, {
+   3.731346422962227*^9, 3.7313464231599517`*^9}, {3.732037657952439*^9, 
+   3.732037658623538*^9}, {3.732288796028294*^9, 3.7322887961236305`*^9}, {
+   3.7336738043457527`*^9, 3.733673804473096*^9}, {3.733745102456643*^9, 
+   3.733745102615449*^9}, {3.734107510911276*^9, 3.7341075110413103`*^9}, {
+   3.7354900862323427`*^9, 3.735490086372984*^9}, {3.735645458794421*^9, 
+   3.7356454589194107`*^9}, {3.7356498028474364`*^9, 
+   3.7356498030065312`*^9}},ExpressionUUID->"d0fbe505-08c6-4c5e-bfcb-\
+4eebc307ea21"],
+
+Cell["\<\
+Execute the line below to generate quick help on WaveletWare commands used in \
+this notebook.  Click on >> for each command to access detailed documentation \
+on the command.\
+\>", "Text",
+ CellChangeTimes->{{3.726919395574725*^9, 
+  3.7269194464807606`*^9}},ExpressionUUID->"49e06bb1-94fd-4029-9342-\
+21f25eef50ef"],
+
+Cell[BoxData[{
+ RowBox[{"?", "CE"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "PackageDirectory"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "ImageRead"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "ImagePlot"}]}], "Input",
+ CellChangeTimes->CompressedData["
+1:eJwdzz1IAnEcxnGxa4vCwakCHVwKcguCCK68QfSWCOpoyJSIrOiSVNIbHBJK
+eg/CrAgCIaiwsrJA8YUb6rDENIwCKxIajiQEoxeE/r//8PBZn6/SONE9JJVI
+JPVoICf3ZGZ5kZxZD+dAC21ngkjCnsEa/GYDyD2VBkEvN8aCfbLqSVBhynlB
+U7/LBzp6VQGwUMdgrWp5GdTarr/Bm0uuArrceayOY4hT5H4qjNUM2HbBeZfM
+j/2JFcDPRBKro/g/MDC+UwFjS9bWM2Qn68Y2XPUcgQp25Rj0Pq4tCAL6+/KO
+bUlfOH6TIknR207Ql994M6dFstQe+QCHedG8iEwYNaOgJ9VsAafoESu4uilM
+g8HlRgdYfBAOOu5EUs8Qh6C0GKMKSF/oXAu2zYn8a1Yka4tRAWxS2aNV96gz
+GsEaynSZQJ7w1Bd469R3qZGhvSxWGa+Jg1vPMuw/qbAAQg==
+  "],ExpressionUUID->"274fa8e9-9ea5-489e-93a8-dbe841fdbfb4"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Modules Created in this Lab", "Subsubsection",
+ CellChangeTimes->{{3.7368676701301727`*^9, 
+  3.7368676768044405`*^9}},ExpressionUUID->"2708162e-3e8e-4b3e-bc0b-\
+c5a0bcdb120d"],
+
+Cell[TextData[StyleBox["CEnergy",
+ FontWeight->"Bold"]], "Text",
+ CellChangeTimes->{{3.736867686442602*^9, 3.7368677111146307`*^9}, {
+  3.736867752285713*^9, 3.736867763029464*^9}, {3.73686854064227*^9, 
+  3.7368685482389035`*^9}, {3.7368686060516157`*^9, 
+  3.73686860944287*^9}},ExpressionUUID->"f6b9d2f9-e5d8-428d-b265-\
+36a438c9e87b"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Cumulative Energy", "Subsubsection",
+ CellChangeTimes->{{3.733742449696621*^9, 3.733742453424845*^9}, {
+  3.7339440538167305`*^9, 3.7339440681629972`*^9}, {3.7339440991929975`*^9, 
+  3.7339441003454056`*^9}, {3.7344466293406873`*^9, 3.7344466322685947`*^9}, {
+  3.735559684361661*^9, 3.735559685385812*^9}, {3.7356488008538494`*^9, 
+  3.7356488034939313`*^9}},ExpressionUUID->"2aef78a0-fa28-4288-b4ee-\
+f6fce3037f4a"],
+
+Cell[TextData[{
+ "We use Definition 3.3 as our guide for computing the cumulative energy of a \
+vector.  The problem reduces to the vector case since any matrix can be ",
+ StyleBox["Flatten",
+  FontWeight->"Bold"],
+ "ed into a vector.  The first step is to sort the absolute values of the \
+elements of the input vector, largest to smallest.    Use the ",
+ StyleBox["Sort",
+  FontWeight->"Bold"],
+ " command to create the vector ",
+ StyleBox["y",
+  FontWeight->"Bold"],
+ " in the cell below."
+}], "Text",
+ CellChangeTimes->{{3.7337424572322245`*^9, 3.7337424811219687`*^9}, {
+  3.7339440903902035`*^9, 3.7339443638084354`*^9}, {3.7344467804349375`*^9, 
+  3.7344468665494356`*^9}, {3.7355597782699256`*^9, 3.735559860081609*^9}, {
+  3.7355599192202845`*^9, 3.735559999368333*^9}, {3.735560070443413*^9, 
+  3.7355600798193445`*^9}, {3.7356488212557178`*^9, 3.7356488912097087`*^9}, {
+  3.735648922106849*^9, 
+  3.735648970669478*^9}},ExpressionUUID->"915c054b-c3eb-4413-aa35-\
+a3586e1346a3"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"n", "=", "40"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"v", "=", 
+  RowBox[{"RandomInteger", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"-", "9"}], ",", "9"}], "}"}], ",", "n"}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"y", "=", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+    "replace", " ", "this", " ", "comment", " ", "with", " ", "your", " ", 
+     "code", " ", "to", " ", "sort", " ", "the", " ", "absolute", " ", 
+     "values", " ", "of", " ", "the", " ", "elements", " ", "of", " ", "v"}], 
+    ",", " ", 
+    RowBox[{"largest", " ", "to", " ", "smallest"}]}], " ", "*)"}], 
+  "\[IndentingNewLine]"}]}], "Input",
+ CellChangeTimes->{{3.7339443707788754`*^9, 3.733944404845153*^9}, {
+   3.73394561094262*^9, 3.733945623227046*^9}, {3.7339456583865485`*^9, 
+   3.733945727564765*^9}, 3.734106659119423*^9, {3.7341075127131796`*^9, 
+   3.7341075128853316`*^9}, {3.7344468705338144`*^9, 
+   3.7344469195613966`*^9}, {3.7354900898027043`*^9, 
+   3.7354900899756165`*^9}, {3.735559863874042*^9, 3.7355599047566366`*^9}, {
+   3.7355600075938635`*^9, 3.73556001140165*^9}, {3.735562139188196*^9, 
+   3.735562139315529*^9}, {3.735648895962465*^9, 3.7356489067949305`*^9}, {
+   3.735648942860625*^9, 3.7356489440922956`*^9}, {3.7356492073703938`*^9, 
+   3.7356492115273356`*^9}, 3.7356492482016644`*^9, {3.735649798848678*^9, 
+   3.7356497989586596`*^9}, {3.735650005128825*^9, 
+   3.735650028679555*^9}},ExpressionUUID->"4098846f-c384-490d-b75a-\
+4ebd9c28d9ad"],
+
+Cell[TextData[{
+ "The command ",
+ StyleBox["Accumulate",
+  FontWeight->"Bold"],
+ " can be used to form the cumulative sum of the squares of the elements in ",
+ StyleBox["y",
+  FontWeight->"Bold"],
+ "  and the elements in resulting vector can be divided by the square of the  \
+",
+ StyleBox["Norm",
+  FontWeight->"Bold"],
+ " of ",
+ StyleBox["y",
+  FontWeight->"Bold"],
+ " to obtain the cumulative energy vector.  Compute the cumulative energy \
+vector ",
+ StyleBox["c",
+  FontWeight->"Bold"],
+ " in the cell below.  A command is provided so that you can compare your \
+result to that obtained by the WaveletWare command ",
+ StyleBox["CE",
+  FontWeight->"Bold"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.7355600903311996`*^9, 3.735560190109809*^9}, {
+  3.7355605001810102`*^9, 3.7355605409659243`*^9}, {3.7356489842701178`*^9, 
+  3.7356491746136165`*^9}},ExpressionUUID->"921211e5-3cd1-4c01-85a5-\
+93b0b729d85c"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"c", "="}], 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "replace", " ", "this", " ", "comment", " ", "with", " ", "your", " ", 
+    "code", " ", "to", " ", "compute", " ", "the", " ", "cumulative", " ", 
+    "energy", " ", "vector", " ", "of", " ", "v"}], " ", "*)"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"ListPlot", "[", 
+  RowBox[{"c", ",", 
+   RowBox[{"Ticks", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Range", "[", 
+       RowBox[{"0", ",", "n", ",", 
+        RowBox[{"n", "/", "4"}]}], "]"}], ",", 
+      RowBox[{"Range", "[", 
+       RowBox[{"0", ",", "1", ",", ".2"}], "]"}]}], "}"}]}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"c", "\[Equal]", 
+  RowBox[{"CE", "[", "v", "]"}]}]}], "Input",
+ CellChangeTimes->{{3.7355601442406893`*^9, 3.7355601574856033`*^9}, {
+  3.7355602005921106`*^9, 3.735560236654707*^9}, {3.735560335202166*^9, 
+  3.735560336562204*^9}, {3.7355621372521863`*^9, 3.7355621373797827`*^9}, {
+  3.735649093890684*^9, 3.7356491337329397`*^9}, {3.7356491960072107`*^9, 
+  3.735649240906644*^9}, {3.7356497965752473`*^9, 3.7356497966706038`*^9}, {
+  3.7356500345685267`*^9, 
+  3.735650051832364*^9}},ExpressionUUID->"7b471a72-c41e-4130-96eb-\
+f1e55c9181f3"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["A Module for Cumulative Energy", "Subsubsection",
+ CellChangeTimes->{{3.7344476714228535`*^9, 3.7344476753589845`*^9}, {
+  3.73555969489013*^9, 3.7355596976259637`*^9}, {3.735649256216399*^9, 
+  3.7356492585521064`*^9}},ExpressionUUID->"66bd68ef-1ab3-45a4-9656-\
+57fd13d9edc8"],
+
+Cell[TextData[{
+ "Use the code from the cells above to create the module ",
+ StyleBox["CEnergy",
+  FontWeight->"Bold"],
+ " that takes as input vector or matrix and returns the entropy of the input. \
+ You might want to ",
+ StyleBox["Flatten",
+  FontWeight->"Bold"],
+ " the input to start the module.  You can increase the computational speed \
+of the module by applying the ",
+ StyleBox["N",
+  FontWeight->"Bold"],
+ " function to the input."
+}], "Text",
+ CellChangeTimes->{{3.733944577894718*^9, 3.733944664191591*^9}, {
+   3.7344478017803307`*^9, 3.734447870600957*^9}, 3.7354896312308316`*^9, {
+   3.7355603480986547`*^9, 3.735560380721483*^9}, {3.735649262729145*^9, 
+   3.7356492636888523`*^9}, {3.73564944931238*^9, 
+   3.7356494689772987`*^9}},ExpressionUUID->"d5dbe6f7-61f1-4cb2-9d10-\
+408f26d67d0a"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"CEnergy", "[", "v_", "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", "y", "}"}], ","}], "\[IndentingNewLine]", 
+    RowBox[{"(*", " ", 
+     RowBox[{
+     "replace", " ", "this", " ", "comment", " ", "with", " ", "your", " ", 
+      "code", " ", "to", " ", "compute", " ", "and", " ", "return", " ", 
+      "the", " ", "cumulative", " ", "energy", " ", "vector", " ", "of", " ", 
+      "v"}], " ", "*)"}], "\[IndentingNewLine]", "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.7339446450782814`*^9, 3.7339446809013577`*^9}, {
+  3.7341075144317017`*^9, 3.7341075145741315`*^9}, {3.734108779967844*^9, 
+  3.734108800884452*^9}, {3.734447875383375*^9, 3.7344478932250266`*^9}, {
+  3.734448110098389*^9, 3.7344481157122045`*^9}, {3.734448156176999*^9, 
+  3.7344481563839617`*^9}, {3.735490140783177*^9, 3.7354901408820868`*^9}, {
+  3.7355603876980467`*^9, 3.735560462147858*^9}, {3.7355621360523863`*^9, 
+  3.7355621361958556`*^9}, {3.735649269881639*^9, 3.7356493242516465`*^9}, {
+  3.7356494445138597`*^9, 3.7356494461446767`*^9}, {3.7356497945274706`*^9, 
+  3.7356497947517357`*^9}, {3.735650062633407*^9, 
+  3.73565006620035*^9}},ExpressionUUID->"35ac0013-9da8-46bd-9b5e-\
+a6edecb30c1e"],
+
+Cell[TextData[{
+ "The cells below can be used to check your routine.  Try different values of \
+",
+ StyleBox["n",
+  FontWeight->"Bold"],
+ " and vectors as well as matrices."
+}], "Text",
+ CellChangeTimes->{{3.7339448507292166`*^9, 3.7339448657464232`*^9}, {
+   3.734447902855809*^9, 3.734447924841146*^9}, 3.734447979483107*^9, {
+   3.7355605698299675`*^9, 
+   3.7355605897510376`*^9}},ExpressionUUID->"8df99d87-5943-465d-8215-\
+038ea6ef91fc"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"n", "=", "40"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"A", "=", 
+   RowBox[{"RandomInteger", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"-", "9"}], ",", "9"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"n", ",", "n"}], "}"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ce", "=", 
+   RowBox[{"CEnergy", "[", "A", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"ce", "\[Equal]", 
+  RowBox[{"CE", "[", "A", "]"}]}]}], "Input",
+ CellChangeTimes->{{3.7344479292269635`*^9, 3.734447991213205*^9}, {
+  3.735490142131405*^9, 3.735490142287655*^9}, {3.7355604676039286`*^9, 
+  3.735560492037653*^9}, {3.7355621336842737`*^9, 3.735562133795509*^9}, {
+  3.735649329211977*^9, 3.7356493625411816`*^9}, {3.7356497924471483`*^9, 
+  3.7356497925744953`*^9}},ExpressionUUID->"b9b3e698-b024-4721-b8a1-\
+8284c3e4ffb3"],
+
+Cell[TextData[{
+ "Use the function ",
+ StyleBox["CEnergy",
+  FontWeight->"Bold"],
+ " to compute the cumulative energy vector of an image."
+}], "Text",
+ CellChangeTimes->{{3.735560609495237*^9, 3.7355606202638273`*^9}, {
+  3.7356493732615724`*^9, 3.735649374781439*^9}, {3.735650077944977*^9, 
+  3.7356500847610083`*^9}},ExpressionUUID->"31e8a89d-abfc-4a8d-9a2e-\
+2dcf5de2ffb4"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"file", "=", 
+   RowBox[{
+    RowBox[{"PackageDirectory", "[", 
+     RowBox[{"DataType", "\[Rule]", "Images"}], "]"}], "<>", 
+    "\"\<dog.png\>\""}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"A", "=", 
+   RowBox[{"ImageRead", "[", "file", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"n", "=", 
+   RowBox[{"Apply", "[", 
+    RowBox[{"Times", ",", 
+     RowBox[{"Dimensions", "[", "A", "]"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"ImagePlot", "[", "A", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ce", "=", 
+   RowBox[{"CEnergy", "[", "A", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"ListPlot", "[", 
+  RowBox[{"ce", ",", 
+   RowBox[{"Ticks", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Range", "[", 
+       RowBox[{"0", ",", "n", ",", 
+        RowBox[{"n", "/", "4"}]}], "]"}], ",", 
+      RowBox[{"Range", "[", 
+       RowBox[{"0", ",", "1", ",", ".2"}], "]"}]}], "}"}]}]}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.7344479991176186`*^9, 3.7344480867523775`*^9}, {
+  3.7344481355865345`*^9, 3.73444818118444*^9}, {3.7354901437889194`*^9, 
+  3.735490143930532*^9}, {3.7355606309523983`*^9, 3.7355606527290306`*^9}, {
+  3.7355621318767776`*^9, 3.735562132020358*^9}, {3.735649378974106*^9, 
+  3.735649403039564*^9}, {3.7356494846431713`*^9, 3.735649493906727*^9}, {
+  3.7356497913755703`*^9, 
+  3.73564979150249*^9}},ExpressionUUID->"dda7bea2-a143-4a8d-907d-\
+c86e548af6c1"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Problems", "Subsubsection",
+ CellChangeTimes->{{3.7344469588094134`*^9, 
+  3.7344469595773973`*^9}},ExpressionUUID->"6ca58717-5e56-4c6c-b77d-\
+3d784d01dc8c"],
+
+Cell[TextData[{
+ "Construct a constant vector with ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["v", "k"], TraditionalForm]],ExpressionUUID->
+  "757f2806-cd7f-4b16-8e77-fadc44dc3c43"],
+ " = c, c \[NotEqual] 0.  ",
+ StyleBox["ListPlot",
+  FontWeight->"Bold"],
+ " it and its cumulative energy vector.  What is the shape of the plot?  What \
+happens if c=0?"
+}], "ItemNumbered",
+ CellChangeTimes->{{3.734446975577996*^9, 3.7344469945089674`*^9}, {
+  3.735490036098838*^9, 3.735490036098838*^9}, {3.7355606671928954`*^9, 
+  3.735560752603376*^9}, {3.7355608361574955`*^9, 3.7355608461895504`*^9}, {
+  3.735645642811948*^9, 3.7356456438286576`*^9}, {3.7356495352682953`*^9, 
+  3.7356495436042795`*^9}, {3.735649610231129*^9, 
+  3.7356497019146595`*^9}},ExpressionUUID->"eb439b46-b36d-4ea3-9367-\
+352e84f65364"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{759, 614},
+WindowMargins->{{440, Automatic}, {Automatic, 167}},
+FrontEndVersion->"12.0 for Microsoft Windows (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 1545, 21, 67, "Section",ExpressionUUID->"b4d3dd46-bf41-416a-8a69-8d3f86104986"],
+Cell[2128, 45, 576, 11, 34, "Text",ExpressionUUID->"61b27de1-8e6c-4777-a97c-e405fa03ef99"],
+Cell[CellGroupData[{
+Cell[2729, 60, 187, 3, 44, "Subsubsection",ExpressionUUID->"3fffe5ac-09ce-46e2-8050-8c2090c2603e"],
+Cell[2919, 65, 1335, 23, 56, "Text",ExpressionUUID->"6a87367e-199b-4755-909b-1f0e93964a15"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4291, 93, 248, 4, 44, "Subsubsection",ExpressionUUID->"f0a02de7-73c3-4fdf-9fb7-3b6354eb70fb"],
+Cell[4542, 99, 199, 3, 34, "Text",ExpressionUUID->"1c2f17b5-7d52-43ea-8284-97a0802ab4e4"],
+Cell[4744, 104, 1151, 18, 44, "Input",ExpressionUUID->"d0fbe505-08c6-4c5e-bfcb-4eebc307ea21",
+ InitializationCell->True],
+Cell[5898, 124, 327, 7, 56, "Text",ExpressionUUID->"49e06bb1-94fd-4029-9342-21f25eef50ef"],
+Cell[6228, 133, 787, 14, 86, "Input",ExpressionUUID->"274fa8e9-9ea5-489e-93a8-dbe841fdbfb4"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7052, 152, 182, 3, 44, "Subsubsection",ExpressionUUID->"2708162e-3e8e-4b3e-bc0b-c5a0bcdb120d"],
+Cell[7237, 157, 338, 6, 34, "Text",ExpressionUUID->"f6b9d2f9-e5d8-428d-b265-36a438c9e87b"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7612, 168, 423, 6, 44, "Subsubsection",ExpressionUUID->"2aef78a0-fa28-4288-b4ee-f6fce3037f4a"],
+Cell[8038, 176, 989, 21, 100, "Text",ExpressionUUID->"915c054b-c3eb-4413-aa35-a3586e1346a3"],
+Cell[9030, 199, 1529, 32, 105, "Input",ExpressionUUID->"4098846f-c384-490d-b75a-4ebd9c28d9ad"],
+Cell[10562, 233, 908, 27, 100, "Text",ExpressionUUID->"921211e5-3cd1-4c01-85a5-93b0b729d85c"],
+Cell[11473, 262, 1238, 29, 86, "Input",ExpressionUUID->"7b471a72-c41e-4130-96eb-f1e55c9181f3"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[12748, 296, 283, 4, 44, "Subsubsection",ExpressionUUID->"66bd68ef-1ab3-45a4-9656-57fd13d9edc8"],
+Cell[13034, 302, 807, 19, 78, "Text",ExpressionUUID->"d5dbe6f7-61f1-4cb2-9d10-408f26d67d0a"],
+Cell[13844, 323, 1258, 23, 86, "Input",ExpressionUUID->"35ac0013-9da8-46bd-9b5e-a6edecb30c1e"],
+Cell[15105, 348, 442, 11, 56, "Text",ExpressionUUID->"8df99d87-5943-465d-8215-038ea6ef91fc"],
+Cell[15550, 361, 901, 22, 86, "Input",ExpressionUUID->"b9b3e698-b024-4721-b8a1-8284c3e4ffb3"],
+Cell[16454, 385, 377, 9, 34, "Text",ExpressionUUID->"31e8a89d-abfc-4a8d-9a2e-2dcf5de2ffb4"],
+Cell[16834, 396, 1484, 38, 124, "Input",ExpressionUUID->"dda7bea2-a143-4a8d-907d-c86e548af6c1"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[18355, 439, 163, 3, 44, "Subsubsection",ExpressionUUID->"6ca58717-5e56-4c6c-b77d-3d784d01dc8c"],
+Cell[18521, 444, 805, 18, 51, "ItemNumbered",ExpressionUUID->"eb439b46-b36d-4ea3-9367-352e84f65364"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

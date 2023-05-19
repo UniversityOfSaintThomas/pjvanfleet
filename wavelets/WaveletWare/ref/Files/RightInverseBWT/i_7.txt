@@ -1,0 +1,7 @@
+<pre name='i_7_in' id='i_7_in' class='IFT'>filter = SplineFilters[2, 2];
+A = RandomInteger[{0, 10}, {8, 8}];
+MatrixForm[A]
+rwt = RightBWT[A, filter, Computation -&gt; Symbolic];
+RightInverseBWT[rwt, filter]  // MatrixForm
+Simplify[RightInverseBWT[rwt, filter, 
+   Computation -&gt; Symbolic]] // MatrixForm</pre><div class='IFU'><a name='3317315'></a>http://wolfram.com/xid/0byt3rd1cvx9wr2qwvq5s7zwpg7-b9dxx</div>

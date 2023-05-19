@@ -1,0 +1,4 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>datatype = 1;
+iterations = 3;
+tree = WaveletTree[iterations]
+CheckTree[tree, datatype]</pre><div class='IFU'><a name='323432550'></a>http://wolfram.com/xid/0gcihsaxmz0qthvkzua8i0-fmukfs</div>

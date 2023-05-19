@@ -1,0 +1,4 @@
+<pre name='i_11_in' id='i_11_in' class='IFT'>A = RandomInteger[{0, 10}, {8, 8}];
+MatrixForm[A]
+RightHWT[A] // MatrixForm
+RightHWT[A, Orthogonal -&gt; True] // MatrixForm</pre><div class='IFU'><a name='24071342'></a>http://wolfram.com/xid/0e2pnrmsqjyawkp74vruz5p3-ol7uo</div>

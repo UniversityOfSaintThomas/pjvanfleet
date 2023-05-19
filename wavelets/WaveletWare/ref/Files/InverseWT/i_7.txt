@@ -1,0 +1,12 @@
+<pre name='i_7_in' id='i_7_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;fish.png&quot;;
+A = ImageRead[file, Resize -&gt; {120, 180}];
+ImagePlot[A]
+iterations = 2;
+wt = WT[A, Daub[4], NumIterations -&gt; iterations];
+plots = WaveletPlot[wt, NumIterations -&gt; iterations, 
+   ChannelColor -&gt; {Red, Green, Blue}];
+Map[Show, plots]
+iwt = InverseWT[wt, Daub[4], NumIterations -&gt; iterations];
+ImagePlot[iwt]
+(* Mean Squared Error *)
+MSE[A, iwt]</pre><div class='IFU'><a name='15603273'></a>http://wolfram.com/xid/0yi64acvo474e4nhand9rv-jkpuj</div>

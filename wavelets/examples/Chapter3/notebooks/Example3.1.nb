@@ -1,0 +1,243 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      7730,        235]
+NotebookOptionsPosition[      5843,        183]
+NotebookOutlinePosition[      6187,        198]
+CellTagsIndexPosition[      6144,        195]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Example 3.1(Converting from Base 10 to Base 2)", "Section",
+ CellChangeTimes->{{3.6747400799154887`*^9, 3.6747400868855157`*^9}, {
+  3.6747401192115917`*^9, 
+  3.674740124362601*^9}},ExpressionUUID->"3ccaf3fd-c31c-4e1e-8ceb-\
+dc2cd2e2461a"],
+
+Cell["\<\
+The character Y has ASCII value 89.  Convert this value to base 2.\
+\>", "Text",
+ CellChangeTimes->{{3.6747401116573763`*^9, 
+  3.6747401462228427`*^9}},ExpressionUUID->"385f2f66-042e-4df8-b374-\
+020584ef3fc5"],
+
+Cell[CellGroupData[{
+
+Cell["Reference.", "Subsubsection",
+ CellChangeTimes->{{3.6747631102003517`*^9, 
+  3.6747631125733557`*^9}},ExpressionUUID->"7579f166-fefc-424a-a82a-\
+9d9c6b1c5092"],
+
+Cell["\<\
+The material for this lab is covered in Section 3.1 of the book \
+\[OpenCurlyDoubleQuote]Discrete Wavelet Transformations: An Elementary \
+Approach with Applications, 2nd Edition,\[CloseCurlyDoubleQuote] by Patrick J \
+Van Fleet.\
+\>", "Text",
+ CellChangeTimes->{{3.674763119565366*^9, 3.6747631649004583`*^9}, {
+  3.674763293323564*^9, 3.674763311554607*^9}, {3.6997856290190563`*^9, 
+  3.699785638548086*^9}, {3.72692103296169*^9, 3.726921034949597*^9}, {
+  3.7270061971950397`*^9, 
+  3.7270061977544327`*^9}},ExpressionUUID->"f469f498-de26-4b58-9bc4-\
+4ecd6c3730eb"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["WaveletWare Commands Used in This Notebook", "Subsubsection",
+ CellChangeTimes->{{3.6747417571916847`*^9, 3.674741765831501*^9}, {
+  3.6747418595935683`*^9, 
+  3.6747419193671017`*^9}},ExpressionUUID->"b8cd707b-e2b0-4fed-9396-\
+83c31b0c5a81"],
+
+Cell["None.", "Text",
+ CellChangeTimes->{{3.6747419216613054`*^9, 
+  3.6747419222229066`*^9}},ExpressionUUID->"0b935683-2d6e-4ff3-b72e-\
+43c4daf2cb95"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Solution.", "Subsubsection",
+ CellChangeTimes->{{3.6747401847284007`*^9, 
+  3.6747401899458103`*^9}},ExpressionUUID->"5e5ca5fc-9c70-47bb-bd3d-\
+d1f2adde5766"],
+
+Cell[TextData[{
+ "Mathematica has the built-in command ",
+ StyleBox["BaseForm",
+  FontWeight->"Bold"],
+ " that can be used to perform this computation.  "
+}], "Text",
+ CellChangeTimes->{{3.674740194805643*^9, 3.6747402104415007`*^9}, {
+  3.6747402441785665`*^9, 
+  3.6747402579060516`*^9}},ExpressionUUID->"84694e2c-4155-474c-880d-\
+9f8042ec4171"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"n", "=", "89"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"BaseForm", "[", 
+  RowBox[{"n", ",", "2"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.674740213774307*^9, 3.6747402382289553`*^9}, {
+  3.6747413338552017`*^9, 3.674741342364217*^9}, {3.6747420276328416`*^9, 
+  3.6747420280550423`*^9}},ExpressionUUID->"c4e34eee-85d8-46b0-83fb-\
+fee51315bb62"],
+
+Cell[TextData[{
+ "Alternatively, the command ",
+ StyleBox["IntegerDigits",
+  FontWeight->"Bold"],
+ " can also be used to find the base 2 representations.  This has the \
+advantage of returning the bits as a list rather than as an object suitable \
+for printing (the case with ",
+ StyleBox["BaseForm",
+  FontWeight->"Bold"],
+ ")."
+}], "Text",
+ CellChangeTimes->{{3.674740429278332*^9, 
+  3.674740491840477*^9}},ExpressionUUID->"7ea14aeb-8959-43a2-84b1-\
+7c0e8f66f921"],
+
+Cell[BoxData[
+ RowBox[{"d", "=", 
+  RowBox[{"IntegerDigits", "[", 
+   RowBox[{"n", ",", "2"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.6747404958812847`*^9, 3.6747405129311624`*^9}, {
+  3.6747413498748302`*^9, 3.674741350077631*^9}, {3.674742031570049*^9, 
+  3.674742031694849*^9}},ExpressionUUID->"30619839-77e3-41b6-9dcf-\
+9303d365a4df"],
+
+Cell["\<\
+You can convert back to base 10 from this list with the appropriate dot \
+product.\
+\>", "Text",
+ CellChangeTimes->{{3.6747405169065742`*^9, 
+  3.674740538354285*^9}},ExpressionUUID->"b8c37639-decf-4b2b-ac5d-\
+379d0a5c1239"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"powers", "=", 
+   RowBox[{"Range", "[", 
+    RowBox[{"6", ",", "0", ",", 
+     RowBox[{"-", "1"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"d", ".", 
+  RowBox[{"(", 
+   RowBox[{"2", "^", "powers"}], ")"}]}]}], "Input",
+ CellChangeTimes->{{3.6747405439670963`*^9, 3.674740594232044*^9}, {
+  3.6747414558357*^9, 3.674741470839327*^9}, {3.6747420336146526`*^9, 
+  3.674742033723853*^9}},ExpressionUUID->"e859dab8-2fe1-4f8e-a208-\
+c43b5b93ed4a"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Things To Try.", "Subsubsection",
+ CellChangeTimes->{{3.674741317287572*^9, 3.674741319527376*^9}, {
+  3.6747419524260297`*^9, 
+  3.674741953872259*^9}},ExpressionUUID->"5be0fccb-2e8a-4d5d-8125-\
+fb4202debb42"],
+
+Cell[TextData[{
+ "Try different values for ",
+ StyleBox["n",
+  FontSlant->"Italic"],
+ ".  Careful - when converting back, you might need to change the first \
+argument of the ",
+ StyleBox["Range",
+  FontWeight->"Bold"],
+ " command from 6 to 7 depending on whether or not ",
+ StyleBox["n",
+  FontSlant->"Italic"],
+ " is \[GreaterSlantEqual] 128.  Can you replace the ",
+ StyleBox["powers",
+  FontSlant->"Italic"],
+ " line with an ",
+ StyleBox["If",
+  FontWeight->"Bold"],
+ " statement that will create the right number of powers based on the whether \
+or not ",
+ StyleBox["n",
+  FontSlant->"Italic"],
+ " \[GreaterSlantEqual] 128?"
+}], "Text",
+ CellChangeTimes->{{3.674741356475069*^9, 3.6747414431750774`*^9}, {
+  3.674741476278762*^9, 
+  3.6747415170736356`*^9}},ExpressionUUID->"0619be02-760d-4d47-8776-\
+b14a8feb80e7"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{759, 678},
+WindowMargins->{{120, Automatic}, {41, Automatic}},
+FrontEndVersion->"11.1 for Microsoft Windows (64-bit) (April 18, 2017)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 246, 4, 70, "Section", "ExpressionUUID" -> \
+"3ccaf3fd-c31c-4e1e-8ceb-dc2cd2e2461a"],
+Cell[829, 28, 220, 5, 30, "Text", "ExpressionUUID" -> \
+"385f2f66-042e-4df8-b374-020584ef3fc5"],
+Cell[CellGroupData[{
+Cell[1074, 37, 165, 3, 39, "Subsubsection", "ExpressionUUID" -> \
+"7579f166-fefc-424a-a82a-9d9c6b1c5092"],
+Cell[1242, 42, 579, 11, 49, "Text", "ExpressionUUID" -> \
+"f469f498-de26-4b58-9bc4-4ecd6c3730eb"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1858, 58, 248, 4, 39, "Subsubsection", "ExpressionUUID" -> \
+"b8cd707b-e2b0-4fed-9396-83c31b0c5a81"],
+Cell[2109, 64, 151, 3, 30, "Text", "ExpressionUUID" -> \
+"0b935683-2d6e-4ff3-b72e-43c4daf2cb95"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2297, 72, 164, 3, 39, "Subsubsection", "ExpressionUUID" -> \
+"5e5ca5fc-9c70-47bb-bd3d-d1f2adde5766"],
+Cell[2464, 77, 347, 9, 30, "Text", "ExpressionUUID" -> \
+"84694e2c-4155-474c-880d-9f8042ec4171"],
+Cell[2814, 88, 384, 8, 50, "Input", "ExpressionUUID" -> \
+"c4e34eee-85d8-46b0-83fb-fee51315bb62"],
+Cell[3201, 98, 467, 13, 68, "Text", "ExpressionUUID" -> \
+"7ea14aeb-8959-43a2-84b1-7c0e8f66f921"],
+Cell[3671, 113, 340, 7, 30, "Input", "ExpressionUUID" -> \
+"30619839-77e3-41b6-9dcf-9303d365a4df"],
+Cell[4014, 122, 234, 6, 30, "Text", "ExpressionUUID" -> \
+"b8c37639-decf-4b2b-ac5d-379d0a5c1239"],
+Cell[4251, 130, 488, 12, 50, "Input", "ExpressionUUID" -> \
+"e859dab8-2fe1-4f8e-a208-c43b5b93ed4a"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4776, 147, 216, 4, 39, "Subsubsection", "ExpressionUUID" -> \
+"5be0fccb-2e8a-4d5d-8125-fb4202debb42"],
+Cell[4995, 153, 820, 26, 87, "Text", "ExpressionUUID" -> \
+"0619be02-760d-4d47-8776-b14a8feb80e7"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

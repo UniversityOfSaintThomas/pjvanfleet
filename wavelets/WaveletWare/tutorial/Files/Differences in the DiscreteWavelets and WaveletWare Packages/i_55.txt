@@ -1,0 +1,4 @@
+<pre name='i_55_in' id='i_55_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;chess.png&quot;;
+A = ImageRead[file, Resize -&gt; {192, 128}];
+wt = WPTFull[A, SplineFilters[2, 2], NumIterations -&gt; 3];
+FullWaveletPlot[wt, PacketPlot -&gt; True]</pre><div class='IFU'><a name='72644652'></a>http://wolfram.com/xid/0533vsu7qbb0ajiwwqawq9kz22kl8rc4uv1a9crxfvnihty6rtcsrbm-bhja9a</div>

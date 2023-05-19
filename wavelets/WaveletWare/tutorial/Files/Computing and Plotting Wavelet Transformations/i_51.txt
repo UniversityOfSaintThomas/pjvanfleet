@@ -1,0 +1,8 @@
+<pre name='i_51_in' id='i_51_in' class='IFT'>f = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;cups.png&quot;;
+A = ImageRead[f, Resize -&gt; {128, 192}];
+ImagePlot[A]
+wt = HWT[A];
+WaveletPlot[wt]
+iwt = InverseHWT[wt];
+ImagePlot[iwt]
+Chop[iwt] == A</pre><div class='IFU'><a name='679376324'></a>http://wolfram.com/xid/0kmsg876k74fv7tus4gahxj5adn8b2m3ovcixzmeb-liroeu</div>

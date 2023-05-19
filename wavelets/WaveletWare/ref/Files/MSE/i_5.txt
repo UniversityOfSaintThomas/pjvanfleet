@@ -1,0 +1,4 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>A = RandomInteger[{-4, 4}, {4, 4}];
+B = RandomInteger[{-4, 4}, {4, 4}];
+Map[MatrixForm, {A, B}]
+MSE[A, B]</pre><div class='IFU'><a name='212406144'></a>http://wolfram.com/xid/0do1eh55e6re23a0jz7vh-dsqvwy</div>

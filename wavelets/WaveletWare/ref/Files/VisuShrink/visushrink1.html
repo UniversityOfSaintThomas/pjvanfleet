@@ -1,0 +1,174 @@
+<script type="text/javascript" src="../javascript/sub-pages.js"></script><div class="expandSubsubWrap closed">
+  <div class="expandSubsubOuter">
+   <h4 class="expandSubsubInner"><a class="expand" href="#" title="show">NumIterations<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a><a class="collapse hide" href="#" title="hide">NumIterations<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a></h4>
+   <div class="expanded hide">
+    <p><a name="805902003"></a><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/NumIterations.html">NumIterations</a></span> can be used to set the number of iterations of the (bi)orthogonal wavelet transformed computed by <span class="monospace">VISUShrink</span>.</p>
+    <div class="IO">
+     <table class="InCell">
+      <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+         <a name="15128308"></a>
+         <img src="Files/VisuShrink/I_6.gif"
+             height="254"
+             width="489"
+             alt="Click for copyable input" />
+        </div><div id="i_5_out" class="IFL"></div></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/VisuShrink/O_4.gif" height="153" width="240" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/VisuShrink/O_5.gif" height="153" width="240" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/VisuShrink/O_6.gif" height="153" width="240" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/VisuShrink/O_7.gif" height="153" width="240" alt="" /></td></tr>
+     </table>
+    </div>
+   </div>
+  </div>
+ </div><div class="expandSubsubWrap closed">
+  <div class="expandSubsubOuter">
+   <h4 class="expandSubsubInner"><a class="expand" href="#" title="show">ThresholdByLevel<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a><a class="collapse hide" href="#" title="hide">ThresholdByLevel<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a></h4>
+   <div class="expanded hide">
+    <p><a name="226286428"></a>The <span class="monospace">VISUShrink</span> algorithm computes the universal threshold <span class="IF"><img src="Files/VisuShrink/3.png" height="17" width="25" alt="" /></span> by using the highpass portion of the first iteration of the wavelet transform.  This is the case when <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/ThresholdByLevel.html">ThresholdByLevel</a></span> is set to its default value of <a href="http://reference.wolfram.com/language/ref/False.html">False</a>.  Setting <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/ThresholdByLevel.html">ThresholdByLevel</a></span> to <a href="http://reference.wolfram.com/language/ref/True.html">True</a> instructs <span class="monospace">VISUShrink</span> to compute a universal threshold for each highpass portion of the wavelet transform and use it with <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/ShrinkageFunction.html">ShrinkageFunction</a></span> to quantize the highpass portions of the transform.</p>
+    <div class="IO">
+     <table class="InCell">
+      <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+         <a name="327084670"></a>
+         <img src="Files/VisuShrink/I_8.gif"
+             height="254"
+             width="506"
+             alt="Click for copyable input" />
+        </div><div id="i_7_out" class="IFL"></div></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/VisuShrink/O_8.gif" height="153" width="240" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/VisuShrink/O_9.gif" height="153" width="240" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/VisuShrink/O_10.gif" height="153" width="240" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/VisuShrink/O_11.gif" height="153" width="240" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/VisuShrink/O_12.gif" height="15" width="104" alt="" /></td></tr>
+     </table>
+    </div>
+   </div>
+  </div>
+ </div><div class="expandSubsubWrap closed">
+  <div class="expandSubsubOuter">
+   <h4 class="expandSubsubInner"><a class="expand" href="#" title="show">Computation<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a><a class="collapse hide" href="#" title="hide">Computation<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a></h4>
+   <div class="expanded hide">
+    <p><a name="35654985"></a>By default, all computations of the wavelet transform are numerical.  However, if input data are symbolic, the filter values are symbolic and <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/Computation.html">Computation</a></span> is set to <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/Symbolic.html">Symbolic</a></span>, then the computations are done symbolically.  Note that if the filter is given in numerical format, then the computations are done numerically.</p>
+    <p><a name="24033640"></a>Create integer-valued data and integer-valued noise so that the wavelet transform can be computed symbolically.</p>
+    <div class="IO">
+     <table class="InCell">
+      <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+         <a name="181325556"></a>
+         <img src="Files/VisuShrink/I_10.gif"
+             height="169"
+             width="489"
+             alt="Click for copyable input" />
+        </div><div id="i_9_out" class="IFL"></div></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/VisuShrink/O_13.gif" height="153" width="240" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/VisuShrink/O_14.gif" height="153" width="240" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/VisuShrink/O_15.gif" height="153" width="240" alt="" /></td></tr>
+     </table>
+    </div>
+   </div>
+  </div>
+ </div><div class="expandSubsubWrap closed">
+  <div class="expandSubsubOuter">
+   <h4 class="expandSubsubInner"><a class="expand" href="#" title="show">Shift<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a><a class="collapse hide" href="#" title="hide">Shift<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a></h4>
+   <div class="expanded hide">
+    <p><a name="246628789"></a>The default value for <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/Shift.html">Shift</a></span> is 0.   This means the orthogonal filter processes the data starting with the first entry and continues, moving over 2 each time.  Setting <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/Shift.html">Shift</a></span> to a different integer changes the starting point.  This option can be set for the wavelet transform used in <span class="monospace">VISUShrink</span>.</p>
+    <div class="IO">
+     <table class="InCell">
+      <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+         <a name="389152849"></a>
+         <img src="Files/VisuShrink/I_12.gif"
+             height="169"
+             width="489"
+             alt="Click for copyable input" />
+        </div><div id="i_11_out" class="IFL"></div></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/VisuShrink/O_16.gif" height="153" width="240" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/VisuShrink/O_17.gif" height="153" width="240" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/VisuShrink/O_18.gif" height="153" width="240" alt="" /></td></tr>
+     </table>
+    </div>
+   </div>
+  </div>
+ </div><div class="expandSubsubWrap closed">
+  <div class="expandSubsubOuter">
+   <h4 class="expandSubsubInner"><a class="expand" href="#" title="show">Boundary<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a><a class="collapse hide" href="#" title="hide">Boundary<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a></h4>
+   <div class="expanded hide">
+    <p><a name="630098303"></a>For symmetric biorthogonal filter pairs, <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/Boundary.html">Boundary</a></span> can be set to <a href="http://reference.wolfram.com/language/ref/True.html">True</a> and in this case, <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/BWT.html">BWT</a></span> exploits the symmetry of the filters to more accurately represent the transform at the beginning and end of the data set.<br /><br />In the case where the filter lengths are both odd, <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/BWT.html">BWT</a></span> uses as input the (2<span class="IF"><span class="TI">n</span></span>-2)-length vector <br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="IF"><img src="Files/VisuShrink/4.png" height="17" width="30" alt="" /></span>, ..., <span class="IF"><img src="Files/VisuShrink/5.png" height="17" width="40" alt="" /></span>, <span class="IF"><img src="Files/VisuShrink/6.png" height="17" width="31" alt="" /></span>, <span class="IF"><img src="Files/VisuShrink/7.png" height="17" width="40" alt="" /></span>, ..., <span class="IF"><img src="Files/VisuShrink/8.png" height="17" width="30" alt="" /></span>, <span class="IF"><img src="Files/VisuShrink/9.png" height="17" width="30" alt="" /></span>)<br /><br />and in cases where the filter lengths are both even, <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/BWT.html">BWT</a></span> uses as input the 2<span class="IF"><span class="TI">n</span></span>-length vector<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="IF"><img src="Files/VisuShrink/10.png" height="17" width="30" alt="" /></span>, ..., <span class="IF"><img src="Files/VisuShrink/11.png" height="17" width="40" alt="" /></span>, <span class="IF"><img src="Files/VisuShrink/12.png" height="17" width="31" alt="" /></span>, <span class="IF"><img src="Files/VisuShrink/13.png" height="17" width="31" alt="" /></span>, <span class="IF"><img src="Files/VisuShrink/14.png" height="17" width="40" alt="" /></span>,..., <span class="IF"><img src="Files/VisuShrink/15.png" height="17" width="30" alt="" /></span>)<br /><br />and in both cases, takes the first <span class="IF"><span class="TI">n</span></span>/2 values of the output for the lowpass portion and the first <span class="IF"><span class="TI">n</span></span>/2 values of the last <span class="IF"><span class="TI">n</span></span>-1 (filter lengths odd) or <span class="IF"><span class="TI">n</span></span> (filter lengths even) components for the highpass portion to build the transform.</p>
+    <p><a name="140933345"></a><span class="monospace">VISUShrink</span> can use biorthogonal filters and exploit the <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/Boundary.html">Boundary</a></span> setting.</p>
+    <div class="IO">
+     <table class="InCell">
+      <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+         <a name="421145161"></a>
+         <img src="Files/VisuShrink/I_14.gif"
+             height="169"
+             width="489"
+             alt="Click for copyable input" />
+        </div><div id="i_13_out" class="IFL"></div></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/VisuShrink/O_19.gif" height="153" width="240" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/VisuShrink/O_20.gif" height="153" width="240" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/VisuShrink/O_21.gif" height="153" width="240" alt="" /></td></tr>
+     </table>
+    </div>
+   </div>
+  </div>
+ </div><div class="expandSubsubWrap closed">
+  <div class="expandSubsubOuter">
+   <h4 class="expandSubsubInner"><a class="expand" href="#" title="show">IntegerMap<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a><a class="collapse hide" href="#" title="hide">IntegerMap<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a></h4>
+   <div class="expanded hide">
+    <p><a name="195850320"></a>The LeGall wavelet transform employs the lifting scheme to perfomr the computations and can, by setting <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/IntegerMap.html">IntegerMap</a></span> to <a href="http://reference.wolfram.com/language/ref/True.html">True</a>, map integer-valued input to integer-valued output.  This option can be set in <span class="monospace">VISUShrink</span> although we must ensure that the data and noise are integer-valued.</p>
+    <div class="IO">
+     <table class="InCell">
+      <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+         <a name="297055439"></a>
+         <img src="Files/VisuShrink/I_16.gif"
+             height="169"
+             width="489"
+             alt="Click for copyable input" />
+        </div><div id="i_15_out" class="IFL"></div></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/VisuShrink/O_22.gif" height="153" width="240" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/VisuShrink/O_23.gif" height="153" width="240" alt="" /></td></tr>
+     </table>
+     <table class="OCell">
+      <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/VisuShrink/O_24.gif" height="153" width="240" alt="" /></td></tr>
+     </table>
+    </div>
+   </div>
+  </div>
+ </div>

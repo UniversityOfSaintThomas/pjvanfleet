@@ -1,0 +1,6 @@
+<pre name='i_9_in' id='i_9_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;train.png&quot;;
+A = ImageRead[file];
+ImagePlot[A]
+iterations = 3;
+wt = HWT[A, NumIterations -&gt; iterations];
+WaveletPlot[wt, NumIterations -&gt; iterations]</pre><div class='IFU'><a name='6199230'></a>http://wolfram.com/xid/01ka71c7dh3coqf4zkquz-dy5m4</div>

@@ -1,0 +1,9 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;fingerprint.png&quot;;
+A = ImageRead[file, Resize -&gt; 256];
+ImagePlot[A]
+wt = FBIPacketTransform[A];
+WaveletPlot[wt, FBITree[], NumIterations -&gt; 5]
+iwt = InverseFBIPacketTransform[wt];
+ImagePlot[iwt]
+(* Mean Squared Error *)
+MSE[A, iwt]</pre><div class='IFU'><a name='62854130'></a>http://wolfram.com/xid/0q23vyaqjoj5dwcbjtc79d2sl5wrpm6-bbpguc</div>

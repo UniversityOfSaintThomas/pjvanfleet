@@ -1,0 +1,2 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>(* {255,0,255} is RGB for purple *)
+RGBToYCbCr[{255, 0, 255}]</pre><div class='IFU'><a name='160896521'></a>http://wolfram.com/xid/0b6ekx0z8pnru3aszp1nk4lske-cx2ut3</div>

@@ -1,0 +1,393 @@
+(************** Content-type: application/mathematica **************
+                     CreatedBy='Mathematica 5.2'
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used with any Mathematica-compatible
+application, such as Mathematica, MathReader or Publicon. The data
+for the notebook starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do
+one of the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the
+  application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing
+the word CacheID, otherwise Mathematica-compatible applications may
+try to use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+*******************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[      9672,        306]*)
+(*NotebookOutlinePosition[     10438,        332]*)
+(*  CellTagsIndexPosition[     10394,        328]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Biorthogonal Spline Filters", "Title"],
+
+Cell["\<\
+Wavelet Workshop
+June 7-10, 2006
+University of St. Thomas\
+\>", "Subtitle"],
+
+Cell["Objectives", "Subsubtitle"],
+
+Cell[TextData[{
+  "The purpose of this notebook is to introduce you to some basic \
+wavelet-based denoising methods.\n\nThe notebook also contains a \
+module-writing lab that makes up part of ",
+  StyleBox["Computer Session Three",
+    FontWeight->"Bold"],
+  "."
+}], "Text"],
+
+Cell[CellGroupData[{
+
+Cell["WaveletFunctions", "Subsubtitle",
+  InitializationCell->True],
+
+Cell[TextData[{
+  "This cell initializes every time you open the notebook.  It loads the ",
+  StyleBox["Mathematica",
+    FontSlant->"Italic"],
+  " package ",
+  StyleBox["WaveletFunctions",
+    FontFamily->"Courier"],
+  " for use in subsequent computations."
+}], "Text",
+  InitializationCell->True],
+
+Cell[BoxData[{
+    \(<< WaveletFunctions`WaveletFunctions`\), "\[IndentingNewLine]", 
+    \(<< LinearAlgebra`MatrixManipulation`\), "\[IndentingNewLine]", 
+    \(\(\(<< Graphics`Graphics`\)\(\[IndentingNewLine]\)
+    \)\), "\[IndentingNewLine]", 
+    \(<< Statistics`ContinuousDistributions`\), "\n", 
+    \(\(\(<< Statistics`DescriptiveStatistics`\)\(\n\)
+    \)\), "\[IndentingNewLine]", 
+    \(\(Needs["\<Miscellaneous`Audio`\>"];\)\n\[IndentingNewLine]\
+\[IndentingNewLine]\), "\[IndentingNewLine]", 
+    \(\(flashdir = "\<E:/WaveletWorkshop06/Images/\>";\)\), "\
+\[IndentingNewLine]", 
+    \(\(sounddir = "\<E:/WaveletWorkshop06/Sounds/\>";\)\), "\
+\[IndentingNewLine]", 
+    \(\(Print["\<The flash drive directory is \>", 
+        flashdir, "\<.\>"];\)\[IndentingNewLine]\), "\[IndentingNewLine]", 
+    \(\(imgurl = \
+"\<http://cam.mathlab.stthomas.edu/pvf/Math316/TestImages/\>";\)\), "\
+\[IndentingNewLine]", 
+    \(\(Print["\<The URL for images is \>", imgurl, "\<.\>"];\)\)}], "Input",
+  InitializationCell->True]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Help on WaveletFunctions", "Subsubtitle"],
+
+Cell[TextData[{
+  "If you ever need help with ",
+  StyleBox["WaveletFunctions",
+    FontFamily->"Courier"],
+  ", go to ",
+  StyleBox["Help",
+    FontSlant->"Italic"],
+  ", then ",
+  StyleBox["Help Browser",
+    FontSlant->"Italic"],
+  ", and click on ",
+  StyleBox["AddOns & Links",
+    FontSlant->"Italic"],
+  ".  If you scroll down you will find ",
+  StyleBox["WaveletFunctions",
+    FontFamily->"Courier"],
+  ".  "
+}], "Text"],
+
+Cell[CellGroupData[{
+
+Cell["The Spline Filter", "Section"],
+
+Cell[TextData[{
+  "The biorthogonal spline filter is defined by expanding the function ",
+  Cell[BoxData[
+      \(\(\@2\) \(cos\^N\) \((\[Omega]/2)\)\)]],
+  " into an odd-length Fourier series if N is even or by expanding the \
+function ",
+  Cell[BoxData[
+      \(\(\@2\) \(e\^\(i\[Omega]/2\)\) \(cos\^N\) \((\[Omega]/2)\)\)]],
+  "into an even-length Fourier series if N is odd.\n\nAs we learned in the \
+lecture, the result is a list of binomial coefficients multiplied by ",
+  Cell[BoxData[
+      \(\@2\)]],
+  " and divided by ",
+  Cell[BoxData[
+      \(2\^N\)]],
+  ".    In the cells below, we show two ways to obtain this filter.\n\nFirst, \
+we can write the cosine function in terms of the complex exponential and \
+expand it:"
+}], "Text"],
+
+Cell[BoxData[{
+    \(\(cs[w_] := \((E^\((I*w)\) + E^\((\(-I\)*w)\))\)/
+          2;\)\), "\[IndentingNewLine]", 
+    \(\(\(f[w_, n_] := \ 
+      Sqrt[2]*E^\((I*w*Mod[n, 2]/2)\)*cs[w/2]^n\)\(\[IndentingNewLine]\)
+    \)\), "\[IndentingNewLine]", 
+    \(Expand[f[w, 2]]\), "\[IndentingNewLine]", 
+    \(Expand[f[w, 3]]\), "\[IndentingNewLine]", 
+    \(\)}], "Input"],
+
+Cell["\<\
+Next, we simply need to peel off the coefficients from the Fourier series to \
+obtain our filter.  We can do this using the Table command and the \
+Coefficient command.  
+
+We also need to know the limits on the indices of the filter.  This is pretty \
+easy - if N is even, the limits are -(N-1) to (N-1) and if N is odd, the \
+limits are -N+2 to N-1:\
+\>", "Text"],
+
+Cell[BoxData[{
+    \(n = 2\), "\[IndentingNewLine]", 
+    \(\(\(filter = 
+      Table[Coefficient[Expand[f[w, n]], E^\((I*w)\), 
+          k], {k, \(-\((n - 1)\)\), n - 1}]\)\(\[IndentingNewLine]\)
+    \)\), "\[IndentingNewLine]", 
+    \(n = 3\), "\[IndentingNewLine]", 
+    \(filter = 
+      Table[Coefficient[Expand[f[w, 3]], E^\((I*w)\), k], {k, \(-n\) + 2, 
+          n - 1}]\)}], "Input"],
+
+Cell[TextData[{
+  "Alternatively, (and much easier!!), we could simply write down a table of \
+binomial coefficients, multiply by ",
+  Cell[BoxData[
+      \(\@2\)]],
+  " and divide by ",
+  Cell[BoxData[
+      \(2\^N\)]],
+  "."
+}], "Text"],
+
+Cell[BoxData[{
+    \(n = 2\), "\[IndentingNewLine]", 
+    \(\(\(filter\  = \ 
+      Sqrt[2]*Table[Binomial[n, k], {k, 0, n}]/2^n\)\(\[IndentingNewLine]\)
+    \)\), "\[IndentingNewLine]", 
+    \(n = 3\), "\[IndentingNewLine]", 
+    \(filter\  = \ Sqrt[2]*Table[Binomial[n, k], {k, 0, n}]/2^n\)}], "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+  "Using ",
+  StyleBox["Mathematica",
+    FontSlant->"Italic"],
+  " to Find the Dual Filter"
+}], "Section"],
+
+Cell[TextData[{
+  "Let's consider the spline filter ",
+  Cell[BoxData[
+      \(h\&~\)]],
+  " for N=3 and try to find the dual filter h of length 8.  Let's write down \
+the Fourier series for both:"
+}], "Text"],
+
+Cell[BoxData[{\(n = 3;\), "\[IndentingNewLine]", 
+    RowBox[{\(hw = Sqrt[2]*Table[Binomial[n, k], {k, 0, n}]/2^n\), 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      StyleBox[\( (*\ Don' t\ forget\ to\ make\ h\ symmetric\ *) \),
+        FontColor->RGBColor[1, 0, 0]]}], "\[IndentingNewLine]", \(y = 
+        Array[h, 4, 1];\), "\[IndentingNewLine]", 
+    RowBox[{\(z = Join[Reverse[y], y]\), 
+      "\[IndentingNewLine]"}], "\[IndentingNewLine]", \(Hw[w_] := 
+      hw . Table[E^\((I*k*w)\), {k, \(-2\), 3}]\), "\[IndentingNewLine]", \(H[
+        w_] := z . Table[E^\((I*k*w)\), {k, \(-3\), 4}]\)}], "Input"],
+
+Cell[TextData[{
+  "We know that ",
+  Cell[BoxData[
+      \(\(H\&~\) \((\[Omega])\) \(H \((\[Omega])\)\)\&_\  + \ \(H\&~\) \((\
+\[Omega] + \[Pi])\) \(H \((\[Omega] + \[Pi])\)\)\&_\  = \(\(H\&~\) \
+\((\[Omega])\) H \((\(-\[Omega]\))\) + \ \(H\&~\) \((\(-\[Omega]\) + \[Pi])\) 
+              H \((\(-\[Omega]\) + \[Pi])\) = 2\)\)]],
+  ", so we can expand this equation, peel off the Fourier coefficients, set \
+them equal to 2 or 0, and solve a linear system.\n\nQuick aside - to solve a \
+linear system in ",
+  StyleBox["Mathematica",
+    FontSlant->"Italic"],
+  ", the commands look like:"
+}], "Text"],
+
+Cell[BoxData[{
+    \(c = {a, b}\), "\[IndentingNewLine]", 
+    \(eqs = {a + b \[Equal] 2, a - b \[Equal] 4}\), "\[IndentingNewLine]", 
+    \(Solve[eqs, c]\)}], "Input"],
+
+Cell["\<\
+Use Table, Expand, and Coefficient to set up a system of linear equations \
+that you could solve to find the filter h.  Don't forget the constraint H(\
+\[Pi]) = 0!\
+\>", "Text"],
+
+Cell[BoxData[
+    \( (*\ Put\ your\ Mathematica\ code\ here\ *) \)], "Input",
+  FontColor->RGBColor[0, 0, 1]],
+
+Cell["\<\
+Did you get a unique solution?  If not, add enough derivative conditions \
+until you do!\
+\>", "Text"],
+
+Cell[BoxData[
+    \( (*\ Put\ your\ Mathematica\ code\ here\ *) \)], "Input",
+  FontColor->RGBColor[0, 0, 1]],
+
+Cell[TextData[{
+  "The correct solution for h is given in the book on page 484.\n\nYou can \
+also check your solution by expanding out formula (9.108) on page 486 in the \
+case where N = ",
+  Cell[BoxData[
+      \(TraditionalForm\`\(N\&~\)\)]],
+  "= 3."
+}], "Text"],
+
+Cell["\<\
+Next, go back to the top and pick the length of hw to be 3 and the length of \
+h to be 9.\
+\>", "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Extra Credit - Tough One!", "Section"],
+
+Cell[TextData[{
+  "An explicit form of h is given by Theorem 9.5 on pages 484-485.  Can you \
+use this theorem to write a ",
+  StyleBox["Mathematica",
+    FontSlant->"Italic"],
+  " module to produce h? "
+}], "Text"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+FrontEndVersion->"5.2 for Microsoft Windows",
+ScreenRectangle->{{0, 1024}, {0, 695}},
+AutoGeneratedPackage->None,
+ScreenStyleEnvironment->"Presentation",
+WindowSize->{1016, 651},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+ShowSelection->True,
+StyleDefinitions -> "Report.nb"
+]
+
+(*******************************************************************
+Cached data follows.  If you edit this Notebook file directly, not
+using Mathematica, you must remove the line containing CacheID at
+the top of  the file.  The cache data will then be recreated when
+you save this file from within Mathematica.
+*******************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+
+(*NotebookFileOutline
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[1776, 53, 44, 0, 117, "Title"],
+Cell[1823, 55, 85, 4, 143, "Subtitle"],
+Cell[1911, 61, 33, 0, 67, "Subsubtitle"],
+Cell[1947, 63, 274, 7, 84, "Text"],
+
+Cell[CellGroupData[{
+Cell[2246, 74, 67, 1, 67, "Subsubtitle",
+  InitializationCell->True],
+Cell[2316, 77, 298, 9, 63, "Text",
+  InitializationCell->True],
+Cell[2617, 88, 1023, 20, 467, "Input",
+  InitializationCell->True]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[3677, 113, 47, 0, 67, "Subsubtitle"],
+Cell[3727, 115, 429, 17, 64, "Text"],
+
+Cell[CellGroupData[{
+Cell[4181, 136, 36, 0, 96, "Section"],
+Cell[4220, 138, 744, 18, 175, "Text"],
+Cell[4967, 158, 364, 8, 181, "Input"],
+Cell[5334, 168, 374, 8, 128, "Text"],
+Cell[5711, 178, 393, 9, 155, "Input"],
+Cell[6107, 189, 238, 9, 63, "Text"],
+Cell[6348, 200, 304, 6, 155, "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[6689, 211, 123, 5, 97, "Section"],
+Cell[6815, 218, 209, 6, 62, "Text"],
+Cell[7027, 226, 619, 9, 259, "Input"],
+Cell[7649, 237, 600, 13, 106, "Text"],
+Cell[8252, 252, 168, 3, 103, "Input"],
+Cell[8423, 257, 187, 4, 62, "Text"],
+Cell[8613, 263, 109, 2, 51, "Input"],
+Cell[8725, 267, 112, 3, 40, "Text"],
+Cell[8840, 272, 109, 2, 51, "Input"],
+Cell[8952, 276, 265, 7, 84, "Text"],
+Cell[9220, 285, 113, 3, 40, "Text"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[9370, 293, 44, 0, 96, "Section"],
+Cell[9417, 295, 215, 6, 62, "Text"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+
+
+(*******************************************************************
+End of Mathematica Notebook file.
+*******************************************************************)
+

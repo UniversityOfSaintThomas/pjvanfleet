@@ -1,0 +1,5 @@
+<pre name='i_15_in' id='i_15_in' class='IFT'>file = PackageDirectory[DataType -&gt; Sounds] &lt;&gt; &quot;bark.wav&quot;;
+{data, rate} = AudioRead[file, PowersOfTwo -&gt; 1, DisplayInfo -&gt; True];
+ListPlay[data, SampleRate -&gt; rate]
+wt = HWT[data];
+WaveletVectorPlot[wt]</pre><div class='IFU'><a name='34604081'></a>http://wolfram.com/xid/093b2zotwtgp1kohoumsxygckfwrulbitwbhjwkhlefyamuei6g132-uvyyr</div>

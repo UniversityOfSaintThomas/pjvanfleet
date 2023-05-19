@@ -1,0 +1,9 @@
+<pre name='i_9_in' id='i_9_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;benches.png&quot;;
+A = ImageRead[file, Resize -&gt; {128, 192}];
+ImagePlot[A]
+rwt = RightBWT[A, SplineFilters[2, 2], Boundary -&gt; True];
+WaveletPlot[rwt, PlotType -&gt; Right]
+iwt = RightInverseBWT[rwt, SplineFilters[2, 2], Boundary -&gt; True];
+ImagePlot[iwt]
+(* Mean Squared Error *)
+MSE[A, iwt]</pre><div class='IFU'><a name='297700709'></a>http://wolfram.com/xid/0byt3rd1cvx9wr2qwvq5s7zwpg7-e7i1mf</div>

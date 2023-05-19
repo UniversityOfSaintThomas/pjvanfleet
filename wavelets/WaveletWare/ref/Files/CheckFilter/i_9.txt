@@ -1,0 +1,2 @@
+<pre name='i_9_in' id='i_9_in' class='IFT'>h = Range[4];
+CheckFilter[h]</pre><div class='IFU'><a name='403207897'></a>http://wolfram.com/xid/0k18vmbfsv1bofr5bpvxwru-gycfhn</div>

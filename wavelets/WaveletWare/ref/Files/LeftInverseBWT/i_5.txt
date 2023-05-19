@@ -1,0 +1,11 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;cups.png&quot;;
+A = ImageRead[file, Resize -&gt; {120, 180}];
+ImagePlot[A]
+leftwt = LeftBWT[A, SplineFilters[2, 2]];
+plots = WaveletPlot[leftwt, PlotType -&gt; Left, 
+   ChannelColor -&gt; {Red, Green, Blue}];
+Map[Show, plots]
+iwt = LeftInverseBWT[leftwt, SplineFilters[2, 2]];
+ImagePlot[iwt]
+(* Mean Squared Error *)
+MSE[A, iwt]</pre><div class='IFU'><a name='15603273'></a>http://wolfram.com/xid/04j60t5tk393i6ilni7vwa2fwb-jkpuj</div>

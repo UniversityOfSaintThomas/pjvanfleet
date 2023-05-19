@@ -1,0 +1,8 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>img = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;benches.png&quot;;
+A = ImageRead[img, Resize -&gt; {256, 384}];
+wt = HWT[A];
+WaveletPlot[wt]
+wtlist = WaveletMatrixToList[wt];
+Map[Dimensions, wtlist]
+wtfromlist = WaveletListToMatrix[wtlist];
+WaveletPlot[wtfromlist]</pre><div class='IFU'><a name='3542375'></a>http://wolfram.com/xid/0bgs8pq6xf2jh4szo9r0zq56tpyd8y-cd7ll</div>

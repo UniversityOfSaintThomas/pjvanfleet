@@ -1,0 +1,10 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;benches.png&quot;;
+A = ImageRead[file, Resize -&gt; {128, 192}];
+ImagePlot[A]
+(* Log energy cost function *)
+MyCost[t_, p_] := 
+  Total[Map[If[# == 0, 0, Log[Abs[#]^p]] &amp;, Flatten[N[t]]]];
+{wpt, tree} = 
+  WPT[A, {.5, .5}, NumIterations -&gt; 3, CostFunction -&gt; MyCost, 
+   SecondParameter -&gt; 2];
+ShowBestBasis[tree, Show3D -&gt; False, ImageSize -&gt; 192]</pre><div class='IFU'><a name='89618226'></a>http://wolfram.com/xid/0cew39zuhikyj6xdakxn9zy02-brm35g</div>

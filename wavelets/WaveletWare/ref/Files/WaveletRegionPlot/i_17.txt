@@ -1,0 +1,9 @@
+<pre name='i_17_in' id='i_17_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;cups.png&quot;;
+A = ImageRead[file, Resize -&gt; {256, 384}];
+ImagePlot[A]
+iterations = 2;
+wt = HWT[A, NumIterations -&gt; iterations];
+WaveletRegionPlot[wt, {{All, 2, 1, 1}}, NumIterations -&gt; iterations]
+WaveletRegionPlot[wt, {{All, 2, 1, 1}}, NumIterations -&gt; iterations, 
+ PlotTogether -&gt; True]
+</pre><div class='IFU'><a name='267924616'></a>http://wolfram.com/xid/0br3whhmcljlx93k2tbxed7vin6a-epst8q</div>

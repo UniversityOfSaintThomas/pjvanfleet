@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>InverseBWTAux&mdash;Wolfram Language Documentation</title>
+<meta name="buildnumber" content="0000000" />
+<meta name="historydata" content="{XX, , , }" />
+<meta name="keywords" content="InverseBWTAux" />
+
+<meta name="description" content="InverseBWTAux[v, h, type] is an auxiliary function used by InverseBWT, LeftInverseBWT and RightInverseBWT for computing the inverse biorthogonal wavelet transform." />
+<script language="JavaScript" type="text/javascript">baselang='InverseBWTAux';</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		 <link rel="stylesheet" type="text/css" href="../css/reference.css" />
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/core/1.6.1/jquery.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/plugins/hoverIntent/r5/jquery.hoverIntent.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/reference.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/documentation-search.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/inputs.js"></script>
+		 <script language="javaScript" type="text/javascript" src="../javascript/faster-page-load.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/plugins/jcarousel/tinycarousel/tinycarousel.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery.dotdotdot-1.5.1.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/carousel.js"></script>
+<script language="JavaScript" type="text/javascript" src="../javascript/toggle-highlight.js"></script>
+</head>
+<body id="ref" class="function">
+<a name="top"></a>
+<!--#include virtual="/common/includes/gl-header.html"--> 
+<div class="main-wrapper">
+
+
+<div class="wrapper mainOuter">
+    <div class="mainContent">
+ <div class="topContentWrap">
+  <div class="ribbonWrap">
+   <span class="ribbonOuter"><span class="ribbonInner">WAVELET WARE PACKAGE SYMBOL</span></span>
+  </div>
+  <ul class="dropdown">
+   <li>
+    <a href="#">See Also</a>
+    <ul class="sub_menu">
+     <li>
+      <a href="/language/WaveletWare/ref/InverseBWT.html"><span class="dropdownPad">InverseBWT</span></a>
+     </li>
+    </ul>
+   </li>
+   <li>
+    <a href="#">Related Guides</a>
+    <ul class="sub_menu">
+     <li>
+      <a href="/language/WaveletWare/guide/List of Functions - Categorical.html"><span class="dropdownPad">List of Functions - Categorical</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/guide/List of Functions - Alphabetical.html"><span class="dropdownPad">List of Functions - Alphabetical</span></a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+  <div class="clear"><!-- --></div>
+ </div>
+ <h1>InverseBWTAux</h1>
+ <div class="functionIntroWrap">
+  <div class="functionIntro">
+   <p><span class="IF"><img src="Files/InverseBWTAux/1.png" height="18" width="140" alt="" /></span><br />is an auxiliary function used by <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/InverseBWT.html">InverseBWT</a></span>, <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/LeftInverseBWT.html">LeftInverseBWT</a></span> and <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/RightInverseBWT.html">RightInverseBWT</a></span> for computing the inverse biorthogonal wavelet transform.</p>
+  </div>
+ </div>
+ <div class="expandWrap closed"
+     id="DetailsAndOptions">
+  <div class="expandOuter">
+   <h2 class="expandInner"><a class="expand hide" title="show" href="#">Details</a><a class="collapse" title="hide" href="#">Details</a></h2>
+   <div class="expanded">
+    <ul class="functionList">
+     <li><a name="1067943069"></a>The inverse biorthogonal wavelet transform of vector <span class="IF"><span class="TI">v</span></span> is <span class="IF"><img src="Files/InverseBWTAux/2.png" height="17" width="16" alt="" /></span><span class="IF"><span class="TI">v</span></span>,  where <span class="IF"><img src="Files/InverseBWTAux/3.png" height="17" width="10" alt="" /></span> is the block matrix <span class="IF"><img src="Files/InverseBWTAux/4.png" height="17" width="10" alt="" /></span> = <span class="IF"><img src="Files/InverseBWTAux/5.png" height="31" width="20" alt="" /></span>.  Partitioning <span class="IF"><span class="TI">v</span></span> into two parts means the inverse transform is computed as <span class="IF"><img src="Files/InverseBWTAux/6.png" height="17" width="49" alt="" /></span><span class="IF"><img src="Files/InverseBWTAux/7.png" height="31" width="24" alt="" /></span> = <span class="IF"><img src="Files/InverseBWTAux/8.png" height="17" width="26" alt="" /></span> + <span class="IF"><img src="Files/InverseBWTAux/9.png" height="17" width="28" alt="" /></span>.  <span class="monospace">InverseBWTAux</span> computes each of the terms in the previous sum.  H or G is generated from filter input <span class="IF"><span class="TI">h</span></span> and <span class="IF"><span class="TI">v</span></span> is either <span class="IF"><img src="Files/InverseBWTAux/10.png" height="17" width="10" alt="" /></span> or <span class="IF"><img src="Files/InverseBWTAux/11.png" height="17" width="12" alt="" /></span>.  The third variable, <span class="IF"><span class="TI">type</span></span>, indicates if the input filter <span class="IF"><span class="TI">h</span></span> is lowpass (0) or highpass (1).</li>
+    </ul>
+   </div>
+  </div>
+ </div>
+ <div class="expandWrap"
+     id="Examples">
+  <div class="expandOuter">
+   <h2 class="expandInner"><a class="expand hide" title="show" href="#">Examples</a><a class="collapse" title="hide" href="#">Examples</a><a class="all opener" title="open all" href="#"><span>open all</span></a><a class="all closer hide" title="close all" href="#"><span>close all</span></a></h2>
+   <div class="expanded">
+    <div class="expandSubWrap">
+     <div class="expandSubOuter">
+      <h3 class="expandSubInner"><a class="expand hide" href="#" title="show">Basic Examples<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a><a class="collapse" href="#" title="hide">Basic Examples<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a></h3>
+      <div class="expanded">
+       <div class="MCap"><a name="16454449"></a>This loads the package:</div>
+       <table class="InCell">
+        <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+           <a name="861618089"></a>
+           <img src="Files/InverseBWTAux/I_2.gif"
+               height="15"
+               width="93"
+               alt="Click for copyable input" />
+          </div><div id="i_1_out" class="IFL"></div></td></tr>
+       </table>
+       <p><a name="158662723"></a>Use <span class="monospace">InverseBWTAux</span> to compute the inverse biorthogonal wavelet transform of a vector.</p>
+       <div class="IO">
+        <table class="InCell">
+         <tr><td class="lab">In[2]:=</td><td class="Input"><div>
+            <a name="147182881"></a>
+            <img src="Files/InverseBWTAux/I_4.gif"
+                height="203"
+                width="308"
+                alt="Click for copyable input" />
+           </div><div id="i_3_out" class="IFL"></div></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[2]=</td><td class="Output"><img src="Files/InverseBWTAux/O_1.gif" height="15" width="368" alt="" /></td></tr>
+        </table>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="toplink">
+     <a href="#top">Top</a>
+    </div>
+    <div class="clear"><!-- --></div>
+   </div>
+  </div>
+ </div>
+ <div class="expandWrap"
+     id="SeeAlso">
+  <div class="expandOuter">
+   <h2 class="expandInner"><a class="expand hide" title="show" href="#">See Also</a><a class="collapse" title="hide" href="#">See Also</a></h2>
+   <div class="expanded">
+    <p class="inlineFunctionList">
+     <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/InverseBWT.html">InverseBWT</a></span>
+    </p>
+   </div>
+  </div>
+ </div>
+ <div class="expandWrap"
+     id="RelatedGuides">
+  <div class="expandOuter">
+   <h2 class="expandInner"><a class="expand hide" title="show" href="#">Related Guides</a><a class="collapse" title="hide" href="#">Related Guides</a></h2>
+   <div class="expanded">
+    <ul class="functionList">
+     <li>
+      <a name="345974865"></a>
+      <a href="http://reference.wolfram.com/language/WaveletWare/guide/List of Functions - Categorical.html">List of Functions - Categorical</a>
+     </li>
+     <li>
+      <a name="80013526"></a>
+      <a href="http://reference.wolfram.com/language/WaveletWare/guide/List of Functions - Alphabetical.html">List of Functions - Alphabetical</a>
+     </li>
+    </ul>
+   </div>
+  </div>
+ </div>
+</div>
+</div><!-- /wrapper -->
+
+	
+</div>
+
+
+</body>
+		 </html>

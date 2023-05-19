@@ -1,0 +1,5 @@
+<pre name='i_7_in' id='i_7_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;benches.png&quot;;
+A = ImageRead[file, Resize -&gt; {256, 384}];
+wt = HWT[A, NumIterations -&gt; 3];
+wtlist = WaveletMatrixToList[wt, NumIterations -&gt; 3];
+Map[Dimensions, wtlist]</pre><div class='IFU'><a name='346686057'></a>http://wolfram.com/xid/0bgs8pq6xf2jh4szo9r0zq50s76aii-f0oyyj</div>

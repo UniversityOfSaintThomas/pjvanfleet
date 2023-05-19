@@ -1,0 +1,355 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     11646,        347]
+NotebookOptionsPosition[      9255,        285]
+NotebookOutlinePosition[      9599,        300]
+CellTagsIndexPosition[      9556,        297]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Example 2.8 (Computing Determinants)", "Section",
+ CellChangeTimes->{{3.6747630292811513`*^9, 3.6747630349011593`*^9}, {
+  3.6997856107657094`*^9, 3.6997856112881594`*^9}, {3.7269209667064204`*^9, 
+  3.7269209752348704`*^9}},ExpressionUUID->"28d90633-8e30-4fda-bccf-\
+3ceab9f2484f"],
+
+Cell["Compute the determinants of the given matrices.", "Text",
+ CellChangeTimes->{{3.674763040111196*^9, 3.67476307732425*^9}, {
+  3.726921179003571*^9, 
+  3.726921187451895*^9}},ExpressionUUID->"f9cc2c7a-f895-48c9-be6d-\
+3eea5bc31c7b"],
+
+Cell[CellGroupData[{
+
+Cell["Reference.", "Subsubsection",
+ CellChangeTimes->{{3.6747631102003517`*^9, 
+  3.6747631125733557`*^9}},ExpressionUUID->"aa944bba-15e0-474c-88a6-\
+b5fd8e311380"],
+
+Cell["\<\
+The material for this lab is covered in Section 2.2 of the book \
+\[OpenCurlyDoubleQuote]Discrete Wavelet Transformations: An Elementary \
+Approach with Applications, 2nd Edition,\[CloseCurlyDoubleQuote] by Patrick J \
+Van Fleet.\
+\>", "Text",
+ CellChangeTimes->{{3.674763119565366*^9, 3.6747631649004583`*^9}, {
+  3.674763293323564*^9, 3.674763311554607*^9}, {3.6997856290190563`*^9, 
+  3.699785638548086*^9}, {3.72692103296169*^9, 
+  3.726921034949597*^9}},ExpressionUUID->"4fc05b5f-f8ca-49d3-85b8-\
+201b164b7ab4"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["WaveletWare Commands Used in This Notebook", "Subsubsection",
+ CellChangeTimes->{{3.6747417571916847`*^9, 3.674741765831501*^9}, {
+  3.6747418595935683`*^9, 
+  3.6747419193671017`*^9}},ExpressionUUID->"d98532c0-d60e-41b6-a02f-\
+bc442dcba737"],
+
+Cell["None", "Text",
+ CellChangeTimes->{{3.6747419216613054`*^9, 3.6747419222229066`*^9}, 
+   3.6747633351709576`*^9, {3.7269211922041335`*^9, 
+   3.726921194172139*^9}},ExpressionUUID->"46bd72a8-3a60-4f0c-adc9-\
+887d86dab7b0"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Solution.", "Subsubsection",
+ CellChangeTimes->{{3.7269212154490824`*^9, 
+  3.7269212196290345`*^9}},ExpressionUUID->"b16093b5-3cf1-4b6d-96c7-\
+71ee84647ccc"],
+
+Cell[TextData[{
+ "The matrices for the example are contained in the cell below.  The symbols \
+I, C, E and D are protected.  Note that we can define the identity matrix \
+using the command ",
+ StyleBox["IdentityMatrix",
+  FontWeight->"Bold"],
+ ".  The Mathematica command ",
+ StyleBox["Map",
+  FontWeight->"Bold"],
+ " allows us to compute several determinants at once."
+}], "Text",
+ CellChangeTimes->{{3.7269212255097017`*^9, 3.726921236141966*^9}, {
+  3.7269213516854134`*^9, 3.726921381812497*^9}, {3.7269215367039423`*^9, 
+  3.726921560164522*^9}},ExpressionUUID->"f3485074-71ee-41c2-b5c0-\
+c237ead9fe64"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"A", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"1", ",", "4"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"2", ",", "8"}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Id", "=", 
+   RowBox[{"IdentityMatrix", "[", "2", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"B", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"-", "2"}], ",", "1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"3", ",", "5"}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"C1", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"-", "2"}], ",", "1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"6", ",", "10"}], "}"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"E1", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2", ",", "0"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"4", ",", "1"}], "}"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"D1", "=", 
+   RowBox[{"B", ".", "E1"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Map", "[", 
+  RowBox[{"MatrixForm", ",", 
+   RowBox[{"{", 
+    RowBox[{"A", ",", "Id", ",", "B", ",", "C1", ",", "E1", ",", "D1"}], 
+    "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.7269212375604877`*^9, 
+  3.7269213400037394`*^9}},ExpressionUUID->"81c44930-b31d-4b78-b19a-\
+a9175e105a62"],
+
+Cell[TextData[{
+ "It is easy to compute determinants in Mathematica.  The command is ",
+ StyleBox["Det",
+  FontWeight->"Bold"],
+ ".  For (a)-(d) we have the following determinants."
+}], "Text",
+ CellChangeTimes->{{3.72692139373305*^9, 3.726921405381525*^9}, {
+  3.726921446039153*^9, 
+  3.7269214578960695`*^9}},ExpressionUUID->"56a28542-bcb5-44e6-b611-\
+70598f6865d6"],
+
+Cell[BoxData[
+ RowBox[{"Map", "[", 
+  RowBox[{"Det", ",", 
+   RowBox[{"{", 
+    RowBox[{"A", ",", "Id", ",", "B", ",", "C1"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.7269214597603903`*^9, 
+  3.726921474297532*^9}},ExpressionUUID->"69502ca7-b459-4fd0-969d-\
+3c749d858bf5"],
+
+Cell[TextData[{
+ "Note that the ",
+ StyleBox["C1",
+  FontWeight->"Bold"],
+ " is obtained from ",
+ StyleBox["B",
+  FontWeight->"Bold"],
+ " by doubling the last row.  It is a property of determinants that the \
+determinant of ",
+ StyleBox["C1",
+  FontWeight->"Bold"],
+ " is twice that of ",
+ StyleBox["B",
+  FontWeight->"Bold"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.7269214780111847`*^9, 
+  3.726921518106738*^9}},ExpressionUUID->"b797225a-86e4-4e3c-9e2f-\
+8dfe4c89b51a"],
+
+Cell["For (e) we do the following computations.", "Text",
+ CellChangeTimes->{{3.726921568348463*^9, 
+  3.7269215786203475`*^9}},ExpressionUUID->"ae7db5eb-45b7-487b-b602-\
+6705c706ed81"],
+
+Cell[BoxData[{
+ RowBox[{"Det", "[", "D1", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Det", "[", "B", "]"}], "*", 
+  RowBox[{"Det", "[", "E1", "]"}]}]}], "Input",
+ CellChangeTimes->{{3.726921581065353*^9, 
+  3.726921589613989*^9}},ExpressionUUID->"fce6f879-3fe2-4c5c-aa25-\
+426f9b0a9d0e"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Things to Try.", "Subsubsection",
+ CellChangeTimes->{{3.7269217001092863`*^9, 
+  3.726921702135641*^9}},ExpressionUUID->"457544b9-a7e2-42f4-849d-\
+4681f9e57b3d"],
+
+Cell[TextData[{
+ "You can use Mathematica to verify Proposition 2.2 for particular matrices \
+or even general matrices.  \n\nHere is some code to verify Proposition \
+2.2(a).  The Mathematica command ",
+ StyleBox["Array",
+  FontWeight->"Bold"],
+ " can be used to generate generic matrices.  It is best to use ",
+ StyleBox["Clear",
+  FontWeight->"Bold"],
+ " to make sure the element variable names are free of any values."
+}], "Text",
+ CellChangeTimes->{{3.726921886766803*^9, 3.726921951328703*^9}, {
+  3.7269223112295513`*^9, 3.726922312045989*^9}, {3.7269228772141576`*^9, 
+  3.7269229164384003`*^9}},ExpressionUUID->"fc9cdb5d-f654-42ee-9a59-\
+30c53facd79d"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Clear", "[", 
+   RowBox[{"a", ",", "b"}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"A", "=", 
+   RowBox[{"Array", "[", 
+    RowBox[{"a", ",", 
+     RowBox[{"{", 
+      RowBox[{"2", ",", "2"}], "}"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"B", "=", 
+   RowBox[{"Array", "[", 
+    RowBox[{"b", ",", 
+     RowBox[{"{", 
+      RowBox[{"2", ",", "2"}], "}"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Map", "[", 
+  RowBox[{"MatrixForm", ",", 
+   RowBox[{"{", 
+    RowBox[{"A", ",", "B"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.7269219861570735`*^9, 
+  3.726922051582959*^9}},ExpressionUUID->"d3b2bee9-5415-4f08-8c63-\
+98cad4bf29d5"],
+
+Cell["\<\
+We can use the Simplify or the Expand command to verify the property.\
+\>", "Text",
+ CellChangeTimes->{{3.7269223200141077`*^9, 
+  3.7269223442708216`*^9}},ExpressionUUID->"a02a795d-eff0-4a90-863e-\
+6a864aabfea3"],
+
+Cell[BoxData[{
+ RowBox[{"Simplify", "[", 
+  RowBox[{
+   RowBox[{"Det", "[", 
+    RowBox[{"A", ".", "B"}], "]"}], "-", 
+   RowBox[{
+    RowBox[{"Det", "[", "A", "]"}], "*", 
+    RowBox[{"Det", "[", "B", "]"}]}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Expand", "[", 
+  RowBox[{
+   RowBox[{"Det", "[", 
+    RowBox[{"A", ".", "B"}], "]"}], "-", 
+   RowBox[{
+    RowBox[{"Det", "[", "A", "]"}], "*", 
+    RowBox[{"Det", "[", "B", "]"}]}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.726922060849872*^9, 3.7269221110788608`*^9}, {
+  3.726922149186141*^9, 3.726922177647026*^9}, {3.7269222130670137`*^9, 
+  3.7269223530396304`*^9}},ExpressionUUID->"80e7c7e8-039c-47f1-92a1-\
+bb6d094e2069"],
+
+Cell["\<\
+You should be able to use the above code to verify property (b).  To prove \
+(d), try writing B as a product of a scaled identity matrix and A (the order \
+of multiplication will matter).  You can compute the determinant of the \
+scaled identity matrix using Definition 2.13 and then property (a) to \
+complete the proof.\
+\>", "Text",
+ CellChangeTimes->{{3.7269224375870852`*^9, 
+  3.7269225448074017`*^9}},ExpressionUUID->"60047e0c-39df-4801-a7e8-\
+1003d3390668"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{759, 678},
+WindowMargins->{{Automatic, 511}, {Automatic, 61}},
+FrontEndVersion->"11.1 for Microsoft Windows (64-bit) (April 18, 2017)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 288, 4, 70, "Section", "ExpressionUUID" -> \
+"28d90633-8e30-4fda-bccf-3ceab9f2484f"],
+Cell[871, 28, 237, 4, 30, "Text", "ExpressionUUID" -> \
+"f9cc2c7a-f895-48c9-be6d-3eea5bc31c7b"],
+Cell[CellGroupData[{
+Cell[1133, 36, 165, 3, 39, "Subsubsection", "ExpressionUUID" -> \
+"aa944bba-15e0-474c-88a6-b5fd8e311380"],
+Cell[1301, 41, 526, 10, 49, "Text", "ExpressionUUID" -> \
+"4fc05b5f-f8ca-49d3-85b8-201b164b7ab4"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1864, 56, 248, 4, 39, "Subsubsection", "ExpressionUUID" -> \
+"d98532c0-d60e-41b6-a02f-bc442dcba737"],
+Cell[2115, 62, 227, 4, 30, "Text", "ExpressionUUID" -> \
+"46bd72a8-3a60-4f0c-adc9-887d86dab7b0"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2379, 71, 164, 3, 39, "Subsubsection", "ExpressionUUID" -> \
+"b16093b5-3cf1-4b6d-96c7-71ee84647ccc"],
+Cell[2546, 76, 608, 14, 68, "Text", "ExpressionUUID" -> \
+"f3485074-71ee-41c2-b5c0-c237ead9fe64"],
+Cell[3157, 92, 1467, 49, 145, "Input", "ExpressionUUID" -> \
+"81c44930-b31d-4b78-b19a-a9175e105a62"],
+Cell[4627, 143, 369, 9, 49, "Text", "ExpressionUUID" -> \
+"56a28542-bcb5-44e6-b611-70598f6865d6"],
+Cell[4999, 154, 280, 7, 30, "Input", "ExpressionUUID" -> \
+"69502ca7-b459-4fd0-969d-3c749d858bf5"],
+Cell[5282, 163, 471, 18, 49, "Text", "ExpressionUUID" -> \
+"b797225a-86e4-4e3c-9e2f-8dfe4c89b51a"],
+Cell[5756, 183, 185, 3, 30, "Text", "ExpressionUUID" -> \
+"ae7db5eb-45b7-487b-b602-6705c706ed81"],
+Cell[5944, 188, 296, 7, 50, "Input", "ExpressionUUID" -> \
+"fce6f879-3fe2-4c5c-aa25-426f9b0a9d0e"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6277, 200, 167, 3, 39, "Subsubsection", "ExpressionUUID" -> \
+"457544b9-a7e2-42f4-849d-4681f9e57b3d"],
+Cell[6447, 205, 660, 14, 106, "Text", "ExpressionUUID" -> \
+"fc9cdb5d-f654-42ee-9a59-30c53facd79d"],
+Cell[7110, 221, 726, 22, 88, "Input", "ExpressionUUID" -> \
+"d3b2bee9-5415-4f08-8c63-98cad4bf29d5"],
+Cell[7839, 245, 223, 5, 30, "Text", "ExpressionUUID" -> \
+"a02a795d-eff0-4a90-863e-6a864aabfea3"],
+Cell[8065, 252, 684, 18, 50, "Input", "ExpressionUUID" -> \
+"80e7c7e8-039c-47f1-92a1-bb6d094e2069"],
+Cell[8752, 272, 475, 9, 87, "Text", "ExpressionUUID" -> \
+"60047e0c-39df-4801-a7e8-1003d3390668"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

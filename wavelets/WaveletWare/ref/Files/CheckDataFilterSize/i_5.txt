@@ -1,0 +1,5 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>&lt;&lt; WaveletWare`
+v = Range[16];
+h = Coif[2];
+iterations = 2;
+CheckDataFilterSize[First[CheckData[v]], v, iterations, h]</pre><div class='IFU'><a name='66050118'></a>http://wolfram.com/xid/0cxyxq3bqeau0xyde4mcpyet3td06-bdlyvs</div>

@@ -1,0 +1,5 @@
+<pre name='i_27_in' id='i_27_in' class='IFT'>f = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;car.png&quot;;
+A = ImageRead[f, Resize -&gt; {128, 192}];
+ImagePlot[A]
+wt = WT[A, Coif[1]];
+WaveletPlot[wt]</pre><div class='IFU'><a name='663816461'></a>http://wolfram.com/xid/0kmsg876k74fv7tus4gahxj5adn8b2m3ovcixzmeb-k9h6cf</div>

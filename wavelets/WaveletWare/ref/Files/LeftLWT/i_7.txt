@@ -1,0 +1,4 @@
+<pre name='i_7_in' id='i_7_in' class='IFT'>A = RandomInteger[{0, 10}, {8, 8}];
+MatrixForm[A]
+LeftLWT[A] // MatrixForm
+LeftLWT[A, IntegerMap -&gt; True] // MatrixForm</pre><div class='IFU'><a name='100346267'></a>http://wolfram.com/xid/0gcihsaxmz0qthvk2tp8vv-bx01yl</div>

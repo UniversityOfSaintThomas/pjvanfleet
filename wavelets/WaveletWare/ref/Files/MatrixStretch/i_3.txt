@@ -1,0 +1,3 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>A = RandomInteger[{0, 20}, {50, 50}];
+ImagePlot[A]
+ImagePlot[MatrixStretch[A]]</pre><div class='IFU'><a name='127278702'></a>http://wolfram.com/xid/0yi64acvo474e4ng2mx6va-cd2a5s</div>

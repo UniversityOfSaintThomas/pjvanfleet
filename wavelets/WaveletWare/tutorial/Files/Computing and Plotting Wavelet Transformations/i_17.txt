@@ -1,0 +1,9 @@
+<pre name='i_17_in' id='i_17_in' class='IFT'>(* Symbolic representation of the Daubechies filter of length 4 *)
+h = {1 + Sqrt[3], 3 + Sqrt[3], 3 - Sqrt[3], 1 - Sqrt[3]}/4/Sqrt[2] // 
+   Simplify;
+Daub[4] == h
+W = WaveletMatrix[h, {8, 8}];
+MatrixForm[W]
+v = Range[8]^2;
+W.v // N
+WT[v, Daub[4]]</pre><div class='IFU'><a name='220012217'></a>http://wolfram.com/xid/0kmsg876k74fv7tus4gahxj5adn8b2m3ovcixzmeb-dw9wsr</div>

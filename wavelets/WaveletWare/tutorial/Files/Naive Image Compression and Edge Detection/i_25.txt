@@ -1,0 +1,8 @@
+<pre name='i_25_in' id='i_25_in' class='IFT'>k = MapThread[PercentCE[#1, #2] &amp;, {ce, {.995, .95, .95}}]
+Print[&quot;Each channel consists of &quot;, r*c, &quot; pixels.&quot;];
+MapThread[
+  Print[&quot;For the &quot;, #1, &quot; channel, we keep the &quot;, #2, 
+    &quot; largest and convert the remaining &quot;, r*c - #2, 
+    &quot; to zero.&quot;] &amp;, {{&quot;Y&quot;, &quot;Cb&quot;, &quot;Cr&quot;}, k}];
+newwt = MapThread[Round[QuantizeCE[#1, #2]] &amp;, {wt, k}];
+Map[WaveletPlot[#, NumIterations -&gt; 3] &amp;, newwt]</pre><div class='IFU'><a name='511350294'></a>http://wolfram.com/xid/0ck2bt1tgpszi5qmumv90y9mftkdg9nq1q0ukjlzbu-iqqao4</div>

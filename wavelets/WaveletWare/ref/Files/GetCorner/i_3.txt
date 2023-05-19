@@ -1,0 +1,4 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>A = RandomInteger[{0, 10}, {8, 8}];
+MatrixForm[A]
+B = GetCorner[A, {2, 3}];
+MatrixForm[B]</pre><div class='IFU'><a name='279599564'></a>http://wolfram.com/xid/0vt7gyclbhsc2k90meuvlxh-ewq2ou</div>

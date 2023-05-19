@@ -1,0 +1,2 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>h = Daub[4];
+CheckFilter[h]</pre><div class='IFU'><a name='179477156'></a>http://wolfram.com/xid/0k18vmbfsv1bofr5bpvxwru-c843qu</div>

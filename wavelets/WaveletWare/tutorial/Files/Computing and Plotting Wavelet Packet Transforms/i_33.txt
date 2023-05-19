@@ -1,0 +1,6 @@
+<pre name='i_33_in' id='i_33_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;cups.png&quot;;
+A = ImageRead[file, Resize -&gt; {256, 384}];
+wt = WPTFull[A, Daub[4], NumIterations -&gt; 2];
+FullWaveletPlot[wt, PacketPlot -&gt; True] 
+FullWaveletPlot[wt, PacketPlot -&gt; True, PlotTogether -&gt; True]
+</pre><div class='IFU'><a name='304690260'></a>http://wolfram.com/xid/0iglzsj6g5gr1t4ex14c4bsar4ymys4uuo5d2m08201-fbousm</div>

@@ -1,0 +1,11 @@
+<pre name='i_7_in' id='i_7_in' class='IFT'>n = 40;
+v = Range[n];
+ListPlot[v, Ticks -&gt; {Range[0, n, n/4], Range[-1/2, 1/2]}, 
+ PlotLabel -&gt; &quot;Data Samples&quot;]
+iterations = 3;
+wptfull = WPTFull[v, SplineFilters[2, 2], NumIterations -&gt; iterations];
+GraphicsGrid[
+ Partition[FullWaveletVectorPlot[wptfull, PacketPlot -&gt; True], 2], 
+ ImageSize -&gt; 400]
+tree = BestBasisTree[wptfull, CostFunction -&gt; NumberNonzero]
+ShowBestBasis[tree]</pre><div class='IFU'><a name='498875522'></a>http://wolfram.com/xid/0ejjx9peoqvmt3kgd6isjkq8s-ijaw3o</div>

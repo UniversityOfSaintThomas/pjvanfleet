@@ -1,0 +1,7 @@
+<pre name='i_39_in' id='i_39_in' class='IFT'>f = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;cups.png&quot;;
+A = ImageRead[f, Resize -&gt; {128, 192}];
+ImagePlot[A]
+MapThread[ImagePlot[#1, ChannelColor -&gt; #2] &amp;, {A, {Red, Green, Blue}}]
+wt = HWT[A];
+WaveletPlot[wt]
+WaveletPlot[wt, PlotTogether -&gt; True]</pre><div class='IFU'><a name='56621111'></a>http://wolfram.com/xid/0kmsg876k74fv7tus4gahxj5adn8b2m3ovcixzmeb-7zvex</div>

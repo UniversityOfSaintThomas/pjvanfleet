@@ -1,0 +1,13 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>g[t_] := 4*Sin[4 Pi t] - Sign[t - .3] - Sign[.72 - t];
+{sigma, n} = {.35, 1000};
+y = g[Range[0, 1 - 1/n, 1/n]] + WhiteNoise[n, sigma];
+ListPlot[y, PlotLabel -&gt; &quot;Noisy Data&quot;, 
+ Ticks -&gt; {Range[0, n, n/4], Range[-4, 4, 2]}]
+highpass = Drop[HWT[y], Length[y]/2];
+sigmahat = MAD[highpass]/.6745;
+lambda = UniversalThreshold[highpass, sigmahat];
+Print[&quot;\nThe noise estimate is &quot;, sigmahat, 
+  &quot; and the universal threshold value is &quot;, lambda, &quot;.\n&quot;];
+newy = WaveletShrinkage[y, Haar[], lambda, NumIterations -&gt; 3];
+ListPlot[newy, PlotLabel -&gt; &quot;Denoised Data&quot;, 
+ Ticks -&gt; {Range[0, n, n/4], Range[-4, 4, 2]}]</pre><div class='IFU'><a name='61495533'></a>http://wolfram.com/xid/0o7wljmoqmy1xhv3k3eghjevz8pbzu4x-bawcjj</div>

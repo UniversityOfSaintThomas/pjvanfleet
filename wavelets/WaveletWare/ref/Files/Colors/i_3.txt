@@ -1,0 +1,6 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>&lt;&lt; WaveletWare`
+v = Range[32];
+wt = HWT[v, NumIterations -&gt; 4];
+WaveletVectorPlot[wt, NumIterations -&gt; 4, ImageSize -&gt; 400]
+WaveletVectorPlot[wt, NumIterations -&gt; 4, 
+ Colors -&gt; {Red, Green, Blue, Orange, Brown}, ImageSize -&gt; 400]</pre><div class='IFU'><a name='148308024'></a>http://wolfram.com/xid/0iwz6b8tg2hnj68raba-cqk1hm</div>

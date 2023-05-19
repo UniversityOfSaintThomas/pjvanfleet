@@ -1,0 +1,4 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>v = Range[80];
+mx = MaxIts[v];
+iterations = 3;
+CheckIterations[iterations, mx]</pre><div class='IFU'><a name='48147594'></a>http://wolfram.com/xid/0bmr3yafg3z5yjy0nyqiger-2x87g</div>

@@ -1,0 +1,11 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>g[t_] := 4 Sin[4 Pi t] - Sign[t - .3] - Sign[.72 - t];
+{sigma, n} = {.35, 1000};
+y = g[Range[0, 1 - 1/n, 1/n]] + WhiteNoise[n, sigma];
+ListPlot[y, PlotLabel -&gt; &quot;Noisy Data&quot;, 
+ Ticks -&gt; {Range[0, n, n/4], Range[-4, 4, 2]}]
+highpass = Drop[HWT[y, Orthogonal -&gt; True], n/2];
+(* Hampel&apos;s noise estimate - see related links *)
+sigmahat = NoiseEstimate[highpass];
+lambda = UniversalThreshold[highpass, sigmahat];
+Print[&quot;The noise estimate is &quot;, sigmahat, 
+  &quot; and the universal threshold value is &quot;, lambda, &quot;.&quot;];</pre><div class='IFU'><a name='900450812'></a>http://wolfram.com/xid/0o7wljmoqmy1xhv3k3eghjevz8pbzu4x-o6d2ku</div>

@@ -1,0 +1,9 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;pigeon.png&quot;;
+A = ImageRead[file, Resize -&gt; {256, 384}];
+ImagePlot[A]
+lwt = LeftBWT[A, SplineFilters[3, 3]];
+WaveletPlot[lwt, PlotType -&gt; Left]
+iwt = LeftInverseBWT[lwt, SplineFilters[3, 3]];
+ImagePlot[iwt]
+(* Mean Squared Error *) 
+MSE[A, iwt]</pre><div class='IFU'><a name='35045565'></a>http://wolfram.com/xid/04j60t5tk393i6ilni7vwa2fwb-u5fl7</div>

@@ -1,0 +1,4 @@
+<pre name='i_61_in' id='i_61_in' class='IFT'>W = WaveletMatrix[SplineFilters[2, 2], {8, 8}];
+Print[&quot;W = &quot;, MatrixForm[W], &quot;.&quot;];
+Print[&quot;The transpose of the inverse of W is &quot;, 
+  MatrixForm[Transpose[Inverse[W]]]];</pre><div class='IFU'><a name='43545822'></a>http://wolfram.com/xid/0kmsg876k74fv7tus4gahxj5adn8b2m3ovcixzmeb-z7mgg</div>

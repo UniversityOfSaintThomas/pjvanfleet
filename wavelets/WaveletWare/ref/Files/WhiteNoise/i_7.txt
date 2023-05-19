@@ -1,0 +1,8 @@
+<pre name='i_7_in' id='i_7_in' class='IFT'>g[t_] := 4 Sin[4 Pi t] - Sign[t - .3] - Sign[.72 - t];
+{sigma, n} = {.35, 1000};
+y = g[Range[0, 1 - 1/n, 1/n]];
+noisy = y + WhiteNoise[n, sigma];
+ListPlot[y, Ticks -&gt; {Range[0, 1000, 200], Range[-2, 2]}, 
+ PlotLabel -&gt; &quot;Signal&quot;]
+ListPlot[noisy, Ticks -&gt; {Range[0, 1000, 200], Range[-2, 2]}, 
+ PlotLabel -&gt; &quot;Noise Added to Signal&quot;]</pre><div class='IFU'><a name='105529154'></a>http://wolfram.com/xid/0cohy0yjie4alfh88axg7uvy-b0343o</div>

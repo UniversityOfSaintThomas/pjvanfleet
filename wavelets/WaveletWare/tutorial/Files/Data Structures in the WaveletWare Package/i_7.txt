@@ -1,0 +1,2 @@
+<pre name='i_7_in' id='i_7_in' class='IFT'>tree = WaveletTree[3]
+ShowBestBasis[tree]</pre><div class='IFU'><a name='129347472'></a>http://wolfram.com/xid/0dw3hmeolb456i3ocz9bqdb7htqim7p8o1p7qzwg41bm-cfanfm</div>

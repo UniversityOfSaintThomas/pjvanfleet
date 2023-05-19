@@ -1,0 +1,296 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     10183,        288]
+NotebookOptionsPosition[      7893,        228]
+NotebookOutlinePosition[      8237,        243]
+CellTagsIndexPosition[      8194,        240]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Example 2.1 (Inner Products)", "Section",
+ CellChangeTimes->{{3.6747400799154887`*^9, 3.6747400868855157`*^9}, {
+  3.6747401192115917`*^9, 3.674740124362601*^9}, {3.674823639171709*^9, 
+  3.674823640303733*^9}, {3.6748236819375725`*^9, 
+  3.674823684099594*^9}},ExpressionUUID->"2a960f41-dd5e-404f-9845-\
+c733c1c3b84c"],
+
+Cell["Compute the following inner products for the given vectors.", "Text",
+ CellChangeTimes->{{3.6747401116573763`*^9, 3.6747401462228427`*^9}, {
+  3.674823687935635*^9, 
+  3.6748237135069*^9}},ExpressionUUID->"c4130153-3870-45cf-9f85-47451070438a"],
+
+Cell[CellGroupData[{
+
+Cell["Reference.", "Subsubsection",
+ CellChangeTimes->{{3.6747631102003517`*^9, 
+  3.6747631125733557`*^9}},ExpressionUUID->"e8a4c6f4-fb8a-4e9b-9b32-\
+d8844918efc2"],
+
+Cell["\<\
+The material for this lab is covered in Section 2.1 of the book \
+\[OpenCurlyDoubleQuote]Discrete Wavelet Transformations: An Elementary \
+Approach with Applications, 2nd Edition,\[CloseCurlyDoubleQuote] by Patrick J \
+Van Fleet.\
+\>", "Text",
+ CellChangeTimes->{{3.674763119565366*^9, 3.6747631649004583`*^9}, {
+  3.674763293323564*^9, 3.674763311554607*^9}, {3.6997856290190563`*^9, 
+  3.699785638548086*^9}, {3.72692103296169*^9, 
+  3.7269210612868795`*^9}},ExpressionUUID->"2e07ad8c-01f6-4d80-8b1b-\
+dfcc4af76611"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["WaveletWare Commands Used in This Notebook", "Subsubsection",
+ CellChangeTimes->{{3.6747417571916847`*^9, 3.674741765831501*^9}, {
+  3.6747418595935683`*^9, 
+  3.6747419193671017`*^9}},ExpressionUUID->"cc335b12-c32b-412f-8173-\
+3999b9b8d9cf"],
+
+Cell["None.", "Text",
+ CellChangeTimes->{{3.6747419216613054`*^9, 
+  3.6747419222229066`*^9}},ExpressionUUID->"b7a7ec29-112d-4374-9413-\
+22cf582658c7"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Solution.", "Subsubsection",
+ CellChangeTimes->{{3.6747401847284007`*^9, 
+  3.6747401899458103`*^9}},ExpressionUUID->"41939a15-7128-4c1f-b906-\
+94572262c0e0"],
+
+Cell[TextData[{
+ "Vectors are defined as ",
+ StyleBox["lists",
+  FontSlant->"Italic"],
+ " in Mathematica.  Lists are enclosed by { }.  The vectors in Example 2.1a \
+are given below."
+}], "Text",
+ CellChangeTimes->{{3.674740194805643*^9, 3.6747402104415007`*^9}, {
+  3.6747402441785665`*^9, 3.6747402579060516`*^9}, {3.6748237198419676`*^9, 
+  3.6748237584134207`*^9}},ExpressionUUID->"0671264d-db52-4bc3-b5aa-\
+6101c18df6c1"],
+
+Cell[BoxData[{
+ RowBox[{"v", "=", 
+  RowBox[{"{", 
+   RowBox[{"1", ",", "4", ",", 
+    RowBox[{"-", "1"}]}], "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{"w", "=", 
+  RowBox[{"{", 
+   RowBox[{"3", ",", "2", ",", 
+    RowBox[{"-", "2"}]}], "}"}]}]}], "Input",
+ CellChangeTimes->{{3.674740213774307*^9, 3.6747402382289553`*^9}, {
+  3.6747413338552017`*^9, 3.674741342364217*^9}, {3.6747420276328416`*^9, 
+  3.6747420280550423`*^9}, {3.674823760720446*^9, 3.674823773168619*^9}, {
+  3.674824115899665*^9, 
+  3.674824116286677*^9}},ExpressionUUID->"1fd09811-cb84-4747-a394-\
+98ddc9f136d3"],
+
+Cell[TextData[{
+ "The inner product can be computed using the ",
+ StyleBox["Dot",
+  FontWeight->"Bold"],
+ " command or simply by using a period ( . ) between the two vectors:"
+}], "Text",
+ CellChangeTimes->{{3.674740429278332*^9, 3.674740491840477*^9}, {
+  3.674823777188659*^9, 3.6748237857737494`*^9}, {3.6748238276532345`*^9, 
+  3.67482384430046*^9}},ExpressionUUID->"9f880fa6-8ebf-4429-8772-\
+8d538865e9be"],
+
+Cell[BoxData[{
+ RowBox[{"Dot", "[", 
+  RowBox[{"v", ",", "w"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"v", ".", "w"}]}], "Input",
+ CellChangeTimes->{{3.674823788868782*^9, 3.6748237985098815`*^9}, {
+  3.674823845890476*^9, 3.674823850310524*^9}, {3.6748241176547184`*^9, 
+  3.6748241178247232`*^9}},ExpressionUUID->"ca6f1a86-31b0-4698-909c-\
+d2d5ef9916d8"],
+
+Cell[TextData[{
+ "Warning:  The asterisk ( * ) used for multiplication computes the \
+element-wise products of ",
+ StyleBox["v",
+  FontSlant->"Italic"],
+ " and ",
+ StyleBox["w",
+  FontSlant->"Italic"],
+ ".  This is not what we want!!"
+}], "Text",
+ CellChangeTimes->{{3.6748238602496614`*^9, 
+  3.674823900818225*^9}},ExpressionUUID->"0940d228-54c6-44ad-875e-\
+9720dbc2ab1f"],
+
+Cell[BoxData[
+ RowBox[{"v", "*", "w"}]], "Input",
+ CellChangeTimes->{{3.6747404958812847`*^9, 3.6747405129311624`*^9}, {
+  3.6747413498748302`*^9, 3.674741350077631*^9}, {3.674742031570049*^9, 
+  3.674742031694849*^9}, {3.6748239102464457`*^9, 3.674823911366457*^9}, {
+  3.674824119175765*^9, 
+  3.6748241193057685`*^9}},ExpressionUUID->"bd68236e-9e6d-44fb-8400-\
+0de6e2f8d58c"],
+
+Cell["\<\
+Here are the vectors in Example 2.1b and their inner product.\
+\>", "Text",
+ CellChangeTimes->{{3.6747405169065742`*^9, 3.674740538354285*^9}, {
+  3.6748239255116296`*^9, 
+  3.674823940515787*^9}},ExpressionUUID->"667a0159-70bb-440a-b3f9-\
+a4ac73e29bf6"],
+
+Cell[BoxData[{
+ RowBox[{"v", "=", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"-", "1"}], ",", "3"}], "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{"w", "=", 
+  RowBox[{"{", 
+   RowBox[{"6", ",", "2"}], "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{"v", ".", "w"}]}], "Input",
+ CellChangeTimes->{{3.6747405439670963`*^9, 3.674740594232044*^9}, {
+  3.6747414558357*^9, 3.674741470839327*^9}, {3.6747420336146526`*^9, 
+  3.674742033723853*^9}, {3.674823944813831*^9, 3.6748239571839857`*^9}, {
+  3.6748241203918285`*^9, 
+  3.6748241205028324`*^9}},ExpressionUUID->"9ea3a6b2-c12d-441e-aa91-\
+ddabdc80c177"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Things To Try.", "Subsubsection",
+ CellChangeTimes->{{3.674741317287572*^9, 3.674741319527376*^9}, {
+  3.6747419524260297`*^9, 
+  3.674741953872259*^9}},ExpressionUUID->"1547fb8d-8137-481f-9818-\
+63f7b83cdfb7"],
+
+Cell["\<\
+Try defining your own vectors and computing their inner products.  \
+Mathematica has some built-in vectors you can use as well:\
+\>", "Text",
+ CellChangeTimes->{{3.674741356475069*^9, 3.6747414431750774`*^9}, {
+  3.674741476278762*^9, 3.6747415170736356`*^9}, {3.6748239662840796`*^9, 
+  3.674824003645547*^9}},ExpressionUUID->"2a4d40a1-7224-4980-a35d-\
+97d1ddbb4862"],
+
+Cell[BoxData[{
+ RowBox[{"v", "=", 
+  RowBox[{"Range", "[", "6", "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"v", "=", 
+  RowBox[{"Range", "[", 
+   RowBox[{"0", ",", "6"}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"v", "=", 
+  RowBox[{"Range", "[", 
+   RowBox[{
+    RowBox[{"-", "2"}], ",", "8", ",", "2"}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"v", "=", 
+  RowBox[{"Table", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"-", "1"}], ")"}], "^", "k"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"k", ",", "1", ",", "5"}], "}"}]}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"v", "=", 
+  RowBox[{"UnitVector", "[", 
+   RowBox[{"4", ",", "3"}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"v", "=", 
+  RowBox[{"ConstantArray", "[", 
+   RowBox[{"3", ",", "5"}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.6748240064755754`*^9, 3.6748240460170555`*^9}, {
+  3.674824078792511*^9, 3.674824084806695*^9}, {3.6748241226598983`*^9, 
+  3.674824122759901*^9}},ExpressionUUID->"2950e4cf-4867-4d45-a798-\
+c86d7cc090a9"],
+
+Cell["\<\
+Try using these commands to create vectors and compute their inner products.\
+\>", "Text",
+ CellChangeTimes->{{3.674824055900157*^9, 3.674824069012294*^9}, {
+  3.6748244376111965`*^9, 
+  3.674824440153249*^9}},ExpressionUUID->"3b7fe865-9445-491c-bddf-\
+463d0a44a46a"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{759, 678},
+WindowMargins->{{120, Automatic}, {41, Automatic}},
+FrontEndVersion->"11.1 for Microsoft Windows (64-bit) (April 18, 2017)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 325, 5, 70, "Section", "ExpressionUUID" -> \
+"2a960f41-dd5e-404f-9845-c733c1c3b84c"],
+Cell[908, 29, 250, 3, 30, "Text", "ExpressionUUID" -> \
+"c4130153-3870-45cf-9f85-47451070438a"],
+Cell[CellGroupData[{
+Cell[1183, 36, 165, 3, 39, "Subsubsection", "ExpressionUUID" -> \
+"e8a4c6f4-fb8a-4e9b-9b32-d8844918efc2"],
+Cell[1351, 41, 528, 10, 49, "Text", "ExpressionUUID" -> \
+"2e07ad8c-01f6-4d80-8b1b-dfcc4af76611"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1916, 56, 248, 4, 39, "Subsubsection", "ExpressionUUID" -> \
+"cc335b12-c32b-412f-8173-3999b9b8d9cf"],
+Cell[2167, 62, 151, 3, 30, "Text", "ExpressionUUID" -> \
+"b7a7ec29-112d-4374-9413-22cf582658c7"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2355, 70, 164, 3, 39, "Subsubsection", "ExpressionUUID" -> \
+"41939a15-7128-4c1f-b906-94572262c0e0"],
+Cell[2522, 75, 425, 10, 49, "Text", "ExpressionUUID" -> \
+"0671264d-db52-4bc3-b5aa-6101c18df6c1"],
+Cell[2950, 87, 582, 14, 50, "Input", "ExpressionUUID" -> \
+"1fd09811-cb84-4747-a394-98ddc9f136d3"],
+Cell[3535, 103, 411, 9, 49, "Text", "ExpressionUUID" -> \
+"9f880fa6-8ebf-4429-8772-8d538865e9be"],
+Cell[3949, 114, 358, 7, 50, "Input", "ExpressionUUID" -> \
+"ca6f1a86-31b0-4698-909c-d2d5ef9916d8"],
+Cell[4310, 123, 374, 12, 49, "Text", "ExpressionUUID" -> \
+"0940d228-54c6-44ad-875e-9720dbc2ab1f"],
+Cell[4687, 137, 378, 7, 30, "Input", "ExpressionUUID" -> \
+"bd68236e-9e6d-44fb-8400-0de6e2f8d58c"],
+Cell[5068, 146, 264, 6, 30, "Text", "ExpressionUUID" -> \
+"667a0159-70bb-440a-b3f9-a4ac73e29bf6"],
+Cell[5335, 154, 592, 14, 69, "Input", "ExpressionUUID" -> \
+"9ea3a6b2-c12d-441e-aa91-ddabdc80c177"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5964, 173, 216, 4, 39, "Subsubsection", "ExpressionUUID" -> \
+"1547fb8d-8137-481f-9818-63f7b83cdfb7"],
+Cell[6183, 179, 378, 7, 49, "Text", "ExpressionUUID" -> \
+"2a4d40a1-7224-4980-a35d-97d1ddbb4862"],
+Cell[6564, 188, 1021, 28, 126, "Input", "ExpressionUUID" -> \
+"2950e4cf-4867-4d45-a798-c86d7cc090a9"],
+Cell[7588, 218, 277, 6, 30, "Text", "ExpressionUUID" -> \
+"3b7fe865-9445-491c-bddf-463d0a44a46a"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

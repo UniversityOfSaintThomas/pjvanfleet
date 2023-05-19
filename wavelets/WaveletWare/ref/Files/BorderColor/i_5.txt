@@ -1,0 +1,7 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;benches.png&quot;;
+A = ImageRead[file, Resize -&gt; {256, 384}];
+wt = HWT[A, NumIterations -&gt; 3];
+WaveletRegionPlot[wt, {{3, 1, 1}, {2, 2, 1}}, NumIterations -&gt; 3, 
+ BorderColor -&gt; Green]
+WaveletRegionPlot[wt, {{3, 1, 1}, {2, 2, 1}}, NumIterations -&gt; 3, 
+ BorderColor -&gt; {Red, Orange}]</pre><div class='IFU'><a name='128623387'></a>http://wolfram.com/xid/0cohy0yjie4alfh87yt6j3ry-ceu4p5</div>

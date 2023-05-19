@@ -1,0 +1,5 @@
+<pre name='i_13_in' id='i_13_in' class='IFT'>v = Range[20];
+wt1 = WTFull[v, SplineFilters[2, 2]];
+FullWaveletVectorPlot[wt1, ImageSize -&gt; 300, PointSize -&gt; .02]
+wt2 = WTFull[v, SplineFilters[2, 2], Boundary -&gt; True];
+FullWaveletVectorPlot[wt2, ImageSize -&gt; 300, PointSize -&gt; .02]</pre><div class='IFU'><a name='412457896'></a>http://wolfram.com/xid/0fn9kyau1k5szc07wu9tv6a-g3uot2</div>

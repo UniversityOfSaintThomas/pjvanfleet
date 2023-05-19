@@ -1,0 +1,4 @@
+<pre name='i_11_in' id='i_11_in' class='IFT'>v = Range[32];
+wt1 = WTFull[v, Daub[4]]
+wt2 = WTFull[v, Daub[4], Shift -&gt; 4]
+Map[FullWaveletVectorPlot, {wt1, wt2}]</pre><div class='IFU'><a name='17178511'></a>http://wolfram.com/xid/0fn9kyau1k5szc07wu9tv6a-kiha5</div>

@@ -1,0 +1,25 @@
+<script type="text/javascript" src="../javascript/sub-pages.js"></script><p><a name="147140911"></a><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/PlotTogether.html">PlotTogether</a></span> set to <a href="http://reference.wolfram.com/language/ref/True.html">True</a> may not work if the elements in Iteration are not properly ordered.  For lists of three matrices to be plotted together, <span class="monospace">WaveletPlot</span> partitions the values for Iteration into groups of three and then checks that each group is of the form {{1,<span class="IF"><span class="TI">i</span></span>,<span class="IF"><span class="TI">j</span></span>,<span class="IF"><span class="TI">k</span></span>},{2,<span class="IF"><span class="TI">i</span></span>,<span class="IF"><span class="TI">j</span></span>,<span class="IF"><span class="TI">k</span></span>},{3,<span class="IF"><span class="TI">i</span></span>,<span class="IF"><span class="TI">j</span></span>,<span class="IF"><span class="TI">k</span></span>}}.  An error message might appear even though the elements of Iteration are correct.  In such a case, a simple reordering of the elements in <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/Iteration.html">Iteration</a></span> should work.</p><div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+      <a name="334002426"></a>
+      <img src="Files/WaveletPlot/I_74.gif"
+          height="152"
+          width="454"
+          alt="Click for copyable input" />
+     </div><div id="i_73_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_88.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+  <img src="Files/WaveletPlot/12.gif"
+      height="44"
+      width="454"
+      alt=""
+      class="Message" />
+  <table class="OCell">
+   <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_89.gif" height="66" width="324" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_90.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+ </div>

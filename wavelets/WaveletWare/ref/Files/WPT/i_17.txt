@@ -1,0 +1,5 @@
+<pre name='i_17_in' id='i_17_in' class='IFT'>v = Range[20];
+WPT[v, Haar[], CostFunction -&gt; NumberAboveThreshold, 
+  SecondParameter -&gt; 1.5] // First
+WPT[v, Haar[], CostFunction -&gt; NumberAboveThreshold, 
+  SecondParameter -&gt; 1.5, Computation -&gt; Symbolic] // First</pre><div class='IFU'><a name='18559679'></a>http://wolfram.com/xid/0bsub5sf4gpwe26lzrftnf-lb20x</div>

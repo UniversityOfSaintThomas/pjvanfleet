@@ -1,0 +1,15 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>g[t_] := 4 Sin[4 Pi*t] - Sign[t - .3] - Sign[.72 - t];
+{sigma, n} = {.35, 1024};
+original = g[Range[0, 1 - 1/n, 1/n]];
+ListPlot[original, Ticks -&gt; {Range[0, n, n/4], Range[-4, 4, 2]}, 
+ PlotLabel -&gt; &quot;Original Signal&quot;]
+y = original + WhiteNoise[n, sigma];
+ListPlot[y, Ticks -&gt; {Range[0, n, n/4], Range[-4, 4, 2]}, 
+ PlotLabel -&gt; &quot;Noisy Signal&quot;]
+y1 = VisuShrink[y, Daub[4], NumIterations -&gt; 3];
+ListPlot[y1, Ticks -&gt; {Range[0, n, n/4], Range[-4, 4, 2]}, 
+ PlotLabel -&gt; &quot;ThresholdByLevel False&quot;]
+y2 = VisuShrink[y, Daub[4], NumIterations -&gt; 5];
+ListPlot[y2, Ticks -&gt; {Range[0, n, n/4], Range[-4, 4, 2]}, 
+ PlotLabel -&gt; &quot;ThresholdByLevel True&quot;]
+Map[MSE[y, #] &amp;, {y1, y2}]</pre><div class='IFU'><a name='327084670'></a>http://wolfram.com/xid/0ehhopaecmuq16ssk355letr12p38tq-fo0ufk</div>

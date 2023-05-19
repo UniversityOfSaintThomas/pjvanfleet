@@ -1,0 +1,571 @@
+(************** Content-type: application/mathematica **************
+                     CreatedBy='Mathematica 5.2'
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used with any Mathematica-compatible
+application, such as Mathematica, MathReader or Publicon. The data
+for the notebook starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do
+one of the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the
+  application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing
+the word CacheID, otherwise Mathematica-compatible applications may
+try to use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+*******************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[     14205,        463]*)
+(*NotebookOutlinePosition[     14971,        489]*)
+(*  CellTagsIndexPosition[     14927,        485]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Daubechies Filters", "Title"],
+
+Cell["\<\
+Wavelet Workshop
+June 7-10, 2006
+University of St. Thomas\
+\>", "Subtitle"],
+
+Cell["Objectives", "Subsubtitle"],
+
+Cell[TextData[{
+  "The purpose of this notebook is to introduce you to Daubechies filters and \
+see how they can be used in applications.\n\nThe notebook also contains a \
+module-writing lab that makes up part of ",
+  StyleBox["Computer Session Three",
+    FontWeight->"Bold"],
+  "."
+}], "Text"],
+
+Cell[CellGroupData[{
+
+Cell["WaveletFunctions", "Subsubtitle",
+  InitializationCell->True],
+
+Cell[TextData[{
+  "This cell initializes every time you open the notebook.  It loads the ",
+  StyleBox["Mathematica",
+    FontSlant->"Italic"],
+  " package ",
+  StyleBox["WaveletFunctions",
+    FontFamily->"Courier"],
+  " for use in subsequent computations."
+}], "Text",
+  InitializationCell->True],
+
+Cell[BoxData[{
+    \(<< WaveletFunctions`WaveletFunctions`\), "\n", 
+    \(<< LinearAlgebra`MatrixManipulation`\), "\[IndentingNewLine]", 
+    \(<< Graphics`Graphics`\[IndentingNewLine]\), "\[IndentingNewLine]", 
+    \(\(flashdir = "\<F:/WaveletWorkshop06/Images/\>";\)\), "\
+\[IndentingNewLine]", 
+    \(\(Print["\<The flash drive directory is \>", 
+        flashdir, "\<.\>"];\)\), "\[IndentingNewLine]", 
+    \(\(imgurl = \
+"\<http://cam.mathlab.stthomas.edu/pvf/Math316/TestImages/\>";\)\), "\
+\[IndentingNewLine]", 
+    \(\(Print["\<The URL for images is \>", imgurl, "\<.\>"];\)\)}], "Input",
+  InitializationCell->True]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Help on WaveletFunctions", "Subsubtitle"],
+
+Cell[TextData[{
+  "If you ever need help with ",
+  StyleBox["WaveletFunctions",
+    FontFamily->"Courier"],
+  ", go to ",
+  StyleBox["Help",
+    FontSlant->"Italic"],
+  ", then ",
+  StyleBox["Help Browser",
+    FontSlant->"Italic"],
+  ", and click on ",
+  StyleBox["AddOns & Links",
+    FontSlant->"Italic"],
+  ".  If you scroll down you will find ",
+  StyleBox["WaveletFunctions",
+    FontFamily->"Courier"],
+  ".  "
+}], "Text"],
+
+Cell[CellGroupData[{
+
+Cell["Generating the Daubechies Filters", "Section"],
+
+Cell["\<\
+There is a simple command in WaveletFunctions that gives you access to the \
+Daubechies filters.  The command is called Daub and it takes a single \
+argument that is an even integer.  The first three filters (Daub[2] is the \
+Haar filter!) are returned symbolically while higher order filters are \
+returned numerically.\
+\>", "Text"],
+
+Cell[BoxData[{
+    \(h2 = Daub[2]\), "\[IndentingNewLine]", 
+    \(h4 = Daub[4]\), "\[IndentingNewLine]", 
+    \(h6 = Daub[6]\)}], "Input"],
+
+Cell["\<\
+Let's look at the modulus of the Fourier series of each filter.\
+\>", "Text"],
+
+Cell[BoxData[
+    \(\(H[w_, h_] := 
+        h . Table[E^\((I*k*w)\), {k, 0, Length[h] - 1}];\)\)], "Input"],
+
+Cell[BoxData[{
+    \(\(plt1 = 
+        Plot[Abs[H[w, h2]], {w, 0, Pi}, 
+          Ticks \[Rule] {{0, Pi/2, Pi}, {0, Sqrt[2]}}, 
+          PlotStyle \[Rule] Red];\)\), "\[IndentingNewLine]", 
+    \(\(plt2 = 
+        Plot[Abs[H[w, h4]], {w, 0, Pi}, 
+          Ticks \[Rule] {{0, Pi/2, Pi}, {0, Sqrt[2]}}, 
+          PlotStyle \[Rule] Blue];\)\), "\[IndentingNewLine]", 
+    \(\(plt3 = 
+        Plot[Abs[H[w, h6]], {w, 0, Pi}, 
+          Ticks \[Rule] {{0, Pi/2, Pi}, {0, Sqrt[2]}}, 
+          PlotStyle \[Rule] 
+            Olive];\)\[IndentingNewLine]\), "\[IndentingNewLine]", 
+    \(\(Show[{plt1, plt2, plt3}];\)\), "\[IndentingNewLine]", 
+    \(\)}], "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Wavelet Transforms With Daubechies Filters", "Section"],
+
+Cell["\<\
+The routines WT1D and WT2D can be used with Daubechies filters.  The routines \
+accept the input vector or matrix, the filter h (the routines then create g), \
+and a directive NumIterations.  The transform is returned.\
+\>", "Text"],
+
+Cell[BoxData[{
+    \(\(A = 
+        ReadImage[flashdir <> "\<splash.jpg\>", 
+          PowersOfTwo \[Rule] 3];\)\), "\[IndentingNewLine]", 
+    \(\(ImagePlot[A];\)\)}], "Input"],
+
+Cell[BoxData[{
+    \(\(wt2 = 
+        WT2D[A, N[h2], NumIterations \[Rule] 3];\)\), "\[IndentingNewLine]", 
+    \(\(wt4 = 
+        WT2D[A, N[h4], NumIterations \[Rule] 3];\)\), "\[IndentingNewLine]", 
+    \(\(wt6 = 
+        WT2D[A, N[h6], 
+          NumIterations \[Rule] 
+            3];\)\[IndentingNewLine]\), "\[IndentingNewLine]", 
+    \(\(ce2 = CE[wt2];\)\), "\[IndentingNewLine]", 
+    \(\(ce4 = CE[wt4];\)\), "\[IndentingNewLine]", 
+    \(\(ce6 = CE[wt6];\)\[IndentingNewLine]\), "\[IndentingNewLine]", 
+    \(\(lp1 = 
+        ListPlot[ce2, PlotStyle \[Rule] Red];\)\), "\[IndentingNewLine]", 
+    \(\(lp2 = 
+        ListPlot[ce4, PlotStyle \[Rule] Blue];\)\), "\[IndentingNewLine]", 
+    \(\(lp3 = 
+        ListPlot[ce6, 
+          PlotStyle \[Rule] 
+            Olive];\)\[IndentingNewLine]\), "\[IndentingNewLine]", 
+    \(\(Show[{lp1, lp2, lp3}];\)\)}], "Input"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Computer Session Three", "Title"],
+
+Cell["\<\
+There are two tasks in this computer session.  You will re-visit image \
+compression using Daubechies filters and you will write modules to perform \
+the 1D Daubechies transform and its inverse.\
+\>", "Text"],
+
+Cell[CellGroupData[{
+
+Cell["Task One", "Subtitle"],
+
+Cell["\<\
+Recall in Computer Session One, we performed image compression using the Haar \
+transform.  Actually, we modified the Haar filter so that it would map \
+integers to integers and did compression.
+
+In this task, you will re-visit that exercise, but instead of using the Haar \
+filter, you'll try the Daub4 filter.  Now this filter is not easy to modify \
+so that it maps integers to integers, so we will compute the wavelet \
+transform using Daub4 and then Round the results to integers.  Other than \
+this small change, the compression scheme works just like it did in the first \
+example of the HaarImageCompression notebook.  
+
+You are to cut and paste from that example, but use Daub4 and rounding \
+instead of the modified Haar filter (1,1).  Use the same number of iterations \
+and the same percentage for quantizing.  Are the results better or worse than \
+the Haar filter results?
+
+Repeat the exercise with the Daub6 filter.\
+\>", "Text"],
+
+Cell[BoxData[
+    \( (*\ Put\ your\ Mathematica\ code\ \(\(here\)\(.\)\)\ *) \)], "Input",
+  FontColor->RGBColor[0, 0, 1]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Task Two", "Subtitle"],
+
+Cell["\<\
+In this task, you will write a module that, given a vector and a filter, \
+computes one iteration of the wavelet transform.  Your module should first \
+create the highpass filter from the given lowpass filter and then proceed \
+much like the 1D discrete Haar wavelet transform.  
+
+I have included that module below:\
+\>", "Text"],
+
+Cell[BoxData[
+    \(\(DHWT[v_] := 
+        Module[{h, g, V, lp, hp, y}, \[IndentingNewLine]\t
+          h = {1, 1}; \[IndentingNewLine]\t
+          g = {\(-1\), 1}; \[IndentingNewLine]\t
+          V = Partition[V, 2, 2]; \[IndentingNewLine]\t
+          lp = V . h; \[IndentingNewLine]\thp = V . g; \[IndentingNewLine]\t
+          y = Join[lp, hp]; \[IndentingNewLine]\t
+          Return[Sqrt[2]*y/2];\[IndentingNewLine]];\)\)], "Input"],
+
+Cell["", "Text"],
+
+Cell["Your module will look like this:", "Text"],
+
+Cell[BoxData[
+    \(\(DWT1D[v_, h_] := 
+        Module[\({\  (*Local\ variables\ go\ here*) \ }\)\(,\)\
+\[IndentingNewLine]\t\t (*\ 
+            Mathematica\ commands\ go\ here\ *) \[IndentingNewLine]];\)\)], \
+"Input",
+  FontColor->RGBColor[0, 0, 1]],
+
+Cell[TextData[{
+  "The first thing you'll want to do is create the highpass filter g.  There \
+is a command called ",
+  StyleBox["Reverse",
+    FontWeight->"Bold"],
+  " in ",
+  StyleBox["Mathematica",
+    FontSlant->"Italic"],
+  " and "
+}], "Text"],
+
+Cell[BoxData[
+    \(Table[\((\(-1\))\)^k, {k, 0, Length[h] - 1}]\)], "Text"],
+
+Cell["will produce a list of alterating 1's and -1's.", "Text"],
+
+Cell[TextData[{
+  "The last real trick is refining the parameters in the ",
+  StyleBox["Partition",
+    FontWeight->"Bold"],
+  " command.  It should be clear that you'll want to partition v into lists \
+of length ",
+  StyleBox["Length[h]",
+    FontWeight->"Bold"],
+  " and skip by two, but if you try this on a generic vector, you don't get \
+the wraparound effect you want.\n\nThere is a fourth argument for ",
+  StyleBox["Partition",
+    FontWeight->"Bold"],
+  " that is helpful here.    Copying from help:"
+}], "Text"],
+
+Cell[BoxData[
+    RowBox[{
+      RowBox[{
+        RowBox[{
+          StyleBox["Partition",
+            "MR"], 
+          StyleBox["[",
+            "MR"], 
+          RowBox[{
+            StyleBox["list",
+              "TI"], 
+            StyleBox[",",
+              "MR"], " ", 
+            StyleBox["n",
+              "TI"], 
+            StyleBox[",",
+              "MR"], " ", 
+            StyleBox["d",
+              "TI"], 
+            StyleBox[",",
+              "MR"], " ", 
+            RowBox[{
+              StyleBox["{",
+                "MR"], 
+              RowBox[{
+                FormBox[
+                  SubscriptBox[
+                    StyleBox["k",
+                      "TI"], 
+                    StyleBox["L",
+                      "TI"]],
+                  "TraditionalForm"], 
+                StyleBox[",",
+                  "MR"], " ", 
+                FormBox[
+                  SubscriptBox[
+                    StyleBox["k",
+                      "TI"], 
+                    StyleBox["R",
+                      "TI"]],
+                  "TraditionalForm"]}], 
+              StyleBox["}",
+                "MR"]}]}], 
+          StyleBox["]",
+            "MR"]}], "specifies", " ", "that", " ", "the", " ", "first", " ", 
+        "element", " ", "of", " ", 
+        StyleBox["list",
+          "TI"], 
+        StyleBox[" ",
+          "TI"], "should", " ", "appear", " ", "at", " ", "position", 
+        FormBox[
+          SubscriptBox[
+            StyleBox["k",
+              "TI"], 
+            StyleBox["L",
+              "TI"]],
+          "TraditionalForm"], "in", " ", "the", " ", "first", " ", 
+        "sublist"}], ",", 
+      RowBox[{
+      "and", " ", "the", " ", "last", " ", "element", " ", "of", " ", 
+        StyleBox["list",
+          "TI"], 
+        StyleBox[" ",
+          "TI"], "should", " ", "appear", " ", "at", " ", "or", " ", "after", 
+        " ", "position", 
+        FormBox[
+          SubscriptBox[
+            StyleBox["k",
+              "TI"], 
+            StyleBox["R",
+              "TI"]],
+          "TraditionalForm"], "in", " ", "the", " ", "last", 
+        " ", \(sublist . If\), " ", "additional", " ", "elements", " ", "are",
+         " ", "needed"}], ",", 
+      RowBox[{
+        StyleBox["Partition",
+          "MR"], 
+        StyleBox[" ",
+          "MR"], "fills", " ", "them", " ", "in", " ", "by", " ", "treating", 
+        " ", 
+        StyleBox["list",
+          "TI"], 
+        StyleBox[" ",
+          "TI"], "as", " ", \(\(cyclic\)\(.\)\)}]}]], "Text"],
+
+Cell[TextData[{
+  "Can you find values of ",
+  Cell[BoxData[
+      \(k\_L\)]],
+  " and ",
+  Cell[BoxData[
+      \(k\_R\)]],
+  " that will help you successfully ",
+  StyleBox["Partition",
+    FontWeight->"Bold"],
+  " ",
+  StyleBox["v",
+    FontWeight->"Bold"],
+  "?  My advice is to try to figure out how the 8 x 8 wavelet matrix with the \
+4-term filter \"partitions\" the generic vector below and then try to get the \
+",
+  StyleBox["Partition",
+    FontWeight->"Bold"],
+  " command to do the same thing."
+}], "Text"],
+
+Cell[BoxData[
+    \(\(z = {z1, z2, z3, z4, z5, z6, z7, z8};\)\)], "Input"],
+
+Cell["\<\
+If you can get Partition working for the generic vector, then you probably \
+have the command you need for your module.\
+\>", "Text"],
+
+Cell[TextData[{
+  StyleBox["Note:",
+    FontWeight->"Bold"],
+  "   Once you get ",
+  StyleBox["DWT1D",
+    FontWeight->"Bold"],
+  " written, ",
+  StyleBox["DWT2D",
+    FontWeight->"Bold"],
+  " is trivial - it follows ",
+  StyleBox["EXACTLY",
+    FontWeight->"Bold"],
+  " the same code as that for ",
+  StyleBox["DHWT2D",
+    FontWeight->"Bold"],
+  "!"
+}], "Text"],
+
+Cell[CellGroupData[{
+
+Cell["Extra Credit Problem", "Section"],
+
+Cell["\<\
+Write a module that, given a vector and a filter, computes one iteration of \
+the inverse wavelet transform.
+
+This is the hardest module the students would write in my wavelets course - I \
+often don't assign it, but if I have a particularly bright student, I make it \
+an extra credit problem.\
+\>", "Text"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+FrontEndVersion->"5.2 for Microsoft Windows",
+ScreenRectangle->{{0, 1024}, {0, 685}},
+AutoGeneratedPackage->None,
+ScreenStyleEnvironment->"Presentation",
+WindowSize->{1016, 651},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+ShowSelection->True,
+StyleDefinitions -> "Report.nb"
+]
+
+(*******************************************************************
+Cached data follows.  If you edit this Notebook file directly, not
+using Mathematica, you must remove the line containing CacheID at
+the top of  the file.  The cache data will then be recreated when
+you save this file from within Mathematica.
+*******************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+
+(*NotebookFileOutline
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[1776, 53, 35, 0, 117, "Title"],
+Cell[1814, 55, 85, 4, 143, "Subtitle"],
+Cell[1902, 61, 33, 0, 67, "Subsubtitle"],
+Cell[1938, 63, 295, 7, 84, "Text"],
+
+Cell[CellGroupData[{
+Cell[2258, 74, 67, 1, 67, "Subsubtitle",
+  InitializationCell->True],
+Cell[2328, 77, 298, 9, 63, "Text",
+  InitializationCell->True],
+Cell[2629, 88, 626, 12, 233, "Input",
+  InitializationCell->True]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[3292, 105, 47, 0, 67, "Subsubtitle"],
+Cell[3342, 107, 429, 17, 64, "Text"],
+
+Cell[CellGroupData[{
+Cell[3796, 128, 52, 0, 96, "Section"],
+Cell[3851, 130, 344, 6, 84, "Text"],
+Cell[4198, 138, 139, 3, 103, "Input"],
+Cell[4340, 143, 87, 2, 40, "Text"],
+Cell[4430, 147, 107, 2, 51, "Input"],
+Cell[4540, 151, 661, 15, 259, "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[5238, 171, 61, 0, 96, "Section"],
+Cell[5302, 173, 242, 4, 62, "Text"],
+Cell[5547, 179, 177, 4, 77, "Input"],
+Cell[5727, 185, 874, 20, 363, "Input"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[6662, 212, 39, 0, 117, "Title"],
+Cell[6704, 214, 218, 4, 62, "Text"],
+
+Cell[CellGroupData[{
+Cell[6947, 222, 28, 0, 61, "Subtitle"],
+Cell[6978, 224, 954, 18, 304, "Text"],
+Cell[7935, 244, 122, 2, 51, "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[8094, 251, 28, 0, 61, "Subtitle"],
+Cell[8125, 253, 339, 7, 128, "Text"],
+Cell[8467, 262, 436, 8, 259, "Input"],
+Cell[8906, 272, 16, 0, 40, "Text"],
+Cell[8925, 274, 48, 0, 40, "Text"],
+Cell[8976, 276, 251, 6, 103, "Input"],
+Cell[9230, 284, 248, 9, 40, "Text"],
+Cell[9481, 295, 76, 1, 40, "Text"],
+Cell[9560, 298, 63, 0, 40, "Text"],
+Cell[9626, 300, 521, 13, 128, "Text"],
+Cell[10150, 315, 2520, 83, 140, "Text"],
+Cell[12673, 400, 518, 19, 84, "Text"],
+Cell[13194, 421, 74, 1, 51, "Input"],
+Cell[13271, 424, 143, 3, 40, "Text"],
+Cell[13417, 429, 363, 16, 40, "Text"],
+
+Cell[CellGroupData[{
+Cell[13805, 449, 39, 0, 96, "Section"],
+Cell[13847, 451, 318, 7, 106, "Text"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+
+
+(*******************************************************************
+End of Mathematica Notebook file.
+*******************************************************************)
+

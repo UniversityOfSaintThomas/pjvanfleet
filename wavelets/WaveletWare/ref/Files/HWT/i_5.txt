@@ -1,0 +1,5 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;benches.png&quot;;
+A = ImageRead[file];
+ImagePlot[A]
+wt = HWT[A];
+WaveletPlot[wt]</pre><div class='IFU'><a name='258578131'></a>http://wolfram.com/xid/01ka71c7dh3coqf4zkquz-ej8if5</div>

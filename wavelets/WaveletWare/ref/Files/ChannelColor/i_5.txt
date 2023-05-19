@@ -1,0 +1,5 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;cups.png&quot;;
+A = ImageRead[file, Resize -&gt; {256, 384}];
+ImagePlot[A]
+ImagePlot[A, ChannelColor -&gt; Green]
+ImagePlot[A, ChannelColor -&gt; {Red, Green, Blue}]</pre><div class='IFU'><a name='52534588'></a>http://wolfram.com/xid/0e2pnrmsqjyawkp72wahcufy-5j98e</div>

@@ -1,0 +1,10 @@
+<pre name='i_33_in' id='i_33_in' class='IFT'>file = PackageDirectory[DataType -&gt; Sounds] &lt;&gt; &quot;stereol.wav&quot;;
+{v, rate} = AudioRead[file];
+Dimensions[v]
+{wpt, tree} = 
+  Transpose[
+   Map[WPT[#, Daub[4], NumIterations -&gt; 2, 
+      CostFunction -&gt; NumberAboveThreshold, SecondParameter -&gt; .08] &amp;,
+     v]];
+MapThread[
+ WaveletVectorPlot[#1, #2, NumIterations -&gt; 2] &amp;, {wpt, tree}]</pre><div class='IFU'><a name='568932737'></a>http://wolfram.com/xid/0bsub5sf4gpwe26lzrftnf-jo0hlf</div>

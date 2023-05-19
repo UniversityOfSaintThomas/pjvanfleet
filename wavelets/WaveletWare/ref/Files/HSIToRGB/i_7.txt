@@ -1,0 +1,3 @@
+<pre name='i_7_in' id='i_7_in' class='IFT'>RGBToHSI[{200, 100, 50}]
+{h, s, i} = RGBToHSI[{200, 100, 50}, DisplayMode -&gt; True]
+HSIToRGB[{h, s, i}, DisplayMode -&gt; True]</pre><div class='IFU'><a name='747041419'></a>http://wolfram.com/xid/04j60t5tk393i6ilswj6d4cvwq-mm1y4t</div>

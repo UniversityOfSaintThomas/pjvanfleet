@@ -1,0 +1,4 @@
+<pre name='i_9_in' id='i_9_in' class='IFT'>A = RandomInteger[{0, 10}, {8, 8}];
+MatrixForm[A]
+LeftLWT[A]  // MatrixForm
+Simplify[LeftLWT[A, Computation -&gt; Symbolic]] // MatrixForm</pre><div class='IFU'><a name='3317315'></a>http://wolfram.com/xid/0gcihsaxmz0qthvk2tp8vv-b9dxx</div>

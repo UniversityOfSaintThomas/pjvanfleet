@@ -1,0 +1,5 @@
+<pre name='i_59_in' id='i_59_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;landscape.png&quot;;
+A = ImageRead[file, Resize -&gt; {256, 384}];
+wt = HWT[A, NumIterations -&gt; 2];
+WaveletRegionPlot[wt, All, NumIterations -&gt; 2, ImageSize -&gt; 384, 
+ PresentationStyle -&gt; FlipView]</pre><div class='IFU'><a name='45527834'></a>http://wolfram.com/xid/0br3whhmcljlx93k2tbxed7vin6a-1d3sc</div>

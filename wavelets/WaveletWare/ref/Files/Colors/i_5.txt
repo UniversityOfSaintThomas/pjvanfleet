@@ -1,0 +1,3 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>v = Range[32];
+wt = HWT[v, NumIterations -&gt; 4]; WaveletVectorPlot[wt, 
+ NumIterations -&gt; 4, Colors -&gt; Purple, ImageSize -&gt; 400]</pre><div class='IFU'><a name='806584810'></a>http://wolfram.com/xid/0iwz6b8tg2hnj68raba-nmh63w</div>

@@ -1,0 +1,4 @@
+<pre name='i_15_in' id='i_15_in' class='IFT'>v = Range[20];
+wt = HWT[v, Orthogonal -&gt; True];
+iwt = InverseHWT[wt, Orthogonal -&gt; True];
+v == iwt</pre><div class='IFU'><a name='208587291'></a>http://wolfram.com/xid/0tfzr7ob3cycrf11lom6dgqj-dqg09p</div>

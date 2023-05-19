@@ -1,0 +1,1 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>ImageInfo[ShowThumbnails -&gt; True, ThumbnailColumns -&gt; 6];</pre><div class='IFU'><a name='260411247'></a>http://wolfram.com/xid/0x7f5hjnbafgx7a2ksuw8y40bfo4-elbsv1</div>

@@ -1,0 +1,4 @@
+<pre name='i_9_in' id='i_9_in' class='IFT'>v = Range[8]^2;
+HWT[v, NumIterations -&gt; 2]
+{low, high} = Partition[HWT[v], 4]
+Join[HWT[low], high]</pre><div class='IFU'><a name='262046016'></a>http://wolfram.com/xid/0kmsg876k74fv7tus4gahxj5adn8b2m3ovcixzmeb-emauaa</div>

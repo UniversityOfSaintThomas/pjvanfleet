@@ -1,0 +1,4 @@
+<pre name='i_43_in' id='i_43_in' class='IFT'>wtlist = WaveletMatrixToList[wt, NumIterations -&gt; 2];
+wtlist = ReplacePart[wtlist, 1 -&gt; ConstantArray[0, Dimensions[A]/4]];
+newwt = WaveletListToMatrix[wtlist, NumIterations -&gt; 2];
+WaveletPlot[newwt, NumIterations -&gt; 2]</pre><div class='IFU'><a name='51686854'></a>http://wolfram.com/xid/0ck2bt1tgpszi5qmumv90y9mftkdg9nq1q0ukjlzbu-41338</div>

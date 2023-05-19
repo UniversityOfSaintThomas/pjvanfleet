@@ -1,0 +1,7 @@
+<pre name='i_97_in' id='i_97_in' class='IFT'>f = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;benches.png&quot;;
+A = ImageRead[f, Resize -&gt; {128, 192}];
+ImagePlot[A]
+lwt = LeftWT[A, Daub[4]];
+WaveletPlot[lwt, PlotType -&gt; Left]
+rwt = RightBWT[A, SplineFilters[2, 2]];
+WaveletPlot[rwt, PlotType -&gt; Right]</pre><div class='IFU'><a name='97343689'></a>http://wolfram.com/xid/0kmsg876k74fv7tus4gahxj5adn8b2m3ovcixzmeb-bv8o5n</div>

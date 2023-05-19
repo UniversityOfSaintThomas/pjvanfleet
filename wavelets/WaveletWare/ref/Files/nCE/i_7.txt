@@ -1,0 +1,18 @@
+<pre name='i_7_in' id='i_7_in' class='IFT'>&lt;&lt; WaveletWare`
+v = Range[100];
+cev = CE[v];
+wt = HWT[v];
+cewt = CE[wt];
+plt = ListPlot[{cev, cewt}, PlotRange -&gt; All, 
+   Ticks -&gt; {Range[0, 100, 25], Range[0, 1, .2]}, 
+   PlotLegends -&gt; {&quot;Data&quot;, &quot;Transform&quot;}, 
+   PlotStyle -&gt; {Darker[Brown], Darker[Orange]}];
+p = Map[nCE[#, .8] &amp;, {cev, cewt}];
+lns = Prepend[
+   Map[Graphics[{Darker[Green], Line[{{#, .8}, {#, 0}}]}] &amp;, p], 
+   Graphics[{Darker[Green], Line[{{0, .8}, {First[p], .8}}]}]];
+Show[plt, lns]
+Print[&quot;The largest &quot;, 
+ First[p], &quot; represent 80% of the energy of v while the largest &quot;, 
+ Last[p], &quot; represent 80% of the energy in the wavelet transform \
+vector.&quot;]</pre><div class='IFU'><a name='366229077'></a>http://wolfram.com/xid/0g3sip10j28jvwbq1ru7h-gcbuf7</div>

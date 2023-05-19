@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Wavelets @University of St. Thomas</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta http-equiv="Content-Language" content="en-us" />
+<meta name="MSSmartTagsPreventParsing" content="true" />
+<meta name="robots" content="all" />
+<meta name="author" content="Patrick Van Fleet" />
+<meta name="copyright" content="Copyright (c) Respective Authors" />
+<meta name="description" content="University of St. Thomas Center for Applied Mathematics: research projects, " />
+<meta name="keywords" content="Patrick Van Fleet, University of St. Thomas, discrete wavelet transform, wavelets, St. Thomas wavelets, wavelets book" />
+<meta name="Rating" content="General" />
+<meta name="revisit-after" content="14 Days" />
+<meta name="doc-class" content="Living Document" />
+
+<base href="http://personal.stthomas.edu/pjvanfleet/wavelets/" />
+
+<link rel="stylesheet" href="wavelets.css" type="text/css" />
+
+</head>
+<body>
+<div id="header">
+<div id="header-content">
+</div></div>
+
+<div id="content-wrap">
+	<div id="content">
+    		<div id="main"> 
+			<h2>DiscreteWavelets Software Package</h2>
+			<p>
+			<img src="../images/fingerprintwt.gif" class="float-right"></img>
+			DiscreteWavelets</tt> is a collection (package/toolbox) of functions written to supplement the text <a href="book1info.html">Discrete Wavelet
+	 		Transformations: An Elementary Approach with Applications</a>, <a href="http://www.wiley.com/WileyCDA/WileyTitle/productCd-047018311X.html"> John J Wiley & 			Sons</a>, &copy;2008, by <a href="http://personal.stthomas.edu/pjvanfleet/">Patrick J. Van Fleet</a>. 
+			</p>
+			<p>
+			The collection contains modules for deriving orthogonal and biorthogonal wavelet filters and using them to compute one- and two-dimensional(biorthogonal) 				discrete wavelet transformations.  Modules are also included so that the user can visualize digital images and their	transformations as well as hear digital 			audio files and their transformations.  Other modules allow the user to perform naive image compression or de-noise signals or audio clips.  These routines 			include cumulative energy, entropy, PSNR, DCTs, gamma correction, histogram equalization, universal shrinkage tolerance, SureShrink tolerance, wavelet 				shrinkage, and SureShrink de-noising.  There are also modules that allow the user to investigate Fourier series and perform color space conversions.
+			</p>
+			<p>
+			The package is currently available for use with Mathematica (versions 5.2-8.0) and MATLAB (R2007a and later).  The package works with Mathematica 9 but there 			are difficulties accessing the documentation.  We are working with Wolfram to solve this problem.  
+			</p>
+			<p> 
+			A new version of the DiscreteWavelets package is 	currently under development.  This package will upgrade the speed and efficiency of several functions, 			update the documentation, and introduce new functions that makes the package a supplement to the text <a href="book2info.html">Wavelet Theory: An Elementary 			Approach with Applications</a>, <a href="http://www.wiley.com/WileyCDA/WileyTitle/productCd-0470388404.html"> John J Wiley & Sons</a>, &copy;2009, by 
+			<a href="http://mcs.msudenver.edu/_u_/ruchwebsitehome">David K. Ruch</a> and <a href="http://personal.stthomas.edu/pjvanfleet/">Patrick J. Van Fleet</a>. 
+			</p>	
+			<p>
+			Download and installation instructions appear below:
+			</p>
+			<h4>Mathematica</h4>
+			<ol>
+				<li>Click <a href="zipfiles/DiscreteWaveletsPackage60.zip">here</a> to download DiscreteWavelets for Mathematica.</li>
+	<li>Find the correct installation directory.  Open Mathematica and type:</li>
+		<ul>
+			<li><b>$BaseDirectory</b> if you have administrator privileges on the computer and want to install the package for all users.</li>
+			<li><b>$UserBaseDirectory</b> if you want to install the package just for your use.</li>
+		</ul>
+	<li>Unzip the zip file from Step 1 into the <i>Applications</i> sub-folder of the folder returned from Step 2.</li>
+	<li>Common Errors: 
+		<ul>
+			<li>The extraction produces two DiscreteWavelets folders under the Applications sub-folder.</li>
+			<li>The extraction doesn't make it to the Applications sub-folder.</li>
+		</ul>
+	<li>Go back to Mathematica and issue the command <b>&lt;&lt;DiscreteWavelets`DiscreteWavelets`</b> (take care to get the grave accent, not the apostrophe 		when typing this command)
+	<li>If you see no error messages after issuing the above command, chances are the installation was successful.  To double-check, type the command 
+		<b>?Haar</b>.  If the installation worked, you should see a message that says <i>Haar returns the Haar filter</i>. 
+			</ol>
+			<h4>MATLAB</h4>
+			<ol>
+				<li>Click <a href="zipfiles/DiscreteWaveletsToolbox.zip">here</a> to download DiscreteWavelets for MATLAB.</li>
+	<li>Unzip the zip file to a place on your hard drive where you want the toolbox to reside.</li>
+	<li> The zip file will unzip one (large) folder called DiscreteWavelets.  <strong>Important:</strong> Do not rename this folder or any subfolders inside 		it!!  Several functions will not work if the directory structure is changed.
+	<li> Open MATLAB.
+	<li> Click on <i>File</i> and then <i>Set Path...</i>
+	<li> Click the <i>Add with SubFolders...</i> button and then navigate to where you unzipped the DiscreteWavelets folder.
+	<li> Click <i>OK</i> and then <i>Save</i> and <i>Close</i>
+	<li> In the command window in MATLAB, type the command <b>rehash</b> and then <b>startup</b>.  The second command initializes some global variables 		used by the toolbox.  If you received a message that global variables have been initialized, then you are ready to go! 
+			</ol>
+		</div>
+
+		<div id="sidebar">
+
+			<h1>Workshops</h1>
+		
+ 				<ul class="sidemenu">
+					<li><a href="sacnas2009workshop.html">SACNAS 2009</a></li>
+		                <li><a href="usf2009workshop.html">Tampa, FL, 2009</a></li>
+		                <li><a href="ust2008workshop.html">St. Paul, MN, 2008</a></li>
+	     		           <li><a href="sandiego2008workshop.html">San Diego, CA, 2008</a></li>
+	           	     <li><a href="ust2007workshop.html">St. Paul, MN, 2007</a></li>
+	                	<li><a href="neworleans2007workshop.html">New Orleans, LA, 2007</a></li>
+				     <li><a href="ust2006workshop.html">St. Paul, MN, 2006</a></a></li>
+		            </ul>        
+
+			<h1>Books</h2>
+
+				<ul class="sidemenu">
+					<li> <a href="book1info.html" title="Discrete Wavelet Transformations">Discrete Wavelet Transformations</a></li>
+					<li> <a href="book2info.html" title="Wavelet Theory">Wavelet Theory</a></li>
+				</ul>
+
+			<h1>Resources</h1>
+
+				<ul class="sidemenu">
+					<li><a href="packages.html" title="DiscreteWavelets">DiscreteWavelets Package</a></li>
+					<li><a href="labs.html" title="Computer Labs">Computer Labs</a></li>
+					<li><a href="http://mcs.msudenver.edu/_u_/ruchwebsitehome/wue" title="Wavelets in Undergraduate Education">WUE Web Site</a></li>
+					<li><a href="links.html">Wavelet Links</a></li>
+				</ul>
+
+	        	<h1>Other Links</h1>
+
+     		       	<ul class="sidemenu">
+					<li><a href="http://personal.stthomas.edu/pjvanfleet/wavelets">Wavelets @UST</a></li>
+					<li><a href="http://personal.stthomas.edu/pjvanfleet/">Patrick Van Fleet's Web Page</a></li>
+					<li><a href="http://www.stthomas.edu/cam/" title="CAM Home">CAM Home</a></li>
+					<li><a href="http://www.stthomas.edu/mathematics/" title="UST Mathematics">UST Mathematics</a></li>
+		            </ul>
+		</div>
+
+</div>
+
+<div id="footer">
+	<div id="footer-content">
+		<p>&copy; Copyright 2013 <strong>Patrick Van Fleet</strong><br/>
+				
+		<script type="text/javascript">
+		<!--
+		var m = "Page last updated: " + document.lastModified;
+		var p = m.length-9;
+		document.write(m.substring(p, 0)+".");
+		 -->
+		</script>
+		</p>
+	</div>
+</div>
+
+</body>
+</html>

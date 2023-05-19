@@ -1,0 +1,8 @@
+<pre name='i_11_in' id='i_11_in' class='IFT'>v = Range[32];
+{wt, tree} = WPT[v, Daub[4], Shift -&gt; 0]
+ShowBestBasis[tree, ImageSize -&gt; 50]
+WaveletVectorPlot[wt, tree, ImageSize -&gt; 200]
+{wt, tree} = WPT[v, Daub[4], NumIterations -&gt; 1, Shift -&gt; 3]
+ShowBestBasis[tree, ImageSize -&gt; 50]
+WaveletVectorPlot[wt, tree, ImageSize -&gt; 200]
+</pre><div class='IFU'><a name='723672237'></a>http://wolfram.com/xid/0bsub5sf4gpwe26lzrftnf-l843cv</div>

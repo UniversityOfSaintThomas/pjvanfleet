@@ -1,0 +1,3 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>ImageInfo[]
+Print[&quot;Information on GrayScale Images:&quot;];
+ImageInfo[ImageForm -&gt; GrayScale]</pre><div class='IFU'><a name='248510836'></a>http://wolfram.com/xid/0bsub5sf4gpwe26lzb7j8i-ed8qg2</div>

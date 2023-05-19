@@ -1,0 +1,3 @@
+<pre name='i_11_in' id='i_11_in' class='IFT'>tree = {0, {{0, 1}, {1, 0}}, {{1, 1, 0, 0}, {1, 1, 0, 0}, {0, 0, 1, 
+     1}, {0, 0, 1, 1}}};
+ShowBestBasis[tree, ImageSize -&gt; 300, ColorOn -&gt; Red]</pre><div class='IFU'><a name='445512537'></a>http://wolfram.com/xid/0ju408za6tmbiu55ts1k9e6e-hni5yj</div>

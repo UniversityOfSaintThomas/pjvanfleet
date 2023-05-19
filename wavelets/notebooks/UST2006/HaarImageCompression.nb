@@ -1,0 +1,620 @@
+(************** Content-type: application/mathematica **************
+                     CreatedBy='Mathematica 5.2'
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used with any Mathematica-compatible
+application, such as Mathematica, MathReader or Publicon. The data
+for the notebook starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do
+one of the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the
+  application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing
+the word CacheID, otherwise Mathematica-compatible applications may
+try to use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+*******************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[     17309,        494]*)
+(*NotebookOutlinePosition[     18075,        520]*)
+(*  CellTagsIndexPosition[     18031,        516]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Haar Image Compression", "Title"],
+
+Cell["\<\
+Wavelet Workshop
+June 7-10, 2006
+University of St. Thomas\
+\>", "Subtitle"],
+
+Cell["Objectives", "Subsubtitle"],
+
+Cell[TextData[{
+  "The purpose of this notebook is to show you how to perform naive image \
+compression using the two-dimensional Discrete Haar Wavelet Transform.\n\nThe \
+notebook also contains a color image compression lab that makes up part of ",
+  StyleBox["Computer Session One",
+    FontWeight->"Bold"],
+  "."
+}], "Text"],
+
+Cell[CellGroupData[{
+
+Cell["WaveletFunctions", "Subsubtitle",
+  InitializationCell->True],
+
+Cell[TextData[{
+  "This cell initializes every time you open the notebook.  It loads the ",
+  StyleBox["Mathematica",
+    FontSlant->"Italic"],
+  " package ",
+  StyleBox["WaveletFunctions",
+    FontFamily->"Courier"],
+  " for use in subsequent computations."
+}], "Text",
+  InitializationCell->True],
+
+Cell[BoxData[{
+    \(<< WaveletFunctions`WaveletFunctions`\), "\n", 
+    \(<< LinearAlgebra`MatrixManipulation`\), "\[IndentingNewLine]", 
+    \(\(\(<< 
+      Graphics`Graphics`\)\(\[IndentingNewLine]\)\(\[IndentingNewLine]\)
+    \)\), "\[IndentingNewLine]", 
+    \(\(Off[General::spell];\)\), "\n", 
+    \(\(\(Off[General::spell1];\)\(\[IndentingNewLine]\)
+    \)\), "\[IndentingNewLine]", 
+    \(\(flashdir = "\<E:/WaveletWorkshop06/Images/\>";\)\), "\
+\[IndentingNewLine]", 
+    \(\(Print["\<The flash drive directory is \>", 
+        flashdir, "\<.\>"];\)\), "\[IndentingNewLine]", 
+    \(\(imgurl = \
+"\<http://cam.mathlab.stthomas.edu/pvf/Math316/TestImages/\>";\)\), "\
+\[IndentingNewLine]", 
+    \(\(Print["\<The URL for images is \>", imgurl, "\<.\>"];\)\)}], "Input",
+  InitializationCell->True],
+
+Cell[BoxData[
+    \(\(\( (*Adapted\ from\ a\ notebook\ by\ Robert\ Jacobson, 
+      student\ at\ Southern\ Adventist\ \(University!\)*) \
+\)\(\(MakeHuffmanCodes[v_] := 
+        Module[{data, alphabet, queue, getFreq, orderFunct, left, right, 
+            newnode, codes, cnt}, 
+          data = Characters[
+              Switch[Head[v], String, v, _, 
+                FromCharacterCode[v]]]; \[IndentingNewLine]alphabet = 
+            Union[data]; \[IndentingNewLine]queue = 
+            Map[{#, Count[data, #]} &, 
+              alphabet]; \[IndentingNewLine]orderFunct[a_, b_] := 
+            Switch[Head[a[\([2]\)]], Integer, a[\([2]\)] < b[\([2]\)], 
+              String, StringLength[a[\([2]\)]] \[LessEqual] 
+                StringLength[b[\([2]\)]], _, \(Print["\<nope: \>", 
+                  Head[a[\([2]\)]]];\)]; \[IndentingNewLine]queue = 
+            Sort[queue, orderFunct]; \[IndentingNewLine]While[
+            Length[queue] > 1, 
+            left = queue[\([1]\)]; \[IndentingNewLine]right = 
+              queue[\([2]\)]; \[IndentingNewLine]newnode = {{left, right}, 
+                left[\([2]\)] + right[\([2]\)]}; \[IndentingNewLine]queue = 
+              Sort[Append[Drop[queue, 2], newnode], 
+                orderFunct];]; \[IndentingNewLine]getCodes[node_, 
+              codeString_] := 
+            Module[{left, right}, 
+              left = node[\([1]\)]; \[IndentingNewLine]Switch[Head[left], 
+                List, right = left[\([2]\)]; 
+                left = left[\([1]\)]; \[IndentingNewLine]Union[
+                  getCodes[left, codeString <> "\<0\>"], 
+                  getCodes[right, codeString <> "\<1\>"]], 
+                Symbol, {{left, codeString}}, 
+                String, {{left, codeString}}]]; \[IndentingNewLine]codes = 
+            Transpose[
+              Sort[getCodes[queue[\([1]\)], "\<\>"], 
+                orderFunct]]; \[IndentingNewLine]codes = 
+            Append[codes, 
+              Map[ToCharacterCode, codes[\([2]\)]] - 
+                48]; \[IndentingNewLine]cnt = 
+            Map[Count[data, #] &, 
+              codes[\([1]\)]]; \[IndentingNewLine]codes[\([2]\)] = 
+            N[cnt/Length[data]]; \[IndentingNewLine]If[Head[v] \[Equal] List, 
+            codes[\([1]\)] = 
+              Flatten[ToCharacterCode[
+                  codes[\([1]\)]]]]; \[IndentingNewLine]Return[{Transpose[
+                codes], Length[data]*8, 
+              cnt . Map[Length, codes[\([3]\)]]}];];\)\[IndentingNewLine]\n
+    \(Slope[a_, 
+          b_] := \((b - a)\)[\([2]\)]/\((b - 
+                a)\)[\([1]\)];\)\[IndentingNewLine]\n
+    \(ConnectNodes[p_, q_, r_] := 
+        Module[{t, pt, a, b}, 
+          If[p[\([1]\)] > q[\([1]\)], a = q; b = p, a = p; 
+            b = q]; \[IndentingNewLine]t = 
+            ArcTan[Slope[q, p]]; \[IndentingNewLine]pt = 
+            r*{Cos[t], Sin[t]}; \[IndentingNewLine]Return[
+            Graphics[Line[{a + pt, b - pt}]]];];\)\)\)\)], "Input",
+  CellOpen->False,
+  InitializationCell->True]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Help on WaveletFunctions", "Subsubtitle"],
+
+Cell[TextData[{
+  "If you ever need help with ",
+  StyleBox["WaveletFunctions",
+    FontFamily->"Courier"],
+  ", go to ",
+  StyleBox["Help",
+    FontSlant->"Italic"],
+  ", then ",
+  StyleBox["Help Browser",
+    FontSlant->"Italic"],
+  ", and click on ",
+  StyleBox["AddOns & Links",
+    FontSlant->"Italic"],
+  ".  If you scroll down you will find ",
+  StyleBox["WaveletFunctions",
+    FontFamily->"Courier"],
+  ".  "
+}], "Text"],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Load an Image and Compute the Modified Haar Wavelet Transform\
+\>", "Section"],
+
+Cell["\<\
+We begin by loading the splash.jpg image and computing it's Haar Wavelet \
+Transform.  Note that we are altering the filter slightly - we'll have to \
+compensate when we compute inverse transforms.\
+\>", "Text"],
+
+Cell[BoxData[{
+    \(\(A = 
+        ReadImage[flashdir <> "\<splash.jpg\>", PrintInfo \[Rule] True, 
+          PowersOfTwo \[Rule] 3];\)\), "\[IndentingNewLine]", 
+    \(\(ImagePlot[A, 
+        ImageSize \[Rule] Dimensions[A]];\)\), "\[IndentingNewLine]", 
+    \(\({rows, cols} = Dimensions[A];\)\)}], "Input"],
+
+Cell[BoxData[{
+    \(\(h = N[Haar[]]*Sqrt[2];\)\), "\[IndentingNewLine]", 
+    \(\(Print["\<We will use the filter \>", 
+        h, "\<.\>"];\)\[IndentingNewLine]\), "\[IndentingNewLine]", 
+    \(\(its = 3;\)\), "\[IndentingNewLine]", 
+    \(\(wt = 
+        WT2D[A, h, NumIterations \[Rule] its];\)\), "\[IndentingNewLine]", 
+    \(\(WaveletDensityPlot[wt, NumIterations \[Rule] its, 
+        DivideLines \[Rule] True, 
+        DivideLinesColor \[Rule] Coral];\)\)}], "Input"],
+
+Cell[TextData[{
+  "Let's build the histogram of the image.  The ",
+  StyleBox["Table",
+    FontWeight->"Bold"],
+  " loops through all possible pixel values.  The ",
+  StyleBox["Flatten",
+    FontWeight->"Bold"],
+  " turns ",
+  StyleBox["A",
+    FontWeight->"Bold"],
+  " into a vector (of length 40000) and ",
+  StyleBox["Select",
+    FontWeight->"Bold"],
+  " makes lists where the elements in the vector satisfy the given criteria - \
+in this case, the number is equal to the current ",
+  StyleBox["k",
+    FontWeight->"Bold"],
+  ".  \n\nThe rule ",
+  StyleBox["# == k &",
+    FontWeight->"Bold"],
+  " is a bit confusing - think of the ",
+  StyleBox["#",
+    FontWeight->"Bold"],
+  " as a dummy element, ",
+  StyleBox["==",
+    FontWeight->"Bold"],
+  " (two equal signs) as a comparison, and the ",
+  StyleBox["&",
+    FontWeight->"Bold"],
+  " says to apply it to everything in ",
+  StyleBox["Flatten[A]",
+    FontWeight->"Bold"],
+  "."
+}], "Text"],
+
+Cell[BoxData[{
+    \(\(t = 
+        Table[Length[Select[Flatten[A], # \[Equal] k &]], {k, 0, 
+            255}];\)\[IndentingNewLine]\), "\[IndentingNewLine]", 
+    \(\(Histogram[t, FrequencyData \[Rule] True, 
+        Ticks \[Rule] {{0, 64, 128, 196, 255}, {200, 400, 600, 800, 1000}}, 
+        BarStyle \[Rule] Maroon, BarEdges \[Rule] False];\)\)}], "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Quantize the Transform", "Section"],
+
+Cell["Next we compute and plot the cumulative energy.  ", "Text"],
+
+Cell[BoxData[{
+    \(\(ce = CE[wt];\)\), "\[IndentingNewLine]", 
+    \(\(ListPlot[ce, PlotStyle \[Rule] Brown];\)\)}], "Input"],
+
+Cell["\<\
+The choice of 99.99% was quite arbitrary - feel free to change the \
+percentage.\
+\>", "Text"],
+
+Cell[BoxData[{
+    \(\(pct =  .9999;\)\), "\[IndentingNewLine]", 
+    \(\(k = nCE[ce, pct];\)\), "\[IndentingNewLine]", 
+    \(\(Print["\<In order to retain \>", 
+        100*pct, "\<% of the energy, we retain the largest (in modulus) \>", 
+        k, "\< values of the transform and set the remaining \>", 
+        rows*cols - k, "\< to 0.\>"];\)\)}], "Input"],
+
+Cell["Now quantize:", "Text"],
+
+Cell[BoxData[{
+    \(\(newwt = Comp[wt, k];\)\), "\[IndentingNewLine]", 
+    \(\(WaveletDensityPlot[newwt, NumIterations \[Rule] its, 
+        DivideLines \[Rule] True, 
+        DivideLinesColor \[Rule] Maroon];\)\)}], "Input"],
+
+Cell["Here is a plot of the error:", "Text"],
+
+Cell[BoxData[
+    \(\(WaveletDensityPlot[Abs[wt - newwt], NumIterations \[Rule] its, 
+        DivideLines \[Rule] True, 
+        DivideLinesColor \[Rule] Maroon];\)\)], "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Encoding the transform", "Section"],
+
+Cell[TextData[{
+  "The final step is to make the Huffman codes for the quantized transform.  \
+The code I'm using is from a student and runs REALLY slow!  It is called ",
+  StyleBox["MakeHuffmanCodes",
+    FontWeight->"Bold"],
+  " (I hid it up above as an initialization cell) and it returns a list of \
+Huffman codes, the bit stream length of the original image, and the bit \
+stream length of the encoded transform.\n\nThe code needs all values \
+nonnegative, so we shift the data by the minimum value in the quantized \
+matrix.\n\nWhile we have been using the {1., 1.} filter, the computations are \
+integers but done numerically.  Thus we round the shifted data before \
+encoding.\n\nFinally, the routine needs a vector not a matrix, so we have to \
+Flatten the input.\n\nHere we go.  Get comfortable - this takes a while..."
+}], "Text"],
+
+Cell[BoxData[{
+    \(\(m = Min[Flatten[newwt]];\)\), "\[IndentingNewLine]", 
+    \(\(bits = 
+        MakeHuffmanCodes[
+          Round[Flatten[
+              newwt - m]]];\)\[IndentingNewLine]\), "\[IndentingNewLine]", 
+    \(\(Print["\<The bitstream length of the original image is \>", 
+        bits[\([2]\)], \ "\<while the bit stream length of the encoded image \
+is \>", bits[\([3]\)], "\<.\>"];\)\)}], "Input"],
+
+Cell[BoxData[{
+    \(\(Print["\<The bits per pixel is \>", 
+        N[bits[\([3]\)]/\((rows*
+                cols)\)], "\<.\>"];\)\[IndentingNewLine]\), "\
+\[IndentingNewLine]", 
+    \(\(ent = 
+        N[Entropy[
+            Flatten[Round[
+                newwt]]]];\)\[IndentingNewLine]\), "\[IndentingNewLine]", 
+    \(\(Print["\<The entropy of the wavelet transform is \>", 
+        ent, "\<.\>"];\)\)}], "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Invert the Quantized Transform", "Section"],
+
+Cell[TextData[{
+  "Finally, we invert the quantized transform.  Remember, we multiplied the \
+Haar filter by ",
+  Cell[BoxData[
+      \(\@2\)]],
+  " when computing the transform, so now we have to divide the inverse Haar \
+transform by ",
+  Cell[BoxData[
+      \(\@2\)]],
+  " (a good application of another property of matrix inverses.)  We plot the \
+original as well for comparative purposes."
+}], "Text"],
+
+Cell[BoxData[{
+    \(\(newA = 
+        IWT2D[newwt, N[Haar[]/Sqrt[2]], 
+          NumIterations \[Rule] its];\)\), "\[IndentingNewLine]", 
+    \(\(ImagePlot[newA];\)\)}], "Input"],
+
+Cell[BoxData[
+    \(\(ImagePlot[A];\)\)], "Input"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Computer Session One ", "Title"],
+
+Cell[TextData[{
+  "There are two tasks for Computer Session One.  The first is experimental \
+in nature testing different parameters in the example above.  The second \
+involves color image compression.\n\n",
+  StyleBox["If you are not so familiar with ",
+    FontWeight->"Bold"],
+  StyleBox["Mathematica",
+    FontWeight->"Bold",
+    FontSlant->"Italic"],
+  StyleBox[" or would just prefer to work with a partner, I strongly \
+encourage it.",
+    FontWeight->"Bold"],
+  "\n"
+}], "Text"],
+
+Cell[CellGroupData[{
+
+Cell["Task One", "Subtitle"],
+
+Cell["\<\
+The entropy for the quantized wavelet transform above is roughly 1.6.  The \
+bpp for our compression scheme (3 iterations of the wavelet transform and \
+99.99% threshold for the energy) was about 2.1.  Can you change the \
+parameters (iterations and/or threshold percentage) to achieve a bpp of 1.75? \
+ If so, how does the compressed image look? \
+\>", "Text"],
+
+Cell[BoxData[
+    \( (*\ Put\ your\ Mathematica\ code\ here\ *) \)], "Input",
+  FontColor->RGBColor[0, 0, 1]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Task Two", "Subtitle"],
+
+Cell[TextData[{
+  "In this task, you will be asked to use the ideas presented above to \
+compress a color image.\n\nThe algorithm for compressing a color image is \
+pretty much the same as the one for a grayscale image - it's just three times \
+the work!\n\nThe first step is to read the color image into R, G, and B \
+matrices and then convert to YCbCr.  The routine ",
+  StyleBox["RGBtoYCbCr",
+    FontWeight->"Bold"],
+  " will be useful in this endeavor.  \n\nAfter you have the Y, Cb, and Cr \
+channels, you simply employ the image compression algorithm we used for \
+grayscale images on each individual channels.  When you are done, use the \
+routine ",
+  StyleBox["YCbCrtoRGB",
+    FontWeight->"Bold"],
+  " to convert back to R,G,B.\n\nI would encourage cutting and pasting from \
+above.  Feel free to try different percentages for different channels when \
+quantizing.  You might also want to try different numbers of iterations to \
+see if it makes a difference.\n\nIf you finish early, repeat the exercise but \
+DO NOT first convert from RGB space to YCbCr space.  Try to go for a low bpp \
+and see what happens to the compressed image."
+}], "Text"],
+
+Cell[CellGroupData[{
+
+Cell["To Help You Get Started:", "Section"],
+
+Cell["\<\
+
+In the cell below, I have read in the image and done the conversion for you \
+to get you started.  
+
+Note that the way I've read the image, you can do at most 4 iterations of the \
+wavelet transform.\
+\>", "Text"],
+
+Cell[BoxData[{
+    \(\({r, g, b} = 
+        ReadImage[flashdir <> "\<flowers.jpg\>", PowersOfTwo \[Rule] 4, 
+          PrintInfo \[Rule] True];\)\), "\[IndentingNewLine]", 
+    \(\({rows, cols} = 
+        Dimensions[r];\)\[IndentingNewLine]\), "\[IndentingNewLine]", 
+    \(\(ImagePlot[{r, g, b}];\)\)}], "Input"],
+
+Cell[BoxData[{
+    \(\({Y, Cb, Cr}\  = \ 
+        RGBtoYCbCr[{r, g, 
+            b}];\)\[IndentingNewLine]\), "\[IndentingNewLine]", 
+    \(\(ImagePlot[Y, 
+        LinearScaling \[Rule] True];\)\), "\[IndentingNewLine]", 
+    \(\(ImagePlot[Cb, 
+        LinearScaling \[Rule] True];\)\), "\[IndentingNewLine]", 
+    \(\(ImagePlot[Cr, LinearScaling \[Rule] True];\)\)}], "Input"],
+
+Cell[BoxData[
+    \( (*\ Put\ your\ Mathematica\ code\ here\ *) \)], "Input",
+  FontColor->RGBColor[0, 0, 1]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Converting Back to RGB Space", "Section"],
+
+Cell["\<\
+The conversion routine YCbCrtoRGB is needs some refining.  Assuming you have \
+named your compressed Y, Cb, Cr channels newY, newCb, and newCr, \
+respectively, the command below will successfully convert them back to RGB \
+space.  The DisplayMode directive helps  the YCbCrtoRGB module convert to \
+something \"viewable\".\
+\>", "Text"],
+
+Cell[BoxData[{
+    \(\({newr, newg, newb} = 
+        Round[YCbCrtoRGB[{newY, newCb, newCr}, 
+            DisplayMode \[Rule] True]];\)\), "\[IndentingNewLine]", 
+    \(\(ImagePlot[{newr, newg, newb}];\)\)}], "Input"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+FrontEndVersion->"5.2 for Microsoft Windows",
+ScreenRectangle->{{0, 1024}, {0, 685}},
+AutoGeneratedPackage->None,
+ScreenStyleEnvironment->"Presentation",
+WindowSize->{1016, 651},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+ShowSelection->True,
+StyleDefinitions -> "Report.nb"
+]
+
+(*******************************************************************
+Cached data follows.  If you edit this Notebook file directly, not
+using Mathematica, you must remove the line containing CacheID at
+the top of  the file.  The cache data will then be recreated when
+you save this file from within Mathematica.
+*******************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+
+(*NotebookFileOutline
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[1776, 53, 39, 0, 117, "Title"],
+Cell[1818, 55, 85, 4, 143, "Subtitle"],
+Cell[1906, 61, 33, 0, 67, "Subsubtitle"],
+Cell[1942, 63, 327, 7, 106, "Text"],
+
+Cell[CellGroupData[{
+Cell[2294, 74, 67, 1, 67, "Subsubtitle",
+  InitializationCell->True],
+Cell[2364, 77, 298, 9, 63, "Text",
+  InitializationCell->True],
+Cell[2665, 88, 805, 17, 337, "Input",
+  InitializationCell->True],
+Cell[3473, 107, 3000, 57, 19, "Input",
+  CellOpen->False,
+  InitializationCell->True]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[6510, 169, 47, 0, 67, "Subsubtitle"],
+Cell[6560, 171, 429, 17, 64, "Text"],
+
+Cell[CellGroupData[{
+Cell[7014, 192, 88, 2, 96, "Section"],
+Cell[7105, 196, 221, 4, 62, "Text"],
+Cell[7329, 202, 310, 6, 103, "Input"],
+Cell[7642, 210, 476, 9, 207, "Input"],
+Cell[8121, 221, 948, 33, 150, "Text"],
+Cell[9072, 256, 361, 6, 155, "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[9470, 267, 41, 0, 96, "Section"],
+Cell[9514, 269, 65, 0, 40, "Text"],
+Cell[9582, 271, 127, 2, 77, "Input"],
+Cell[9712, 275, 104, 3, 40, "Text"],
+Cell[9819, 280, 361, 6, 155, "Input"],
+Cell[10183, 288, 29, 0, 40, "Text"],
+Cell[10215, 290, 227, 4, 103, "Input"],
+Cell[10445, 296, 44, 0, 40, "Text"],
+Cell[10492, 298, 177, 3, 77, "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[10706, 306, 41, 0, 96, "Section"],
+Cell[10750, 308, 841, 13, 282, "Text"],
+Cell[11594, 323, 416, 8, 155, "Input"],
+Cell[12013, 333, 416, 10, 155, "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[12466, 348, 49, 0, 96, "Section"],
+Cell[12518, 350, 407, 11, 86, "Text"],
+Cell[12928, 363, 179, 4, 77, "Input"],
+Cell[13110, 369, 50, 1, 51, "Input"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[13221, 377, 38, 0, 117, "Title"],
+Cell[13262, 379, 487, 13, 129, "Text"],
+
+Cell[CellGroupData[{
+Cell[13774, 396, 28, 0, 61, "Subtitle"],
+Cell[13805, 398, 371, 6, 84, "Text"],
+Cell[14179, 406, 109, 2, 51, "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[14325, 413, 28, 0, 61, "Subtitle"],
+Cell[14356, 415, 1158, 20, 370, "Text"],
+
+Cell[CellGroupData[{
+Cell[15539, 439, 43, 0, 96, "Section"],
+Cell[15585, 441, 224, 7, 106, "Text"],
+Cell[15812, 450, 313, 6, 155, "Input"],
+Cell[16128, 458, 377, 8, 155, "Input"],
+Cell[16508, 468, 109, 2, 51, "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[16654, 475, 47, 0, 96, "Section"],
+Cell[16704, 477, 346, 6, 84, "Text"],
+Cell[17053, 485, 216, 4, 103, "Input"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+
+
+(*******************************************************************
+End of Mathematica Notebook file.
+*******************************************************************)
+

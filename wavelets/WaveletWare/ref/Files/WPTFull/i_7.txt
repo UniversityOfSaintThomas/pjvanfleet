@@ -1,0 +1,9 @@
+<pre name='i_7_in' id='i_7_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;facade.png&quot;;
+A = ImageRead[file, Resize -&gt; 192];
+iterations = 2;
+wptfull = WPTFull[A, Daub[6], NumIterations -&gt; iterations];
+FullWaveletPlot[wptfull, ChannelColor -&gt; {Red, Green, Blue}, 
+  PacketPlot -&gt; True]  // TableForm
+FullWaveletPlot[wptfull, PlotTogether -&gt; True, 
+  PacketPlot -&gt; True] // TableForm
+</pre><div class='IFU'><a name='563207510'></a>http://wolfram.com/xid/0istl84i27gzdwumja0goag32-jllrzc</div>

@@ -1,0 +1,8 @@
+<pre name='i_13_in' id='i_13_in' class='IFT'>{codes, original, new} = MakeHuffmanCodes[newwt - Min[newwt]];
+bpp = Round[new/r/c, .01];
+Print[&quot;The original image consisted of &quot;, original, &quot; bits.&quot;];
+Print[&quot;The Huffman-encoded quantized transform consists of &quot;, new, 
+  &quot; bits.&quot;];
+Print[&quot;Thus about &quot;, bpp, 
+  &quot; bits per pixel (as opposed to 8) are needed to store the \
+quantized transform.&quot;];</pre><div class='IFU'><a name='692714032'></a>http://wolfram.com/xid/0ck2bt1tgpszi5qmumv90y9mftkdg9nq1q0ukjlzbu-lqpjuq</div>

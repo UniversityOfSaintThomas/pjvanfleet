@@ -1,0 +1,3 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>v = RandomInteger[{0, 10}, 10];
+HWT[v]
+HWT[v, Computation -&gt; Numerical]</pre><div class='IFU'><a name='11151344'></a>http://wolfram.com/xid/08s5uh4e1e3rdx36toy-gxapu</div>

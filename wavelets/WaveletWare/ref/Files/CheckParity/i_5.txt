@@ -1,0 +1,2 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>{h, ht} = SplineFilters[5, 3];
+CheckParity[Map[Length, {h, ht}]]</pre><div class='IFU'><a name='165134033'></a>http://wolfram.com/xid/0cohy0yjie4alfh86lq33tpe-c0loir</div>

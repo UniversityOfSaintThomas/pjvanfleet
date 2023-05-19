@@ -1,0 +1,10 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;benches.png&quot;;
+A = ImageRead[file];
+ImagePlot[A]
+iterations = 2;
+wt = HWT[A, NumIterations -&gt; iterations];
+WaveletPlot[wt, NumIterations -&gt; iterations]
+iwt = InverseHWT[wt, NumIterations -&gt; iterations];
+ImagePlot[iwt]
+(* Mean Squared Error *)
+MSE[A, iwt]</pre><div class='IFU'><a name='258578131'></a>http://wolfram.com/xid/0tfzr7ob3cycrf11lom6dgqj-ej8if5</div>

@@ -1,0 +1,5 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;dog.png&quot;;
+A = ImageRead[file, Resize -&gt; {128, 192}];
+ImagePlot[A]
+lwt = LeftHWT[A];
+WaveletPlot[lwt, PlotType -&gt; Left]</pre><div class='IFU'><a name='49712802'></a>http://wolfram.com/xid/0cohy0yjie4alfh87r6xja3v-3vsxg</div>

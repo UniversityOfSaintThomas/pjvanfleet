@@ -1,0 +1,6 @@
+<pre name='i_29_in' id='i_29_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;tram.png&quot;;
+A = ImageRead[file, Resize -&gt; {128, 192}];
+wt = WPTFull[A, Haar[], NumIterations -&gt; 2];
+FullWaveletPlot[wt, 
+  Iteration -&gt; {{}, {{1, 1, 1}, {1, 1, 2}}, {{2, 2, 2}, {2, 1, 
+      1}}}] // TableForm</pre><div class='IFU'><a name='182613932'></a>http://wolfram.com/xid/0dw3hmeolb456i3ocz9bqdb7htqim7p8o1p7qzwg41bm-da0b3i</div>

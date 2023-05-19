@@ -1,0 +1,3 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>(* {255,0,0} is RGB for red *)
+{r, g, b} = RGBToYCbCr[{255, 0, 0}]
+YCbCrToRGB[{r, g, b}]</pre><div class='IFU'><a name='160896521'></a>http://wolfram.com/xid/0f9kq23mjjbkx9jhhodw5bq2w2fe-cx2ut3</div>

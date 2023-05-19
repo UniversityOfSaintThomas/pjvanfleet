@@ -1,0 +1,7 @@
+<pre name='i_15_in' id='i_15_in' class='IFT'>v = Range[20];
+{wpt, tree} = 
+  WPT[v, Haar[], CostFunction -&gt; NumberAboveThreshold, 
+   SecondParameter -&gt; 1.5, Computation -&gt; Symbolic] ;
+inv = Simplify[
+  InverseWPT[{wpt, tree}, Haar[], Computation -&gt; Symbolic]]
+inv = InverseWPT[{wpt, tree}, Haar[]]</pre><div class='IFU'><a name='10038456'></a>http://wolfram.com/xid/0bclo942dwfme8ltsw2z409ej-f9f0a</div>

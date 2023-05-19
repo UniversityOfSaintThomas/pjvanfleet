@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>DisplayMode&mdash;Wolfram Language Documentation</title>
+<meta name="buildnumber" content="0000000" />
+<meta name="historydata" content="{XX, , , }" />
+<meta name="keywords" content="DisplayMode" />
+
+<meta name="description" content="DisplayMode is an option for RGBToYCbCr, YCbCrToRGB, RGBToHSI and HSIToRGB that indicates whether or not the returned values are in the range 0,...,255." />
+<script language="JavaScript" type="text/javascript">baselang='DisplayMode';</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		 <link rel="stylesheet" type="text/css" href="../css/reference.css" />
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/core/1.6.1/jquery.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/plugins/hoverIntent/r5/jquery.hoverIntent.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/reference.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/documentation-search.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/inputs.js"></script>
+		 <script language="javaScript" type="text/javascript" src="../javascript/faster-page-load.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/plugins/jcarousel/tinycarousel/tinycarousel.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery.dotdotdot-1.5.1.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/carousel.js"></script>
+<script language="JavaScript" type="text/javascript" src="../javascript/toggle-highlight.js"></script>
+</head>
+<body id="ref" class="function">
+<a name="top"></a>
+<!--#include virtual="/common/includes/gl-header.html"--> 
+<div class="main-wrapper">
+
+
+<div class="wrapper mainOuter">
+    <div class="mainContent">
+ <div class="topContentWrap">
+  <div class="ribbonWrap">
+   <span class="ribbonOuter"><span class="ribbonInner">WAVELET WARE PACKAGE SYMBOL</span></span>
+  </div>
+  <ul class="dropdown">
+   <li>
+    <a href="#">See Also</a>
+    <ul class="sub_menu">
+     <li>
+      <a href="/language/WaveletWare/ref/RGBToYCbCr.html"><span class="dropdownPad">RGBToYCbCr</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/YCbCrToRGB.html"><span class="dropdownPad">YCbCrToRGB</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/RGBToHSI.html"><span class="dropdownPad">RGBToHSI</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/HSIToRGB.html"><span class="dropdownPad">HSIToRGB</span></a>
+     </li>
+    </ul>
+   </li>
+   <li>
+    <a href="#">Related Guides</a>
+    <ul class="sub_menu">
+     <li>
+      <a href="/language/WaveletWare/guide/List of Options and Values.html"><span class="dropdownPad">List of Options and Values</span></a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+  <div class="clear"><!-- --></div>
+ </div>
+ <h1>DisplayMode</h1>
+ <div class="functionIntroWrap">
+  <div class="functionIntro">
+   <p><span class="IF"><img src="Files/DisplayMode/1.png" height="18" width="69" alt="" /></span><br />is an option for <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/RGBToYCbCr.html">RGBToYCbCr</a></span>, <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/YCbCrToRGB.html">YCbCrToRGB</a></span>, <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/RGBToHSI.html">RGBToHSI</a></span> and <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/HSIToRGB.html">HSIToRGB</a></span> that indicates whether or not the returned values are in the range 0,...,255.</p>
+  </div>
+ </div>
+ <div class="expandWrap closed"
+     id="DetailsAndOptions">
+  <div class="expandOuter">
+   <h2 class="expandInner"><a class="expand hide" title="show" href="#">Details</a><a class="collapse" title="hide" href="#">Details</a></h2>
+   <div class="expanded">
+    <ul class="functionList">
+     <li><a name="187636093"></a><span class="monospace">DisplayMode</span> set to <a href="http://reference.wolfram.com/language/ref/True.html">True</a> maps the output of <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/RGBToYCbCr.html">RGBToYCbCr</a></span> and <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/RGBToHSI.html">RGBToHSI</a></span> to a range that can be viewed by <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/ImagePlot.html">ImagePlot</a></span>.</li>
+     <li><a name="1067943069"></a><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/RGBToYCbCr.html">RGBToYCbCr</a></span> takes as input integers in the range 0,1,...,255 and returns values <span class="IF"><span class="TI">y</span></span> <span class="special-character Element">&#8712;</span> [0,1] and <span class="IF"><span class="TI">cb</span></span>, <span class="IF"><span class="TI">cr</span></span> <span class="special-character Element">&#8712;</span> [<span class="IF"><img src="Files/DisplayMode/2.png" height="21" width="16" alt="" /></span>,<span class="IF"><img src="Files/DisplayMode/3.png" height="21" width="7" alt="" /></span>].  If <span class="monospace">DisplayMode</span> is set to <a href="http://reference.wolfram.com/language/ref/True.html">True</a> (default is <a href="http://reference.wolfram.com/language/ref/False.html">False</a>), then <span class="IF"><span class="TI">y</span></span> <span class="special-character Element">&#8712;</span> [16, 235] and <span class="IF"><span class="TI">cb</span></span>,<span class="IF"><span class="TI">cr</span></span> <span class="special-character Element">&#8712;</span> [16,240].  If <span class="monospace">DisplayMode</span> is set to <a href="http://reference.wolfram.com/language/ref/True.html">True</a> as an option for <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/YCbCrToRGB.html">YCbCrToRGB</a></span>, then the routine expects values for <span class="IF"><span class="TI">y</span></span> <span class="special-character Element">&#8712;</span> [16, 235] and <span class="IF"><span class="TI">cb</span></span>, <span class="IF"><span class="TI">cr</span></span> <span class="special-character Element">&#8712;</span> [16, 240].</li>
+    </ul>
+   </div>
+  </div>
+ </div>
+ <div class="expandWrap"
+     id="Examples">
+  <div class="expandOuter">
+   <h2 class="expandInner"><a class="expand hide" title="show" href="#">Examples</a><a class="collapse" title="hide" href="#">Examples</a><a class="all opener" title="open all" href="#"><span>open all</span></a><a class="all closer hide" title="close all" href="#"><span>close all</span></a></h2>
+   <div class="expanded">
+    <div class="expandSubWrap">
+     <div class="expandSubOuter">
+      <h3 class="expandSubInner"><a class="expand hide" href="#" title="show">Basic Examples<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a><a class="collapse" href="#" title="hide">Basic Examples<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a></h3>
+      <div class="expanded">
+       <div class="MCap"><a name="16454449"></a>This loads the package:</div>
+       <table class="InCell">
+        <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+           <a name="861618089"></a>
+           <img src="Files/DisplayMode/I_2.gif"
+               height="15"
+               width="93"
+               alt="Click for copyable input" />
+          </div><div id="i_1_out" class="IFL"></div></td></tr>
+       </table>
+       <p><a name="1024171621"></a>Convert an RGB triple to YCbCr space and back first with <span class="monospace">DisplayMode</span> set to <a href="http://reference.wolfram.com/language/ref/False.html">False</a> and then to <a href="http://reference.wolfram.com/language/ref/True.html">True.</a></p>
+       <div class="IO">
+        <table class="InCell">
+         <tr><td class="lab">In[2]:=</td><td class="Input"><div>
+            <a name="797736522"></a>
+            <img src="Files/DisplayMode/I_4.gif"
+                height="101"
+                width="302"
+                alt="Click for copyable input" />
+           </div><div id="i_3_out" class="IFL"></div></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[2]=</td><td class="Output"><img src="Files/DisplayMode/O_1.gif" height="15" width="171" alt="" /></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[2]=</td><td class="Output"><img src="Files/DisplayMode/O_2.gif" height="15" width="68" alt="" /></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[2]=</td><td class="Output"><img src="Files/DisplayMode/O_3.gif" height="15" width="137" alt="" /></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[2]=</td><td class="Output"><img src="Files/DisplayMode/O_4.gif" height="15" width="68" alt="" /></td></tr>
+        </table>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="toplink">
+     <a href="#top">Top</a>
+    </div>
+    <div class="clear"><!-- --></div>
+   </div>
+  </div>
+ </div>
+ <div class="expandWrap"
+     id="SeeAlso">
+  <div class="expandOuter">
+   <h2 class="expandInner"><a class="expand hide" title="show" href="#">See Also</a><a class="collapse" title="hide" href="#">See Also</a></h2>
+   <div class="expanded">
+    <p class="inlineFunctionList"><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/RGBToYCbCr.html">RGBToYCbCr</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/YCbCrToRGB.html">YCbCrToRGB</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/RGBToHSI.html">RGBToHSI</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/HSIToRGB.html">HSIToRGB</a></span></p>
+   </div>
+  </div>
+ </div>
+ <div class="expandWrap"
+     id="RelatedGuides">
+  <div class="expandOuter">
+   <h2 class="expandInner"><a class="expand hide" title="show" href="#">Related Guides</a><a class="collapse" title="hide" href="#">Related Guides</a></h2>
+   <div class="expanded">
+    <ul class="functionList">
+     <li>
+      <a name="66647460"></a>
+      <a href="http://reference.wolfram.com/language/WaveletWare/guide/List of Options and Values.html">List of Options and Values</a>
+     </li>
+    </ul>
+   </div>
+  </div>
+ </div>
+</div>
+</div><!-- /wrapper -->
+
+	
+</div>
+
+
+</body>
+		 </html>

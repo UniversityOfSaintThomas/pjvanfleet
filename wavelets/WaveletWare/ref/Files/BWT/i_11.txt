@@ -1,0 +1,6 @@
+<pre name='i_11_in' id='i_11_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;chess.png&quot;;
+A = ImageRead[file, Resize -&gt; {192, 128}];
+ImagePlot[A]
+iterations = 3;
+wt = BWT[A, SplineFilters[2, 2], NumIterations -&gt; iterations];
+WaveletPlot[wt, NumIterations -&gt; iterations]</pre><div class='IFU'><a name='6199230'></a>http://wolfram.com/xid/0nxaq5tqtv6thic7lxhiz-dy5m4</div>

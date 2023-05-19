@@ -1,0 +1,2 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>v = RandomInteger[{0, 10}, 10];
+WT[v, Haar[], Computation -&gt; Symbolic] // Simplify</pre><div class='IFU'><a name='14921637'></a>http://wolfram.com/xid/0cfyrarw2zb4lriwioq-i53v7</div>

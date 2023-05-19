@@ -1,0 +1,5 @@
+<pre name='i_65_in' id='i_65_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;cups.png&quot;;
+A = ImageRead[file, Resize -&gt; {256, 384}];
+wt = WTFull[A, Haar[]];
+FullWaveletPlot[wt, 
+ ChannelColor -&gt; {{Orange, Purple, Brown}, {Red, Green, Blue}}]</pre><div class='IFU'><a name='2519375'></a>http://wolfram.com/xid/0063dvybfwx396xn21trjec45uq-br98x</div>

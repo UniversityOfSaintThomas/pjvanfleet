@@ -1,0 +1,1 @@
+<pre name='i_79_in' id='i_79_in' class='IFT'>InverseBWT[wt, SplineFilters[2, 2], Boundary -&gt; True]</pre><div class='IFU'><a name='764683930'></a>http://wolfram.com/xid/0kmsg876k74fv7tus4gahxj5adn8b2m3ovcixzmeb-mxj36k</div>

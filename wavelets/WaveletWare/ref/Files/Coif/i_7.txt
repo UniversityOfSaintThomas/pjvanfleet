@@ -1,0 +1,7 @@
+<pre name='i_7_in' id='i_7_in' class='IFT'>{n, dx} = {10, .1};
+v = Cos[2 Pi Range[0, n - dx, dx]/n];
+ListPlot[v, Ticks -&gt; {Range[0, n/dx, n/dx/4], Range[-1, 1]}, 
+ PlotLabel -&gt; &quot;Data&quot;]
+wt = WT[v, Coif[1]];
+ListPlot[wt, Ticks -&gt; {Range[0, n/dx, n/dx/4], Range[-1, 1]}, 
+ PlotLabel -&gt; &quot;Wavelet Transform&quot;]</pre><div class='IFU'><a name='109312896'></a>http://wolfram.com/xid/0hyhar0zcbct23kxed67-b3c8nm</div>

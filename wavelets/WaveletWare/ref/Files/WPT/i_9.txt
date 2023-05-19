@@ -1,0 +1,9 @@
+<pre name='i_9_in' id='i_9_in' class='IFT'>file = PackageDirectory[DataType -&gt; Sounds] &lt;&gt; &quot;rooster.wav&quot;;
+{v, rate} = AudioRead[file, PowersOfTwo -&gt; 4];
+ListPlot[v]
+iterations = 3;
+{wpt, tree} = 
+  WPT[v, Daub[4], NumIterations -&gt; iterations, 
+   CostFunction -&gt; NumberAboveThreshold, SecondParameter -&gt; .25];
+ShowBestBasis[tree]
+WaveletVectorPlot[wpt, tree, NumIterations -&gt; iterations]</pre><div class='IFU'><a name='29952762'></a>http://wolfram.com/xid/0bsub5sf4gpwe26lzrftnf-r39zg</div>

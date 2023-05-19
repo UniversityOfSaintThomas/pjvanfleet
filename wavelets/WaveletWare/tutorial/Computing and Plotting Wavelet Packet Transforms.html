@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Computing and Plotting Wavelet Packet Transforms&mdash;Wolfram Language Documentation</title>
+<meta name="buildnumber" content="0000000" />
+<meta name="historydata" content="{0.0, , , }" />
+<meta name="keywords" content="Computing and Plotting Wavelet Packet Transforms" />
+
+<meta name="description" content="The WaveletWare package contains several routines for computing and visualizing wavelet packet transformations. This tutorial describes how to use these routines. Some of the options for computing and visualizing packet transforms are not covered here but additional information can be found on particular function help pages. GridBox[{{StyleBox[ButtonBox[StyleBox[RowBox[{1, -, RowBox[{D, , Packet, , Transforms}]}], Subsubsubsection], BaseStyle -&amp;gt; Hyperlink, ButtonData -&amp;gt; 1dpacket], Subsubsubsection], StyleBox[ButtonBox[StyleBox[RowBox[{Cost, , Functions}], Subsubsubsection], BaseStyle -&amp;gt; Hyperlink, ButtonData -&amp;gt; costfunctions], Subsubsubsection], StyleBox[ButtonBox[StyleBox[RowBox[{Packet, , Transforms, , of, , Matrices}], Subsubsubsection], BaseStyle -&amp;gt; Hyperlink, ButtonData -&amp;gt; 2dpackets], Subsubsubsection], StyleBox[ButtonBox[StyleBox[RowBox[{Packet, , Transforms, , and, , Color}], Subsubsubsection], BaseStyle -&amp;gt; Hyperlink, ButtonData -&amp;gt; colorpackets], Subsubsubsection]}}] The two main routines in the WaveletWare package for computing wavelet packet transformations are WPT and WPTFull. WPT takes as input either a vector, a matrix or a list of three matrices each of the same dimension and an orthogonal filter or biorthogonal filter pair and returns the resulting packet transform and best basis tree. WPTFull takes the same input as WPT but returns the full decomposition of the input at each of a prescribed number of iterations. The inverse wavelet packet transformation can be computed using InverseWPT. The FBIPacketTransform and InverseFBIPacketTransform routines are special instances of the wavelet packet transform and its inverse and uses the CDF97 filter and a fixed best basis tree." />
+<script language="JavaScript" type="text/javascript">baselang='Computing and Plotting Wavelet Packet Transforms';</script>
+<script language="JavaScript" type="text/javascript">packagename='WaveletWare';</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		 <link rel="stylesheet" type="text/css" href="../css/reference.css" />
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/core/1.6.1/jquery.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/plugins/hoverIntent/r5/jquery.hoverIntent.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/reference.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/documentation-search.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/inputs.js"></script>
+		 <script language="javaScript" type="text/javascript" src="../javascript/faster-page-load.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/plugins/jcarousel/tinycarousel/tinycarousel.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery.dotdotdot-1.5.1.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/carousel.js"></script>
+</head>
+<body id="tutorial">
+<a name="top"></a>
+<!--#include virtual="/common/includes/gl-header.html"--> 
+<div class="main-wrapper">
+
+
+<div class="wrapper mainOuter">
+    <div class="mainContent">
+ <div class="topContentWrap">
+  <div class="ribbonWrap">
+   <span class="ribbonOuter"><span class="ribbonInner">WAVELET WARE TUTORIAL</span></span>
+  </div>
+  <ul class="dropdown">
+   <li>
+    <a href="#">Tutorials</a>
+    <ul class="sub_menu">
+     <li>
+      <a href="/language/WaveletWare/tutorial/Computing and Plotting Wavelet Transformations.html"><span class="dropdownPad">Computing and Plotting Wavelet Transformations</span></a>
+     </li>
+    </ul>
+   </li>
+   <li>
+    <a href="#">Functions</a>
+    <ul class="sub_menu">
+     <li>
+      <a href="/language/WaveletWare/ref/CDF97.html"><span class="dropdownPad">CDF97</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/Coif.html"><span class="dropdownPad">Coif</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/Daub.html"><span class="dropdownPad">Daub</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/FBIPacketTransform.html"><span class="dropdownPad">FBIPacketTransform</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/FullWaveletPlot.html"><span class="dropdownPad">FullWaveletPlot</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/FullWaveletVectorPlot.html"><span class="dropdownPad">FullWaveletVectorPlot</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/Haar.html"><span class="dropdownPad">Haar</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/InverseFBIPacketTransform.html"><span class="dropdownPad">InverseFBIPacketTransform</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/InverseWPT.html"><span class="dropdownPad">InverseWPT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/LeGall.html"><span class="dropdownPad">LeGall</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/NumberAboveThreshold.html"><span class="dropdownPad">NumberAboveThreshold</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/NumberNonzero.html"><span class="dropdownPad">NumberNonzero</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/ShannonEntropy.html"><span class="dropdownPad">ShannonEntropy</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/ShowBestBasis.html"><span class="dropdownPad">ShowBestBasis</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/SplineFilters.html"><span class="dropdownPad">SplineFilters</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/SumOfPowers.html"><span class="dropdownPad">SumOfPowers</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/WaveletPlot.html"><span class="dropdownPad">WaveletPlot</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/WaveletRegionPlot.html"><span class="dropdownPad">WaveletRegionPlot</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/WaveletVectorPlot.html"><span class="dropdownPad">WaveletVectorPlot</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/WPT.html"><span class="dropdownPad">WPT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/WPTFull.html"><span class="dropdownPad">WPTFull</span></a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+  <div class="clear"><!-- --></div>
+ </div>
+ <h1 class="Title"><a name="509267359"></a>Computing and Plotting Wavelet Packet Transforms</h1>
+ <div class="TutorialJumpBox">
+  <table class="nogridboxdividers">
+   <col />
+   <col />
+   <tr class="lineAbove" style=""><td><a href="../tutorial/Computing and Plotting Wavelet Packet Transforms.html#4659334">One-Dimensional Wavelet Packet Transformations</a></td><td><a href="../tutorial/Computing and Plotting Wavelet Packet Transforms.html#902595934">Wavelet Packet Transforms of Matrices</a></td></tr>
+   <tr class="" style=""><td><a href="../tutorial/Computing and Plotting Wavelet Packet Transforms.html#314759074">Cost Functions</a></td><td><a href="../tutorial/Computing and Plotting Wavelet Packet Transforms.html#35148191">Wavelet Packet Transforms and Color</a></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="208407715"></a>The <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> package contains several routines for computing and visualizing wavelet packet transformations.  This tutorial describes how to use these routines.  Some of the options for computing and visualizing packet transforms are not covered here but additional information can be found on particular function help pages.</p>
+ <p class="Text">
+  <a name="440969738"></a>
+  <img src="Files/Computing and Plotting Wavelet Packet Transforms/CellNone_1.png"
+      height="27"
+      width="556"
+      alt=""
+      style="vertical-align:middle;" />
+ </p>
+ <p class="Text"><a name="299082127"></a>The two main routines in the <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> package for computing wavelet packet transformations are <span class="IF"><a href="../ref/WPT.html">WPT</a></span> and <span class="IF"><a href="../ref/WPTFull.html">WPTFull</a></span>.  <span class="IF"><a href="../ref/WPT.html">WPT</a></span> takes as input either a vector, a matrix or a list of three matrices each of the same dimension and an orthogonal filter or biorthogonal filter pair and returns the resulting packet transform and best basis tree.  <span class="IF"><a href="../ref/WPTFull.html">WPTFull</a></span> takes the same input as WPT but returns the full decomposition of the input at each of a prescribed number of iterations.  The inverse wavelet packet transformation can be computed using <span class="IF"><a href="../ref/InverseWPT.html">InverseWPT</a></span>.  The <span class="IF"><a href="../ref/FBIPacketTransform.html">FBIPacketTransform</a></span> and <span class="IF"><a href="../ref/InverseFBIPacketTransform.html">InverseFBIPacketTransform</a></span> routines are special instances of the wavelet packet transform and its inverse and uses the <span class="IF"><a href="../ref/CDF97.html">CDF97</a></span> filter and a fixed best basis tree.</p>
+ <div class="MathTable DefinitionBox">
+  <a name="312527861"></a>
+  <table class="nogridboxdividers">
+   <col width="40%" />
+   <col width="60%" />
+   <tr class="lineAbove" style=""><td><a href="../ref/WPT.html">WPT</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">filter</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Compute the wavelet packet transform</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/WPTFull.html">WPTFull</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">filter</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Full decomposition at several levels of the packet transform</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/InverseWPT.html">InverseWPT</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">filter</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Compute the inverse wavelet packet transform</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/FBIPacketTransform.html">FBIPacketTransform</a><span class="openbracket">[</span><span class="TI">data<span class="comma">,</span>opts</span><span class="closebracket">]</span></td><td><span class="TT">Wavelet packet transform with fixed tree and filter</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/InverseFBIPacketTransform.html">InverseFBIPacketTransform</a><span class="openbracket">[</span><span class="TI">data<span class="comma">,</span>opts</span><span class="closebracket">]</span></td><td><span class="TT">Inverse wavelet packet transform with fixed tree and filter</span></td></tr>
+  </table>
+ </div>
+ <p class="Caption"><a name="168463790"></a>Wavelet packet transform functions.</p>
+ <p class="Text"><a name="537350606"></a>Any of the following filters can be used with <span class="IF"><a href="../ref/WPT.html">WPT</a></span>, <span class="IF"><a href="../ref/WPTFull.html">WPTFull</a></span> or <span class="IF"><a href="../ref/InverseWPT.html">InverseWPT</a></span>:</p>
+ <div class="MathTable DefinitionBox">
+  <a name="127614683"></a>
+  <table class="nogridboxdividers">
+   <col width="40%" />
+   <col width="60%" />
+   <tr class="lineAbove" style=""><td><a href="../ref/Coif.html">Coif</a><span class="openbracket">[</span><span class="TI">n</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT"><span class="specialcharacters">Coiflet filter of length 6n<span class="comma">,</span> n=1<span class="comma">,</span>2<span class="comma">,</span>3<span class="comma">,</span>4<span class="comma">,</span>5</span></span></td></tr>
+   <tr class="" style=""><td><a href="../ref/CDF97.html">CDF97</a><span class="openbracket">[</span><span class="closebracket">]</span></td><td><span class="TT">Cohen/Daubechies/Feauveau biorthogonal filter pair</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/Daub.html">Daub</a><span class="openbracket">[</span><span class="TI">n</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Daubechies filter of even length n</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/Haar.html">Haar</a><span class="openbracket">[</span><span class="closebracket">]</span></td><td><span class="TT">Haar filter</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/LeGall.html">LeGall</a><span class="openbracket">[</span><span class="closebracket">]</span></td><td><span class="TT">LeGall biorthogonal filter pair</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/SplineFilters.html">SplineFilters</a><span class="openbracket">[</span><span class="TI">n</span><span class="comma">,</span><span class="TI">m</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Biorthogonal spline filter pair</span></td></tr>
+  </table>
+ </div>
+ <p class="Caption"><a name="5404641"></a>Orthogonal and biorthogonal filters.</p>
+ <p class="Text"><a name="61440300"></a>The <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> package contains a variety of routines that can be used for visualizing wavelet packet transforms.</p>
+ <div class="MathTable DefinitionBox">
+  <a name="530208898"></a>
+  <table class="nogridboxdividers">
+   <col width="40%" />
+   <col width="60%" />
+   <tr class="lineAbove" style=""><td><a href="../ref/WaveletVectorPlot.html">WaveletVectorPlot</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">tree</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Plot the wavelet packet transform of 1-d data</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/FullWaveletVectorPlot.html">FullWaveletVectorPlot</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Plot all iterations of wavelet packet transforms of 1-d data</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/WaveletPlot.html">WaveletPlot</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">tree</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Plots the wavelet packet transform of a matrix or 3 matrices</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/FullWaveletPlot.html">FullWaveletPlot</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Plots all iterations of a wavelet packet transform of input data</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/WaveletRegionPlot.html">WaveletRegionPlot</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">region</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Plots particular regions of a wavelet packet transform</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/ShowBestBasis.html">ShowBestBasis</a><span class="openbracket">[</span><span class="TI">tree</span><span class="comma">,</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT"><span class="specialcharacters">Graphical description <span class="openparenthesis">(</span>2- and 3-d<span class="closeparenthesis">)</span> of the best basis tree</span></span></td></tr>
+  </table>
+ </div>
+ <p class="Caption"><a name="96236916"></a>Routines to visualize wavelet packet transforms.</p>
+ <div class="MCap"><a name="16454449"></a>This loads the package:</div>
+ <table class="InCell">
+  <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+     <a name="861618089"></a>
+     <img src="Files/Computing and Plotting Wavelet Packet Transforms/I_2.gif"
+         height="15"
+         width="93"
+         alt="Click for copyable input" />
+    </div><div id="i_1_out" class="IFL"></div></td></tr>
+ </table>
+ <h2 class="Section"><a name="4659334"></a>One-Dimensional Wavelet Packet Transformations</h2>
+ <p class="Text">
+  <a name="98062134"></a>
+  <a href="#top">(top)</a>
+ </p>
+ <p class="Text"><a name="646766762"></a>Given a number of iterations <span class="IF"><span class="TI">n</span></span>, a vector <span class="IF"><span class="TI">v</span></span> whose length is divisible by <span class="IF"><img src="Files/Computing and Plotting Wavelet Packet Transforms/2.png" height="18" width="13" alt="" /></span>, and an orthogonal filter (or biorthogonal filter pair),  the wavelet packet transform first computes the wavelet transform of <span class="IF"><span class="TI">v</span></span> (see the tutorial <a href="../tutorial/Computing and Plotting Wavelet Transformations.html">Computing and Plotting Wavelet Transformations</a>).  The wavelet transform is then iteratively applied to each low- and high-pass portion of the previous computation.  The result is a list of <span class="IF"><span class="TI">n</span></span>+1 vectors (counting the original vector <span class="IF"><span class="TI">v</span></span>).   The process is demonstrated below.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+      <a name="266377956"></a>
+      <img src="Files/Computing and Plotting Wavelet Packet Transforms/I_4.gif"
+          height="101"
+          width="351"
+          alt="Click for copyable input" />
+     </div><div id="i_3_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td colspan="2"><div class="celllabelTableForm">Out[5]//TableForm=</div></td></tr>
+   <tr><td class="lab"> </td><td class="Output"><div class="TableForm">
+      <img src="Files/Computing and Plotting Wavelet Packet Transforms/O_1.gif"
+          width="120"
+          height="258"
+          alt="" />
+     </div></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="194620288"></a>The graph below illustrates the procedure.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[6]:=</td><td class="Input"><div>
+      <a name="333062941"></a>
+      <img src="Files/Computing and Plotting Wavelet Packet Transforms/I_6.gif"
+          height="33"
+          width="315"
+          alt="Click for copyable input" />
+     </div><div id="i_5_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[6]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Packet Transforms/O_2.gif" height="125" width="240" alt="" /></td></tr>
+  </table>
+ </div>
+ <h2 class="Section"><a name="314759074"></a>Cost Functions</h2>
+ <p class="Text">
+  <a name="131201846"></a>
+  <a href="#top">(top)</a>
+ </p>
+ <p class="Text"><a name="59406387"></a>Once the full decomposition is computed, the last step in computing the packet transform is to determine the &quot;best basis&quot; for the decomposition.  Some best basis options are plotted below.  Note that the last basis is the standard wavelet decomposition.  More information on the tree structure in the <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> package can be found in the tutorial <a href="../tutorial/Data Structures in the WaveletWare Package.html">Data Structures in the WaveletWare Package</a>. </p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[7]:=</td><td class="Input"><div>
+      <a name="52476015"></a>
+      <img src="Files/Computing and Plotting Wavelet Packet Transforms/I_8.gif"
+          height="50"
+          width="512"
+          alt="Click for copyable input" />
+     </div><div id="i_7_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td colspan="2"><div class="celllabelTableForm">Out[8]//TableForm=</div></td></tr>
+   <tr><td class="lab"> </td><td class="Output"><div class="TableForm">
+      <img src="Files/Computing and Plotting Wavelet Packet Transforms/O_3.gif"
+          width="120"
+          height="269"
+          alt="" />
+     </div></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="489053134"></a>To determine the best basis, the packet transformation uses a cost function.  A cost function <span class="IF"><a href="http://reference.wolfram.com/language/ref/C.html">C</a></span> maps the <span class="IF"><img src="Files/Computing and Plotting Wavelet Packet Transforms/3.png" height="18" width="7" alt="" /></span> vector to 0 and for any partition of input vector <span class="IF"><span class="TI">v</span></span> = [ <span class="IF"><span class="TI">u</span></span> | <span class="IF"><span class="TI">w</span></span> ], <span class="IF"><a href="http://reference.wolfram.com/language/ref/C.html">C</a></span>(<span class="IF"><span class="TI">v</span></span>) = <span class="IF"><a href="http://reference.wolfram.com/language/ref/C.html">C</a></span>(<span class="IF"><span class="TI">u</span></span>)+<span class="IF"><a href="http://reference.wolfram.com/language/ref/C.html">C</a></span>(<span class="IF"><span class="TI">w</span></span>).  The best basis algorithm starts at the bottom of the packet decomposition and compares the sum of the cost of two &quot;children&quot; with the cost of its &quot;parent.&quot;  The data representing the lower cost is retained for continued comparison.  The process ends by comparing costs computed to date with the cost of the original data.<br /><br />The <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> package has four built-in cost functions.  They are listed below.</p>
+ <div class="MathTable DefinitionBox">
+  <a name="159474532"></a>
+  <table class="nogridboxdividers">
+   <col width="40%" />
+   <col width="60%" />
+   <tr class="lineAbove" style=""><td><a href="../ref/NumberAboveThreshold.html">NumberAboveThreshold</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">t</span><span class="closebracket">]</span></td><td><span class="TT"><span class="specialcharacters">Number of values <span class="openparenthesis">(</span>in absolute<span class="closeparenthesis">)</span> </span><span class="special-character GreaterEqual">&#8805;</span> <span class="IF"><span class="TI">t</span></span></span></td></tr>
+   <tr class="" style=""><td><a href="../ref/NumberNonzero.html">NumberNonzero</a><span class="openbracket">[</span><span class="TI">data</span><span class="closebracket">]</span></td><td><span class="TT">Number of nonzero values in data</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/ShannonEntropy.html">ShannonEntropy</a><span class="openbracket">[</span><span class="TI">data</span><span class="closebracket">]</span></td><td><span class="TT">Shannon Entropy of data</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/SumOfPowers.html">SumOfPowers</a><span class="openbracket">[</span><span class="TI">data</span><span class="comma">,</span><span class="TI">p</span><span class="closebracket">]</span></td><td><span class="TT"><span class="specialcharacters">Sum of the values in data <span class="openparenthesis">(</span>in absolute<span class="closeparenthesis">)</span> raised to power </span><span class="IF"><span class="TI">p</span></span></span></td></tr>
+  </table>
+ </div>
+ <p class="Caption"><a name="98414545"></a>Cost functions in the <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> package.</p>
+ <p class="Text"><a name="746618036"></a>The <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> function <span class="IF"><a href="../ref/BestBasisTree.html">BestBasisTree</a></span> will compute the best basis given the full decomposition.  The <span class="IF"><a href="../ref/CostFunction.html">CostFunction</a></span> option can be set to something other than the default function <span class="IF"><a href="../ref/NumberNonzero.html">NumberNonzero</a></span>.  In the cases where the cost function has a second argument (such as <span class="IF"><a href="../ref/NumberAboveThreshold.html">NumberAboveThreshold</a></span> or <span class="IF"><a href="../ref/SumOfPowers.html">SumOfPowers</a></span>), the option <span class="IF"><a href="../ref/SecondParameter.html">SecondParameter</a></span> should be set.  A simple example is given below.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[9]:=</td><td class="Input"><div>
+      <a name="33998388"></a>
+      <img src="Files/Computing and Plotting Wavelet Packet Transforms/I_10.gif"
+          height="84"
+          width="498"
+          alt="Click for copyable input" />
+     </div><div id="i_9_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td colspan="2"><div class="celllabelTableForm">Out[13]//TableForm=</div></td></tr>
+   <tr><td class="lab"> </td><td class="Output"><div class="TableForm">
+      <img src="Files/Computing and Plotting Wavelet Packet Transforms/O_4.gif"
+          width="120"
+          height="133"
+          alt="" />
+     </div></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="254750173"></a>Returning to the original example where the input is samples of the Donoho/Johnstone Doppler function, the computations below compute the wavelet packet transform using the biorthogonal (5,3) spline filter pair.  We use the cost function <span class="IF"><a href="../ref/NumberAboveThreshold.html">NumberAboveThreshold</a></span> instead of the default <span class="IF"><a href="../ref/NumberNonzero.html">NumberNonzero</a></span>.  The best basis tree is plotted.  In order to plot the transformed data, the optional <span class="IF"><span class="TI">tree</span></span> argument must be passed to <span class="IF"><a href="../ref/WaveletVectorPlot.html">WaveletVectorPlot</a></span>.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[14]:=</td><td class="Input"><div>
+      <a name="78654373"></a>
+      <img src="Files/Computing and Plotting Wavelet Packet Transforms/I_12.gif"
+          height="152"
+          width="464"
+          alt="Click for copyable input" />
+     </div><div id="i_11_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[17]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Packet Transforms/O_5.gif" height="163" width="240" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[19]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Packet Transforms/O_6.gif" height="125" width="240" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[20]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Packet Transforms/O_7.gif" height="143" width="240" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="24747471"></a>The <span class="IF"><a href="../ref/Iteration.html">Iteration</a></span> parameter can be used to plot only particular regions of the packet transform.  One example is given here.  See help for <span class="IF"><a href="../ref/WaveletPlot.html">WaveletPlot</a></span> or <span class="IF"><a href="../ref/Iteration.html">Iteration</a></span> for more information.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[21]:=</td><td class="Input"><div>
+      <a name="1034401202"></a>
+      <img src="Files/Computing and Plotting Wavelet Packet Transforms/I_14.gif"
+          height="15"
+          width="436"
+          alt="Click for copyable input" />
+     </div><div id="i_13_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[21]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Packet Transforms/O_8.gif" height="242" width="400" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="179898591"></a>The inverse packet transform can be computed using <span class="IF"><a href="../ref/InverseWPT.html">InverseWPT</a></span>.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[22]:=</td><td class="Input"><div>
+      <a name="109073320"></a>
+      <img src="Files/Computing and Plotting Wavelet Packet Transforms/I_16.gif"
+          height="67"
+          width="317"
+          alt="Click for copyable input" />
+     </div><div id="i_15_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[23]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Packet Transforms/O_9.gif" height="257" width="400" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[24]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Packet Transforms/O_10.gif" height="15" width="23" alt="" /></td></tr>
+  </table>
+ </div>
+ <h2 class="Section"><a name="902595934"></a>Wavelet Packet Transforms of Matrices</h2>
+ <p class="Text">
+  <a name="449785699"></a>
+  <a href="#top">(top)</a>
+ </p>
+ <p class="Text"><a name="546320134"></a>When the input is a matrix, the packet routine <span class="IF"><a href="../ref/WPT.html">WPT</a></span> again uses <span class="IF"><a href="../ref/WPTFull.html">WPTFull</a></span> to compute full decomposition (for a prescribed number of iterations).  <br /><br />An example is given below.  Note that the option <span class="IF"><a href="../ref/PacketPlot.html">PacketPlot</a></span> must be set to <a href="http://reference.wolfram.com/language/ref/True.html">True</a> so that <span class="IF"><a href="../ref/FullWaveletPlot.html">FullWaveletPlot</a></span> knows to plot a packet transform.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[25]:=</td><td class="Input"><div>
+      <a name="401958949"></a>
+      <img src="Files/Computing and Plotting Wavelet Packet Transforms/I_18.gif"
+          height="84"
+          width="344"
+          alt="Click for copyable input" />
+     </div><div id="i_17_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[28]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Packet Transforms/O_11.gif" height="1077" width="402" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="6023094"></a><span class="IF"><a href="../ref/BestBasisTree.html">BestBasisTree</a></span> with the cost function <span class="IF"><a href="../ref/NumberAboveThreshold.html">NumberAboveThreshold</a></span> is used to determine a best basis for the decomposition.  </p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[29]:=</td><td class="Input"><div>
+      <a name="476711892"></a>
+      <img src="Files/Computing and Plotting Wavelet Packet Transforms/I_20.gif"
+          height="33"
+          width="498"
+          alt="Click for copyable input" />
+     </div><div id="i_19_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[30]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Packet Transforms/O_12.gif" height="432" width="580" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="156164226"></a>The above computations are consolidated by <span class="IF"><a href="../ref/WPT.html">WPT</a></span> and the results are plotted using <span class="IF"><a href="../ref/WaveletPlot.html">WaveletPlot</a></span> with the option argument <span class="IF"><span class="TI">tree</span></span> included.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[31]:=</td><td class="Input"><div>
+      <a name="345522081"></a>
+      <img src="Files/Computing and Plotting Wavelet Packet Transforms/I_22.gif"
+          height="118"
+          width="397"
+          alt="Click for copyable input" />
+     </div><div id="i_21_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[34]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Packet Transforms/O_13.gif" height="98" width="384" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[35]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Packet Transforms/O_14.gif" height="256" width="384" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="433452317"></a>The <span class="IF"><a href="../ref/Iteration.html">Iteration</a></span> option can be used to plot particular regions in the packet transform.  See the reference pages for <span class="IF"><a href="../ref/WaveletPlot.html">WaveletPlot</a></span> or <span class="IF"><a href="../ref/Iteration.html">Iteration</a></span> for more details.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[36]:=</td><td class="Input"><div>
+      <a name="890607119"></a>
+      <img src="Files/Computing and Plotting Wavelet Packet Transforms/I_24.gif"
+          height="118"
+          width="500"
+          alt="Click for copyable input" />
+     </div><div id="i_23_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[39]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Packet Transforms/O_15.gif" height="62" width="240" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[40]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Packet Transforms/O_16.gif" height="256" width="384" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="105661294"></a>The <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> function <span class="IF"><a href="../ref/WaveletRegionPlot.html">WaveletRegionPlot</a></span> can also be used to plot particular portions of a packet transform.  In this case, <span class="IF"><a href="../ref/Iteration.html">Iteration</a></span> is not an option but the third argument of this function.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[41]:=</td><td class="Input"><div>
+      <a name="37447943"></a>
+      <img src="Files/Computing and Plotting Wavelet Packet Transforms/I_26.gif"
+          height="169"
+          width="524"
+          alt="Click for copyable input" />
+     </div><div id="i_25_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[44]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Packet Transforms/O_17.gif" height="62" width="240" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[45]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Packet Transforms/O_18.gif" height="66" width="335" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[46]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Packet Transforms/O_19.gif" height="32" width="48" alt="" /></td></tr>
+  </table>
+ </div>
+ <h2 class="Section"><a name="35148191"></a>Wavelet Packet Transforms and Color</h2>
+ <p class="Text">
+  <a name="59664445"></a>
+  <a href="#top">(top)</a>
+ </p>
+ <p class="Text"><a name="881452520"></a><span class="IF"><a href="../ref/WPT.html">WPT</a></span> and <span class="IF"><a href="../ref/WPTFull.html">WPTFull</a></span> can take as input lists of three matrices each of the same dimension (presumably these are channels from a color space such as RGB, YCbCr or HSI).  The output can be plotted with <span class="IF"><a href="../ref/WaveletPlot.html">WaveletPlot</a></span>.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[47]:=</td><td class="Input"><div>
+      <a name="315446876"></a>
+      <img src="Files/Computing and Plotting Wavelet Packet Transforms/I_28.gif"
+          height="152"
+          width="397"
+          alt="Click for copyable input" />
+     </div><div id="i_27_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[49]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Packet Transforms/O_20.gif" height="256" width="384" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[50]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Packet Transforms/O_21.gif" height="132" width="384" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[52]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Packet Transforms/O_22.gif" height="132" width="384" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[53]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Packet Transforms/O_23.gif" height="132" width="384" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="891053646"></a>Unless the best basis structure is the same for all channels, <span class="IF"><a href="../ref/WaveletPlot.html">WaveletPlot</a></span> displays the channels separately.  Alternatively, the option <span class="IF"><a href="../ref/CompositeTree.html">CompositeTree</a></span> can be set to <a href="http://reference.wolfram.com/language/ref/True.html">True</a> in <span class="IF"><a href="../ref/WPT.html">WPT</a></span> and then a single best basis tree is used for all channels.  To plot the channels together, set the <span class="IF"><a href="../ref/PlotTogether.html">PlotTogether</a></span> option in <span class="IF"><a href="../ref/WaveletPlot.html">WaveletPlot</a></span> to <a href="http://reference.wolfram.com/language/ref/True.html">True</a>.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[54]:=</td><td class="Input"><div>
+      <a name="491992120"></a>
+      <img src="Files/Computing and Plotting Wavelet Packet Transforms/I_30.gif"
+          height="186"
+          width="530"
+          alt="Click for copyable input" />
+     </div><div id="i_29_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[56]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Packet Transforms/O_24.gif" height="256" width="384" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[58]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Packet Transforms/O_25.gif" height="98" width="384" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[59]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Packet Transforms/O_26.gif" height="132" width="384" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[60]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Packet Transforms/O_27.gif" height="256" width="384" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="233609824"></a><span class="IF"><a href="../ref/WaveletPlot.html">WaveletPlot</a></span> can be instructed to plot particular regions of the packet transform.  In the case of color images, the Iteration option becomes a list of 4-tuples with the first value representing the channel (1,2,3), the second value the iteration and the last two values the matrix block to be plotted.  In this case when the same basis tree is used for all channels, the term <a href="http://reference.wolfram.com/language/ref/All.html">All</a> can be used for the first value of the 4-tuple and then all channels of that particular region are plotted.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[61]:=</td><td class="Input"><div>
+      <a name="8911738"></a>
+      <img src="Files/Computing and Plotting Wavelet Packet Transforms/I_32.gif"
+          height="186"
+          width="441"
+          alt="Click for copyable input" />
+     </div><div id="i_31_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[63]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Packet Transforms/O_28.gif" height="256" width="384" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[65]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Packet Transforms/O_29.gif" height="132" width="384" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[66]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Packet Transforms/O_30.gif" height="104" width="493" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[67]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Packet Transforms/O_31.gif" height="104" width="493" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="393324469"></a><span class="IF"><a href="../ref/WPTFull.html">WPTFull</a></span> can process color images.  The results are plotted by <span class="IF"><a href="../ref/FullWaveletPlot.html">FullWaveletPlot</a></span> with <span class="IF"><a href="../ref/PacketPlot.html">PacketPlot</a></span> set to <a href="http://reference.wolfram.com/language/ref/True.html">True</a>.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[68]:=</td><td class="Input"><div>
+      <a name="304690260"></a>
+      <img src="Files/Computing and Plotting Wavelet Packet Transforms/I_34.gif"
+          height="135"
+          width="339"
+          alt="Click for copyable input" />
+     </div><div id="i_33_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[71]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Packet Transforms/O_32.gif" height="642" width="407" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[72]=</td><td class="Output"><img src="Files/Computing and Plotting Wavelet Packet Transforms/O_33.gif" height="104" width="493" alt="" /></td></tr>
+  </table>
+ </div>
+ <div class="expandWrap"
+     id="RelatedTutorials">
+  <div class="expandOuter">
+   <h2 class="expandInner"><a class="expand hide" title="show" href="#">Related Tutorials</a><a class="collapse" title="hide" href="#">Related Tutorials</a></h2>
+   <div class="expanded">
+    <ul class="functionList">
+     <li>
+      <a name="65080038"></a>
+      <a href="../tutorial/Computing and Plotting Wavelet Transformations.html">Computing and Plotting Wavelet Transformations</a>
+     </li>
+    </ul>
+   </div>
+  </div>
+ </div>
+</div>
+</div><!-- /wrapper -->
+
+
+	
+</div>
+
+
+</body>
+		 </html>

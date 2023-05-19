@@ -1,0 +1,8 @@
+<pre name='i_11_in' id='i_11_in' class='IFT'>A = RandomInteger[{0, 10}, {6, 6}];
+MatrixForm[A]
+rwt1 = RightHWT[A, Orthogonal -&gt; True];
+MatrixForm[rwt1]
+rwt2 = RightHWT[A]
+MatrixForm[rwt2]
+MatrixForm[RightInverseHWT[rwt1, Orthogonal -&gt; True]]
+MatrixForm[RightInverseHWT[rwt2]]</pre><div class='IFU'><a name='9163109'></a>http://wolfram.com/xid/0dndw8hsfhl9i9u7jg71b5ri6rf-fqok3</div>

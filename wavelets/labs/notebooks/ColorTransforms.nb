@@ -1,0 +1,1962 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     73214,       1954]
+NotebookOptionsPosition[     65501,       1842]
+NotebookOutlinePosition[     65844,       1857]
+CellTagsIndexPosition[     65801,       1854]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Lab 3.2: Color Space Transformations", "Section",
+ CellChangeTimes->{{3.6747410188032584`*^9, 3.674741042688301*^9}, {
+   3.674742552975814*^9, 3.6747425597738523`*^9}, {3.67474453723468*^9, 
+   3.674744561535725*^9}, {3.674747931751519*^9, 3.6747479370307474`*^9}, 
+   3.6747516510077415`*^9, {3.674754123065485*^9, 3.674754140322116*^9}, {
+   3.6751749126193643`*^9, 3.6751749154137692`*^9}, {3.6755147920766993`*^9, 
+   3.6755147959137897`*^9}, {3.675527343559159*^9, 3.675527350929307*^9}, {
+   3.6755288505176797`*^9, 3.675528858287467*^9}, {3.6755298287755394`*^9, 
+   3.675529837330626*^9}, 3.703855401083161*^9, {3.727011156743316*^9, 
+   3.727011160055276*^9}, {3.7270114909635525`*^9, 3.7270114966106634`*^9}, {
+   3.7298617740082817`*^9, 3.7298617804688063`*^9}, {3.7298618142457356`*^9, 
+   3.729861817366371*^9}, {3.729936061603035*^9, 3.729936065090923*^9}, {
+   3.730197863129013*^9, 3.7301978954844265`*^9}, {3.7318408662267294`*^9, 
+   3.7318408668665113`*^9}, 3.733655762505674*^9, {3.7336569182444115`*^9, 
+   3.7336569268211536`*^9}, {3.7337417827920628`*^9, 3.7337417928549447`*^9}, 
+   3.733747003208581*^9, {3.733942267083254*^9, 3.7339422932909765`*^9}, {
+   3.7341087702041264`*^9, 3.7341087706679077`*^9}, {3.734446571834507*^9, 
+   3.7344465825063868`*^9}, {3.735645431854766*^9, 3.7356454323705955`*^9}, {
+   3.7356503482741356`*^9, 3.7356503530572157`*^9}, {3.736861514038722*^9, 
+   3.736861514519369*^9}},ExpressionUUID->"b4d3dd46-bf41-416a-8a69-\
+8d3f86104986"],
+
+Cell["\<\
+In this lab, you will develop code to convert images in RGB space to and from \
+YCbCr and HSI spaces.\
+\>", "Text",
+ CellChangeTimes->{{3.6747410667041707`*^9, 3.6747410805055957`*^9}, {
+  3.6747424105934367`*^9, 3.674742410733837*^9}, {3.674742572300502*^9, 
+  3.674742584222324*^9}, {3.6747445741715794`*^9, 3.6747445846113987`*^9}, {
+  3.6747479622130194`*^9, 3.674747968138232*^9}, {3.675174920421378*^9, 
+  3.6751749285570188`*^9}, {3.6755273968654437`*^9, 3.6755274039395885`*^9}, {
+  3.6755288612083807`*^9, 3.6755288683421783`*^9}, {3.6755298409106617`*^9, 
+  3.6755298515318317`*^9}, {3.7270111747609496`*^9, 3.7270111855638227`*^9}, {
+  3.729861836007686*^9, 3.729861854391374*^9}, {3.7299360749950047`*^9, 
+  3.7299360763870363`*^9}, {3.730198023850702*^9, 3.7301980498871727`*^9}, {
+  3.733656968527128*^9, 3.733657024518409*^9}, {3.7337417989201775`*^9, 
+  3.7337418324881754`*^9}, {3.7339423092236495`*^9, 3.733942345717663*^9}, {
+  3.734446589963334*^9, 3.7344466127795334`*^9}, {3.735650675668645*^9, 
+  3.7356506985659266`*^9}},ExpressionUUID->"61b27de1-8e6c-4777-a97c-\
+e405fa03ef99"],
+
+Cell[CellGroupData[{
+
+Cell["Reference", "Subsubsection",
+ CellChangeTimes->{{3.6747631102003517`*^9, 3.6747631125733557`*^9}, 
+   3.730197716407202*^9},ExpressionUUID->"3fffe5ac-09ce-46e2-8050-\
+8c2090c2603e"],
+
+Cell[TextData[{
+ "The material for this lab is covered in Section 3.2 of the book ",
+ ButtonBox["Discrete Wavelet Transformations: An Elementary Approach with \
+Applications, 2nd Ed.",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://www.wiley.com/en-us/Discrete+Wavelet+Transformations%3A+An+\
+Elementary+Approach+with+Applications%2C+2nd+Edition-p-9781118979310"], None},
+  ButtonNote->
+   "https://www.wiley.com/en-us/Discrete+Wavelet+Transformations%3A+An+\
+Elementary+Approach+with+Applications%2C+2nd+Edition-p-9781118979310"],
+ ",\[CloseCurlyDoubleQuote] by Patrick J Van Fleet."
+}], "Text",
+ CellChangeTimes->{{3.674763119565366*^9, 3.6747631649004583`*^9}, {
+   3.674763293323564*^9, 3.674763311554607*^9}, {3.6997856290190563`*^9, 
+   3.699785638548086*^9}, {3.72692103296169*^9, 3.726921034949597*^9}, {
+   3.7270063962717886`*^9, 3.727006396991242*^9}, 3.727009034200805*^9, 
+   3.7270097537181544`*^9, {3.7270115331247635`*^9, 3.727011534185475*^9}, {
+   3.729936081107809*^9, 3.729936081203467*^9}, {3.73019789874003*^9, 
+   3.7301979003322897`*^9}, {3.733657027501221*^9, 3.733657027891911*^9}, 
+   3.733741816664074*^9, 3.7339423044137287`*^9, {3.7344466164445457`*^9, 
+   3.7344466169881816`*^9}, 3.7356505015933933`*^9, {3.772624599958533*^9, 
+   3.7726246154490986`*^9}},ExpressionUUID->"6a87367e-199b-4755-909b-\
+1f0e93964a15"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["WaveletWare Commands Used in This Notebook", "Subsubsection",
+ CellChangeTimes->{{3.6747417571916847`*^9, 3.674741765831501*^9}, {
+  3.6747418595935683`*^9, 
+  3.6747419193671017`*^9}},ExpressionUUID->"f0a02de7-73c3-4fdf-9fb7-\
+3b6354eb70fb"],
+
+Cell["Execute the line below to load the WaveletWare package.", "Text",
+ CellChangeTimes->{{3.726919365764247*^9, 
+  3.7269193911263213`*^9}},ExpressionUUID->"1c2f17b5-7d52-43ea-8284-\
+97a0802ab4e4"],
+
+Cell[BoxData[
+ RowBox[{"<<", "WaveletWare`"}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.7269193243151226`*^9, 3.7269193578933735`*^9}, {
+   3.7270065374179773`*^9, 3.727006537593671*^9}, {3.7270070318050675`*^9, 
+   3.7270070319488754`*^9}, {3.7270084778120003`*^9, 
+   3.7270084779023743`*^9}, {3.7270097015398407`*^9, 
+   3.7270097017317114`*^9}, {3.727009916604597*^9, 3.72700991671616*^9}, {
+   3.7270102740659857`*^9, 3.7270102742043266`*^9}, {3.727011436528392*^9, 
+   3.727011436639927*^9}, 3.727011861141736*^9, {3.729880762923499*^9, 
+   3.729880763098421*^9}, {3.729944604988558*^9, 3.7299446052435875`*^9}, {
+   3.731346422962227*^9, 3.7313464231599517`*^9}, {3.732037657952439*^9, 
+   3.732037658623538*^9}, {3.732288796028294*^9, 3.7322887961236305`*^9}, {
+   3.7336738043457527`*^9, 3.733673804473096*^9}, {3.733745102456643*^9, 
+   3.733745102615449*^9}, {3.734107510911276*^9, 3.7341075110413103`*^9}, {
+   3.7354900862323427`*^9, 3.735490086372984*^9}, {3.735930234263369*^9, 
+   3.735930234402184*^9}, {3.73686133680754*^9, 
+   3.736861336932556*^9}},ExpressionUUID->"d0fbe505-08c6-4c5e-bfcb-\
+4eebc307ea21"],
+
+Cell["\<\
+Execute the line below to generate quick help on WaveletWare commands used in \
+this notebook.  Click on >> for each command to access detailed documentation \
+on the command.\
+\>", "Text",
+ CellChangeTimes->{{3.726919395574725*^9, 
+  3.7269194464807606`*^9}},ExpressionUUID->"49e06bb1-94fd-4029-9342-\
+21f25eef50ef"],
+
+Cell[BoxData[{
+ RowBox[{"?", "RGBToYCbCr"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "PackageDirectory"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "ImageRead"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "ImagePlot"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "RGBToHSI"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "HSIToRGB"}]}], "Input",
+ CellChangeTimes->CompressedData["
+1:eJxTTMoPSmViYGCQAGIQXSPadbnjyGvHlml7roPoIt/yyM1AmqX8MphOWJqV
+AKJrbn9KBNEzanIKQHSEIGshiFZIvj4DRCdHN8wC0VXhqutB9BP+SDBdqi/6
+FUR7lp38AaLP7qz5C6IbWu+Bae+aSJYtQHr1+T1g2iW+bBGI7mkQXAqmfx54
+AqI/HDoDpr1dj/wG0etz5/8F0Qf6S822AmmnglYwLXMiZAOIViiYuBFEz7g1
+uffUKaB7HzwH03oXd1T9OvPa0dV3bjWInnVv5uOsi68dP9nsfQui04+8zuoD
+0oeSXLJBdNd57SIQXeKbWQqiJ80+VQmiN0+QrQLR726cWmN36bWjTyTLWhDN
+9O6A6xMgPWv7Nk8Qbdn5+sjDK68d+d7tPwWiV9aEhvJJv3FsC84PA9EA8UPj
+4Q==
+  "],ExpressionUUID->"274fa8e9-9ea5-489e-93a8-dbe841fdbfb4"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Modules Created in this Lab", "Subsubsection",
+ CellChangeTimes->{{3.7368676701301727`*^9, 
+  3.7368676768044405`*^9}},ExpressionUUID->"cdd5e423-6755-4061-80de-\
+fb03ebf54522"],
+
+Cell[TextData[{
+ StyleBox["ToYCbCr,",
+  FontWeight->"Bold"],
+ " ",
+ StyleBox["FromYCbCr",
+  FontWeight->"Bold"],
+ ",",
+ StyleBox[" ToHSI",
+  FontWeight->"Bold"],
+ ",",
+ StyleBox[" FromHSI",
+  FontWeight->"Bold"]
+}], "Text",
+ CellChangeTimes->{{3.736867686442602*^9, 3.7368677111146307`*^9}, {
+  3.736867752285713*^9, 
+  3.736867763029464*^9}},ExpressionUUID->"8ba6651e-16ec-4b61-98c7-\
+ba3b96c5539e"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Conversion From RGB Space to YCbCr Space", "Subsubsection",
+ CellChangeTimes->{{3.733742449696621*^9, 3.733742453424845*^9}, {
+  3.7339440538167305`*^9, 3.7339440681629972`*^9}, {3.7339440991929975`*^9, 
+  3.7339441003454056`*^9}, {3.7344466293406873`*^9, 3.7344466322685947`*^9}, {
+  3.7356507052225065`*^9, 3.735650735016159*^9}, {3.7365173906341667`*^9, 
+  3.736517391250948*^9}},ExpressionUUID->"2aef78a0-fa28-4288-b4ee-\
+f6fce3037f4a"],
+
+Cell["\<\
+We use (3.5) and (3.6) to convert RGB space to YCbCr space and then (3.7) to \
+transform this conversion to a range suitable for viewing.  
+
+We start by dividing each element of a given triple (R,G,B) by 255 to obtain \
+(r,g,b) where each value is in the interval [0,1].  We then use (3.5) to \
+compute y and (3.6) to compute Cb and Cr.  Do these computations in the cell \
+below.\
+\>", "Text",
+ CellChangeTimes->{{3.7337424572322245`*^9, 3.7337424811219687`*^9}, {
+  3.7339440903902035`*^9, 3.7339443638084354`*^9}, {3.7344467804349375`*^9, 
+  3.7344468665494356`*^9}, {3.735659198663327*^9, 3.7356593354985485`*^9}, {
+  3.735659782073023*^9, 
+  3.7356597822652884`*^9}},ExpressionUUID->"915c054b-c3eb-4413-aa35-\
+a3586e1346a3"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"R", ",", "G", ",", "B"}], "}"}], "=", 
+   RowBox[{"{", 
+    RowBox[{"100", ",", "200", ",", "150"}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"r", ",", "g", ",", "b"}], "}"}], "=", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"R", ",", "G", ",", "B"}], "}"}], "/", "255"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"y", "="}], 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "replace", " ", "this", " ", "comment", " ", "with", " ", "your", " ", 
+    "code", " ", "to", " ", "compute", " ", "y"}], " ", "*)"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"cb", ",", "cr"}], "}"}], "="}], 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "replace", " ", "this", " ", "comment", " ", "with", " ", "your", " ", 
+    "code", " ", "to", " ", "compute", " ", "cb", " ", "and", " ", "cr"}], 
+   " ", "*)"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"{", 
+   RowBox[{"y", ",", "cb", ",", "cr"}], "}"}], "\[Equal]", 
+  RowBox[{"RGBToYCbCr", "[", 
+   RowBox[{"{", 
+    RowBox[{"R", ",", "G", ",", "B"}], "}"}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.7339443707788754`*^9, 3.733944404845153*^9}, {
+   3.73394561094262*^9, 3.733945623227046*^9}, {3.7339456583865485`*^9, 
+   3.733945727564765*^9}, 3.734106659119423*^9, {3.7341075127131796`*^9, 
+   3.7341075128853316`*^9}, {3.7344468705338144`*^9, 
+   3.7344469195613966`*^9}, {3.7354900898027043`*^9, 
+   3.7354900899756165`*^9}, {3.7356593401563454`*^9, 3.735659459648719*^9}, {
+   3.7359302310761843`*^9, 3.735930231170025*^9}, {3.736861539439894*^9, 
+   3.7368615665930295`*^9}},ExpressionUUID->"4098846f-c384-490d-b75a-\
+4ebd9c28d9ad"],
+
+Cell["We can rewrite (3.5) and (3.6) as a matrix product:", "Text",
+ CellChangeTimes->{{3.7356613318857627`*^9, 
+  3.735661368799205*^9}},ExpressionUUID->"11731a05-f48b-49a8-8de8-\
+5beedf06bbb7"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"(", GridBox[{
+      {"y"},
+      {"Cb"},
+      {"Cr"}
+     }], ")"}], TraditionalForm]],ExpressionUUID->
+  "f10a048b-ec83-4aa8-8508-ec92c6d379d7"],
+ "  =  M ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"(", GridBox[{
+      {"R"},
+      {"G"},
+      {"B"}
+     }], ")"}], TraditionalForm]],ExpressionUUID->
+  "1d64fe59-8b80-489b-bdf3-0365abf76f1b"]
+}], "Text",
+ CellChangeTimes->{{3.7356613794058*^9, 3.735661433841761*^9}},
+ TextAlignment->-0.5,ExpressionUUID->"845eaee6-ae51-477b-8e39-0d487506aaf5"],
+
+Cell[TextData[{
+ "Determine the entries of the 3x3 matrix ",
+ StyleBox["M",
+  FontWeight->"Bold"],
+ " and add it to the cell below.  Verify that your computations above are the \
+same as ",
+ StyleBox["M",
+  FontWeight->"Bold"],
+ ".{",
+ StyleBox["R",
+  FontWeight->"Bold"],
+ ",",
+ StyleBox["G",
+  FontWeight->"Bold"],
+ ",",
+ StyleBox["B",
+  FontWeight->"Bold"],
+ "}."
+}], "Text",
+ CellChangeTimes->{{3.7356614487383084`*^9, 
+  3.7356614878272977`*^9}},ExpressionUUID->"39dea252-a4e7-4d33-bb2e-\
+6230001c20c7"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"M", "="}], 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "replace", " ", "this", " ", "comment", " ", "with", " ", "the", " ", 
+    "matrix", " ", "M"}], " ", "*)"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"M", ".", 
+  RowBox[{"{", 
+   RowBox[{"R", ",", "G", ",", "B"}], "}"}]}]}], "Input",
+ CellChangeTimes->{{3.7356596832910357`*^9, 3.7356597291610355`*^9}, {
+  3.7356601214627867`*^9, 3.735660125540596*^9}, {3.7359302298247013`*^9, 
+  3.7359302299575768`*^9}, {3.7368615767891865`*^9, 
+  3.736861588393129*^9}},ExpressionUUID->"dabf1cd5-ead7-4e69-ac0e-\
+9eba14e585c4"],
+
+Cell[TextData[{
+ "The value of ",
+ StyleBox["y",
+  FontWeight->"Bold"],
+ " is in [0,1] and ",
+ StyleBox["cb",
+  FontWeight->"Bold"],
+ " and ",
+ StyleBox["cr",
+  FontWeight->"Bold"],
+ " are in the interval [-1/2,1/2].  These ranges are not suitable for viewing \
+so we use (3.7) to magnify the values.  Do the computations in the cell below."
+}], "Text",
+ CellChangeTimes->{{3.7356597908090067`*^9, 
+  3.7356598371150675`*^9}},ExpressionUUID->"c4722eab-35f2-482f-82c1-\
+e1c58b34096d"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"{", 
+   RowBox[{"yp", ",", "Cb", ",", "Cr"}], "}"}], "=", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "replace", " ", "this", " ", "comment", " ", "with", " ", "your", " ", 
+    "code", " ", "to", " ", "compute", " ", "the", " ", "magnified", " ", 
+    "YCbCr", " ", "triple"}], " ", "*)"}]}]], "Input",
+ CellChangeTimes->{{3.7356598391207914`*^9, 3.735659878765834*^9}, {
+  3.735659923105399*^9, 3.735659926654358*^9}, {3.735930213966278*^9, 
+  3.7359302140912795`*^9}, {3.7368616014697037`*^9, 
+  3.7368616282213016`*^9}},ExpressionUUID->"ae8fa70c-93a8-4be1-bdf8-\
+6469c8f3be90"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"{", 
+   RowBox[{"yp", ",", "Cb", ",", "Cr"}], "}"}], "\[Equal]", 
+  RowBox[{"RGBToYCbCr", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"R", ",", "G", ",", "B"}], "}"}], ",", 
+    RowBox[{"DisplayMode", "\[Rule]", "True"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.7356598847860374`*^9, 3.7356599038056927`*^9}, {
+  3.7359302116029043`*^9, 
+  3.735930211806244*^9}},ExpressionUUID->"c9c21566-e676-490c-ad6b-\
+853db4a26935"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["A Module for Conversion from RGB Space to YCbCr Space", "Subsubsection",
+ CellChangeTimes->{{3.7356599517748013`*^9, 3.735659963919532*^9}, {
+  3.7365173855386353`*^9, 
+  3.736517386113885*^9}},ExpressionUUID->"c8b8a088-4beb-4449-9fd8-\
+d9c580167bf6"],
+
+Cell[TextData[{
+ "In the cell below, complete the code for module ",
+ StyleBox["ToYCbCr",
+  FontWeight->"Bold"],
+ " that takes an ordered triple or a list of three matrices (presumably R, G, \
+and B) and returns the conversion of the triple or list to YCbCr space.  The \
+second argument is a flag that, if not set to zero, applies (3.7) to the \
+output.  For the purposes of inverting the conversion, you might consider \
+using the matrix ",
+ StyleBox["M",
+  FontWeight->"Bold"],
+ " from above in your computations."
+}], "Text",
+ CellChangeTimes->{{3.7356599670070443`*^9, 3.7356600847393227`*^9}, 
+   3.7356609525288906`*^9, {3.735661518851965*^9, 
+   3.735661543253169*^9}},ExpressionUUID->"07afa571-9019-4339-b899-\
+0d50eb4ef126"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"ToYCbCr", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"r_", ",", "g_", ",", "b_"}], "}"}], ",", "flag_"}], "]"}], ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"y", ",", "cb", ",", "cr", ",", "m"}], "}"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", 
+       RowBox[{
+       "replace", " ", "this", " ", "comment", " ", "with", " ", "code", " ", 
+        "to", " ", "complete", " ", "the", " ", "module"}], " ", "*)"}], 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"Return", "[", 
+        RowBox[{"{", 
+         RowBox[{"y", ",", "cb", ",", "cr"}], "}"}], "]"}], ";"}]}], 
+     "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]"}]], "Input",
+ CellChangeTimes->{{3.735660089992791*^9, 3.7356602246482368`*^9}, {
+  3.7356609776742444`*^9, 3.735660987379244*^9}, {3.7356610415581193`*^9, 
+  3.735661118040629*^9}, {3.7356612282683086`*^9, 3.735661253214795*^9}, {
+  3.735930207562752*^9, 3.735930207703168*^9}, {3.7368616384594345`*^9, 
+  3.736861650965513*^9}},ExpressionUUID->"b0baa639-b14f-41a5-92c3-\
+f0b482ae1a0b"],
+
+Cell[TextData[{
+ "The cells below allow you to check your work.  Run the first two cells \
+several times.  Change the value of ",
+ StyleBox["flag",
+  FontWeight->"Bold"],
+ " (0 and 1) as well as that of ",
+ StyleBox["mode",
+  FontWeight->"Bold"],
+ " (False, True)."
+}], "Text",
+ CellChangeTimes->{{3.735661558965824*^9, 3.7356615766135435`*^9}, {
+  3.735661635944162*^9, 3.735661663593459*^9}, {3.7356617535650043`*^9, 
+  3.735661754380483*^9}},ExpressionUUID->"c45510c8-a551-42ff-897c-\
+fa6ce0e61a89"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"{", 
+   RowBox[{"R", ",", "G", ",", "B"}], "}"}], "=", 
+  RowBox[{"RandomInteger", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"0", ",", "255"}], "}"}], ",", "3"}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"flag", ",", "mode"}], "}"}], "=", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "True"}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ToYCbCr", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"R", ",", "G", ",", "B"}], "}"}], ",", "flag"}], "]"}], 
+  "\[Equal]", 
+  RowBox[{"RGBToYCbCr", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"R", ",", "G", ",", "B"}], "}"}], ",", 
+    RowBox[{"DisplayMode", "\[Rule]", "mode"}]}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.7356602422398987`*^9, 3.735660274474847*^9}, {
+  3.735660968419407*^9, 3.735660993828286*^9}, {3.7356611398649144`*^9, 
+  3.735661165336787*^9}, {3.735661758973995*^9, 3.7356617851024017`*^9}, {
+  3.735930205077607*^9, 
+  3.7359302052467275`*^9}},ExpressionUUID->"912b7d02-1315-4855-a6aa-\
+bcf0f8b7d108"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"R", ",", "G", ",", "B"}], "}"}], "=", 
+   RowBox[{"RandomInteger", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0", ",", "255"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"3", ",", "60", ",", "60"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"ImagePlot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"R", ",", "G", ",", "B"}], "}"}], ",", 
+   RowBox[{"ImageSize", "\[Rule]", "180"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"flag", ",", "mode"}], "}"}], "=", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "True"}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ToYCbCr", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"R", ",", "G", ",", "B"}], "}"}], ",", "flag"}], "]"}], 
+  "\[Equal]", 
+  RowBox[{"RGBToYCbCr", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"R", ",", "G", ",", "B"}], "}"}], ",", 
+    RowBox[{"DisplayMode", "\[Rule]", "mode"}]}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.7356615845871305`*^9, 3.735661628313261*^9}, {
+  3.7356616799948053`*^9, 3.735661710459264*^9}, {3.73566179558358*^9, 
+  3.735661803951521*^9}, {3.735930203321185*^9, 
+  3.7359302034913044`*^9}},ExpressionUUID->"de0a677a-d286-4ab5-8670-\
+52f7cfa426f1"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"file", "=", 
+   RowBox[{
+    RowBox[{"PackageDirectory", "[", 
+     RowBox[{"DataType", "\[Rule]", "Images"}], "]"}], "<>", 
+    "\"\<cups.png\>\""}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"R", ",", "G", ",", "B"}], "}"}], "=", 
+   RowBox[{"ImageRead", "[", "file", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"ImagePlot", "[", 
+  RowBox[{"{", 
+   RowBox[{"R", ",", "G", ",", "B"}], "}"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"Y", ",", "Cb", ",", "Cr"}], "}"}], "=", 
+   RowBox[{"ToYCbCr", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"R", ",", "G", ",", "B"}], "}"}], ",", "1"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Map", "[", 
+  RowBox[{"ImagePlot", ",", 
+   RowBox[{"{", 
+    RowBox[{"Y", ",", "Cb", ",", "Cr"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.7356608603072405`*^9, 3.7356609383862095`*^9}, {
+  3.7356609994595876`*^9, 3.735661015172169*^9}, {3.7359302021527295`*^9, 
+  3.735930202278229*^9}, {3.7368613279587145`*^9, 
+  3.7368613308008275`*^9}},ExpressionUUID->"afbbcac1-7b12-4004-9df3-\
+02e4649b809e"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Conversion from YCbCr Space to RGB Space", "Subsubsection",
+ CellChangeTimes->{{3.735928434604125*^9, 3.735928444884504*^9}, {
+  3.7365173796247683`*^9, 
+  3.7365173807557983`*^9}},ExpressionUUID->"217dee61-728f-420e-adc8-\
+712765882abc"],
+
+Cell[TextData[{
+ "Conversion from YCbCr space back to RGB space depends on whether or not \
+(3.7) was used.  If these equations were not used then we can simply recover \
+the RGB triple (or image matrices) by applying ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["M", 
+    RowBox[{"-", "1"}]], TraditionalForm]],ExpressionUUID->
+  "1dd9843e-b859-4edb-85d7-c66a8d44a9a9"],
+ " to the YCbCr triple.  Do these computations in the cells below."
+}], "Text",
+ CellChangeTimes->{{3.7359284590200377`*^9, 3.735928475867194*^9}, {
+  3.735928511846175*^9, 3.7359286018063965`*^9}, {3.735928992488929*^9, 
+  3.7359289932903404`*^9}, {3.7359291791312513`*^9, 
+  3.735929197214444*^9}},ExpressionUUID->"3d677ce5-f89a-4a3d-ac2c-\
+85f76f0df404"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"{", 
+   RowBox[{"R", ",", "G", ",", "B"}], "}"}], "=", 
+  RowBox[{"RandomInteger", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"0", ",", "255"}], "}"}], ",", "3"}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"{", 
+   RowBox[{"Y", ",", "Cb", ",", "Cr"}], "}"}], "=", 
+  RowBox[{"ToYCbCr", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"R", ",", "G", ",", "B"}], "}"}], ",", "0"}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"Round", "[", 
+  RowBox[{
+   RowBox[{"Inverse", "[", "M", "]"}], ".", 
+   RowBox[{"{", 
+    RowBox[{"Y", ",", "Cb", ",", "Cr"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.735928603820204*^9, 3.7359286612391405`*^9}, {
+  3.7359291506464367`*^9, 3.7359291527053814`*^9}, {3.735930199466463*^9, 
+  3.7359301995446186`*^9}},ExpressionUUID->"894f6889-c824-4819-960b-\
+226e3f11be6e"],
+
+Cell["In the case where Y, Cb, and Cr are matrices", "Text",
+ CellChangeTimes->{{3.7359290130056705`*^9, 
+  3.7359290238476734`*^9}},ExpressionUUID->"d256f6a9-29fb-43ce-aa10-\
+8ad36f9b11be"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"R", ",", "G", ",", "B"}], "}"}], "=", 
+   RowBox[{"RandomInteger", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0", ",", "255"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"3", ",", "60", ",", "60"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"Y", ",", "Cb", ",", "Cr"}], "}"}], "=", 
+   RowBox[{"ToYCbCr", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"R", ",", "G", ",", "B"}], "}"}], ",", "0"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Round", "[", 
+   RowBox[{
+    RowBox[{"Inverse", "[", "M", "]"}], ".", 
+    RowBox[{"{", 
+     RowBox[{"Y", ",", "Cb", ",", "Cr"}], "}"}]}], "]"}], "\[Equal]", 
+  RowBox[{"{", 
+   RowBox[{"R", ",", "G", ",", "B"}], "}"}]}]}], "Input",
+ CellChangeTimes->{{3.7359289365262723`*^9, 3.7359289495027647`*^9}, 
+   3.735929513624373*^9, {3.7359301978837547`*^9, 
+   3.735930198007017*^9}},ExpressionUUID->"c7e65b74-84c5-4dda-9748-\
+ec60b942ca13"],
+
+Cell[TextData[{
+ "In the case where (3.7) has been applied to Y, Cb, Cr, we must first \
+\[OpenCurlyDoubleQuote]undo\[CloseCurlyDoubleQuote] these formulas.  This can \
+be done simply by subtracting the list {16, 128, 128} from the triple \
+{Y,Cb,Cr} and then dividing the result by the list {219, 224, 224}.  Do these \
+computations in the cell below - don\[CloseCurlyQuote]t forget to ",
+ StyleBox["Round",
+  FontWeight->"Bold"],
+ " your final results."
+}], "Text",
+ CellChangeTimes->{{3.735929354910431*^9, 3.735929432218094*^9}, {
+  3.7368616888411975`*^9, 
+  3.7368616961740675`*^9}},ExpressionUUID->"19271252-d6d1-4b22-b5b1-\
+e9dfdcfd2b75"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"{", 
+   RowBox[{"R", ",", "G", ",", "B"}], "}"}], "=", 
+  RowBox[{"RandomInteger", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"0", ",", "255"}], "}"}], ",", "3"}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"{", 
+   RowBox[{"Y", ",", "Cb", ",", "Cr"}], "}"}], "=", 
+  RowBox[{"ToYCbCr", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"R", ",", "G", ",", "B"}], "}"}], ",", "1"}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"{", 
+   RowBox[{"y", ",", "cb", ",", "cr"}], "}"}], "=", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+    "replace", " ", "this", " ", "comment", " ", "with", " ", "your", " ", 
+     "code", " ", "to", " ", "compute", " ", "y"}], ",", " ", "cb", ",", " ", 
+    RowBox[{"and", " ", "cr"}]}], " ", "*)"}]}]}], "Input",
+ CellChangeTimes->{{3.735928603820204*^9, 3.7359286612391405`*^9}, {
+  3.7359291506464367`*^9, 3.7359291527053814`*^9}, {3.735929444184496*^9, 
+  3.7359294914131308`*^9}, {3.7359301964198136`*^9, 3.7359301965758705`*^9}, {
+  3.736861803221493*^9, 
+  3.736861818810973*^9}},ExpressionUUID->"804b373e-bb28-4fe8-80e3-\
+8bb908cbb508"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"R", ",", "G", ",", "B"}], "}"}], "=", 
+   RowBox[{"RandomInteger", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0", ",", "255"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"3", ",", "60", ",", "60"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"Y", ",", "Cb", ",", "Cr"}], "}"}], "=", 
+   RowBox[{"ToYCbCr", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"R", ",", "G", ",", "B"}], "}"}], ",", "1"}], "]"}]}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"y", ",", "cb", ",", "cr"}], "}"}], "="}], 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+    "replace", " ", "this", " ", "comment", " ", "with", " ", "your", " ", 
+     "code", " ", "to", " ", "compute", " ", "y"}], ",", " ", "cb", ",", " ", 
+    RowBox[{"and", " ", "cr"}]}], " ", "*)"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Round", "[", 
+   RowBox[{
+    RowBox[{"Inverse", "[", "M", "]"}], ".", 
+    RowBox[{"{", 
+     RowBox[{"y", ",", "cb", ",", "cr"}], "}"}]}], "]"}], "\[Equal]", 
+  RowBox[{"{", 
+   RowBox[{"R", ",", "G", ",", "B"}], "}"}]}]}], "Input",
+ CellChangeTimes->{{3.7359289365262723`*^9, 3.7359289495027647`*^9}, {
+  3.735929513624373*^9, 3.7359295307681303`*^9}, {3.7359296216207466`*^9, 
+  3.7359296481532373`*^9}, {3.735930193046777*^9, 3.7359301931722054`*^9}, {
+  3.736861325031458*^9, 3.7368613251425676`*^9}, {3.7368618280292206`*^9, 
+  3.736861853085901*^9}},ExpressionUUID->"8a95e66c-caaa-47ac-9ef9-\
+1e853fb92c9e"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["A Module for Conversion from YCbCr Space to RGB Space", "Subsubsection",
+ CellChangeTimes->{{3.7356599517748013`*^9, 3.735659963919532*^9}, {
+  3.7359296676618743`*^9, 3.7359296723743267`*^9}, {3.736517372110366*^9, 
+  3.7365173743083067`*^9}},ExpressionUUID->"36c23285-c7a3-4550-a273-\
+09cf145bf379"],
+
+Cell[TextData[{
+ "In the cell below, complete the code for module ",
+ StyleBox["FromYCbCr",
+  FontWeight->"Bold"],
+ " that takes an ordered triple or a list of three matrices (presumably Y, \
+Cb, and Cr) and returns the conversion of the triple or list to RGB space.  \
+The second argument is a flag that, if not set to zero, assumes (3.7) has \
+been applied to the input.  For the purposes of inverting the conversion, you \
+might consider using the matrix ",
+ StyleBox["M",
+  FontWeight->"Bold"],
+ " from above in your computations."
+}], "Text",
+ CellChangeTimes->{{3.7356599670070443`*^9, 3.7356600847393227`*^9}, 
+   3.7356609525288906`*^9, {3.735661518851965*^9, 3.735661543253169*^9}, {
+   3.735929677285819*^9, 
+   3.73592971426324*^9}},ExpressionUUID->"1010321e-c467-41d3-b0c8-\
+662eb47f5ec4"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"FromYCbCr", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"y_", ",", "cb_", ",", "cr_"}], "}"}], ",", "flag_"}], "]"}], ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"r", ",", "g", ",", "b", ",", "minv"}], "}"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", 
+       RowBox[{
+       "replace", " ", "this", " ", "comment", " ", "with", " ", "code", " ", 
+        "to", " ", "complete", " ", "the", " ", "module"}], " ", "*)"}], 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"Return", "[", 
+        RowBox[{"Round", "[", 
+         RowBox[{"{", 
+          RowBox[{"r", ",", "g", ",", "b"}], "}"}], "]"}], "]"}], ";"}]}], 
+     "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]"}]], "Input",
+ CellChangeTimes->{{3.735660089992791*^9, 3.7356602246482368`*^9}, {
+  3.7356609776742444`*^9, 3.735660987379244*^9}, {3.7356610415581193`*^9, 
+  3.735661118040629*^9}, {3.7356612282683086`*^9, 3.735661253214795*^9}, {
+  3.7359297199910965`*^9, 3.735929848175317*^9}, {3.735929890906191*^9, 
+  3.735929894642704*^9}, {3.735930190110571*^9, 3.7359301903586454`*^9}, {
+  3.7368613226593885`*^9, 3.736861322800026*^9}, {3.7368618607401824`*^9, 
+  3.7368618716510096`*^9}},ExpressionUUID->"8887befb-5cc6-436d-98b5-\
+d55d4ac45e80"],
+
+Cell["\<\
+The cells below allow you to check if your module is correct.  You should run \
+it several times.\
+\>", "Text",
+ CellChangeTimes->{{3.7359301523296585`*^9, 
+  3.7359301731700144`*^9}},ExpressionUUID->"1047dd0a-5653-4638-aa15-\
+09a41c2574c2"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"{", 
+   RowBox[{"r", ",", "g", ",", "b"}], "}"}], "=", 
+  RowBox[{"RandomInteger", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"0", ",", "255"}], "}"}], ",", "3"}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"flag", "=", 
+   RowBox[{"RandomInteger", "[", 
+    RowBox[{"{", 
+     RowBox[{"0", ",", "1"}], "}"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Print", "[", 
+   RowBox[{"\"\<flag = \>\"", ",", "flag", ",", "\"\<.\>\""}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"{", 
+   RowBox[{"y", ",", "cb", ",", "cr"}], "}"}], "=", 
+  RowBox[{"ToYCbCr", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"r", ",", "g", ",", "b"}], "}"}], ",", "flag"}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"FromYCbCr", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"y", ",", "cb", ",", "cr"}], "}"}], ",", "flag"}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.735929854250956*^9, 3.7359299224469204`*^9}, {
+  3.7359301853400702`*^9, 3.735930187684842*^9}, {3.736861320793017*^9, 
+  3.736861320902396*^9}},ExpressionUUID->"8b0402a0-3b69-48e8-bfa8-\
+08200f988508"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"R", ",", "G", ",", "B"}], "}"}], "=", 
+   RowBox[{"RandomInteger", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0", ",", "255"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"3", ",", "60", ",", "60"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"flag", "=", 
+   RowBox[{"RandomInteger", "[", 
+    RowBox[{"{", 
+     RowBox[{"0", ",", "1"}], "}"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Print", "[", 
+   RowBox[{"\"\<flag = \>\"", ",", "flag", ",", "\"\<.\>\""}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"Y", ",", "Cb", ",", "Cr"}], "}"}], "=", 
+   RowBox[{"ToYCbCr", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"R", ",", "G", ",", "B"}], "}"}], ",", "flag"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"FromYCbCr", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"Y", ",", "Cb", ",", "Cr"}], "}"}], ",", "flag"}], "]"}], 
+  "\[Equal]", 
+  RowBox[{"{", 
+   RowBox[{"R", ",", "G", ",", "B"}], "}"}]}]}], "Input",
+ CellChangeTimes->{{3.7359299516320257`*^9, 3.7359299878371935`*^9}, {
+  3.7359301833499517`*^9, 3.735930184236396*^9}, {3.736861319884449*^9, 
+  3.736861320040414*^9}},ExpressionUUID->"eb2db7f0-1289-423b-9881-\
+80db63743f10"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Conversion From RGB Space to HSI Space", "Subsubsection",
+ CellChangeTimes->{{3.733742449696621*^9, 3.733742453424845*^9}, {
+  3.7339440538167305`*^9, 3.7339440681629972`*^9}, {3.7339440991929975`*^9, 
+  3.7339441003454056`*^9}, {3.7344466293406873`*^9, 3.7344466322685947`*^9}, {
+  3.7356507052225065`*^9, 3.735650735016159*^9}, {3.7365173906341667`*^9, 
+  3.7365174068365827`*^9}},ExpressionUUID->"ff125c6a-6a1a-41e8-8f73-\
+43a088c9d68e"],
+
+Cell[TextData[{
+ " Converting an RGB triple to HSI space is straightforward - we use the \
+boxed formulas below (3.12) with the understanding that if  R=G=B, we return \
+the triple (0,0,I), where I is given by (3.8).  \n\nThe conversion starts by \
+normalizing {R,G,B} so that each value is in the interval [0,1], but this \
+normalization is only needed for the computation of the intensity I.  \n\n\
+Since we need it twice, we start by computing ",
+ StyleBox["t ",
+  FontWeight->"Bold"],
+ "= ",
+ StyleBox["R",
+  FontWeight->"Bold"],
+ "+",
+ StyleBox["G",
+  FontWeight->"Bold"],
+ "+",
+ StyleBox["B",
+  FontWeight->"Bold"],
+ ".  Use ",
+ StyleBox["t",
+  FontWeight->"Bold"],
+ " and assume that ",
+ StyleBox["R",
+  FontWeight->"Bold"],
+ ",",
+ StyleBox["G",
+  FontWeight->"Bold"],
+ ",",
+ StyleBox["B",
+  FontWeight->"Bold"],
+ " are not all the same to compute in the cell below, the intensity ",
+ StyleBox["Int",
+  FontWeight->"Bold"],
+ ", the saturation ",
+ StyleBox["s",
+  FontWeight->"Bold"],
+ " and the angle ",
+ StyleBox["theta",
+  FontWeight->"Bold"],
+ " needed for the hue.  The computation will be faster if the value for ",
+ StyleBox["t",
+  FontWeight->"Bold"],
+ " is \[OpenCurlyDoubleQuote]wrapped\[CloseCurlyDoubleQuote] in the ",
+ StyleBox["N",
+  FontWeight->"Bold"],
+ " function."
+}], "Text",
+ CellChangeTimes->{{3.736520451420162*^9, 3.7365205373915005`*^9}, {
+  3.7365206050838194`*^9, 3.736520644740258*^9}, {3.7365207092039533`*^9, 
+  3.7365208368361545`*^9}, {3.736520955868949*^9, 3.736520975009558*^9}, {
+  3.7365211137266493`*^9, 
+  3.736521128605404*^9}},ExpressionUUID->"75a91411-aa9a-47aa-a417-\
+c60856b14dd3"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"{", 
+   RowBox[{"R", ",", "G", ",", "B"}], "}"}], "=", 
+  RowBox[{"RandomInteger", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"0", ",", "255"}], "}"}], ",", "3"}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"If", "[", 
+   RowBox[{
+    RowBox[{"R", "\[Equal]", "G", "\[Equal]", "B"}], ",", 
+    RowBox[{"Print", "[", "\"\<R=G=B, rerun\>\"", "]"}]}], "]"}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.73652083886858*^9, 3.73652090324969*^9}, {
+  3.73686131784503*^9, 
+  3.736861318001296*^9}},ExpressionUUID->"17d6bdde-e600-4a0b-adfa-\
+19873d61929d"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"t", "="}], 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "replace", " ", "this", " ", "comment", " ", "with", " ", "your", " ", 
+    "code", " ", "for", " ", "t"}], " ", "*)"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Int", "="}], 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "replace", " ", "this", " ", "comment", " ", "with", " ", "your", " ", 
+    "code", " ", "for", " ", "Int"}], " ", "*)"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"s", "="}], 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "replace", " ", "this", " ", "comment", " ", "with", " ", "your", " ", 
+    "code", " ", "for", " ", "s"}], " ", "*)"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"angle", "="}], 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "replace", " ", "this", " ", "comment", " ", "with", " ", "your", " ", 
+    "code", " ", "for", " ", "angle"}], " ", "*)"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"theta", "=", 
+  RowBox[{"If", "[", 
+   RowBox[{
+    RowBox[{"B", "\[LessEqual]", "G"}], ",", "angle", ",", 
+    RowBox[{
+     RowBox[{"2", "Pi"}], "-", "angle"}]}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.736520907620928*^9, 3.736520952442646*^9}, {
+  3.7365209835664277`*^9, 3.7365210085296164`*^9}, {3.7365211384751496`*^9, 
+  3.736521183384584*^9}, {3.736861313800125*^9, 3.736861313971961*^9}, {
+  3.7368621024561996`*^9, 
+  3.736862160095723*^9}},ExpressionUUID->"cf7b5b25-8fcd-4b2f-928f-\
+11e96dc726fa"],
+
+Cell[TextData[{
+ "The cell below allows you to check your work using the WaveletWare function \
+",
+ StyleBox["RGBToHSI",
+  FontWeight->"Bold"],
+ ".  You should run the computations several times to better check for \
+accuracy."
+}], "Text",
+ CellChangeTimes->{{3.7365210386870403`*^9, 3.736521059173626*^9}, {
+  3.7365211932499576`*^9, 
+  3.7365212580483975`*^9}},ExpressionUUID->"9524c6b1-9203-4b53-926a-\
+cc8aa9fd2d9e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"RGBToHSI", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"R", ",", "G", ",", "B"}], "}"}], ",", 
+    RowBox[{"NormalizeHue", "\[Rule]", "False"}]}], "]"}], "\[Equal]", 
+  RowBox[{"{", 
+   RowBox[{"theta", ",", "s", ",", "Int"}], "}"}]}]], "Input",
+ CellChangeTimes->{{3.736521084555937*^9, 3.7365210949022865`*^9}, {
+  3.7365212172163143`*^9, 3.736521233853386*^9}, {3.7368613150217857`*^9, 
+  3.736861315111668*^9}},ExpressionUUID->"f2dd8198-b23c-402b-a43d-\
+04b6f3129331"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["A Module for Conversion from RGB Space to HSI Space", "Subsubsection",
+ CellChangeTimes->{{3.7356599517748013`*^9, 3.735659963919532*^9}, {
+  3.7365173855386353`*^9, 3.736517386113885*^9}, {3.736521368493771*^9, 
+  3.7365213686969094`*^9}},ExpressionUUID->"ef1abae0-f73a-4fc3-8216-\
+540f7c4f47ce"],
+
+Cell[TextData[{
+ "In the cell below, complete the code for module ",
+ StyleBox["ToHSI",
+  FontWeight->"Bold"],
+ " that takes an ordered triple {R, G, B} and returns the conversion of the \
+triple to HSI space.  Make sure to check in the routine if R=G=B and if this \
+is the case, return {0,0,I}."
+}], "Text",
+ CellChangeTimes->{{3.7356599670070443`*^9, 3.7356600847393227`*^9}, 
+   3.7356609525288906`*^9, {3.735661518851965*^9, 3.735661543253169*^9}, {
+   3.736521371664717*^9, 3.736521423857467*^9}, {3.7365244184356127`*^9, 
+   3.7365244189200463`*^9}},ExpressionUUID->"bb3ddb94-a634-4a19-8d58-\
+c97c969c3f62"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"ToHSI", "[", 
+     RowBox[{"{", 
+      RowBox[{"r_", ",", "g_", ",", "b_"}], "}"}], "]"}], ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"t", ",", "Int", ",", "s", ",", "angle", ",", "theta"}], "}"}],
+       ",", "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", 
+       RowBox[{
+       "replace", " ", "this", " ", "comment", " ", "with", " ", "code", " ", 
+        "to", " ", "complete", " ", "the", " ", "module"}], " ", "*)"}], 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"Return", "[", 
+        RowBox[{"{", 
+         RowBox[{"theta", ",", "s", ",", "Int"}], "}"}], "]"}], ";"}]}], 
+     "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]"}]], "Input",
+ CellChangeTimes->{{3.735660089992791*^9, 3.7356602246482368`*^9}, {
+   3.7356609776742444`*^9, 3.735660987379244*^9}, {3.7356610415581193`*^9, 
+   3.735661118040629*^9}, {3.7356612282683086`*^9, 3.735661253214795*^9}, {
+   3.735930207562752*^9, 3.735930207703168*^9}, {3.7365214321515465`*^9, 
+   3.7365215339209633`*^9}, {3.73686131115924*^9, 3.7368613112529984`*^9}, 
+   3.736862174728443*^9},ExpressionUUID->"afd4c642-9546-44d8-8f97-\
+60da1e040c0c"],
+
+Cell["\<\
+The cells below allow you to check your work.  Run the cells several times \
+and you should also check a case where R=G=B (this case is commented out).  \
+\>", "Text",
+ CellChangeTimes->{{3.735661558965824*^9, 3.7356615766135435`*^9}, {
+  3.735661635944162*^9, 3.735661663593459*^9}, {3.7356617535650043`*^9, 
+  3.735661754380483*^9}, {3.736521546599886*^9, 3.7365215767267237`*^9}, {
+  3.7365216348211465`*^9, 
+  3.7365216426483574`*^9}},ExpressionUUID->"4fbe0d32-128f-4c9f-8986-\
+d909a7613972"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"R", ",", "G", ",", "B"}], "}"}], "=", 
+   RowBox[{"RandomInteger", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0", ",", "255"}], "}"}], ",", "3"}], "]"}]}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"R", ",", "G", ",", "B"}], "}"}], "=", 
+    RowBox[{"ConstantArray", "[", 
+     RowBox[{
+      RowBox[{"RandomInteger", "[", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", "255"}], "}"}], "]"}], ",", "3"}], "]"}]}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{"ToHSI", "[", 
+  RowBox[{"{", 
+   RowBox[{"R", ",", "G", ",", "B"}], "}"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ToHSI", "[", 
+   RowBox[{"{", 
+    RowBox[{"R", ",", "G", ",", "B"}], "}"}], "]"}], "\[Equal]", 
+  RowBox[{"RGBToHSI", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"R", ",", "G", ",", "B"}], "}"}], ",", 
+    RowBox[{"NormalizeHue", "\[Rule]", "False"}]}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.7356602422398987`*^9, 3.735660274474847*^9}, {
+  3.735660968419407*^9, 3.735660993828286*^9}, {3.7356611398649144`*^9, 
+  3.735661165336787*^9}, {3.735661758973995*^9, 3.7356617851024017`*^9}, {
+  3.735930205077607*^9, 3.7359302052467275`*^9}, {3.7365215573373957`*^9, 
+  3.7365216661098337`*^9}, {3.736861309909936*^9, 
+  3.736861310003917*^9}},ExpressionUUID->"584e0a56-f543-457b-b107-\
+f10050aeda3b"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Conversion from HSI Space to RGB Space", "Subsubsection",
+ CellChangeTimes->{{3.736521838807284*^9, 
+  3.7365218476307507`*^9}},ExpressionUUID->"93dfa323-254c-4b3c-a21e-\
+ccdc58aa2290"],
+
+Cell["\<\
+This computation depends on which {R,G,B} value produces the minimum in the \
+saturation.  There are three cases, each indicated by the hue angle.  The \
+table below summarizes the different cases.\
+\>", "Text",
+ CellChangeTimes->{{3.736521926327368*^9, 
+  3.736522006654524*^9}},ExpressionUUID->"66245fb9-39a0-43f6-b7f0-\
+fbf0869bc5fd"],
+
+Cell[TextData[Cell[BoxData[
+ FormBox[
+  RowBox[{"(", GridBox[{
+     {"Sector", "Hue", "Minimum"},
+     {
+      RowBox[{"Red", "/", "Green"}], 
+      RowBox[{"0", "\[LessEqual]", 
+       SubscriptBox["\[Theta]", "H"], "\[LessEqual]", 
+       RowBox[{"2", 
+        RowBox[{"\[Pi]", "/", "3"}]}]}], "B"},
+     {
+      RowBox[{"Green", "/", "Blue"}], 
+      RowBox[{
+       RowBox[{"2", 
+        RowBox[{"\[Pi]", "/", "3"}]}], "<", 
+       SubscriptBox["\[Theta]", "H"], "\[LessEqual]", 
+       RowBox[{"4", 
+        RowBox[{"\[Pi]", "/", "3"}]}]}], "R"},
+     {
+      RowBox[{"Blue", "/", "Red"}], 
+      RowBox[{
+       RowBox[{"4", 
+        RowBox[{"\[Pi]", "/", "3"}]}], "<", 
+       SubscriptBox["\[Theta]", "H"], "<", " ", 
+       RowBox[{"2", "\[Pi]"}]}], "G"}
+    }], ")"}], 
+  TraditionalForm]],ExpressionUUID->"24a5acb5-c50c-494a-83e1-6b59b2e6ec32"]], \
+"Text",
+ CellChangeTimes->{{3.736522035591998*^9, 3.7365222127321405`*^9}, {
+  3.7365222515525465`*^9, 3.73652226196815*^9}},
+ TextAlignment->-0.5,ExpressionUUID->"f05b2b41-c5aa-4b68-813c-83f9cb4d3e3c"],
+
+Cell[TextData[{
+ "Concentrating on the red/green sector, we start with Min(r,g,b)=b and since \
+r+g+b=1, we have ",
+ StyleBox["s",
+  FontWeight->"Bold"],
+ "=1-3",
+ StyleBox["b",
+  FontWeight->"Bold"],
+ " or ",
+ StyleBox["b",
+  FontWeight->"Bold"],
+ " = (1-",
+ StyleBox["s",
+  FontWeight->"Bold"],
+ ")/3.  We use (3.15) to compute ",
+ StyleBox["r",
+  FontWeight->"Bold"],
+ " and from there, we can compute ",
+ StyleBox["g",
+  FontWeight->"Bold"],
+ ".  The final step is to use the intensity value ",
+ StyleBox["Int",
+  FontWeight->"Bold"],
+ " to recover ",
+ StyleBox["R",
+  FontWeight->"Bold"],
+ "=",
+ StyleBox["Round[",
+  FontWeight->"Bold"],
+ "3*255*",
+ StyleBox["Int",
+  FontWeight->"Bold"],
+ "*",
+ StyleBox["r]",
+  FontWeight->"Bold"],
+ ", ",
+ StyleBox["G",
+  FontWeight->"Bold"],
+ "=",
+ StyleBox["Round[",
+  FontWeight->"Bold"],
+ "3*255*",
+ StyleBox["Int",
+  FontWeight->"Bold"],
+ "*",
+ StyleBox["g]",
+  FontWeight->"Bold"],
+ " and ",
+ StyleBox["B",
+  FontWeight->"Bold"],
+ "=",
+ StyleBox["Round[",
+  FontWeight->"Bold"],
+ "3*255*",
+ StyleBox["Int",
+  FontWeight->"Bold"],
+ "*",
+ StyleBox["b]",
+  FontWeight->"Bold"],
+ ".   In the cell below, produce ",
+ StyleBox["R",
+  FontWeight->"Bold"],
+ ",",
+ StyleBox["G",
+  FontWeight->"Bold"],
+ ",",
+ StyleBox["B",
+  FontWeight->"Bold"],
+ " for the given HSI triple.  Do these computations in the cell below."
+}], "Text",
+ CellChangeTimes->{{3.7365224195691023`*^9, 3.73652248497552*^9}, {
+   3.736522591836643*^9, 3.736522662310748*^9}, 3.73652288398409*^9, {
+   3.7365229430320196`*^9, 3.7365229613134537`*^9}, {3.7365231009205017`*^9, 
+   3.7365231193490343`*^9}, {3.7365232075201173`*^9, 
+   3.7365232400410633`*^9}, {3.736523294702422*^9, 3.736523311056652*^9}, {
+   3.7365233581267333`*^9, 3.7365233638376503`*^9}, {3.7365239933730745`*^9, 
+   3.736524060754612*^9}},ExpressionUUID->"8763e686-fe91-42a0-9465-\
+b4caf9c9ffcb"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"{", 
+   RowBox[{"theta", ",", "s", ",", "Int"}], "}"}], "=", 
+  RowBox[{
+   RowBox[{"RandomReal", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0", ",", "1"}], "}"}], ",", "3"}], "]"}], "*", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"2", 
+      RowBox[{"Pi", "/", "3"}]}], ",", "1", ",", "1"}], 
+    "}"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"b", "="}], 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "replace", " ", "this", " ", "comment", " ", "with", " ", "your", " ", 
+    "code", " ", "for", " ", "b"}], " ", "*)"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"r", "="}], 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "replace", " ", "this", " ", "comment", " ", "with", " ", "your", " ", 
+    "code", " ", "for", " ", "r"}], " ", "*)"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"g", "="}], 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "replace", " ", "this", " ", "comment", " ", "with", " ", "your", " ", 
+    "code", " ", "for", " ", "g"}], " ", "*)"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"R", ",", "G", ",", "B"}], "}"}], "="}], 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+    "replace", " ", "this", " ", "comment", " ", "with", " ", "your", " ", 
+     "code", " ", "for", " ", "R"}], ",", "G", ",", "B"}], " ", "*)"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"HSIToRGB", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"theta", ",", "s", ",", "Int"}], "}"}], ",", 
+    RowBox[{"NormalizeHue", "\[Rule]", "False"}]}], "]"}], "\[Equal]", 
+  RowBox[{"{", 
+   RowBox[{"R", ",", "G", ",", "B"}], "}"}]}]}], "Input",
+ CellChangeTimes->{{3.7365229754537616`*^9, 3.7365230554967136`*^9}, {
+  3.7365231245026703`*^9, 3.7365231767584*^9}, {3.7365232442491355`*^9, 
+  3.736523279159355*^9}, {3.736523329428692*^9, 3.7365233321106634`*^9}, {
+  3.736861307300229*^9, 3.736861307393989*^9}, {3.7368622123830414`*^9, 
+  3.73686224913282*^9}},ExpressionUUID->"4272f256-3b06-4112-ba0e-\
+3d5d54135cf9"],
+
+Cell[TextData[{
+ "Repeat the computations above, but this time assume the triple is in the \
+green/blue sector.  Remember, you will need to adjust the hue angle by \
+2\[Pi]/3 when computing ",
+ StyleBox["g",
+  FontWeight->"Bold"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.736523907547159*^9, 
+  3.736523961566023*^9}},ExpressionUUID->"e35db1c1-50e4-426f-bde2-\
+2362f5f9ebb3"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"{", 
+   RowBox[{"theta", ",", "s", ",", "Int"}], "}"}], "=", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"RandomReal", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"2", 
+        RowBox[{"Pi", "/", "3"}]}], ",", 
+       RowBox[{"4", 
+        RowBox[{"Pi", "/", "3"}]}]}], "}"}], "]"}], ",", 
+    RowBox[{"RandomReal", "[", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "1"}], "}"}], "]"}], ",", 
+    RowBox[{"RandomReal", "[", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "1"}], "}"}], "]"}]}], "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "replace", " ", "this", " ", "comment", " ", "with", " ", "your", " ", 
+    "code"}], " ", "*)"}]}]}], "Input",
+ CellChangeTimes->{{3.7365229754537616`*^9, 3.7365230554967136`*^9}, {
+  3.7365231245026703`*^9, 3.7365231767584*^9}, {3.7365232442491355`*^9, 
+  3.736523279159355*^9}, {3.736523329428692*^9, 3.7365233321106634`*^9}, {
+  3.7365240759125137`*^9, 3.736524157445529*^9}, {3.7365242273829575`*^9, 
+  3.736524228994359*^9}, {3.7368613058543243`*^9, 3.736861305948286*^9}, {
+  3.736862258159313*^9, 
+  3.7368622675645823`*^9}},ExpressionUUID->"069ea6d8-c7cc-462a-905e-\
+9bb18ab6c37c"],
+
+Cell[TextData[{
+ "Repeat the computations above, but this time assume the triple is in the \
+blue/red sector.  Remember, you will need to adjust the hue angle by 2\[Pi]/3 \
+when computing ",
+ StyleBox["b",
+  FontWeight->"Bold"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.736523907547159*^9, 3.736523961566023*^9}, {
+  3.73652424874133*^9, 
+  3.7365242564521875`*^9}},ExpressionUUID->"fa314e25-69fd-4e4d-a3d8-\
+dd8103d2162f"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"{", 
+   RowBox[{"theta", ",", "s", ",", "Int"}], "}"}], "=", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"RandomReal", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"4", 
+        RowBox[{"Pi", "/", "3"}]}], ",", 
+       RowBox[{"2", "Pi"}]}], "}"}], "]"}], ",", 
+    RowBox[{"RandomReal", "[", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "1"}], "}"}], "]"}], ",", 
+    RowBox[{"RandomReal", "[", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "1"}], "}"}], "]"}]}], "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "replace", " ", "this", " ", "comment", " ", "with", " ", "your", " ", 
+    "code"}], " ", "*)"}]}]}], "Input",
+ CellChangeTimes->{{3.7365229754537616`*^9, 3.7365230554967136`*^9}, {
+   3.7365231245026703`*^9, 3.7365231767584*^9}, {3.7365232442491355`*^9, 
+   3.736523279159355*^9}, {3.736523329428692*^9, 3.7365233321106634`*^9}, {
+   3.7365240759125137`*^9, 3.736524157445529*^9}, {3.7365242273829575`*^9, 
+   3.736524228994359*^9}, {3.736524262588601*^9, 3.7365242836546583`*^9}, 
+   3.736524322263332*^9, {3.736861304163166*^9, 3.736861304241332*^9}, 
+   3.7368622748990703`*^9},ExpressionUUID->"673f8dac-3c0f-400c-a636-\
+4f56ac23362c"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["A Module for Conversion from HSI Space to RGB Space", "Subsubsection",
+ CellChangeTimes->{{3.7356599517748013`*^9, 3.735659963919532*^9}, {
+  3.7365173855386353`*^9, 3.736517386113885*^9}, {3.736521368493771*^9, 
+  3.7365213686969094`*^9}, {3.7365243743739862`*^9, 
+  3.736524378159619*^9}},ExpressionUUID->"24d9af1f-eae3-43a7-a276-\
+f51de3071734"],
+
+Cell[TextData[{
+ "In the cell below, complete the code for module ",
+ StyleBox["FromHSI",
+  FontWeight->"Bold"],
+ " that takes an ordered triple {H,S,I} and returns the conversion of the \
+triple to RGB space.  "
+}], "Text",
+ CellChangeTimes->{{3.7356599670070443`*^9, 3.7356600847393227`*^9}, 
+   3.7356609525288906`*^9, {3.735661518851965*^9, 3.735661543253169*^9}, {
+   3.736521371664717*^9, 3.736521423857467*^9}, {3.7365243825920987`*^9, 
+   3.7365244105209107`*^9}},ExpressionUUID->"966429bb-d29a-4d1b-90d8-\
+73bb23fd7805"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"FromHSI", "[", 
+    RowBox[{"{", 
+     RowBox[{"theta_", ",", "s_", ",", "Int_"}], "}"}], "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"k", ",", "a", ",", "b", ",", "c"}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"(*", " ", 
+      RowBox[{
+      "replace", " ", "this", " ", "comment", " ", "with", " ", "code", " ", 
+       "to", " ", "complete", " ", "the", " ", "module"}], " ", "*)"}], 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"Return", "[", 
+       RowBox[{"{", 
+        RowBox[{"a", ",", "b", ",", "c"}], "}"}], "]"}], ";"}]}], 
+    "\[IndentingNewLine]", "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.735660089992791*^9, 3.7356602246482368`*^9}, {
+   3.7356609776742444`*^9, 3.735660987379244*^9}, {3.7356610415581193`*^9, 
+   3.735661118040629*^9}, {3.7356612282683086`*^9, 3.735661253214795*^9}, {
+   3.735930207562752*^9, 3.735930207703168*^9}, {3.7365214321515465`*^9, 
+   3.7365215339209633`*^9}, {3.736524732019779*^9, 3.7365247714281664`*^9}, {
+   3.7365248148713045`*^9, 3.7365248627811136`*^9}, {3.7365249540635085`*^9, 
+   3.736525033090746*^9}, {3.736525077354721*^9, 3.7365250946235037`*^9}, {
+   3.7365255351162615`*^9, 3.736525535857994*^9}, 3.7365256314468637`*^9, {
+   3.736861301111097*^9, 3.7368613012831964`*^9}, 
+   3.736862288015909*^9},ExpressionUUID->"2ce2988f-32b3-4c0c-aa64-\
+2b3b06b79343"],
+
+Cell["\<\
+The cell below allows you to check your work.  You should run it several \
+times.  \
+\>", "Text",
+ CellChangeTimes->{{3.735661558965824*^9, 3.7356615766135435`*^9}, {
+  3.735661635944162*^9, 3.735661663593459*^9}, {3.7356617535650043`*^9, 
+  3.735661754380483*^9}, {3.736521546599886*^9, 3.7365215767267237`*^9}, {
+  3.7365216348211465`*^9, 3.7365216426483574`*^9}, {3.7365256359864607`*^9, 
+  3.7365256474907494`*^9}},ExpressionUUID->"ad11d0c2-16d7-4a5c-96f3-\
+281ce9dd7ba6"],
+
+Cell[BoxData[{
+ RowBox[{"triple", "=", 
+  RowBox[{"RandomInteger", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"0", ",", "255"}], "}"}], ",", "3"}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"hsi", "=", 
+  RowBox[{"ToHSI", "[", "triple", "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"FromHSI", "[", "hsi", "]"}]}], "Input",
+ CellChangeTimes->{{3.7365248769313736`*^9, 3.7365249076950083`*^9}, {
+  3.7365251027534075`*^9, 3.736525128201336*^9}, {3.7365257031481514`*^9, 
+  3.7365257090361423`*^9}, {3.7365257485457015`*^9, 3.73652576276768*^9}, {
+  3.7368612989685926`*^9, 
+  3.7368612990774736`*^9}},ExpressionUUID->"56293331-aacb-462e-915d-\
+514763221c8a"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Problems", "Subsubsection",
+ CellChangeTimes->{{3.7344469588094134`*^9, 
+  3.7344469595773973`*^9}},ExpressionUUID->"6ca58717-5e56-4c6c-b77d-\
+3d784d01dc8c"],
+
+Cell[TextData[{
+ "The module ",
+ StyleBox["ToHSI",
+  FontWeight->"Bold"],
+ " can be modified so that it can accept a list of three matrices as well as \
+an HSI triple.   You can start by placing the entire contents of the current \
+module inside an ",
+ StyleBox["If",
+  FontWeight->"Bold"],
+ " block.  Access to the ",
+ StyleBox["If",
+  FontWeight->"Bold"],
+ " block is given if the input is recognized as an ordered triple.  The \
+module appears below with the ",
+ StyleBox["If",
+  FontWeight->"Bold"],
+ " block added.  \[LineSeparator]\[LineSeparator]If the ",
+ StyleBox["If",
+  FontWeight->"Bold"],
+ " block is skipped then the input must be a list of three matrices.  It is \
+quite easy to get ",
+ StyleBox["t",
+  FontWeight->"Bold"],
+ " and ",
+ StyleBox["Int",
+  FontWeight->"Bold"],
+ " - since the commands are identical to those used for triples, we can move \
+them above the ",
+ StyleBox["If",
+  FontWeight->"Bold"],
+ " block.  Make these changes in the module below.  \[LineSeparator]\
+\[LineSeparator]Unlike the list of triples case, we cannot simply check if ",
+ StyleBox["r=",
+  FontWeight->"Bold"],
+ "=",
+ StyleBox["g",
+  FontWeight->"Bold"],
+ "==",
+ StyleBox["b",
+  FontWeight->"Bold"],
+ " and exit in the case it is true.  This check must be done element-wise.  \
+This requires some careful coding.  \[LineSeparator]\[LineSeparator]We start \
+first with obtaining the analog to angle in the ordered triple case.  To \
+compute  ",
+ StyleBox["angle",
+  FontWeight->"Bold"],
+ ", we use the ",
+ StyleBox["MapThread",
+  FontWeight->"Bold"],
+ " and ",
+ StyleBox["If",
+  FontWeight->"Bold"],
+ " commands, branching on whether or not #1==#2==#3, where #1 is ",
+ StyleBox["r",
+  FontWeight->"Bold"],
+ ", #2 is ",
+ StyleBox["g",
+  FontWeight->"Bold"],
+ " and #3 is ",
+ StyleBox["b",
+  FontWeight->"Bold"],
+ ".  In the case #1==#2==#3, the value is 0, otherwise we use the formula for \
+",
+ StyleBox["angle",
+  FontWeight->"Bold"],
+ " in the module below (using placeholders #1, #2, #3).  We need a third \
+argument of ",
+ StyleBox["MapThread",
+  FontWeight->"Bold"],
+ " - the first two are the ",
+ StyleBox["If",
+  FontWeight->"Bold"],
+ " block (with an ",
+ StyleBox["&",
+  FontWeight->"Bold"],
+ " at the end) and then {",
+ StyleBox["r",
+  FontWeight->"Bold"],
+ ",",
+ StyleBox["g",
+  FontWeight->"Bold"],
+ ",",
+ StyleBox["b",
+  FontWeight->"Bold"],
+ "}.  The third argument must be 2 so that ",
+ StyleBox["MapThread",
+  FontWeight->"Bold"],
+ " knows to apply the ",
+ StyleBox["If",
+  FontWeight->"Bold"],
+ " block at the ",
+ StyleBox["second",
+  FontSlant->"Italic"],
+ " (element) level of each of {",
+ StyleBox["r",
+  FontWeight->"Bold"],
+ ",",
+ StyleBox["g",
+  FontWeight->"Bold"],
+ ",",
+ StyleBox["b",
+  FontWeight->"Bold"],
+ "}.  To compute ",
+ StyleBox["theta",
+  FontWeight->"Bold"],
+ ", use a ",
+ StyleBox["MapThread",
+  FontWeight->"Bold"],
+ " command similar to the one for ",
+ StyleBox["angle",
+  FontWeight->"Bold"],
+ ", but the the three arguments are ",
+ StyleBox["g",
+  FontWeight->"Bold"],
+ ", ",
+ StyleBox["b",
+  FontWeight->"Bold"],
+ " and ",
+ StyleBox["angle",
+  FontWeight->"Bold"],
+ ".  Add these commands to your module after the ",
+ StyleBox["If",
+  FontWeight->"Bold"],
+ " block.  \[LineSeparator]\[LineSeparator]Once you have figured out how to \
+code ",
+ StyleBox["theta",
+  FontWeight->"Bold"],
+ ", a similar ",
+ StyleBox["MapThread",
+  FontWeight->"Bold"],
+ "/",
+ StyleBox["If",
+  FontWeight->"Bold"],
+ " combination (again with a third argument) returns the values for the \
+saturation matrix ",
+ StyleBox["s",
+  FontWeight->"Bold"],
+ ".\[LineSeparator]\[LineSeparator]The cells that follow the module contain \
+code that allows you to test the accuracy of the module.  You should run \
+them, several times, uncommenting the line where a row of zeros is inserted \
+into each matrix."
+}], "ItemNumbered",
+ CellChangeTimes->{{3.734446975577996*^9, 3.7344469945089674`*^9}, {
+  3.735490036098838*^9, 3.735490036098838*^9}, {3.736525781150699*^9, 
+  3.736525788860511*^9}, {3.736856718954623*^9, 3.7368567562169795`*^9}, {
+  3.736856805825281*^9, 3.7368568581523237`*^9}, {3.7368568970492215`*^9, 
+  3.7368569085918794`*^9}, {3.736857393192204*^9, 3.736857523378662*^9}, {
+  3.7368575912847505`*^9, 3.7368576044990025`*^9}, {3.736857640394622*^9, 
+  3.7368576816110353`*^9}, {3.736857735348465*^9, 3.7368579436889324`*^9}, {
+  3.7368580067673683`*^9, 3.736858052255294*^9}, {3.7368583831754093`*^9, 
+  3.736858701579444*^9}, {3.7368589807213182`*^9, 3.736859046642316*^9}, {
+  3.736859885208125*^9, 3.7368598926482153`*^9}, {3.736859924079249*^9, 
+  3.7368599403906493`*^9}, {3.7368606497823114`*^9, 3.736860690955733*^9}, {
+  3.7368612764640636`*^9, 3.736861289350153*^9}, {3.7368623476886415`*^9, 
+  3.736862350897208*^9}},ExpressionUUID->"eb439b46-b36d-4ea3-9367-\
+352e84f65364"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"ToHSI", "[", 
+    RowBox[{"{", 
+     RowBox[{"r_", ",", "g_", ",", "b_"}], "}"}], "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"t", ",", "Int", ",", "s", ",", "angle", ",", "theta"}], "}"}], 
+     ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{"VectorQ", "[", 
+         RowBox[{"{", 
+          RowBox[{"r", ",", "g", ",", "b"}], "}"}], "]"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"t", "=", 
+          RowBox[{"N", "[", 
+           RowBox[{"r", "+", "g", "+", "b"}], "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"Int", "=", 
+          RowBox[{
+           RowBox[{"t", "/", "3"}], "/", "255"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{"r", "\[Equal]", "g", "\[Equal]", "b"}], ",", 
+           RowBox[{"Return", "[", 
+            RowBox[{"{", 
+             RowBox[{"0", ",", "0", ",", "Int"}], "}"}], "]"}]}], "]"}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"s", "=", 
+          RowBox[{"1", "-", 
+           RowBox[{"3", "*", 
+            RowBox[{
+             RowBox[{"Min", "[", 
+              RowBox[{"{", 
+               RowBox[{"r", ",", "g", ",", "b"}], "}"}], "]"}], "/", 
+             "t"}]}]}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"angle", "=", 
+          RowBox[{"ArcCos", "[", 
+           RowBox[{".5", "*", 
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{"2", "r"}], "-", "g", "-", "b"}], ")"}], "/", 
+             RowBox[{"Sqrt", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"(", 
+                 RowBox[{"r", "-", "g"}], ")"}], "^", "2"}], "+", 
+               RowBox[{
+                RowBox[{"(", 
+                 RowBox[{"r", "-", "b"}], ")"}], "*", 
+                RowBox[{"(", 
+                 RowBox[{"g", "-", "b"}], ")"}]}]}], "]"}]}]}], "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"theta", "=", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"b", "\[LessEqual]", "g"}], ",", "angle", ",", 
+            RowBox[{
+             RowBox[{"2", "Pi"}], "-", "angle"}]}], "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"Return", "[", 
+          RowBox[{"{", 
+           RowBox[{"theta", ",", "s", ",", "Int"}], "}"}], "]"}], ";"}]}], 
+       "\[IndentingNewLine]", "]"}], ";"}]}], "\[IndentingNewLine]", "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.736856931356758*^9, 3.736856954278395*^9}, {
+  3.736857531924727*^9, 3.736857536960684*^9}, {3.736857686937904*^9, 
+  3.736857702626796*^9}, {3.736857749128951*^9, 3.7368577539699135`*^9}, {
+  3.7368587332537847`*^9, 3.736858750985555*^9}, {3.7368590790767746`*^9, 
+  3.7368590934843545`*^9}, {3.736861296533027*^9, 3.736861296689536*^9}, {
+  3.7368623332953815`*^9, 
+  3.7368623415583353`*^9}},ExpressionUUID->"ed36ce09-a358-421a-ab67-\
+c0eb20ce2873"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"n", "=", "6"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"R", ",", "G", ",", "B"}], "}"}], "=", 
+    RowBox[{"RandomInteger", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"0", ",", "255"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"3", ",", "n", ",", "n"}], "}"}]}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+    "uncomment", " ", "the", " ", "line", " ", "below", " ", "to", " ", "add",
+      " ", "a", " ", "row", " ", "of", " ", "zeros", " ", "to", " ", "each", 
+     " ", "of", " ", "R"}], ",", " ", "G", ",", " ", "B"}], " ", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"R", ",", "G", ",", "B"}], "}"}], "=", 
+     RowBox[{"Map", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Prepend", "[", 
+         RowBox[{"#", ",", 
+          RowBox[{"ConstantArray", "[", 
+           RowBox[{"0", ",", "n"}], "]"}]}], "]"}], "&"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"R", ",", "G", ",", "B"}], "}"}]}], "]"}]}], ";"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{"Map", "[", 
+  RowBox[{"MatrixForm", ",", 
+   RowBox[{"{", 
+    RowBox[{"R", ",", "G", ",", "B"}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"h", ",", "s", ",", "i"}], "}"}], "=", 
+   RowBox[{"ToHSI", "[", 
+    RowBox[{"{", 
+     RowBox[{"R", ",", "G", ",", "B"}], "}"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"RGBToHSI", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"R", ",", "G", ",", "B"}], "}"}], ",", 
+    RowBox[{"NormalizeHue", "\[Rule]", "False"}]}], "]"}], "\[Equal]", 
+  RowBox[{"{", 
+   RowBox[{"h", ",", "s", ",", "i"}], "}"}]}]}], "Input",
+ CellChangeTimes->{{3.7368607026425753`*^9, 3.7368608636117144`*^9}, {
+  3.736861272953925*^9, 
+  3.7368612730780215`*^9}},ExpressionUUID->"f91d5270-2f59-4b7c-b0d2-\
+eebfe55ef939"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"{", 
+   RowBox[{"R", ",", "G", ",", "B"}], "}"}], "=", 
+  RowBox[{"RandomInteger", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"0", ",", "255"}], "}"}], ",", "3"}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ToHSI", "[", 
+   RowBox[{"{", 
+    RowBox[{"R", ",", "G", ",", "B"}], "}"}], "]"}], "==", 
+  RowBox[{"RGBToHSI", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"R", ",", "G", ",", "B"}], "}"}], ",", 
+    RowBox[{"NormalizeHue", "\[Rule]", "False"}]}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.736860881113658*^9, 3.736860925012616*^9}, {
+  3.7368612717006383`*^9, 
+  3.7368612718100243`*^9}},ExpressionUUID->"6745e301-2e5e-4c8a-bedc-\
+63f450777ae6"],
+
+Cell[TextData[{
+ "Using the programming ideas for Problem 1, modify ",
+ StyleBox["FromHSI",
+  FontWeight->"Bold"],
+ " so that it accepts a list of three matrices as well as an RGB triple."
+}], "ItemNumbered",
+ CellChangeTimes->{{3.734446975577996*^9, 3.7344469945089674`*^9}, {
+  3.735490036879072*^9, 3.7354900714287424`*^9}, {3.736525794669676*^9, 
+  3.7365258066429615`*^9}, {3.736861234164031*^9, 
+  3.7368612654608326`*^9}},ExpressionUUID->"30c89fb5-1e26-4981-960d-\
+47be5ba79c31"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{759, 614},
+WindowMargins->{{357, Automatic}, {Automatic, 49}},
+FrontEndVersion->"12.0 for Microsoft Windows (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 1499, 20, 67, "Section",ExpressionUUID->"b4d3dd46-bf41-416a-8a69-8d3f86104986"],
+Cell[2082, 44, 1112, 17, 34, "Text",ExpressionUUID->"61b27de1-8e6c-4777-a97c-e405fa03ef99"],
+Cell[CellGroupData[{
+Cell[3219, 65, 187, 3, 44, "Subsubsection",ExpressionUUID->"3fffe5ac-09ce-46e2-8050-8c2090c2603e"],
+Cell[3409, 70, 1357, 23, 56, "Text",ExpressionUUID->"6a87367e-199b-4755-909b-1f0e93964a15"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4803, 98, 248, 4, 44, "Subsubsection",ExpressionUUID->"f0a02de7-73c3-4fdf-9fb7-3b6354eb70fb"],
+Cell[5054, 104, 199, 3, 34, "Text",ExpressionUUID->"1c2f17b5-7d52-43ea-8284-97a0802ab4e4"],
+Cell[5256, 109, 1144, 18, 44, "Input",ExpressionUUID->"d0fbe505-08c6-4c5e-bfcb-4eebc307ea21",
+ InitializationCell->True],
+Cell[6403, 129, 327, 7, 56, "Text",ExpressionUUID->"49e06bb1-94fd-4029-9342-21f25eef50ef"],
+Cell[6733, 138, 855, 16, 124, "Input",ExpressionUUID->"274fa8e9-9ea5-489e-93a8-dbe841fdbfb4"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7625, 159, 182, 3, 44, "Subsubsection",ExpressionUUID->"cdd5e423-6755-4061-80de-fb03ebf54522"],
+Cell[7810, 164, 400, 16, 34, "Text",ExpressionUUID->"8ba6651e-16ec-4b61-98c7-ba3b96c5539e"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8247, 185, 446, 6, 44, "Subsubsection",ExpressionUUID->"2aef78a0-fa28-4288-b4ee-f6fce3037f4a"],
+Cell[8696, 193, 739, 14, 144, "Text",ExpressionUUID->"915c054b-c3eb-4413-aa35-a3586e1346a3"],
+Cell[9438, 209, 1743, 46, 105, "Input",ExpressionUUID->"4098846f-c384-490d-b75a-4ebd9c28d9ad"],
+Cell[11184, 257, 195, 3, 34, "Text",ExpressionUUID->"11731a05-f48b-49a8-8de8-5beedf06bbb7"],
+Cell[11382, 262, 549, 20, 71, "Text",ExpressionUUID->"845eaee6-ae51-477b-8e39-0d487506aaf5"],
+Cell[11934, 284, 508, 21, 56, "Text",ExpressionUUID->"39dea252-a4e7-4d33-bb2e-6230001c20c7"],
+Cell[12445, 307, 601, 14, 48, "Input",ExpressionUUID->"dabf1cd5-ead7-4e69-ac0e-9eba14e585c4"],
+Cell[13049, 323, 483, 15, 56, "Text",ExpressionUUID->"c4722eab-35f2-482f-82c1-e1c58b34096d"],
+Cell[13535, 340, 610, 13, 48, "Input",ExpressionUUID->"ae8fa70c-93a8-4be1-bdf8-6469c8f3be90"],
+Cell[14148, 355, 463, 12, 28, "Input",ExpressionUUID->"c9c21566-e676-490c-ad6b-853db4a26935"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[14648, 372, 257, 4, 44, "Subsubsection",ExpressionUUID->"c8b8a088-4beb-4449-9fd8-d9c580167bf6"],
+Cell[14908, 378, 734, 16, 100, "Text",ExpressionUUID->"07afa571-9019-4339-b899-0d50eb4ef126"],
+Cell[15645, 396, 1167, 28, 105, "Input",ExpressionUUID->"b0baa639-b14f-41a5-92c3-f0b482ae1a0b"],
+Cell[16815, 426, 502, 13, 56, "Text",ExpressionUUID->"c45510c8-a551-42ff-897c-fa6ce0e61a89"],
+Cell[17320, 441, 1079, 31, 67, "Input",ExpressionUUID->"912b7d02-1315-4855-a6aa-bcf0f8b7d108"],
+Cell[18402, 474, 1300, 38, 86, "Input",ExpressionUUID->"de0a677a-d286-4ab5-8670-52f7cfa426f1"],
+Cell[19705, 514, 1179, 32, 105, "Input",ExpressionUUID->"afbbcac1-7b12-4004-9df3-02e4649b809e"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[20921, 551, 244, 4, 44, "Subsubsection",ExpressionUUID->"217dee61-728f-420e-adc8-712765882abc"],
+Cell[21168, 557, 731, 15, 78, "Text",ExpressionUUID->"3d677ce5-f89a-4a3d-ac2c-85f76f0df404"],
+Cell[21902, 574, 868, 25, 67, "Input",ExpressionUUID->"894f6889-c824-4819-960b-226e3f11be6e"],
+Cell[22773, 601, 190, 3, 34, "Text",ExpressionUUID->"d256f6a9-29fb-43ce-aa10-8ad36f9b11be"],
+Cell[22966, 606, 1046, 32, 67, "Input",ExpressionUUID->"c7e65b74-84c5-4dda-9748-ec60b942ca13"],
+Cell[24015, 640, 646, 13, 100, "Text",ExpressionUUID->"19271252-d6d1-4b22-b5b1-e9dfdcfd2b75"],
+Cell[24664, 655, 1146, 31, 86, "Input",ExpressionUUID->"804b373e-bb28-4fe8-80e3-8bb908cbb508"],
+Cell[25813, 688, 1579, 44, 86, "Input",ExpressionUUID->"8a95e66c-caaa-47ac-9ef9-1e853fb92c9e"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[27429, 737, 307, 4, 44, "Subsubsection",ExpressionUUID->"36c23285-c7a3-4550-a273-09cf145bf379"],
+Cell[27739, 743, 801, 17, 122, "Text",ExpressionUUID->"1010321e-c467-41d3-b0c8-662eb47f5ec4"],
+Cell[28543, 762, 1362, 31, 105, "Input",ExpressionUUID->"8887befb-5cc6-436d-98b5-d55d4ac45e80"],
+Cell[29908, 795, 251, 6, 34, "Text",ExpressionUUID->"1047dd0a-5653-4638-aa15-09a41c2574c2"],
+Cell[30162, 803, 1144, 34, 105, "Input",ExpressionUUID->"8b0402a0-3b69-48e8-bfa8-08200f988508"],
+Cell[31309, 839, 1347, 41, 105, "Input",ExpressionUUID->"eb2db7f0-1289-423b-9881-80db63743f10"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[32693, 885, 446, 6, 44, "Subsubsection",ExpressionUUID->"ff125c6a-6a1a-41e8-8f73-43a088c9d68e"],
+Cell[33142, 893, 1629, 52, 210, "Text",ExpressionUUID->"75a91411-aa9a-47aa-a417-c60856b14dd3"],
+Cell[34774, 947, 604, 18, 48, "Input",ExpressionUUID->"17d6bdde-e600-4a0b-adfa-19873d61929d"],
+Cell[35381, 967, 1442, 38, 105, "Input",ExpressionUUID->"cf7b5b25-8fcd-4b2f-928f-11e96dc726fa"],
+Cell[36826, 1007, 420, 11, 56, "Text",ExpressionUUID->"9524c6b1-9203-4b53-926a-cc8aa9fd2d9e"],
+Cell[37249, 1020, 512, 12, 28, "Input",ExpressionUUID->"f2dd8198-b23c-402b-a43d-04b6f3129331"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[37798, 1037, 303, 4, 44, "Subsubsection",ExpressionUUID->"ef1abae0-f73a-4fc3-8216-540f7c4f47ce"],
+Cell[38104, 1043, 614, 12, 78, "Text",ExpressionUUID->"bb3ddb94-a634-4a19-8d58-c97c969c3f62"],
+Cell[38721, 1057, 1234, 28, 105, "Input",ExpressionUUID->"afd4c642-9546-44d8-8f97-60da1e040c0c"],
+Cell[39958, 1087, 506, 9, 56, "Text",ExpressionUUID->"4fbe0d32-128f-4c9f-8986-d909a7613972"],
+Cell[40467, 1098, 1416, 38, 86, "Input",ExpressionUUID->"584e0a56-f543-457b-b107-f10050aeda3b"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[41920, 1141, 191, 3, 44, "Subsubsection",ExpressionUUID->"93dfa323-254c-4b3c-a21e-ccdc58aa2290"],
+Cell[42114, 1146, 347, 7, 56, "Text",ExpressionUUID->"66245fb9-39a0-43f6-b7f0-fbf0869bc5fd"],
+Cell[42464, 1155, 1062, 30, 100, "Text",ExpressionUUID->"f05b2b41-c5aa-4b68-813c-83f9cb4d3e3c"],
+Cell[43529, 1187, 1876, 77, 122, "Text",ExpressionUUID->"8763e686-fe91-42a0-9465-b4caf9c9ffcb"],
+Cell[45408, 1266, 2013, 55, 124, "Input",ExpressionUUID->"4272f256-3b06-4112-ba0e-3d5d54135cf9"],
+Cell[47424, 1323, 373, 10, 56, "Text",ExpressionUUID->"e35db1c1-50e4-426f-bde2-2362f5f9ebb3"],
+Cell[47800, 1335, 1204, 31, 48, "Input",ExpressionUUID->"069ea6d8-c7cc-462a-905e-9bb18ab6c37c"],
+Cell[49007, 1368, 421, 11, 56, "Text",ExpressionUUID->"fa314e25-69fd-4e4d-a3d8-dd8103d2162f"],
+Cell[49431, 1381, 1225, 30, 48, "Input",ExpressionUUID->"673f8dac-3c0f-400c-a636-4f56ac23362c"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[50693, 1416, 354, 5, 44, "Subsubsection",ExpressionUUID->"24d9af1f-eae3-43a7-a276-f51de3071734"],
+Cell[51050, 1423, 529, 11, 56, "Text",ExpressionUUID->"966429bb-d29a-4d1b-90d8-73bb23fd7805"],
+Cell[51582, 1436, 1444, 31, 86, "Input",ExpressionUUID->"2ce2988f-32b3-4c0c-aa64-2b3b06b79343"],
+Cell[53029, 1469, 486, 9, 34, "Text",ExpressionUUID->"ad11d0c2-16d7-4a5c-96f3-281ce9dd7ba6"],
+Cell[53518, 1480, 663, 15, 67, "Input",ExpressionUUID->"56293331-aacb-462e-915d-514763221c8a"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[54218, 1500, 163, 3, 44, "Subsubsection",ExpressionUUID->"6ca58717-5e56-4c6c-b77d-3d784d01dc8c"],
+Cell[54384, 1505, 4811, 155, 551, "ItemNumbered",ExpressionUUID->"eb439b46-b36d-4ea3-9367-352e84f65364"],
+Cell[59198, 1662, 3058, 79, 219, "Input",ExpressionUUID->"ed36ce09-a358-421a-ab67-c0eb20ce2873"],
+Cell[62259, 1743, 2006, 60, 143, "Input",ExpressionUUID->"f91d5270-2f59-4b7c-b0d2-eebfe55ef939"],
+Cell[64268, 1805, 716, 21, 48, "Input",ExpressionUUID->"6745e301-2e5e-4c8a-bedc-63f450777ae6"],
+Cell[64987, 1828, 486, 10, 51, "ItemNumbered",ExpressionUUID->"30c89fb5-1e26-4981-960d-47be5ba79c31"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

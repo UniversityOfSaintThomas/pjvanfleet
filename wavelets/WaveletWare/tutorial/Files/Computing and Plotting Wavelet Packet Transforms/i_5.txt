@@ -1,0 +1,2 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>ShowBestBasis[{1, {0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0}}, 
+ ColorOn -&gt; Lighter[Gray], ColorOff -&gt; Lighter[Gray]]</pre><div class='IFU'><a name='333062941'></a>http://wolfram.com/xid/0iglzsj6g5gr1t4ex14c4bsar4ymys4uuo5d2m08201-fskzan</div>

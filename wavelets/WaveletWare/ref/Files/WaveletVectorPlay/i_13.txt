@@ -1,0 +1,7 @@
+<pre name='i_13_in' id='i_13_in' class='IFT'>file = PackageDirectory[DataType -&gt; Sounds] &lt;&gt; &quot;bark.wav&quot;;
+{v, rate} = AudioRead[file, PowersOfTwo -&gt; 3];
+wt = WT[v, Daub[4], NumIterations -&gt; 3];
+WaveletVectorPlay[wt, NumIterations -&gt; 3, SampleRate -&gt; rate]
+Print[&quot;The length of v is &quot; Length[v], &quot; and the sample rate is &quot;, 
+  rate, &quot;.   For iteration 1, 2, and 3, the sample rates are &quot;, 
+  Table[Round[rate/2^k], {k, 1, 3}], &quot; respectively.&quot;];</pre><div class='IFU'><a name='562509318'></a>http://wolfram.com/xid/0c9xiooyewsxl9wvvcdkih5p36vu-jk6s84</div>

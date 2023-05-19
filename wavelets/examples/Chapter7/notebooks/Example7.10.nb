@@ -1,0 +1,613 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     24466,        605]
+NotebookOptionsPosition[     21012,        522]
+NotebookOutlinePosition[     21357,        537]
+CellTagsIndexPosition[     21314,        534]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Example 7.10 (Image Pansharpening)", "Section",
+ CellChangeTimes->{{3.6747410188032584`*^9, 3.674741042688301*^9}, {
+   3.674742552975814*^9, 3.6747425597738523`*^9}, {3.67474453723468*^9, 
+   3.674744561535725*^9}, {3.674747931751519*^9, 3.6747479370307474`*^9}, 
+   3.6747516510077415`*^9, {3.674754123065485*^9, 3.674754140322116*^9}, {
+   3.6751749126193643`*^9, 3.6751749154137692`*^9}, {3.6755147920766993`*^9, 
+   3.6755147959137897`*^9}, {3.675527343559159*^9, 3.675527350929307*^9}, {
+   3.6755288505176797`*^9, 3.675528858287467*^9}, {3.6755298287755394`*^9, 
+   3.675529837330626*^9}, 3.703855401083161*^9, {3.727011156743316*^9, 
+   3.727011160055276*^9}, {3.7270114909635525`*^9, 3.7270114966106634`*^9}, {
+   3.728133554876086*^9, 3.728133600082198*^9}, {3.7282226068496046`*^9, 
+   3.7282226366583176`*^9}, {3.728303943197585*^9, 3.7283039588862004`*^9}, {
+   3.7283040200579815`*^9, 3.7283040342503386`*^9}, {3.7283061334625406`*^9, 
+   3.7283061373339577`*^9}, {3.728309919507227*^9, 3.728309924713318*^9}, {
+   3.728315626814946*^9, 3.728315657013443*^9}, {3.7283207166871653`*^9, 
+   3.728320736558528*^9}, {3.728402625940447*^9, 
+   3.7284026316982775`*^9}},ExpressionUUID->"b4d3dd46-bf41-416a-8a69-\
+8d3f86104986"],
+
+Cell["\<\
+Use a biorthogonal wavelet transform to pan-sharpen an image.\
+\>", "Text",
+ CellChangeTimes->{{3.6747410667041707`*^9, 3.6747410805055957`*^9}, {
+   3.6747424105934367`*^9, 3.674742410733837*^9}, {3.674742572300502*^9, 
+   3.674742584222324*^9}, {3.6747445741715794`*^9, 3.6747445846113987`*^9}, {
+   3.6747479622130194`*^9, 3.674747968138232*^9}, {3.675174920421378*^9, 
+   3.6751749285570188`*^9}, {3.6755273968654437`*^9, 
+   3.6755274039395885`*^9}, {3.6755288612083807`*^9, 
+   3.6755288683421783`*^9}, {3.6755298409106617`*^9, 
+   3.6755298515318317`*^9}, {3.7270111747609496`*^9, 
+   3.7270111855638227`*^9}, {3.7282226478590555`*^9, 
+   3.7282226542748055`*^9}, {3.728320743487118*^9, 3.728320758286854*^9}, {
+   3.728402704427785*^9, 3.728402716968357*^9}, 
+   3.728404739759837*^9},ExpressionUUID->"61b27de1-8e6c-4777-a97c-\
+e405fa03ef99"],
+
+Cell[CellGroupData[{
+
+Cell["Reference.", "Subsubsection",
+ CellChangeTimes->{{3.6747631102003517`*^9, 
+  3.6747631125733557`*^9}},ExpressionUUID->"3fffe5ac-09ce-46e2-8050-\
+8c2090c2603e"],
+
+Cell["\<\
+The material for this lab is covered in Section 7.4 of the book \
+\[OpenCurlyDoubleQuote]Discrete Wavelet Transformations: An Elementary \
+Approach with Applications, 2nd Edition,\[CloseCurlyDoubleQuote] by Patrick J \
+Van Fleet.\
+\>", "Text",
+ CellChangeTimes->{{3.674763119565366*^9, 3.6747631649004583`*^9}, {
+   3.674763293323564*^9, 3.674763311554607*^9}, {3.6997856290190563`*^9, 
+   3.699785638548086*^9}, {3.72692103296169*^9, 3.726921034949597*^9}, {
+   3.7270063962717886`*^9, 3.727006396991242*^9}, 3.727009034200805*^9, 
+   3.7270097537181544`*^9, {3.7270115331247635`*^9, 3.727011534185475*^9}, {
+   3.728133558164382*^9, 3.728133558704959*^9}, 3.728222661100868*^9, 
+   3.728303952262206*^9, 3.728309927211501*^9, {3.7283208646579027`*^9, 
+   3.7283208646749725`*^9}},ExpressionUUID->"6a87367e-199b-4755-909b-\
+1f0e93964a15"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["WaveletWare Commands Used in This Notebook", "Subsubsection",
+ CellChangeTimes->{{3.6747417571916847`*^9, 3.674741765831501*^9}, {
+  3.6747418595935683`*^9, 
+  3.6747419193671017`*^9}},ExpressionUUID->"f0a02de7-73c3-4fdf-9fb7-\
+3b6354eb70fb"],
+
+Cell["Execute the line below to load the WaveletWare package.", "Text",
+ CellChangeTimes->{{3.726919365764247*^9, 
+  3.7269193911263213`*^9}},ExpressionUUID->"1c2f17b5-7d52-43ea-8284-\
+97a0802ab4e4"],
+
+Cell[BoxData[{
+ RowBox[{"<<", "WaveletWare`"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"clr1", ",", "clr2", ",", "clr3", ",", "clr4", ",", "clr5"}], 
+    "}"}], "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"RGBColor", "[", 
+      RowBox[{"0", ",", 
+       RowBox[{"119", "/", "255"}], ",", 
+       RowBox[{"219", "/", "255"}]}], "]"}], ",", 
+     RowBox[{"RGBColor", "[", 
+      RowBox[{
+       RowBox[{"146", "/", "255"}], ",", "0", ",", "0"}], "]"}], ",", 
+     RowBox[{"RGBColor", "[", 
+      RowBox[{"0", ",", 
+       RowBox[{"146", "/", "255"}], ",", 
+       RowBox[{"146", "/", "255"}]}], "]"}], ",", 
+     RowBox[{"RGBColor", "[", 
+      RowBox[{"1", ",", 
+       RowBox[{"109", "/", "255"}], ",", 
+       RowBox[{"182", "/", "255"}]}], "]"}], ",", "Black"}], "}"}]}], 
+  ";"}]}], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.7269193243151226`*^9, 3.7269193578933735`*^9}, {
+   3.7270065374179773`*^9, 3.727006537593671*^9}, {3.7270070318050675`*^9, 
+   3.7270070319488754`*^9}, {3.7270084778120003`*^9, 
+   3.7270084779023743`*^9}, {3.7270097015398407`*^9, 
+   3.7270097017317114`*^9}, {3.727009916604597*^9, 3.72700991671616*^9}, {
+   3.7270102740659857`*^9, 3.7270102742043266`*^9}, {3.727011436528392*^9, 
+   3.727011436639927*^9}, 3.727011861141736*^9, {3.7281338551056356`*^9, 
+   3.7281338553085656`*^9}, {3.72813436372399*^9, 3.728134363850319*^9}, {
+   3.7282230113964243`*^9, 3.7282230115544305`*^9}, {3.7283060026579847`*^9, 
+   3.7283060027702656`*^9}, {3.7283076864440517`*^9, 
+   3.7283076866003275`*^9}, {3.72832048315759*^9, 3.7283204832357473`*^9}, {
+   3.728322883809811*^9, 3.7283228841296988`*^9}, {3.728404649315799*^9, 
+   3.728404650133751*^9}},ExpressionUUID->"d0fbe505-08c6-4c5e-bfcb-\
+4eebc307ea21"],
+
+Cell["\<\
+Execute the line below to generate quick help on WaveletWare commands used in \
+this notebook.  Click on >> for each command to access detailed documentation \
+on the command.\
+\>", "Text",
+ CellChangeTimes->{{3.726919395574725*^9, 
+  3.7269194464807606`*^9}},ExpressionUUID->"49e06bb1-94fd-4029-9342-\
+21f25eef50ef"],
+
+Cell[BoxData[{
+ RowBox[{"?", "PackageDirectory"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "ImageRead"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "ImagePlot"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "ImageEnlarge"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "RGBToHSI"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "HistogramMatch"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "SplineFilters"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "BWT"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "WaveletPlot"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "WaveletMatrixToList"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "WaveletListToMatrix"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "InverseBWT"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "DataClip"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "HSIToRGB"}]}], "Input",
+ CellChangeTimes->CompressedData["
+1:eJxTTMoPSmViYGAQA2IQXSPadbnjyGvHlml7roPoIt/yyM1AmqX8MphOWJqV
+AKJrbn9KBNEzanIKQHSEIGshiFZIvj4DRCdHN8wC0VXhqutB9BP+SDBdqi/6
+FUR7lp38AaLP7qz5C6IbWu+Bae+aSJYtQHr1+T1g2iW+bBGI7mkQXAqmfx54
+AqI/HDoDpr1dj/wG0etz5/8F0Qf6S822AmmnglYwLXMiZAOIViiYuBFEf9rC
+JnPr2GvHHXc3g+nFu1YlsR5/7bjGXS0ZRLMFZy7WBdI6jRuWguhnm68w6QHp
+M8xSbCD6xeGoPSD6zpk0MH3uaMZVI5C46x8wzTp5lY4pkG4wm6kHos+mHlKM
+A9KPwvdog2gArOHKRw==
+  "],ExpressionUUID->"892245c5-7d54-4520-8f7e-ff7d8734cd49"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Solution.", "Subsubsection",
+ CellChangeTimes->{{3.674741083458001*^9, 3.674741085127204*^9}, {
+  3.674741868740185*^9, 
+  3.674741869629386*^9}},ExpressionUUID->"8a313543-5b7f-4f37-842b-\
+1e2469d6be64"],
+
+Cell["\<\
+Input a low resolution color image and its high resolution grayscale \
+counterpart and plot both..\
+\>", "Text",
+ CellChangeTimes->{{3.6747411194901114`*^9, 3.6747411391369605`*^9}, {
+   3.674742623448035*^9, 3.674742630967649*^9}, {3.6747446245665*^9, 
+   3.6747446285253077`*^9}, {3.6747479738622437`*^9, 
+   3.6747480058727283`*^9}, {3.6747541466889267`*^9, 3.674754251603379*^9}, {
+   3.6751749520373015`*^9, 3.6751749586109133`*^9}, {3.6755148175042253`*^9, 
+   3.675514819025256*^9}, {3.6755148532970734`*^9, 3.6755148644122963`*^9}, {
+   3.6755149448761034`*^9, 3.675514948728182*^9}, {3.675527407049651*^9, 
+   3.675527418359915*^9}, {3.6755298600329905`*^9, 3.67552987475714*^9}, {
+   3.727011216895319*^9, 3.7270112356259713`*^9}, {3.7281338006491585`*^9, 
+   3.728133803753336*^9}, {3.728133946604497*^9, 3.728133951589148*^9}, {
+   3.7282227260205746`*^9, 3.7282227381328773`*^9}, {3.7282232579003725`*^9, 
+   3.7282232649088163`*^9}, 3.7283040921244783`*^9, {3.7283062360485983`*^9, 
+   3.7283062395558453`*^9}, {3.728309966650445*^9, 3.728309970572873*^9}, {
+   3.7283160306018896`*^9, 3.7283160673273907`*^9}, {3.7283175115671425`*^9, 
+   3.7283175136036453`*^9}, {3.7283208900674534`*^9, 3.728320897684348*^9}, {
+   3.7284027647961583`*^9, 
+   3.7284027904418974`*^9}},ExpressionUUID->"4294c5b1-b9de-437b-ae24-\
+d688aa1c0788"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"grayfile", "=", 
+   RowBox[{
+    RowBox[{"PackageDirectory", "[", 
+     RowBox[{"DataType", "\[Rule]", "Images"}], "]"}], "<>", 
+    "\"\<acadianationalpark800gray.png\>\""}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"colorfile", "=", 
+   RowBox[{
+    RowBox[{"PackageDirectory", "[", 
+     RowBox[{"DataType", "\[Rule]", "Images"}], "]"}], "<>", 
+    "\"\<acadianationalpark200.png\>\""}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"gray", "=", 
+   RowBox[{
+    RowBox[{"ImageRead", "[", "grayfile", "]"}], "/", "255."}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"color", "=", 
+   RowBox[{"ImageRead", "[", "colorfile", "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"ImagePlot", "[", 
+  RowBox[{"gray", ",", 
+   RowBox[{"Scaling", "\[Rule]", "True"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"ImagePlot", "[", "color", "]"}]}], "Input",
+ CellChangeTimes->{{3.728402795951839*^9, 3.7284028223048596`*^9}, {
+  3.728404652633684*^9, 
+  3.728404652782567*^9}},ExpressionUUID->"4c5f3474-69fa-42d3-897a-\
+cd7773e204ef"],
+
+Cell["Enlarge the color image and plot it.", "Text",
+ CellChangeTimes->{{3.7284036315836635`*^9, 
+  3.728403649887752*^9}},ExpressionUUID->"da172209-b4eb-4437-addb-\
+6deb2e5e30b7"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"r", ",", "g", ",", "b"}], "}"}], "=", 
+   RowBox[{"ImageEnlarge", "[", 
+    RowBox[{"color", ",", "4"}], "]"}]}], ";"}], "\n", 
+ RowBox[{"ImagePlot", "[", 
+  RowBox[{"{", 
+   RowBox[{"r", ",", "g", ",", "b"}], "}"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.728403661602626*^9, 3.7284036685773897`*^9}, {
+  3.7284046539410543`*^9, 
+  3.7284046541059217`*^9}},ExpressionUUID->"101763b2-f21b-4cf1-9503-\
+d13a1b4a6b53"],
+
+Cell["Convert to HSI space.", "Text",
+ CellChangeTimes->{{3.7284037813477545`*^9, 
+  3.7284038055397973`*^9}},ExpressionUUID->"63856e2b-ee5e-40b8-a566-\
+c50a45cd8445"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"h", ",", "s", ",", "i"}], "}"}], "=", 
+   RowBox[{"RGBToHSI", "[", 
+    RowBox[{"{", 
+     RowBox[{"r", ",", "g", ",", "b"}], "}"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.679403924317449*^9, 3.6794039672083516`*^9}, {
+   3.6794042099022255`*^9, 3.6794042221108484`*^9}, {3.6794042980954094`*^9, 
+   3.679404301075014*^9}, {3.679404374156617*^9, 3.6794045304048758`*^9}, {
+   3.679490499686969*^9, 3.679490499990986*^9}, 3.6794918044056654`*^9, {
+   3.679510537266153*^9, 3.6795105719125166`*^9}, 3.6796743861244726`*^9, 
+   3.680996682055196*^9, {3.680997075993305*^9, 3.680997076508106*^9}, {
+   3.72840380967682*^9, 3.728403810563902*^9}, {3.7284046560741673`*^9, 
+   3.728404656192627*^9}},ExpressionUUID->"23509402-263e-4b77-9e74-\
+b9613081e62f"],
+
+Cell["\<\
+Here are plots of the cumulative distribution functions for the intensity \
+channel and the grayscale image.\
+\>", "Text",
+ CellChangeTimes->{{3.7284038181875286`*^9, 
+  3.728403849115514*^9}},ExpressionUUID->"61316bf4-8a03-4862-b9a8-\
+c44a2b8ea137"],
+
+Cell["\<\
+Next, we histogram match the intensities in the gray channel to the range of \
+the I channel.  \
+\>", "Text",
+ CellChangeTimes->{{3.6794905094382987`*^9, 3.679490592973719*^9}, {
+  3.6795105896652627`*^9, 
+  3.679510604803874*^9}},ExpressionUUID->"d8cd2630-99ef-475d-8c30-\
+5d2c4627d9d7"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"cdf", "=", 
+   RowBox[{"Map", "[", 
+    RowBox[{"CumulativeDistribution", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"Round", "[", 
+        RowBox[{"255", "i"}], "]"}], ",", 
+       RowBox[{"Round", "[", 
+        RowBox[{"255", "gray"}], "]"}]}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"ListPlot", "[", 
+  RowBox[{"cdf", ",", 
+   RowBox[{"AxesStyle", "\[Rule]", "Black"}], ",", 
+   RowBox[{"TicksStyle", "\[Rule]", "Black"}], ",", 
+   RowBox[{"Ticks", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Range", "[", 
+       RowBox[{"0", ",", "256", ",", "32"}], "]"}], ",", 
+      RowBox[{"Range", "[", 
+       RowBox[{"0", ",", "1", ",", ".25"}], "]"}]}], "}"}]}], ",", 
+   RowBox[{"PlotStyle", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"clr1", ",", "clr2"}], "}"}]}], ",", 
+   RowBox[{"Joined", "\[Rule]", "True"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.728403871238033*^9, 3.7284038869668474`*^9}, {
+  3.7284046577143393`*^9, 
+  3.7284046578332357`*^9}},ExpressionUUID->"9c467f10-e3d1-4a5c-8fba-\
+31ed6a3ebc2a"],
+
+Cell["\<\
+Histogram match the intensity channel and the grayscale image.\
+\>", "Text",
+ CellChangeTimes->{{3.7284039246952963`*^9, 
+  3.7284039383595257`*^9}},ExpressionUUID->"2eada271-a08d-4ed3-af4a-\
+696cdda90b75"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"newgray", "=", 
+   RowBox[{"HistogramMatch", "[", 
+    RowBox[{"i", ",", "gray"}], "]"}]}], ";"}], "\n", 
+ RowBox[{"ImagePlot", "[", 
+  RowBox[{"newgray", ",", 
+   RowBox[{"Scaling", "\[Rule]", "True"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.728403940485374*^9, 3.72840395087191*^9}, {
+  3.728404659898425*^9, 
+  3.728404660015794*^9}},ExpressionUUID->"9cfcdcd8-5821-4677-a2d8-\
+997853a29698"],
+
+Cell["\<\
+Take the biorthogonal wavelet transform of I and the new gray channel.  We \
+use the modified version of the (5,3) biorthogonal spline filter pair \
+described in Example 7.9.\
+\>", "Text",
+ CellChangeTimes->{{3.6794938040551367`*^9, 3.6794938309192023`*^9}, {
+  3.679568631010685*^9, 3.6795686317927113`*^9}, {3.728403998791833*^9, 
+  3.728404043545879*^9}},ExpressionUUID->"cd1ba312-d820-4702-8e2a-\
+2f830273163d"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"its", "=", "4"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"filter", "=", 
+   RowBox[{"MapThread", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"#1", "*", "#2"}], "&"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"SplineFilters", "[", 
+        RowBox[{"3", ",", "3"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Sqrt", "[", "2", "]"}], ",", 
+         RowBox[{"1", "/", 
+          RowBox[{"Sqrt", "[", "2", "]"}]}]}], "}"}]}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"wtgray", ",", "wti"}], "}"}], "=", 
+   RowBox[{"Map", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"BWT", "[", 
+       RowBox[{"#", ",", "filter", ",", 
+        RowBox[{"NumIterations", "\[Rule]", "its"}], ",", 
+        RowBox[{"Boundary", "\[Rule]", "True"}]}], "]"}], "&"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"newgray", ",", "i"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"GraphicsColumn", "[", 
+  RowBox[{"Map", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"WaveletPlot", "[", 
+      RowBox[{"#", ",", 
+       RowBox[{"NumIterations", "\[Rule]", "its"}]}], "]"}], "&"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"wtgray", ",", "wti"}], "}"}]}], "]"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.6794937479088545`*^9, 3.679493753256047*^9}, {
+   3.679493836929468*^9, 3.679493891926675*^9}, {3.679493976582157*^9, 
+   3.67949405864545*^9}, {3.6794944208500166`*^9, 3.6794944294593277`*^9}, {
+   3.679494501291219*^9, 3.6794945020672398`*^9}, 3.6795686545456724`*^9, {
+   3.6795690069431734`*^9, 3.6795690438307166`*^9}, {3.679569128230363*^9, 
+   3.67956913494165*^9}, {3.6795692266053357`*^9, 3.679569231988531*^9}, 
+   3.6796690417769423`*^9, 3.6796692060833406`*^9, {3.679670054190545*^9, 
+   3.6796700551889467`*^9}, {3.6796702003352957`*^9, 3.6796702006784964`*^9}, 
+   3.6796764772900095`*^9, 3.679676546342563*^9, {3.7284040511926503`*^9, 
+   3.728404090284178*^9}, {3.7284041752873516`*^9, 3.7284041763025103`*^9}, {
+   3.728404662098775*^9, 
+   3.728404662208209*^9}},ExpressionUUID->"84067b1c-501b-48d3-9295-\
+94f49517eea3"],
+
+Cell["\<\
+Merge the blur of the transform of the intesity channel with the rest of the \
+transform of the new grayscale image.\
+\>", "Text",
+ CellChangeTimes->{{3.679569242052994*^9, 3.679569262476822*^9}, {
+  3.7284041223005357`*^9, 
+  3.728404139756642*^9}},ExpressionUUID->"004c7365-2a66-4efc-a50a-\
+4510ca2cd37a"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"wtgraylist", ",", "wtilist"}], "}"}], "=", 
+   RowBox[{"Map", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"WaveletMatrixToList", "[", 
+       RowBox[{"#", ",", 
+        RowBox[{"NumIterations", "\[Rule]", "its"}]}], "]"}], "&"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"wtgray", ",", "wti"}], "}"}]}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"newwtgray", "=", 
+   RowBox[{"WaveletListToMatrix", "[", 
+    RowBox[{
+     RowBox[{"Prepend", "[", 
+      RowBox[{
+       RowBox[{"Rest", "[", "wtgraylist", "]"}], ",", 
+       RowBox[{"First", "[", "wtilist", "]"}]}], "]"}], ",", 
+     RowBox[{"NumIterations", "\[Rule]", "its"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"WaveletPlot", "[", 
+  RowBox[{"newwtgray", ",", 
+   RowBox[{"NumIterations", "\[Rule]", "its"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.679494094997964*^9, 3.6794941179648256`*^9}, 
+   3.6795692666939497`*^9, {3.6796780182454185`*^9, 3.6796780356640625`*^9}, 
+   3.6809965609893103`*^9, 3.680996739948002*^9, {3.7284041543816805`*^9, 
+   3.7284041603075776`*^9}, {3.7284046635423937`*^9, 
+   3.728404663625513*^9}},ExpressionUUID->"3ccb213d-9d83-4eec-be0d-\
+d05e1aae53fd"],
+
+Cell[TextData[{
+ "We obtain the new intensity channel by applying the inverse biorthogonal \
+wavelet transform.  Recall that in HSI space, values in the intensity channel \
+are in [0,1].  Since the values of ",
+ StyleBox["newi",
+  FontWeight->"Bold"],
+ " might be outside the interval [0,1], we apply the ",
+ StyleBox["DataClip",
+  FontWeight->"Bold"],
+ " function to clip any outliers."
+}], "Text",
+ CellChangeTimes->{{3.7284044016347065`*^9, 3.7284044655295296`*^9}, {
+  3.728404523839371*^9, 
+  3.7284045383431745`*^9}},ExpressionUUID->"ca9dd91a-1c8c-4504-999d-\
+bcc2a029c6d9"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"newi", "=", 
+   RowBox[{"InverseBWT", "[", 
+    RowBox[{"newwtgray", ",", "filter", ",", 
+     RowBox[{"NumIterations", "\[Rule]", "its"}], ",", 
+     RowBox[{"Boundary", "\[Rule]", "True"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"newi", "=", 
+   RowBox[{"DataClip", "[", "newi", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"ImagePlot", "[", 
+  RowBox[{"newi", ",", 
+   RowBox[{"Scaling", "\[Rule]", "True"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.6794943929549165`*^9, 3.6794944126507034`*^9}, {
+   3.679494446711084*^9, 3.679494472313102*^9}, {3.679569162533802*^9, 
+   3.6795691839956303`*^9}, {3.679569214740884*^9, 3.6795692150749025`*^9}, {
+   3.6795693968111563`*^9, 3.6795694196671*^9}, 3.6795699293181324`*^9, {
+   3.6796700843613987`*^9, 3.679670085562601*^9}, {3.6796702140421205`*^9, 
+   3.679670214463321*^9}, {3.728404394803255*^9, 3.7284043949827557`*^9}, {
+   3.728404484993868*^9, 3.7284044852355733`*^9}, {3.728404665210084*^9, 
+   3.728404665414553*^9}},ExpressionUUID->"0c1e64d9-c5f2-413a-85ab-\
+0e66039e6d58"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"newcolor", "=", 
+   RowBox[{"HSIToRGB", "[", 
+    RowBox[{"{", 
+     RowBox[{"h", ",", "s", ",", "newi"}], "}"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"ImagePlot", "[", "newcolor", "]"}]}], "Input",
+ CellChangeTimes->{{3.7284045567303624`*^9, 3.728404564664362*^9}, {
+  3.728404666634728*^9, 
+  3.728404666761816*^9}},ExpressionUUID->"5cd51c7b-21eb-426b-9969-\
+bdc64cfa0742"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Things To Try.", "Subsubsection",
+ CellChangeTimes->{{3.674741944310015*^9, 
+  3.67474194691722*^9}},ExpressionUUID->"94edfca8-dffe-4c62-921f-\
+e620067264b8"],
+
+Cell["See Lab 7.4.", "Text",
+ CellChangeTimes->{{3.7283229389147525`*^9, 3.7283229788038387`*^9}, {
+   3.7284045454405117`*^9, 3.728404549383081*^9}, 
+   3.72840463906489*^9},ExpressionUUID->"d359dd38-ce5a-4b72-8edf-\
+2af46b74aaf2"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{759, 634},
+WindowMargins->{{Automatic, 412}, {172, Automatic}},
+FrontEndVersion->"11.1 for Microsoft Windows (64-bit) (April 18, 2017)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 1241, 17, 70, "Section", "ExpressionUUID" -> \
+"b4d3dd46-bf41-416a-8a69-8d3f86104986"],
+Cell[1824, 41, 860, 15, 30, "Text", "ExpressionUUID" -> \
+"61b27de1-8e6c-4777-a97c-e405fa03ef99"],
+Cell[CellGroupData[{
+Cell[2709, 60, 165, 3, 39, "Subsubsection", "ExpressionUUID" -> \
+"3fffe5ac-09ce-46e2-8050-8c2090c2603e"],
+Cell[2877, 65, 849, 14, 49, "Text", "ExpressionUUID" -> \
+"6a87367e-199b-4755-909b-1f0e93964a15"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3763, 84, 248, 4, 39, "Subsubsection", "ExpressionUUID" -> \
+"f0a02de7-73c3-4fdf-9fb7-3b6354eb70fb"],
+Cell[4014, 90, 199, 3, 30, "Text", "ExpressionUUID" -> \
+"1c2f17b5-7d52-43ea-8284-97a0802ab4e4"],
+Cell[4216, 95, 1784, 39, 104, "Input", "ExpressionUUID" -> \
+"d0fbe505-08c6-4c5e-bfcb-4eebc307ea21",
+ InitializationCell->True],
+Cell[6003, 136, 327, 7, 49, "Text", "ExpressionUUID" -> \
+"49e06bb1-94fd-4029-9342-21f25eef50ef"],
+Cell[6333, 145, 1261, 23, 278, "Input", "ExpressionUUID" -> \
+"892245c5-7d54-4520-8f7e-ff7d8734cd49"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7631, 173, 209, 4, 39, "Subsubsection", "ExpressionUUID" -> \
+"8a313543-5b7f-4f37-842b-1e2469d6be64"],
+Cell[7843, 179, 1352, 21, 30, "Text", "ExpressionUUID" -> \
+"4294c5b1-b9de-437b-ae24-d688aa1c0788"],
+Cell[9198, 202, 1096, 29, 126, "Input", "ExpressionUUID" -> \
+"4c5f3474-69fa-42d3-897a-cd7773e204ef"],
+Cell[10297, 233, 180, 3, 30, "Text", "ExpressionUUID" -> \
+"da172209-b4eb-4437-addb-6deb2e5e30b7"],
+Cell[10480, 238, 481, 13, 50, "Input", "ExpressionUUID" -> \
+"101763b2-f21b-4cf1-9503-d13a1b4a6b53"],
+Cell[10964, 253, 167, 3, 30, "Text", "ExpressionUUID" -> \
+"63856e2b-ee5e-40b8-a566-c50a45cd8445"],
+Cell[11134, 258, 825, 16, 30, "Input", "ExpressionUUID" -> \
+"23509402-263e-4b77-9e74-b9613081e62f"],
+Cell[11962, 276, 260, 6, 49, "Text", "ExpressionUUID" -> \
+"61316bf4-8a03-4862-b9a8-c44a2b8ea137"],
+Cell[12225, 284, 298, 7, 30, "Text", "ExpressionUUID" -> \
+"d8cd2630-99ef-475d-8c30-5d2c4627d9d7"],
+Cell[12526, 293, 1097, 30, 69, "Input", "ExpressionUUID" -> \
+"9c467f10-e3d1-4a5c-8fba-31ed6a3ebc2a"],
+Cell[13626, 325, 216, 5, 30, "Text", "ExpressionUUID" -> \
+"2eada271-a08d-4ed3-af4a-696cdda90b75"],
+Cell[13845, 332, 433, 11, 50, "Input", "ExpressionUUID" -> \
+"9cfcdcd8-5821-4677-a2d8-997853a29698"],
+Cell[14281, 345, 425, 8, 49, "Text", "ExpressionUUID" -> \
+"cd1ba312-d820-4702-8e2a-2f830273163d"],
+Cell[14709, 355, 2171, 54, 88, "Input", "ExpressionUUID" -> \
+"84067b1c-501b-48d3-9295-94f49517eea3"],
+Cell[16883, 411, 317, 7, 49, "Text", "ExpressionUUID" -> \
+"004c7365-2a66-4efc-a50a-4510ca2cd37a"],
+Cell[17203, 420, 1228, 31, 88, "Input", "ExpressionUUID" -> \
+"3ccb213d-9d83-4eec-be0d-d05e1aae53fd"],
+Cell[18434, 453, 580, 14, 68, "Text", "ExpressionUUID" -> \
+"ca9dd91a-1c8c-4504-999d-bcc2a029c6d9"],
+Cell[19017, 469, 1102, 22, 69, "Input", "ExpressionUUID" -> \
+"0c1e64d9-c5f2-413a-85ab-0e66039e6d58"],
+Cell[20122, 493, 426, 11, 50, "Input", "ExpressionUUID" -> \
+"5cd51c7b-21eb-426b-9969-bdc64cfa0742"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[20585, 509, 164, 3, 39, "Subsubsection", "ExpressionUUID" -> \
+"94edfca8-dffe-4c62-921f-e620067264b8"],
+Cell[20752, 514, 232, 4, 30, "Text", "ExpressionUUID" -> \
+"d359dd38-ce5a-4b72-8edf-2af46b74aaf2"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

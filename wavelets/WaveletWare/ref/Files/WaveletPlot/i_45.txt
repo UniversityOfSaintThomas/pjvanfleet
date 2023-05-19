@@ -1,0 +1,5 @@
+<pre name='i_45_in' id='i_45_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;cups.png&quot;;
+A = ImageRead[file, Resize -&gt; {128, 192}];
+ImagePlot[A]
+WaveletPlot[HWT[A], 
+ ChannelColor -&gt; {GrayLevel[.6], Purple, CMYKColor[0, 0.4, 1, 0]}]</pre><div class='IFU'><a name='30390201'></a>http://wolfram.com/xid/0cew39zuhikyj6xdcij5apz9u-sdnij</div>

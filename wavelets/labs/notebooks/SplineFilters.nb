@@ -1,0 +1,917 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     35605,        909]
+NotebookOptionsPosition[     31800,        844]
+NotebookOutlinePosition[     32144,        859]
+CellTagsIndexPosition[     32101,        856]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Lab 9.1: Biorthogonal Spline Filter Pairs", "Section",
+ CellChangeTimes->{{3.6747410188032584`*^9, 3.674741042688301*^9}, {
+   3.674742552975814*^9, 3.6747425597738523`*^9}, {3.67474453723468*^9, 
+   3.674744561535725*^9}, {3.674747931751519*^9, 3.6747479370307474`*^9}, 
+   3.6747516510077415`*^9, {3.674754123065485*^9, 3.674754140322116*^9}, {
+   3.6751749126193643`*^9, 3.6751749154137692`*^9}, {3.6755147920766993`*^9, 
+   3.6755147959137897`*^9}, {3.675527343559159*^9, 3.675527350929307*^9}, {
+   3.6755288505176797`*^9, 3.675528858287467*^9}, {3.6755298287755394`*^9, 
+   3.675529837330626*^9}, 3.703855401083161*^9, {3.727011156743316*^9, 
+   3.727011160055276*^9}, {3.7270114909635525`*^9, 3.7270114966106634`*^9}, {
+   3.7298617740082817`*^9, 3.7298617804688063`*^9}, {3.7298618142457356`*^9, 
+   3.729861817366371*^9}, {3.729936061603035*^9, 3.729936065090923*^9}, {
+   3.730197863129013*^9, 3.7301978954844265`*^9}, {3.7318408662267294`*^9, 
+   3.7318408668665113`*^9}, {3.732034562824736*^9, 3.732034569768715*^9}, {
+   3.7322815059764085`*^9, 3.7322815064403625`*^9}, {3.7328812449659095`*^9, 
+   3.7328812500451756`*^9}, {3.732894450035189*^9, 3.7328944504828987`*^9}, {
+   3.73365613995476*^9, 
+   3.7336561461921277`*^9}},ExpressionUUID->"b4d3dd46-bf41-416a-8a69-\
+8d3f86104986"],
+
+Cell["\<\
+In this lab, you will write code to generate biorthogonal spline filter pairs.\
+\>", "Text",
+ CellChangeTimes->{{3.6747410667041707`*^9, 3.6747410805055957`*^9}, {
+  3.6747424105934367`*^9, 3.674742410733837*^9}, {3.674742572300502*^9, 
+  3.674742584222324*^9}, {3.6747445741715794`*^9, 3.6747445846113987`*^9}, {
+  3.6747479622130194`*^9, 3.674747968138232*^9}, {3.675174920421378*^9, 
+  3.6751749285570188`*^9}, {3.6755273968654437`*^9, 3.6755274039395885`*^9}, {
+  3.6755288612083807`*^9, 3.6755288683421783`*^9}, {3.6755298409106617`*^9, 
+  3.6755298515318317`*^9}, {3.7270111747609496`*^9, 3.7270111855638227`*^9}, {
+  3.729861836007686*^9, 3.729861854391374*^9}, {3.7299360749950047`*^9, 
+  3.7299360763870363`*^9}, {3.730198023850702*^9, 3.7301980498871727`*^9}, {
+  3.732034583896432*^9, 3.732034610681661*^9}, {3.7328812573985605`*^9, 
+  3.7328812648263206`*^9}},ExpressionUUID->"61b27de1-8e6c-4777-a97c-\
+e405fa03ef99"],
+
+Cell[CellGroupData[{
+
+Cell["Reference", "Subsubsection",
+ CellChangeTimes->{{3.6747631102003517`*^9, 3.6747631125733557`*^9}, 
+   3.730197716407202*^9},ExpressionUUID->"3fffe5ac-09ce-46e2-8050-\
+8c2090c2603e"],
+
+Cell[TextData[{
+ "The material for this lab is covered in Section 9.4 of the book",
+ ButtonBox["Discrete Wavelet Transformations: An Elementary Approach with \
+Applications, 2nd Ed.",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://www.wiley.com/en-us/Discrete+Wavelet+Transformations%3A+An+\
+Elementary+Approach+with+Applications%2C+2nd+Edition-p-9781118979310"], None},
+  ButtonNote->
+   "https://www.wiley.com/en-us/Discrete+Wavelet+Transformations%3A+An+\
+Elementary+Approach+with+Applications%2C+2nd+Edition-p-9781118979310"],
+ ", by Patrick J Van Fleet."
+}], "Text",
+ CellChangeTimes->{{3.674763119565366*^9, 3.6747631649004583`*^9}, {
+   3.674763293323564*^9, 3.674763311554607*^9}, {3.6997856290190563`*^9, 
+   3.699785638548086*^9}, {3.72692103296169*^9, 3.726921034949597*^9}, {
+   3.7270063962717886`*^9, 3.727006396991242*^9}, 3.727009034200805*^9, 
+   3.7270097537181544`*^9, {3.7270115331247635`*^9, 3.727011534185475*^9}, {
+   3.729936081107809*^9, 3.729936081203467*^9}, {3.73019789874003*^9, 
+   3.7301979003322897`*^9}, 3.7320346176585207`*^9, {3.7328812688417053`*^9, 
+   3.732881290258932*^9}, 
+   3.772625169845742*^9},ExpressionUUID->"6a87367e-199b-4755-909b-\
+1f0e93964a15"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["WaveletWare Commands Used in This Notebook", "Subsubsection",
+ CellChangeTimes->{{3.6747417571916847`*^9, 3.674741765831501*^9}, {
+  3.6747418595935683`*^9, 
+  3.6747419193671017`*^9}},ExpressionUUID->"f0a02de7-73c3-4fdf-9fb7-\
+3b6354eb70fb"],
+
+Cell["Execute the line below to load the WaveletWare package.", "Text",
+ CellChangeTimes->{{3.726919365764247*^9, 
+  3.7269193911263213`*^9}},ExpressionUUID->"1c2f17b5-7d52-43ea-8284-\
+97a0802ab4e4"],
+
+Cell[BoxData[
+ RowBox[{"<<", "WaveletWare`"}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.7269193243151226`*^9, 3.7269193578933735`*^9}, {
+   3.7270065374179773`*^9, 3.727006537593671*^9}, {3.7270070318050675`*^9, 
+   3.7270070319488754`*^9}, {3.7270084778120003`*^9, 
+   3.7270084779023743`*^9}, {3.7270097015398407`*^9, 
+   3.7270097017317114`*^9}, {3.727009916604597*^9, 3.72700991671616*^9}, {
+   3.7270102740659857`*^9, 3.7270102742043266`*^9}, {3.727011436528392*^9, 
+   3.727011436639927*^9}, 3.727011861141736*^9, {3.729880762923499*^9, 
+   3.729880763098421*^9}, {3.729944604988558*^9, 3.7299446052435875`*^9}, {
+   3.731346422962227*^9, 3.7313464231599517`*^9}, {3.732281091610708*^9, 
+   3.7322810918017616`*^9}, {3.7328944214914923`*^9, 
+   3.7328944216343985`*^9}},ExpressionUUID->"d0fbe505-08c6-4c5e-bfcb-\
+4eebc307ea21"],
+
+Cell["\<\
+Execute the line below to generate quick help on WaveletWare commands used in \
+this notebook.  Click on >> for each command to access detailed documentation \
+on the command.\
+\>", "Text",
+ CellChangeTimes->{{3.726919395574725*^9, 
+  3.7269194464807606`*^9}},ExpressionUUID->"49e06bb1-94fd-4029-9342-\
+21f25eef50ef"],
+
+Cell[BoxData[
+ RowBox[{"?", "SplineFilters"}]], "Input",
+ CellChangeTimes->CompressedData["
+1:eJxTTMoPSmViYGAQAWIQXSPadbnjyGvHlml7roPoIt/yyM1AmqX8MphOWJqV
+AKJrbn9KBNEzanIKQHSEIGshiFZIvj4DRCdHN8wC0VXhqutB9BP+SDBdqi/6
+FUR7lp38AaLP7qz5C6IbWu+Bae+aSJYtQHr1+T1g2iW+bBGI7mkQXAqmfx54
+AqI/HDoDpr1dj/wG0etz5/8F0Qf6S822AmmnglYwLXMiZAOIViiYuBFEz7g1
+uffUKaB7HzwH03oXd1T9OvPa0dV3bjWIjo9m7PA699oxxCwATL+TXL3nIJB2
+2/8XTHd+F/n0/DzQnFkGYFp/ilbUOyB9f00kmAYAoyC/rw==
+  "],ExpressionUUID->"274fa8e9-9ea5-489e-93a8-dbe841fdbfb4"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Modules Created in this Lab", "Subsubsection",
+ CellChangeTimes->{{3.7368676701301727`*^9, 
+  3.7368676768044405`*^9}},ExpressionUUID->"d1d5a2a7-c045-473f-8bc7-\
+900999ec4044"],
+
+Cell[TextData[StyleBox["BSplineFilters",
+ FontWeight->"Bold"]], "Text",
+ CellChangeTimes->{{3.736867686442602*^9, 3.7368677111146307`*^9}, {
+  3.736867752285713*^9, 3.736867763029464*^9}, {3.73686854064227*^9, 
+  3.7368685482389035`*^9}, {3.7368686060516157`*^9, 3.73686860944287*^9}, {
+  3.736868679786914*^9, 3.7368686863318667`*^9}, {3.7368687492695093`*^9, 
+  3.736868750017728*^9}, {3.7368688112538695`*^9, 3.736868849768462*^9}, {
+  3.736868926029128*^9, 3.736868961631447*^9}, {3.7368690231292324`*^9, 
+  3.736869032529519*^9}, {3.7368690960599732`*^9, 3.7368691722231145`*^9}, {
+  3.736869292654642*^9, 3.7368693920362573`*^9}, {3.7368694947177744`*^9, 
+  3.7368695231923943`*^9}, {3.7368699526203423`*^9, 3.7368699736335926`*^9}, {
+  3.7368700390522375`*^9, 3.7368700446808767`*^9}, {3.736870144410601*^9, 
+  3.7368701804765124`*^9}, {3.736870221076645*^9, 3.7368702214606657`*^9}, {
+  3.7368702757326612`*^9, 
+  3.7368702782204037`*^9}},ExpressionUUID->"a8f73964-d368-4d67-9513-\
+17ec24d3f5da"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "The ",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox[
+    StyleBox["h",
+     FontWeight->"Bold"], "~"], TraditionalForm]],ExpressionUUID->
+  "efdbb647-c1ce-453b-b398-9d26e7ccbdd2"],
+ " Filter"
+}], "Subsubsection",
+ CellChangeTimes->{{3.674741083458001*^9, 3.674741085127204*^9}, {
+   3.674741868740185*^9, 3.674741869629386*^9}, {3.7298619082330914`*^9, 
+   3.7298619154811635`*^9}, {3.7298634832691517`*^9, 3.7298634890296955`*^9}, 
+   3.730197718738076*^9, {3.730198264837225*^9, 3.7301982692290983`*^9}, {
+   3.732034777391594*^9, 3.732034784623042*^9}, {3.7320348224481983`*^9, 
+   3.732034828192607*^9}, {3.732881312715226*^9, 
+   3.7328813313992553`*^9}},ExpressionUUID->"8a313543-5b7f-4f37-842b-\
+1e2469d6be64"],
+
+Cell[TextData[{
+ "We use (9.69) to generate the filter ",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox[
+    StyleBox["h",
+     FontWeight->"Bold"], "~"], TraditionalForm]],ExpressionUUID->
+  "7095df1d-3345-43dc-ab43-27065052c0cc"],
+ ".  Given a positive integer ",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox["n", "~"], TraditionalForm]],ExpressionUUID->
+  "8c629940-7b3c-4921-9616-7afa2d41565c"],
+ ", we first generate the ",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox["n", "~"], TraditionalForm]],ExpressionUUID->
+  "24016e3e-bf2f-4a96-b05f-c95070ea4a3b"],
+ "+1 binomial coefficients ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"(", GridBox[{
+      {
+       OverscriptBox["n", "~"]},
+      {"k"}
+     }], ")"}], TraditionalForm]],ExpressionUUID->
+  "2289f593-ecc3-419c-b6f7-402606f21583"],
+ ", k=0, ..., ",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox["n", "~"], TraditionalForm]],ExpressionUUID->
+  "15dcbf8a-6495-4fa9-9514-c08b8e59258f"],
+ ".  To finish the computation, we multiply each value by ",
+ Cell[BoxData[
+  FormBox[
+   SqrtBox["2"], TraditionalForm]],ExpressionUUID->
+  "a76d264c-f3f1-4172-83c2-4b324cb0d605"],
+ " and divide by ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["2", 
+    OverscriptBox["n", "~"]], TraditionalForm]],ExpressionUUID->
+  "6ce009d4-efd6-4ead-9ac1-452dfc3b2c53"],
+ ".  Write code to generate ",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox[
+    StyleBox["h",
+     FontWeight->"Bold"], "~"], TraditionalForm]],ExpressionUUID->
+  "50560c93-b41c-4fcb-abb7-034ced4b7377"],
+ " in the cell below.  Try different values for ",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox["N", "~"], TraditionalForm]],ExpressionUUID->
+  "b87c723a-c296-4c9a-af6d-88755841d889"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.7302208479017115`*^9, 3.7302208687020864`*^9}, {
+  3.7302213385181055`*^9, 3.7302213638821177`*^9}, {3.7318423877739725`*^9, 
+  3.7318423882298393`*^9}, {3.732034875010945*^9, 3.7320348848829565`*^9}, {
+  3.732881353555851*^9, 3.732881549795213*^9}, {3.7328815965865326`*^9, 
+  3.7328816323554993`*^9}, {3.7328818929423037`*^9, 
+  3.732881900863993*^9}},ExpressionUUID->"eb6fcfe8-b56f-4fc4-bdae-\
+fe6b2c229f72"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"nt", "=", "6"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+    "replace", " ", "this", " ", "comment", " ", "with", " ", "your", " ", 
+     "code", " ", "starting", " ", "with", " ", "ht"}], " ", "="}], " ", 
+   "*)"}]}]}], "Input",
+ CellChangeTimes->{{3.732881552092184*^9, 3.732881591949093*^9}, {
+  3.732881904416775*^9, 3.7328819148498945`*^9}, {3.7328944127232113`*^9, 
+  3.7328944128178253`*^9}, {3.7328944588514895`*^9, 
+  3.732894477716416*^9}},ExpressionUUID->"a0f395ed-a977-42e0-83b8-\
+82ffa7d9f8be"],
+
+Cell[TextData[{
+ "The code below uses the WaveletWare command ",
+ StyleBox["SplineFilters",
+  FontWeight->"Bold"],
+ " to verify your computations."
+}], "Text",
+ CellChangeTimes->{{3.732881654321035*^9, 
+  3.7328816854313135`*^9}},ExpressionUUID->"3fea21d2-fa37-4cd3-8fe0-\
+a22bc405850f"],
+
+Cell[BoxData[
+ RowBox[{"ht", "\[Equal]", 
+  RowBox[{"Last", "[", 
+   RowBox[{"SplineFilters", "[", 
+    RowBox[{"nt", ",", "nt"}], "]"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.7328816899692826`*^9, 3.732881706894513*^9}, {
+  3.732881918004952*^9, 3.732881919091241*^9}, {3.7328944115866613`*^9, 
+  3.7328944117459955`*^9}},ExpressionUUID->"ab0fd4a8-d5b4-4ded-b4ab-\
+530c212ec40b"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "The Filter ",
+ StyleBox["h",
+  FontWeight->"Bold"],
+ ":"
+}], "Subsubsection",
+ CellChangeTimes->{{3.7302238449362617`*^9, 3.7302238529606447`*^9}, {
+  3.7328817726568904`*^9, 
+  3.7328817753775525`*^9}},ExpressionUUID->"8aaee861-0dd2-4d62-af75-\
+d1f44ebfc2ad"],
+
+Cell[TextData[{
+ "We use Theorem 9.3, specifically (9.72) to generate the filter h.  Given \
+positive integer n, we use (9.72) to generate the Fourier series H(\[Omega]) \
+and then extract the filter coefficients from the series.  The construction \
+of the series depends on the parity (even/odd) of n and ",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox["n", "~"], TraditionalForm]],ExpressionUUID->
+  "f7bcc6ff-e9d0-4324-bd90-fe3d7f9dc93c"],
+ ".    Towards this end, let \[ScriptL] = n/2 and ",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox["\[ScriptL]", "~"], TraditionalForm]],ExpressionUUID->
+  "ae7f2db0-6052-4a47-9dc2-ed4c15a0b188"],
+ " =",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox["n", "~"], TraditionalForm]],
+  FormatType->"TraditionalForm",ExpressionUUID->
+  "6b3b30e3-ef44-480a-8982-7f3f9ea4948f"],
+ "/2.\n\nBoth versions of H(w) involve a finite sum of powers of ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["sin", "2"], TraditionalForm]],ExpressionUUID->
+  "10feee09-5195-4890-b8e6-8bad52cd4375"],
+ "(\[Omega]/2) and are scaled by ",
+ Cell[BoxData[
+  FormBox[
+   SqrtBox["2"], TraditionalForm]],ExpressionUUID->
+  "132d6acb-5da7-44f9-bdaa-6cf38152750d"],
+ " and cos(\[Omega]/2).  If both n and ",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox["n", "~"], TraditionalForm]],ExpressionUUID->
+  "47761943-0e13-4286-b429-9974ae216f0e"],
+ " are even the finite sum runs from j=0 to \[ScriptL] + ",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox["\[ScriptL]", "~"], TraditionalForm]],ExpressionUUID->
+  "ccb3fcc7-c14a-4f0b-b570-c341f6ca2279"],
+ "-1.  In the case that both n and ",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox["n", "~"], TraditionalForm]],ExpressionUUID->
+  "c2cd8d80-3397-4b14-be1a-83ffc95d010e"],
+ " are odd, the finite sum runs from j=0 to  \[ScriptL] + ",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox["\[ScriptL]", "~"], TraditionalForm]],ExpressionUUID->
+  "5aa3764e-5617-401a-85d4-56a0cee193a5"],
+ " and the entire series is scaled by ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["e", 
+    RowBox[{"i\[Omega]", "/", "2"}]], TraditionalForm]],ExpressionUUID->
+  "c118cd33-cc0a-4b0d-a492-dcfcf8e5fb7a"],
+ ".  The binomial coefficients in each finite sum are also affected by the \
+parity of n, ",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox["n", "~"], TraditionalForm]],ExpressionUUID->
+  "40eedf67-5b2e-4157-98a9-4910bf673e32"],
+ ".\n\nThe strategy for generating the finite sum is to view it as an inner \
+product between two lists.  After determining the stopping point in the \
+series (call it m), we generate the list of m+1 binomial coefficients.  \
+Additionally, we create a list of length m+1 of powers of ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["sin", "2"], TraditionalForm]],ExpressionUUID->
+  "9ec3f5d0-508e-4051-8d63-03ee73eb21ad"],
+ "(\[Omega]/2).  These listed are dotted together.  The final step is to \
+scale this inner product by ",
+ Cell[BoxData[
+  FormBox[
+   SqrtBox["2"], TraditionalForm]],ExpressionUUID->
+  "d5dcaa28-d141-40d1-9b73-fa9707302298"],
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["cos", "n"], TraditionalForm]],ExpressionUUID->
+  "1beea36f-f742-43e5-a634-eb23be0568b4"],
+ "(\[Omega]/2) if n is even or ",
+ Cell[BoxData[
+  FormBox[
+   SqrtBox["2"], TraditionalForm]],ExpressionUUID->
+  "cc4c20f7-b4b0-40fc-844a-df40389a7498"],
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SuperscriptBox["e", 
+     RowBox[{"i\[Omega]", "/", "2"}]], 
+    SuperscriptBox["cos", "n"]}], TraditionalForm]],ExpressionUUID->
+  "4c9894d7-3631-4d92-81ea-4971751f4b52"],
+ "(\[Omega]/2) if n is odd.  \n\nProvide the missing code in the cell below \
+to generate code for the Fourier series H(\[Omega]).   The Mathematica \
+commands ",
+ StyleBox["AllTrue",
+  FontWeight->"Bold"],
+ ", ",
+ StyleBox["EvenQ",
+  FontWeight->"Bold"],
+ ", ",
+ StyleBox["If",
+  FontWeight->"Bold"],
+ ", ",
+ StyleBox["Map",
+  FontWeight->"Bold"],
+ ", ",
+ StyleBox["Binomial",
+  FontWeight->"Bold"],
+ ", ",
+ StyleBox["Range",
+  FontWeight->"Bold"],
+ " and ",
+ StyleBox["Expand",
+  FontWeight->"Bold"],
+ " will be useful.  Finally, remember that we need to express sine and cosine \
+in terms of complex exponentials.  The function ",
+ StyleBox["TrigToExp",
+  FontWeight->"Bold"],
+ " can be useful for this task.  Test your code with different values of n \
+and ",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox["n", "~"], TraditionalForm]],ExpressionUUID->
+  "e4ade0da-5206-4019-a50e-70eb80217009"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.7302238580000253`*^9, 3.7302239015599174`*^9}, {
+  3.730223951472692*^9, 3.7302239581203785`*^9}, {3.7320375491639814`*^9, 
+  3.7320375674205523`*^9}, {3.7320376870402946`*^9, 3.732037690768531*^9}, {
+  3.7328818618610983`*^9, 3.732881884074495*^9}, {3.732881936038494*^9, 
+  3.7328819989305887`*^9}, {3.7328820553472843`*^9, 3.7328820615871315`*^9}, {
+  3.7328821101803093`*^9, 3.7328823409218655`*^9}, {3.732882398859911*^9, 
+  3.73288252552067*^9}, {3.732882665934428*^9, 3.732882970842616*^9}, {
+  3.732883069452198*^9, 3.7328830721036196`*^9}, {3.7328843464035707`*^9, 
+  3.7328844358142567`*^9}, {3.73288711570365*^9, 3.7328871258381896`*^9}, {
+  3.7759064540980663`*^9, 
+  3.7759064668639064`*^9}},ExpressionUUID->"0a836cf0-07e7-4221-803b-\
+a925f1b5699c"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"n", ",", "nt"}], "}"}], "=", 
+   RowBox[{"{", 
+    RowBox[{"2", ",", "2"}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"even", "=", 
+   RowBox[{"AllTrue", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"n", ",", "nt"}], "}"}], ",", "EvenQ"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"l", ",", "lt"}], "}"}], "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"n", ",", "nt"}], "}"}], "/", "2"}], "-", 
+    RowBox[{"If", "[", 
+     RowBox[{"even", " ", ",", "0", ",", 
+      RowBox[{"1", "/", "2"}]}], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+    "replace", " ", "this", " ", "comment", " ", "with", " ", "your", " ", 
+     "code"}], ",", " ", 
+    RowBox[{"defining", " ", "m"}], ",", " ", 
+    RowBox[{
+    "and", " ", "ultimately", " ", "the", " ", "Fourier", " ", "series", " ", 
+     "H"}]}], " ", "*)"}]}]}], "Input",
+ CellChangeTimes->{{3.7302239142677116`*^9, 3.7302239433520947`*^9}, {
+   3.73022398309182*^9, 3.730224020577505*^9}, {3.731346439666772*^9, 
+   3.731346439823048*^9}, {3.732037699409034*^9, 3.732037795075811*^9}, {
+   3.7320378282786245`*^9, 3.732037829941681*^9}, 3.732272089890763*^9, {
+   3.732274612044568*^9, 3.732274651325225*^9}, {3.7322811032758136`*^9, 
+   3.7322811034200974`*^9}, {3.7322816743184433`*^9, 
+   3.7322816750702744`*^9}, {3.7328829768048463`*^9, 3.732883040026173*^9}, {
+   3.732883083656734*^9, 3.732883142856962*^9}, {3.7328831791274986`*^9, 
+   3.7328832684763002`*^9}, {3.7328833134859023`*^9, 3.73288359339716*^9}, {
+   3.732883626758458*^9, 3.7328836864406757`*^9}, {3.732883928577306*^9, 
+   3.732883948257575*^9}, {3.732884004020393*^9, 3.732884015010992*^9}, {
+   3.732884061365739*^9, 3.732884188648568*^9}, {3.732884228394754*^9, 
+   3.7328842779634*^9}, {3.732884467601205*^9, 3.7328844678406334`*^9}, {
+   3.732886524652983*^9, 3.732886524843497*^9}, {3.7328865631981936`*^9, 
+   3.732886565021551*^9}, {3.732894408402904*^9, 3.732894408530385*^9}, {
+   3.7328944964217467`*^9, 
+   3.7328945359591007`*^9}},ExpressionUUID->"47bed159-9f58-4763-bc75-\
+dfbbe50f3c50"],
+
+Cell[TextData[{
+ "To extract the coefficients from H above, we need to know the length of ",
+ StyleBox["h",
+  FontWeight->"Bold"],
+ ".  From Problem 9.49, we know the length of h is 2n + ",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox["n", "~"], TraditionalForm]],ExpressionUUID->
+  "00c6aef0-a21e-4c52-a222-40e717c772a8"],
+ " -1.  This value is defined as ",
+ StyleBox["len",
+  FontWeight->"Bold"],
+ " in the cell below.  Also in the cell below, determine values for the \
+starting/stopping indices of ",
+ StyleBox["h",
+  FontWeight->"Bold"],
+ ".  Test your code on different values of n, ",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox["n", "~"], TraditionalForm]],ExpressionUUID->
+  "2cee973d-db2f-4960-928b-f471f3138ed3"],
+ " before proceeding.  "
+}], "Text",
+ CellChangeTimes->{{3.7328868613040533`*^9, 3.732886910880582*^9}, {
+  3.732886947995674*^9, 
+  3.7328870392471457`*^9}},ExpressionUUID->"39a8e59d-47e0-4cd8-b53c-\
+67096ea23a3e"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"len", "=", 
+   RowBox[{
+    RowBox[{"2", "n"}], "+", "nt", "-", "1"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+    "replace", " ", "this", " ", "comment", " ", "with", " ", "your", " ", 
+     "code", " ", "starting", " ", "with", " ", 
+     RowBox[{"{", 
+      RowBox[{"start", ",", " ", "stop"}], "}"}]}], " ", "="}], " ", 
+   "*)"}]}]}], "Input",
+ CellChangeTimes->{{3.7328842450355206`*^9, 3.7328842475144176`*^9}, {
+   3.732884292909422*^9, 3.732884320476863*^9}, {3.7328860380548077`*^9, 
+   3.7328860633192577`*^9}, {3.732886124762371*^9, 3.732886126906401*^9}, {
+   3.7328861791019907`*^9, 3.732886179292841*^9}, {3.732886335029972*^9, 
+   3.7328865051322017`*^9}, {3.732886558846552*^9, 3.7328865751338587`*^9}, {
+   3.7328867251564107`*^9, 3.732886725427597*^9}, 3.7328870462092*^9, {
+   3.7328945456257486`*^9, 
+   3.732894557736494*^9}},ExpressionUUID->"f26f91a4-09da-4494-939d-\
+4ff9672f99a4"],
+
+Cell[TextData[{
+ "Once we have start, stop, we apply ",
+ StyleBox["Map",
+  FontWeight->"Bold"],
+ " to ",
+ StyleBox["Coefficient",
+  FontWeight->"Bold"],
+ " to extract the values of ",
+ StyleBox["h",
+  FontWeight->"Bold"],
+ ".  Do this computation in the cell below."
+}], "Text",
+ CellChangeTimes->{{3.7328870545751133`*^9, 
+  3.732887097585149*^9}},ExpressionUUID->"c388b4f7-6b5f-45e6-b131-\
+fc9c3cf75b33"],
+
+Cell[BoxData[
+ RowBox[{"(*", " ", 
+  RowBox[{
+  "replace", " ", "this", " ", "comment", " ", "with", " ", "your", " ", 
+   "code", " ", "defining", " ", "filter", " ", "h"}], " ", "*)"}]], "Input",
+ CellChangeTimes->{{3.7328842450355206`*^9, 3.7328842475144176`*^9}, {
+   3.732884292909422*^9, 3.732884320476863*^9}, {3.7328860380548077`*^9, 
+   3.7328860633192577`*^9}, {3.732886124762371*^9, 3.732886126906401*^9}, {
+   3.7328861791019907`*^9, 3.732886179292841*^9}, {3.732886335029972*^9, 
+   3.7328865051322017`*^9}, {3.732886558846552*^9, 3.7328865751338587`*^9}, {
+   3.7328867251564107`*^9, 3.732886725427597*^9}, 3.7328870462092*^9, {
+   3.7328945739300756`*^9, 
+   3.7328945851296763`*^9}},ExpressionUUID->"d29ba788-a577-4e3c-9588-\
+fa6126b36667"],
+
+Cell[TextData[{
+ "The code below uses the WaveletWare command ",
+ StyleBox["SplineFilters",
+  FontWeight->"Bold"],
+ " to verify your computations."
+}], "Text",
+ CellChangeTimes->{{3.732881654321035*^9, 
+  3.7328816854313135`*^9}},ExpressionUUID->"f0a938d2-afb0-4aba-b127-\
+fdb64aba8e74"],
+
+Cell[BoxData[
+ RowBox[{"h", "\[Equal]", 
+  RowBox[{"First", "[", 
+   RowBox[{"SplineFilters", "[", 
+    RowBox[{"nt", ",", "nt"}], "]"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.7328816899692826`*^9, 3.732881706894513*^9}, {
+  3.732881918004952*^9, 3.732881919091241*^9}, {3.732886742532607*^9, 
+  3.7328867456040573`*^9}, {3.732894405074253*^9, 
+  3.7328944052337537`*^9}},ExpressionUUID->"b5a6512f-9ba0-46ba-8601-\
+5eeb49dc1eed"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["A Module to Generate Biorthogonal Spline Filter Pairs", "Subsubsection",
+ CellChangeTimes->{{3.730220741005653*^9, 3.73022076221344*^9}, {
+  3.7302249578798175`*^9, 3.7302249588659463`*^9}, {3.7323740548394227`*^9, 
+  3.7323740572714214`*^9}, {3.7328868168383017`*^9, 
+  3.732886826150205*^9}},ExpressionUUID->"78cb2807-e4b6-4cfb-ae57-\
+a9afe91fca4e"],
+
+Cell[TextData[{
+ "In the cell below, provide the code necessary to complete the module ",
+ StyleBox["BSplineFilters",
+  FontWeight->"Bold"],
+ ".  This module takes integers n and ",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox["n", "~"], TraditionalForm]],ExpressionUUID->
+  "62aada51-0277-486b-9e45-604334730e1e"],
+ " and returns the biorthogonal spline filter pair {",
+ StyleBox["h",
+  FontWeight->"Bold"],
+ ",",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox[
+    StyleBox["h",
+     FontWeight->"Bold"], "~"], TraditionalForm]],ExpressionUUID->
+  "bb5b6258-712f-443c-81a9-3f23f8b04ae7"],
+ "}.  You should be able to copy and paste much of the code above to create \
+the module."
+}], "Text",
+ CellChangeTimes->{{3.7302208479017115`*^9, 3.7302208687020864`*^9}, {
+  3.7302213385181055`*^9, 3.7302213638821177`*^9}, {3.730225183548564*^9, 
+  3.7302252651485214`*^9}, {3.731842706293517*^9, 3.7318427068002977`*^9}, {
+  3.732374139163604*^9, 3.7323741437710514`*^9}, {3.732887304649082*^9, 
+  3.7328873878999825`*^9}},ExpressionUUID->"ac5cfab3-9cda-4b33-8b06-\
+fda7aa0e738a"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"BSplineFilters", "[", 
+    RowBox[{"n_", ",", "nt_"}], "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "ht", ",", "even", ",", "l", ",", "lt", ",", "m", ",", "blist", ",", 
+       "slist", ",", "sum", ",", "H", ",", "w", ",", "len", ",", "start", ",",
+        "stop", ",", "h"}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"(*", " ", 
+      RowBox[{
+      "replace", " ", "this", " ", "comment", " ", "with", " ", "your", " ", 
+       "code"}], " ", "*)"}], "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"Return", "[", 
+       RowBox[{"{", 
+        RowBox[{"h", ",", "ht"}], "}"}], "]"}], ";"}]}], 
+    "\[IndentingNewLine]", "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.7328873954548254`*^9, 3.7328874089096107`*^9}, {
+  3.732887453390224*^9, 3.7328875373305745`*^9}, {3.7328944030758886`*^9, 
+  3.732894403204132*^9}, {3.7328945989583764`*^9, 
+  3.732894606347538*^9}},ExpressionUUID->"8a1bddf2-6f98-4c5b-87ed-\
+bdd2330f6dc4"],
+
+Cell[TextData[{
+ "Run the cell below for different values of n and ",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox["n", "~"], TraditionalForm]],ExpressionUUID->
+  "a6396ca3-f4ee-4080-a135-31ca97f82088"],
+ " to verify that your module is working correctly."
+}], "Text",
+ CellChangeTimes->{{3.7328875950591593`*^9, 
+  3.73288761556145*^9}},ExpressionUUID->"f21460b2-89eb-408c-8ae9-\
+dd6ce5237a79"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"n", ",", "nt"}], "}"}], "=", 
+   RowBox[{"{", 
+    RowBox[{"5", ",", "1"}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"BSplineFilters", "[", 
+   RowBox[{"n", ",", "nt"}], "]"}], "\[Equal]", 
+  RowBox[{"SplineFilters", "[", 
+   RowBox[{"n", ",", "nt"}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.732887544776209*^9, 3.732887588403954*^9}, {
+  3.7328944014909277`*^9, 
+  3.7328944016662865`*^9}},ExpressionUUID->"96417edb-5e33-4122-bc43-\
+cac6b47c3952"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Problems", "Subsubsection",
+ CellChangeTimes->{{3.7298793683479357`*^9, 3.7298793778969684`*^9}, 
+   3.7301977286516953`*^9},ExpressionUUID->"bb2c7901-765d-4bb0-91b5-\
+2c89cf3e4932"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Let {n, ",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox["n", "~"], TraditionalForm]],ExpressionUUID->
+  "e71373cf-b981-4ae1-acce-2ba705180fb5"],
+ "} = {2,2}.  Use ",
+ StyleBox["BSplinesFilters",
+  FontWeight->"Bold"],
+ " to generate {",
+ StyleBox["h",
+  FontWeight->"Bold"],
+ ",",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox[
+    StyleBox["h",
+     FontWeight->"Bold"], "~"], TraditionalForm]],ExpressionUUID->
+  "2821971a-4771-4ccd-87b9-e1c18c7f1b72"],
+ "}.  Then write code to generate the associated highpass filters {",
+ StyleBox["g",
+  FontWeight->"Bold"],
+ ",",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox[
+    StyleBox["g",
+     FontWeight->"Bold"], "~"], TraditionalForm]],ExpressionUUID->
+  "78e26862-b610-46ec-9f7e-4272cb1b6e31"],
+ "}.  Next create the four Fourier series functions H[t], ",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox["H", "~"], TraditionalForm]],ExpressionUUID->
+  "88dcfe90-121f-499d-b661-1967949b3a9a"],
+ "[t], G[t], and ",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox["G", "~"], TraditionalForm]],ExpressionUUID->
+  "140fd346-26ef-4375-8cbc-a36fb34ef36a"],
+ "[t] generated from the appropriate filters.  Use these Fourier series to \
+verify (9.23) and the three formulas in Proposition 9.2.  Repeat this \
+exercise for {n,",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox["n", "~"], TraditionalForm]],ExpressionUUID->
+  "02ac1be5-418b-4901-9b8e-2d9f4febf103"],
+ "} ={3,3} and {n,",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox["n", "~"], TraditionalForm]],ExpressionUUID->
+  "8ea92a2d-f025-4de5-97b9-12b147faa448"],
+ "}={4,2}."
+}], "ItemNumbered",
+ CellChangeTimes->{{3.7299442327684207`*^9, 3.72994439914141*^9}, {
+  3.7313269794125786`*^9, 3.7313270816316895`*^9}, {3.7313271451000643`*^9, 
+  3.7313271451000643`*^9}, {3.7322790060756702`*^9, 3.732279148931839*^9}, {
+  3.7328886105540085`*^9, 3.732888794177461*^9}, {3.7328889023401604`*^9, 
+  3.7328890223199577`*^9}},ExpressionUUID->"11521c41-6f36-4c76-a770-\
+1429cb9c836f"],
+
+Cell[TextData[{
+ "The module ",
+ StyleBox["BSplineFilters",
+  FontWeight->"Bold"],
+ " assumes that the input integers n and ",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox["n", "~"], TraditionalForm]],ExpressionUUID->
+  "3510bde3-098c-434e-ae95-369e49ae4ca3"],
+ " are either both even or both odd.  If this is not the case, the module, as \
+written, will crash.  Add some error handling at the top of the module to \
+check that the input integers have the same parity.  If this is not the case, \
+the module should print an error statement and exit before doing any further \
+computations."
+}], "ItemNumbered",
+ CellChangeTimes->{{3.7299442327684207`*^9, 3.72994439914141*^9}, {
+  3.7313269794125786`*^9, 3.7313270816316895`*^9}, {3.7313271451000643`*^9, 
+  3.7313271451000643`*^9}, {3.732279154188671*^9, 3.732279164918459*^9}, {
+  3.732887631444313*^9, 
+  3.7328877497122183`*^9}},ExpressionUUID->"1da07d76-3902-4fc4-a94c-\
+f964c62ce81a"],
+
+Cell[TextData[{
+ "(",
+ StyleBox["Hard",
+  FontWeight->"Bold"],
+ " ",
+ StyleBox["Problem!",
+  FontWeight->"Bold"],
+ ") If you have completed ",
+ ButtonBox["Lab 7.1",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://personal.stthomas.edu/pjvanfleet/wavelets/labs/notebooks/\
+Biorth53.nb"], None},
+  ButtonNote->
+   "http://personal.stthomas.edu/pjvanfleet/wavelets/labs/notebooks/Biorth53.\
+nb"],
+ " and ",
+ ButtonBox["Lab 7.2",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://personal.stthomas.edu/pjvanfleet/wavelets/labs/notebooks/\
+Biorth84.nb"], None},
+  ButtonNote->
+   "http://personal.stthomas.edu/pjvanfleet/wavelets/labs/notebooks/Biorth84.\
+nb"],
+ ", use them to help you write the module ",
+ StyleBox["BWTransform",
+  FontWeight->"Bold"],
+ " that takes as input a vector ",
+ StyleBox["v",
+  FontWeight->"Bold"],
+ " and a biorthogonal spline filter pair {",
+ StyleBox["h",
+  FontWeight->"Bold"],
+ ",",
+ Cell[BoxData[
+  FormBox[
+   OverscriptBox[
+    StyleBox["h",
+     FontWeight->"Bold"], "~"], TraditionalForm]],ExpressionUUID->
+  "5fcd3dba-e30b-4fcc-890e-226a8e5251c4"],
+ "} and returns the biorthogonal transform of ",
+ StyleBox["v",
+  FontWeight->"Bold"],
+ ".  "
+}], "ItemNumbered",
+ CellChangeTimes->{{3.7299442327684207`*^9, 3.72994439914141*^9}, {
+  3.7313269794125786`*^9, 3.7313270816316895`*^9}, {3.7313271493021727`*^9, 
+  3.7313272855683885`*^9}, {3.731845631280009*^9, 3.731845632432463*^9}, {
+  3.7322791712486906`*^9, 3.7322791994862947`*^9}, {3.7323813693337536`*^9, 
+  3.7323813735853443`*^9}, {3.732889049478879*^9, 3.7328890569342694`*^9}, {
+  3.7328903366384225`*^9, 3.7328904189149017`*^9}, {3.776091139917053*^9, 
+  3.7760911626540403`*^9}},ExpressionUUID->"9ea510a3-0fad-456e-a678-\
+dc694f29e05b"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{759, 610},
+WindowMargins->{{Automatic, 459}, {173, Automatic}},
+FrontEndVersion->"12.0 for Microsoft Windows (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 1303, 18, 67, "Section",ExpressionUUID->"b4d3dd46-bf41-416a-8a69-8d3f86104986"],
+Cell[1886, 42, 939, 14, 34, "Text",ExpressionUUID->"61b27de1-8e6c-4777-a97c-e405fa03ef99"],
+Cell[CellGroupData[{
+Cell[2850, 60, 187, 3, 44, "Subsubsection",ExpressionUUID->"3fffe5ac-09ce-46e2-8050-8c2090c2603e"],
+Cell[3040, 65, 1208, 22, 56, "Text",ExpressionUUID->"6a87367e-199b-4755-909b-1f0e93964a15"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4285, 92, 248, 4, 44, "Subsubsection",ExpressionUUID->"f0a02de7-73c3-4fdf-9fb7-3b6354eb70fb"],
+Cell[4536, 98, 199, 3, 34, "Text",ExpressionUUID->"1c2f17b5-7d52-43ea-8284-97a0802ab4e4"],
+Cell[4738, 103, 851, 14, 44, "Input",ExpressionUUID->"d0fbe505-08c6-4c5e-bfcb-4eebc307ea21",
+ InitializationCell->True],
+Cell[5592, 119, 327, 7, 56, "Text",ExpressionUUID->"49e06bb1-94fd-4029-9342-21f25eef50ef"],
+Cell[5922, 128, 508, 9, 28, "Input",ExpressionUUID->"274fa8e9-9ea5-489e-93a8-dbe841fdbfb4"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6467, 142, 182, 3, 44, "Subsubsection",ExpressionUUID->"d1d5a2a7-c045-473f-8bc7-900999ec4044"],
+Cell[6652, 147, 1004, 15, 34, "Text",ExpressionUUID->"a8f73964-d368-4d67-9513-17ec24d3f5da"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7693, 167, 733, 17, 44, "Subsubsection",ExpressionUUID->"8a313543-5b7f-4f37-842b-1e2469d6be64"],
+Cell[8429, 186, 2130, 63, 95, "Text",ExpressionUUID->"eb6fcfe8-b56f-4fc4-bdae-fe6b2c229f72"],
+Cell[10562, 251, 592, 14, 48, "Input",ExpressionUUID->"a0f395ed-a977-42e0-83b8-82ffa7d9f8be"],
+Cell[11157, 267, 287, 8, 34, "Text",ExpressionUUID->"3fea21d2-fa37-4cd3-8fe0-a22bc405850f"],
+Cell[11447, 277, 383, 8, 28, "Input",ExpressionUUID->"ab0fd4a8-d5b4-4ded-b4ab-530c212ec40b"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11867, 290, 278, 9, 44, "Subsubsection",ExpressionUUID->"8aaee861-0dd2-4d62-af75-d1f44ebfc2ad"],
+Cell[12148, 301, 5197, 138, 430, "Text",ExpressionUUID->"0a836cf0-07e7-4221-803b-a925f1b5699c"],
+Cell[17348, 441, 2237, 52, 105, "Input",ExpressionUUID->"47bed159-9f58-4763-bc75-dfbbe50f3c50"],
+Cell[19588, 495, 938, 26, 100, "Text",ExpressionUUID->"39a8e59d-47e0-4cd8-b53c-67096ea23a3e"],
+Cell[20529, 523, 991, 22, 48, "Input",ExpressionUUID->"f26f91a4-09da-4494-939d-4ff9672f99a4"],
+Cell[21523, 547, 406, 14, 56, "Text",ExpressionUUID->"c388b4f7-6b5f-45e6-b131-fc9c3cf75b33"],
+Cell[21932, 563, 756, 13, 28, "Input",ExpressionUUID->"d29ba788-a577-4e3c-9588-fa6126b36667"],
+Cell[22691, 578, 287, 8, 34, "Text",ExpressionUUID->"f0a938d2-afb0-4aba-b127-fdb64aba8e74"],
+Cell[22981, 588, 432, 9, 28, "Input",ExpressionUUID->"b5a6512f-9ba0-46ba-8601-5eeb49dc1eed"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[23450, 602, 357, 5, 44, "Subsubsection",ExpressionUUID->"78cb2807-e4b6-4cfb-ae57-a9afe91fca4e"],
+Cell[23810, 609, 1068, 27, 78, "Text",ExpressionUUID->"ac5cfab3-9cda-4b33-8b06-fda7aa0e738a"],
+Cell[24881, 638, 1036, 25, 105, "Input",ExpressionUUID->"8a1bddf2-6f98-4c5b-87ed-bdd2330f6dc4"],
+Cell[25920, 665, 393, 10, 34, "Text",ExpressionUUID->"f21460b2-89eb-408c-8ae9-dd6ce5237a79"],
+Cell[26316, 677, 535, 15, 48, "Input",ExpressionUUID->"96417edb-5e33-4122-bc43-cac6b47c3952"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[26888, 697, 188, 3, 44, "Subsubsection",ExpressionUUID->"bb2c7901-765d-4bb0-91b5-2c89cf3e4932"],
+Cell[CellGroupData[{
+Cell[27101, 704, 1966, 58, 91, "ItemNumbered",ExpressionUUID->"11521c41-6f36-4c76-a770-1429cb9c836f"],
+Cell[29070, 764, 938, 20, 91, "ItemNumbered",ExpressionUUID->"1da07d76-3902-4fc4-a94c-f964c62ce81a"],
+Cell[30011, 786, 1749, 53, 71, "ItemNumbered",ExpressionUUID->"9ea510a3-0fad-456e-a678-dc694f29e05b"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

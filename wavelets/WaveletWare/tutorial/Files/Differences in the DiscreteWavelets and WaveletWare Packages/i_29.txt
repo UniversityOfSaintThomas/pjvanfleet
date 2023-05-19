@@ -1,0 +1,13 @@
+<pre name='i_29_in' id='i_29_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;benches.png&quot;;
+A = ImageRead[file, Resize -&gt; {128, 192}];
+ImagePlot[A]
+wt = HWT[A, NumIterations -&gt; 3];
+WaveletPlot[wt, NumIterations -&gt; 3]
+WaveletPlot[wt, NumIterations -&gt; 3, Scaling -&gt; False]
+WaveletPlot[wt, NumIterations -&gt; 3, 
+ Iteration -&gt; {{3, 2, 2}, {2, 2, 2}, {1, 2, 2}}]
+WaveletPlot[wt, NumIterations -&gt; 3, 
+ Iteration -&gt; {{3, 2, 2}, {2, 2, 2}, {1, 2, 2}}, Dimming -&gt; Yellow]
+WaveletPlot[wt, NumIterations -&gt; 3, 
+ Iteration -&gt; {{3, 2, 2}, {2, 2, 2}, {1, 2, 2}}, Dimming -&gt; Yellow, 
+ DimmingRange -&gt; {0, 255}]</pre><div class='IFU'><a name='22496938'></a>http://wolfram.com/xid/0533vsu7qbb0ajiwwqawq9kz22kl8rc4uv1a9crxfvnihty6rtcsrbm-nog08</div>

@@ -1,0 +1,2 @@
+<pre name='i_25_in' id='i_25_in' class='IFT'>ShowBestBasis[WaveletTree[4]]
+ShowBestBasis[WaveletTree[4], ImageSize -&gt; 500]</pre><div class='IFU'><a name='211279798'></a>http://wolfram.com/xid/0ju408za6tmbiu55ts1k9e6e-dr2qtk</div>

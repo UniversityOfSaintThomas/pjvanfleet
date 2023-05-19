@@ -1,0 +1,5 @@
+<pre name='i_7_in' id='i_7_in' class='IFT'>file = PackageDirectory[DataType -&gt; Sounds] &lt;&gt; &quot;stereol.wav&quot;;
+{v, rate} = AudioRead[file, DisplayInfo -&gt; True];
+wt = Map[WT[#, Daub[4], NumIterations -&gt; 2] &amp;, v];
+ListPlay[v, SampleRate -&gt; rate]
+WaveletVectorPlay[wt, NumIterations -&gt; 2, SampleRate -&gt; rate]</pre><div class='IFU'><a name='215425574'></a>http://wolfram.com/xid/0c9xiooyewsxl9wvvcdkih5p36vu-dujlp0</div>

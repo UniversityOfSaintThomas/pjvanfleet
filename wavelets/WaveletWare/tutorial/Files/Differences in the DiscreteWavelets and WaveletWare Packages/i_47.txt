@@ -1,0 +1,9 @@
+<pre name='i_47_in' id='i_47_in' class='IFT'>g[t_] := Sqrt[t (1 - t)]*Sin[2 Pi (1.05)/(t + .05)];
+n = 1024;
+v = g[Range[0, 1 - 1/n, 1/n]];
+wt = WTFull[v, Daub[4], NumIterations -&gt; 4];
+FullWaveletVectorPlot[wt]
+(* Click on the mouse to scroll through the graphs in the last plot *)
+\
+FullWaveletVectorPlot[wt, PresentationStyle -&gt; FlipView]
+</pre><div class='IFU'><a name='112862814'></a>http://wolfram.com/xid/0533vsu7qbb0ajiwwqawq9kz22kl8rc4uv1a9crxfvnihty6rtcsrbm-b5hbsg</div>

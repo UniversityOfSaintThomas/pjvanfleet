@@ -1,0 +1,5 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>{r, g, b} = {100, 150, 50};
+{y, cb, cr} = RGBToYCbCr[{r, g, b}]
+YCbCrToRGB[{y, cb, cr}]
+{y, cb, cr} = RGBToYCbCr[{r, g, b}, DisplayMode -&gt; True]
+YCbCrToRGB[{y, cb, cr}, DisplayMode -&gt; True]</pre><div class='IFU'><a name='797736522'></a>http://wolfram.com/xid/0gcihsaxmz0qthvk1nd2hk-ng8jp4</div>

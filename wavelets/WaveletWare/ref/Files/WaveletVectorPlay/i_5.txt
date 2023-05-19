@@ -1,0 +1,7 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>file = PackageDirectory[DataType -&gt; Sounds] &lt;&gt; &quot;sonar.wav&quot;;
+{data, rate} = AudioRead[file];
+{wpt, tree} = 
+  WPT[data, Daub[4], CostFunction -&gt; NumberAboveThreshold, 
+   SecondParameter -&gt; .15, NumIterations -&gt; 2];
+ShowBestBasis[tree, ImageSize -&gt; 100]
+WaveletVectorPlay[wpt, tree, NumIterations -&gt; 2, SampleRate -&gt; rate]</pre><div class='IFU'><a name='243041774'></a>http://wolfram.com/xid/0c9xiooyewsxl9wvvcdkih5p36vu-eaziio</div>

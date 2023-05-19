@@ -1,0 +1,6 @@
+<pre name='i_15_in' id='i_15_in' class='IFT'>resolution = 300;
+its = 20;
+data = WaveletFunctionData[Daub[4], NumIterations -&gt; its, 
+   Resolution -&gt; resolution];
+psi = Interpolation[data];
+Integrate[psi[t], {t, -1, 2 - 1/resolution}]</pre><div class='IFU'><a name='28568548'></a>http://wolfram.com/xid/0l8u7vwysscvl8somine65p3i1wi-ralw2</div>

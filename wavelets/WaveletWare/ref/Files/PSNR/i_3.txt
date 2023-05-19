@@ -1,0 +1,4 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>A = RandomInteger[{-20, 20}, {5, 5}];
+B = A - RandomInteger[{-2, 2}, {5, 5}];
+Map[MatrixForm, {A, B}]
+PSNR[A, B]</pre><div class='IFU'><a name='270012542'></a>http://wolfram.com/xid/0bznud77uqiuoosnfjjzf-eq1lao</div>

@@ -1,0 +1,7 @@
+<pre name='i_67_in' id='i_67_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;benches.png&quot;;
+A = ImageRead[file, Resize -&gt; {256, 384}];
+wt = WTFull[A, Haar[], NumIterations -&gt; 2];
+FullWaveletPlot[wt, PresentationStyle -&gt; GraphicsColumn]
+FullWaveletPlot[wt, PresentationStyle -&gt; GraphicsRow]
+(* Click on image of last plot to cycle *)
+FullWaveletPlot[wt, PresentationStyle -&gt; FlipView]</pre><div class='IFU'><a name='125835251'></a>http://wolfram.com/xid/0063dvybfwx396xn21trjec45uq-cc7ddx</div>

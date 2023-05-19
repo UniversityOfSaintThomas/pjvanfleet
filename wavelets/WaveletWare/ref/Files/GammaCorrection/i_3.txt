@@ -1,0 +1,6 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;pigeon.png&quot;;
+A = ImageRead[file, Resize -&gt; 256];
+ImagePlot[A]
+ImagePlot[GammaCorrection[A, .25]]
+ImagePlot[GammaCorrection[A, .75]]
+ImagePlot[GammaCorrection[A, 2]]</pre><div class='IFU'><a name='266475107'></a>http://wolfram.com/xid/0vt7gyclbhsc2k90mv657xe-eoxrsl</div>

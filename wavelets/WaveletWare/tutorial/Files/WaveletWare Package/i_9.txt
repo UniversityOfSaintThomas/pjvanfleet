@@ -1,0 +1,7 @@
+<pre name='i_9_in' id='i_9_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;pigeon.png&quot;;
+A = ImageRead[file, Resize -&gt; {256, 384}];
+ImagePlot[A]
+B = GammaCorrection[A, .5];
+ImagePlot[B]
+B = HistogramEQ[A];
+ImagePlot[B]</pre><div class='IFU'><a name='10226755'></a>http://wolfram.com/xid/0bb24v1bavfeg9e1n9wtvw85xzwkij2-gdhat</div>

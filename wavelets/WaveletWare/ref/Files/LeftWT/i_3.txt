@@ -1,0 +1,5 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;train.png&quot;;
+A = ImageRead[file, Resize -&gt; {256, 384}];
+ImagePlot[A]
+lwt = LeftWT[A, Daub[4]];
+WaveletPlot[lwt, PlotType -&gt; Left]</pre><div class='IFU'><a name='35045565'></a>http://wolfram.com/xid/0dbed1alym5ijv2xoj0gk7-u5fl7</div>

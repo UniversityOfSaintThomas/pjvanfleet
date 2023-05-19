@@ -1,0 +1,7 @@
+<pre name='i_7_in' id='i_7_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;fingerprint.png&quot;;
+A = ImageRead[file, Resize -&gt; {256, 256}];
+ImagePlot[A]
+{wt, tree} = 
+  WPT[A, CDF97[], NumIterations -&gt; 5, CompositeTree -&gt; True, 
+   FixedTree -&gt; FBITree[]];
+WaveletPlot[wt, tree]</pre><div class='IFU'><a name='302256602'></a>http://wolfram.com/xid/0cy9xmaknxp1mtnq1rkmxk9-e98oy0</div>

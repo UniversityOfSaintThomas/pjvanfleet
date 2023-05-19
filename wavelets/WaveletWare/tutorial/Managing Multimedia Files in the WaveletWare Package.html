@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Managing Multimedia Files in the WaveletWare Package&mdash;Wolfram Language Documentation</title>
+<meta name="buildnumber" content="0000000" />
+<meta name="historydata" content="{0.0, , , }" />
+<meta name="keywords" content="Managing Multimedia Files in the WaveletWare Package" />
+
+<meta name="description" content="The WaveletWare package is designed for use with image, audio and data files. The package comes with a prescribed set of these files but users can certainly add their own files to the package. Deleting stock files is strongly discouraged as doing so will corrupt some elements of the documentation. This tutorial deals with managing multimedia files. In particular, it will discuss the directory structure for such files, how to add files to the package, and how to import these files. This loads the package: (top)" />
+<script language="JavaScript" type="text/javascript">baselang='Managing Multimedia Files in the WaveletWare Package';</script>
+<script language="JavaScript" type="text/javascript">packagename='WaveletWare';</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		 <link rel="stylesheet" type="text/css" href="../css/reference.css" />
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/core/1.6.1/jquery.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/plugins/hoverIntent/r5/jquery.hoverIntent.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/reference.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/documentation-search.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/inputs.js"></script>
+		 <script language="javaScript" type="text/javascript" src="../javascript/faster-page-load.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/plugins/jcarousel/tinycarousel/tinycarousel.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery.dotdotdot-1.5.1.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/carousel.js"></script>
+</head>
+<body id="tutorial">
+<a name="top"></a>
+<!--#include virtual="/common/includes/gl-header.html"--> 
+<div class="main-wrapper">
+
+
+<div class="wrapper mainOuter">
+    <div class="mainContent">
+ <div class="topContentWrap">
+  <div class="ribbonWrap">
+   <span class="ribbonOuter"><span class="ribbonInner">WAVELET WARE TUTORIAL</span></span>
+  </div>
+  <ul class="dropdown">
+   <li>
+    <a href="#">Functions</a>
+    <ul class="sub_menu">
+     <li>
+      <a href="/language/WaveletWare/ref/AudioFormats.html"><span class="dropdownPad">AudioFormats</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/DataFormats.html"><span class="dropdownPad">DataFormats</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/ImageFormats.html"><span class="dropdownPad">ImageFormats</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/PackageDirectory.html"><span class="dropdownPad">PackageDirectory</span></a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+  <div class="clear"><!-- --></div>
+ </div>
+ <h1 class="Title"><a name="509267359"></a>Managing Multimedia Files in the WaveletWare Package</h1>
+ <div class="TutorialJumpBox">
+  <table class="nogridboxdividers">
+   <col />
+   <col />
+   <tr class="lineAbove" style=""><td><a href="../tutorial/Managing Multimedia Files in the WaveletWare Package.html#294630793">Directory Structure for Multimedia Files</a></td><td><a href="../tutorial/Managing Multimedia Files in the WaveletWare Package.html#167151544">Adding Multimedia Files to the WaveletWare Package</a></td></tr>
+   <tr class="" style=""><td><a href="../tutorial/Managing Multimedia Files in the WaveletWare Package.html#137352923">Importing Multimedia Files</a></td><td></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="1534169418"></a>The <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> package is designed for use with image, audio and data files.  The package comes with a prescribed set of these files but users can certainly add their own files to the package.  Deleting stock files is strongly discouraged as doing so will corrupt some elements of the documentation.  <br /><br />This tutorial deals with managing multimedia files.  In particular, it will discuss the directory structure for such files, how to add files to the package, and how to import these files.</p>
+ <div class="MCap"><a name="836781195"></a>This loads the package:</div>
+ <table class="InCell">
+  <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+     <a name="2058623809"></a>
+     <img src="Files/Managing Multimedia Files in the WaveletWare Package/I_2.gif"
+         height="15"
+         width="93"
+         alt="Click for copyable input" />
+    </div><div id="i_1_out" class="IFL"></div></td></tr>
+ </table>
+ <h2 class="Section"><a name="294630793"></a>Directory Structure for Multimedia Files</h2>
+ <p class="Text">
+  <a name="30980658"></a>
+  <a href="#main">(top)</a>
+ </p>
+ <p class="Text"><a name="650444026"></a>The <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> package comes with a few functions that assist users with directory structure and acceptable formats for multimedia files.</p>
+ <div class="MathTable DefinitionBox">
+  <a name="366963918"></a>
+  <table class="nogridboxdividers">
+   <col width="40%" />
+   <col width="60%" />
+   <tr class="lineAbove" style=""><td><a href="../ref/PackageDirectory.html">PackageDirectory</a><span class="openbracket">[</span><span class="TI">opts</span><span class="closebracket">]</span></td><td><span class="TT">Directory information for package multimedia files</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/AudioFormats.html">AudioFormats</a></td><td><span class="TT">Acceptable Mathematica audio files</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/AudioInfo.html">AudioInfo<span class="openbracket">[</span><span class="TI">opts</span><span class="closebracket">]</span></a></td><td><span class="TT">Information about package audio files</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/DataFormats.html">DataFormats</a></td><td><span class="TT">Acceptable Mathematica data files</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/DataInfo.html">DataInfo<span class="openbracket">[</span><span class="TI">opts</span><span class="closebracket">]</span></a></td><td><span class="TT">Information about package data files</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/ImageFormats.html">ImageFormats</a></td><td><span class="TT">Acceptable Mathematica image files</span></td></tr>
+   <tr class="" style=""><td><a href="../ref/ImageInfo.html">ImageInfo<span class="openbracket">[</span><span class="TI">opts</span><span class="closebracket">]</span></a></td><td><span class="TT">Information about package image files.</span></td></tr>
+  </table>
+ </div>
+ <p class="Caption"><a name="756436856"></a>Functions for multimedia file structure and information.</p>
+ <p class="Text"><a name="270080468"></a>The functions <span class="IF"><a href="../ref/AudioFormats.html">AudioFormats</a></span>, <span class="IF"><a href="../ref/DataFormats.html">DataFormats</a></span> and <span class="IF"><a href="../ref/ImageFormats.html">ImageFormats</a></span> give all the types of audio, data and image files Mathematica will accept.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+      <a name="730221512"></a>
+      <img src="Files/Managing Multimedia Files in the WaveletWare Package/I_4.gif"
+          height="50"
+          width="76"
+          alt="Click for copyable input" />
+     </div><div id="i_3_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/Managing Multimedia Files in the WaveletWare Package/O_1.gif" height="15" width="266" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[2]=</td><td class="Output"><img src="Files/Managing Multimedia Files in the WaveletWare Package/O_2.gif" height="15" width="215" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[3]=</td><td class="Output"><img src="Files/Managing Multimedia Files in the WaveletWare Package/O_3.gif" height="50" width="398" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="97457890"></a>The command <span class="IF"><a href="../ref/PackageDirectory.html">PackageDirectory</a></span> gives the path name to the <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> package.  The option <span class="IF"><a href="../ref/DataType.html">DataType</a></span> (default value <a href="http://reference.wolfram.com/language/ref/All.html">All</a>) can be set to <span class="IF"><a href="../ref/Images.html">Images</a></span>, <span class="IF"><a href="../ref/Sounds.html">Sounds</a></span> or <span class="IF"><a href="../ref/Data.html">Data</a></span> to give the path to image, audio or data files, respectively.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[4]:=</td><td class="Input"><div>
+      <a name="280916675"></a>
+      <img src="Files/Managing Multimedia Files in the WaveletWare Package/I_6.gif"
+          height="50"
+          width="436"
+          alt="Click for copyable input" />
+     </div><div id="i_5_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[4]=</td><td class="Output"><img src="Files/Managing Multimedia Files in the WaveletWare Package/O_4.gif" height="15" width="292" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td colspan="2"><div class="celllabelTableForm">Out[5]//TableForm=</div></td></tr>
+   <tr><td class="lab"> </td><td class="Output"><div class="TableForm">
+      <img src="Files/Managing Multimedia Files in the WaveletWare Package/O_5.gif"
+          width="335"
+          height="45"
+          alt="" />
+     </div></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="238278662"></a>The functions <span class="IF"><a href="../ref/AudioInfo.html">AudioInfo</a></span>, <span class="IF"><a href="../ref/DataInfo.html">DataInfo</a></span>, and <span class="IF"><a href="../ref/ImageInfo.html">ImageInfo</a></span> provides complete path names to audio, data, and image files, respectively, in the <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> package.  Each come with a DisplayInfo option that will give more information about the available files.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[6]:=</td><td class="Input"><div>
+      <a name="180968339"></a>
+      <img src="Files/Managing Multimedia Files in the WaveletWare Package/I_8.gif"
+          height="50"
+          width="166"
+          alt="Click for copyable input" />
+     </div><div id="i_7_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[6]=</td><td class="Output"><img src="Files/Managing Multimedia Files in the WaveletWare Package/O_6.gif" height="186" width="432" alt="" /></td></tr>
+  </table>
+  <div class="Print">
+   <a name="113059065"></a>
+   <img class="FlushInput"
+       src="Files/Managing Multimedia Files in the WaveletWare Package/Image_1.gif"
+       alt=" " />
+  </div>
+  <table class="OCell">
+   <tr><td class="lab">Out[7]=</td><td class="Output"><img src="Files/Managing Multimedia Files in the WaveletWare Package/O_7.gif" height="186" width="432" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="70484704"></a>The <span class="IF"><a href="../ref/ImageInfo.html">ImageInfo</a></span> function has other options.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[8]:=</td><td class="Input"><div>
+      <a name="184224422"></a>
+      <img src="Files/Managing Multimedia Files in the WaveletWare Package/I_10.gif"
+          height="15"
+          width="104"
+          alt="Click for copyable input" />
+     </div><div id="i_9_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[8]=</td><td class="Output"><img src="Files/Managing Multimedia Files in the WaveletWare Package/O_8.gif" height="33" width="361" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="222064091"></a><span class="IF"><a href="../ref/ImageForm.html">ImageForm</a></span> (default is <a href="http://reference.wolfram.com/language/ref/All.html">All</a>) can be set to <span class="IF"><a href="../ref/GrayScale.html">GrayScale</a></span> or <span class="IF"><a href="../ref/Color.html">Color</a></span> so that information about these types of images can be extracted.  The remaining options, <span class="IF"><a href="../ref/ShowThumbnails.html">ShowThumbnails</a></span>, <span class="IF"><a href="../ref/ThumbnailColumns.html">ThumbnailColumns</a></span> and <span class="IF"><a href="../ref/ThumbnailSize.html">ThumbnailSize</a></span> can be used to provide a quick display of available package images.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[9]:=</td><td class="Input"><div>
+      <a name="136090270"></a>
+      <img src="Files/Managing Multimedia Files in the WaveletWare Package/I_12.gif"
+          height="33"
+          width="426"
+          alt="Click for copyable input" />
+     </div><div id="i_11_out" class="IFL"></div></td></tr>
+  </table>
+  <div class="Print">
+   <a name="875846459"></a>
+   <img class="FlushInput"
+       src="Files/Managing Multimedia Files in the WaveletWare Package/Image_2.gif"
+       alt=" " />
+  </div>
+ </div>
+ <h2 class="Section"><a name="137352923"></a>Importing Multimedia Files</h2>
+ <p class="Text">
+  <a name="23615895"></a>
+  <a href="#main">(top)</a>
+ </p>
+ <p class="Text"><a name="120477906"></a>The Mathematica command <a href="http://reference.wolfram.com/language/ref/Import.html">Import</a> can be used to read multimedia files.  <br /><br />To work with values from a data file with <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> functions, use the <a href="http://reference.wolfram.com/language/ref/Import.html">Import</a> or the <a href="http://reference.wolfram.com/language/ref/ReadList.html">ReadList</a> function:</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[26]:=</td><td class="Input"><div>
+      <a name="213811726"></a>
+      <img src="Files/Managing Multimedia Files in the WaveletWare Package/I_14.gif"
+          height="84"
+          width="165"
+          alt="Click for copyable input" />
+     </div><div id="i_13_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[26]=</td><td class="Output"><img src="Files/Managing Multimedia Files in the WaveletWare Package/O_9.gif" height="50" width="405" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[29]=</td><td class="Output"><img src="Files/Managing Multimedia Files in the WaveletWare Package/O_10.gif" height="162" width="240" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[30]=</td><td class="Output"><img src="Files/Managing Multimedia Files in the WaveletWare Package/O_11.gif" height="147" width="240" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="995186833"></a>For audio and image files, use of the commands <span class="IF"><a href="../ref/AudioRead.html">AudioRead</a></span> and <span class="IF"><a href="../ref/ImageRead.html">ImageRead</a></span> can import the audio/image files and put the data in a format that is most amenable to <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> routines.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[31]:=</td><td class="Input"><div>
+      <a name="34604081"></a>
+      <img src="Files/Managing Multimedia Files in the WaveletWare Package/I_16.gif"
+          height="101"
+          width="380"
+          alt="Click for copyable input" />
+     </div><div id="i_15_out" class="IFL"></div></td></tr>
+  </table>
+  <div class="Print">
+   <a name="280568121"></a>
+   <img class="FlushInput"
+       src="Files/Managing Multimedia Files in the WaveletWare Package/Image_3.gif"
+       alt=" " />
+  </div>
+  <table class="OCell">
+   <tr><td class="lab">Out[33]=</td><td class="Output"><a href="Files/Managing Multimedia Files in the WaveletWare Package/Sound_1.wav"><span id="Sound_1"><img src="Files/Managing Multimedia Files in the WaveletWare Package/4.gif" height="115" width="250" alt="" /></span></a></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[35]=</td><td class="Output"><img src="Files/Managing Multimedia Files in the WaveletWare Package/O_12.gif" height="137" width="240" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="728738583"></a>The <span class="IF"><a href="../ref/ImageRead.html">ImageRead</a></span> command can import grayscale and color images and put them in the matrix form best suited for <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> functions.  In addition to trimming an image so that its dimensions are divisible by a power of 2, <span class="IF"><a href="../ref/ImageRead.html">ImageRead</a></span> can be used to resize an image.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[36]:=</td><td class="Input"><div>
+      <a name="263710882"></a>
+      <img src="Files/Managing Multimedia Files in the WaveletWare Package/I_18.gif"
+          height="135"
+          width="334"
+          alt="Click for copyable input" />
+     </div><div id="i_17_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[38]=</td><td class="Output"><img src="Files/Managing Multimedia Files in the WaveletWare Package/O_13.gif" height="328" width="493" alt="" /></td></tr>
+  </table>
+  <div class="Print">
+   <a name="414998152"></a>
+   <img class="FlushInput"
+       src="Files/Managing Multimedia Files in the WaveletWare Package/Image_5.gif"
+       alt=" " />
+  </div>
+  <table class="OCell">
+   <tr><td class="lab">Out[40]=</td><td class="Output"><img src="Files/Managing Multimedia Files in the WaveletWare Package/O_14.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[41]=</td><td class="Output"><img src="Files/Managing Multimedia Files in the WaveletWare Package/O_15.gif" height="128" width="192" alt="" /></td></tr>
+  </table>
+ </div>
+ <h2 class="Section"><a name="167151544"></a>Adding Multimedia Files to the WaveletWare Package</h2>
+ <p class="Text">
+  <a name="85884408"></a>
+  <a href="#main">(top)</a>
+ </p>
+ <p class="Text"><a name="178011465"></a>It is very straightforward to add multimedia files to the <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> package.  Audio, data and image files of the following type can be added.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[42]:=</td><td class="Input"><div>
+      <a name="81905083"></a>
+      <img src="Files/Managing Multimedia Files in the WaveletWare Package/I_20.gif"
+          height="50"
+          width="84"
+          alt="Click for copyable input" />
+     </div><div id="i_19_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[42]=</td><td class="Output"><img src="Files/Managing Multimedia Files in the WaveletWare Package/O_16.gif" height="15" width="273" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[43]=</td><td class="Output"><img src="Files/Managing Multimedia Files in the WaveletWare Package/O_17.gif" height="15" width="222" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[44]=</td><td class="Output"><img src="Files/Managing Multimedia Files in the WaveletWare Package/O_18.gif" height="50" width="415" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="115132580"></a>To add a new image file, execute the cell below and simply copy the image file to the directory it returns.  It is quite possible, depending on installation of the WaveletWare package, that the path below is different than the user's path.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[45]:=</td><td class="Input"><div>
+      <a name="274536181"></a>
+      <img src="Files/Managing Multimedia Files in the WaveletWare Package/I_22.gif"
+          height="15"
+          width="212"
+          alt="Click for copyable input" />
+     </div><div id="i_21_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[45]=</td><td class="Output"><img src="Files/Managing Multimedia Files in the WaveletWare Package/O_19.gif" height="15" width="332" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="11405530"></a>The same steps work for data and audio files.  The commands below give the correct directories for adding data or audio files.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[46]:=</td><td class="Input"><div>
+      <a name="579430082"></a>
+      <img src="Files/Managing Multimedia Files in the WaveletWare Package/I_24.gif"
+          height="33"
+          width="215"
+          alt="Click for copyable input" />
+     </div><div id="i_23_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[46]=</td><td class="Output"><img src="Files/Managing Multimedia Files in the WaveletWare Package/O_20.gif" height="15" width="319" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[47]=</td><td class="Output"><img src="Files/Managing Multimedia Files in the WaveletWare Package/O_21.gif" height="15" width="335" alt="" /></td></tr>
+  </table>
+ </div>
+</div>
+</div><!-- /wrapper -->
+
+
+	
+</div>
+
+
+</body>
+		 </html>

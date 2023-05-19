@@ -1,0 +1,307 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      9718,        299]
+NotebookOptionsPosition[      7428,        239]
+NotebookOutlinePosition[      7773,        254]
+CellTagsIndexPosition[      7730,        251]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Example 3.2 (16-Bit Image Intensities as ASCII Characters)", "Section",
+ CellChangeTimes->{{3.6747410188032584`*^9, 
+  3.674741042688301*^9}},ExpressionUUID->"bc69ecfb-ee26-477f-b2df-\
+d11f2f3cff53"],
+
+Cell["Write the intensity level 31785 as two ASCII characters.", "Text",
+ CellChangeTimes->{{3.6747410667041707`*^9, 3.6747410805055957`*^9}, {
+  3.6747424105934367`*^9, 
+  3.674742410733837*^9}},ExpressionUUID->"025b2917-2e3e-4d12-856e-\
+d90019d1f06f"],
+
+Cell[CellGroupData[{
+
+Cell["Reference.", "Subsubsection",
+ CellChangeTimes->{{3.6747631102003517`*^9, 
+  3.6747631125733557`*^9}},ExpressionUUID->"d9a8f82e-a152-4e61-90c1-\
+9b9fa9d343c6"],
+
+Cell["\<\
+The material for this lab is covered in Section 3.1 of the book \
+\[OpenCurlyDoubleQuote]Discrete Wavelet Transformations: An Elementary \
+Approach with Applications, 2nd Edition,\[CloseCurlyDoubleQuote] by Patrick J \
+Van Fleet.\
+\>", "Text",
+ CellChangeTimes->{{3.674763119565366*^9, 3.6747631649004583`*^9}, {
+  3.674763293323564*^9, 3.674763311554607*^9}, {3.6997856290190563`*^9, 
+  3.699785638548086*^9}, {3.72692103296169*^9, 3.726921034949597*^9}, {
+  3.7270062500174427`*^9, 
+  3.727006250257123*^9}},ExpressionUUID->"ca30c8ee-2f66-4f2d-b356-\
+9b8904f1622f"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["WaveletWare Commands Used in This Notebook", "Subsubsection",
+ CellChangeTimes->{{3.6747417571916847`*^9, 3.674741765831501*^9}, {
+  3.6747418595935683`*^9, 
+  3.6747419193671017`*^9}},ExpressionUUID->"6deae9b1-27d8-468f-993a-\
+5216d10a222e"],
+
+Cell["None.", "Text",
+ CellChangeTimes->{{3.6747419216613054`*^9, 
+  3.6747419222229066`*^9}},ExpressionUUID->"e193b95b-e4b0-49e4-9421-\
+5dd310920f7f"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Solution.", "Subsubsection",
+ CellChangeTimes->{{3.674741083458001*^9, 3.674741085127204*^9}, {
+  3.674741868740185*^9, 
+  3.674741869629386*^9}},ExpressionUUID->"bf62dbf5-2268-40b4-bf89-\
+88437c1d3008"],
+
+Cell[TextData[{
+ "We use ",
+ StyleBox["IntegerDigits",
+  FontWeight->"Bold"],
+ " to get a list of the base 2 values for 31,785."
+}], "Text",
+ CellChangeTimes->{{3.6747411194901114`*^9, 
+  3.6747411391369605`*^9}},ExpressionUUID->"11fdccfb-be38-4506-972d-\
+86565ea8dc94"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"n", "=", "31785"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"d", "=", 
+  RowBox[{"IntegerDigits", "[", 
+   RowBox[{"n", ",", "2"}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.674741140587763*^9, 3.67474115564879*^9}, {
+  3.674741259701219*^9, 3.6747412605280204`*^9}, {3.674742284757322*^9, 
+  3.6747422853043227`*^9}, {3.674742435988764*^9, 
+  3.674742436363165*^9}},ExpressionUUID->"b50700ca-b4ea-4fbb-a68c-\
+3c367ecda654"],
+
+Cell[TextData[{
+ "Since ",
+ StyleBox["d",
+  FontWeight->"Bold"],
+ " only has 15 elements, we prepend the list with a 0.  Then split the new \
+list into two parts."
+}], "Text",
+ CellChangeTimes->{{3.6747411805653057`*^9, 3.674741196034933*^9}, {
+  3.6747415288264565`*^9, 
+  3.6747415475301437`*^9}},ExpressionUUID->"c421a24a-a391-4d8e-9803-\
+352e51d002fb"],
+
+Cell[BoxData[{
+ RowBox[{"dfix", "=", 
+  RowBox[{"Prepend", "[", 
+   RowBox[{"d", ",", "0"}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"{", 
+   RowBox[{"first", ",", "last"}], "}"}], "=", 
+  RowBox[{"Partition", "[", 
+   RowBox[{"dfix", ",", "8"}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.674741198394538*^9, 3.6747412007501416`*^9}, {
+  3.674741549123347*^9, 3.6747415590333643`*^9}, {3.6747421367905183`*^9, 
+  3.6747421583087583`*^9}, {3.674742287277129*^9, 
+  3.6747422874331293`*^9}},ExpressionUUID->"b19d78a0-75b5-4c27-9035-\
+b9ea7ff77134"],
+
+Cell[TextData[{
+ "Now convert each of ",
+ StyleBox["first",
+  FontWeight->"Bold"],
+ " and ",
+ StyleBox["last",
+  FontWeight->"Bold"],
+ " to base 10."
+}], "Text",
+ CellChangeTimes->{{3.6747415983078756`*^9, 
+  3.6747416117650995`*^9}},ExpressionUUID->"5ddf630f-2b99-4088-85d2-\
+4384691f491e"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"powers", "=", 
+   RowBox[{"2", "^", 
+    RowBox[{"Range", "[", 
+     RowBox[{"7", ",", "0", ",", 
+      RowBox[{"-", "1"}]}], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"values", "=", 
+  RowBox[{"Map", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"#", ".", "powers"}], "&"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"first", ",", "last"}], "}"}]}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.674741621504517*^9, 3.674741659274011*^9}, {
+  3.6747422890107327`*^9, 
+  3.6747422895723333`*^9}},ExpressionUUID->"5e2ab94f-cffb-40f6-93ce-\
+ad51e288c85d"],
+
+Cell[TextData[{
+ "Finally, use the ",
+ StyleBox["FromCharacterCode",
+  FontWeight->"Bold"],
+ " command to find the ASCII characters."
+}], "Text",
+ CellChangeTimes->{{3.6747416646268206`*^9, 3.674741666968825*^9}, {
+  3.674741702918961*^9, 
+  3.6747417205690193`*^9}},ExpressionUUID->"17e05df1-6965-4621-aed4-\
+44a1a8bbafd4"],
+
+Cell[BoxData[
+ RowBox[{"Map", "[", 
+  RowBox[{"FromCharacterCode", ",", "values"}], "]"}]], "Input",
+ CellChangeTimes->{{3.6747416702936306`*^9, 3.674741729313035*^9}, {
+  3.6747422912581367`*^9, 
+  3.6747422913985367`*^9}},ExpressionUUID->"39561485-3f9f-4164-9a95-\
+957346d50109"],
+
+Cell[TextData[{
+ "To convert back to base 10, take the first of ",
+ StyleBox["values",
+  FontWeight->"Bold"],
+ " times 256 and add it to the last of ",
+ StyleBox["values",
+  FontWeight->"Bold"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.674742319715419*^9, 3.6747423762955713`*^9}, {
+  3.6747424264507203`*^9, 
+  3.674742428996525*^9}},ExpressionUUID->"a5617f13-9343-4ec5-a0ae-\
+f6d24e009e2a"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"256", "*", 
+   RowBox[{"First", "[", "values", "]"}]}], "+", 
+  RowBox[{"Last", "[", "values", "]"}]}]], "Input",
+ CellChangeTimes->{{3.674742355257497*^9, 3.6747423798155785`*^9}, {
+  3.6747424382401686`*^9, 
+  3.6747424383961687`*^9}},ExpressionUUID->"cd281f1b-34fd-4862-942d-\
+4494d648cb87"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Things To Try.", "Subsubsection",
+ CellChangeTimes->{{3.674741944310015*^9, 
+  3.67474194691722*^9}},ExpressionUUID->"a4916f4c-fb7d-411c-b6e7-\
+9ac321526eeb"],
+
+Cell[TextData[{
+ "Try different values of ",
+ StyleBox["n",
+  FontSlant->"Italic"],
+ ".  For 16-bit values, make sure 256 \[LessEqual] ",
+ StyleBox["n",
+  FontSlant->"Italic"],
+ " \[LessSlantEqual] 65536.  Can you modify the ",
+ StyleBox["dfix",
+  FontWeight->"Bold"],
+ " line so that ",
+ StyleBox["dfix",
+  FontWeight->"Bold"],
+ " always has 16 digits?  You can use a ",
+ StyleBox["Which",
+  FontWeight->"Bold"],
+ " statement to do this.  If the length of ",
+ StyleBox["d",
+  FontWeight->"Bold"],
+ " is 16, then nothings needs to be done.  If not, then ",
+ StyleBox["d",
+  FontWeight->"Bold"],
+ " needs to be prepended with a 0."
+}], "Text",
+ CellChangeTimes->{{3.6747420480998836`*^9, 3.6747421314892807`*^9}, {
+  3.674742175168991*^9, 
+  3.6747422393427753`*^9}},ExpressionUUID->"7f53e8f8-3fd8-4f71-b8f3-\
+91846963d627"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{759, 678},
+WindowMargins->{{512, Automatic}, {Automatic, 145}},
+FrontEndVersion->"11.1 for Microsoft Windows (64-bit) (April 18, 2017)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 205, 3, 70, "Section", "ExpressionUUID" -> \
+"bc69ecfb-ee26-477f-b2df-d11f2f3cff53"],
+Cell[788, 27, 253, 4, 30, "Text", "ExpressionUUID" -> \
+"025b2917-2e3e-4d12-856e-d90019d1f06f"],
+Cell[CellGroupData[{
+Cell[1066, 35, 165, 3, 39, "Subsubsection", "ExpressionUUID" -> \
+"d9a8f82e-a152-4e61-90c1-9b9fa9d343c6"],
+Cell[1234, 40, 577, 11, 49, "Text", "ExpressionUUID" -> \
+"ca30c8ee-2f66-4f2d-b356-9b8904f1622f"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1848, 56, 248, 4, 39, "Subsubsection", "ExpressionUUID" -> \
+"6deae9b1-27d8-468f-993a-5216d10a222e"],
+Cell[2099, 62, 151, 3, 30, "Text", "ExpressionUUID" -> \
+"e193b95b-e4b0-49e4-9421-5dd310920f7f"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2287, 70, 209, 4, 39, "Subsubsection", "ExpressionUUID" -> \
+"bf62dbf5-2268-40b4-bf89-88437c1d3008"],
+Cell[2499, 76, 270, 8, 30, "Text", "ExpressionUUID" -> \
+"11fdccfb-be38-4506-972d-86565ea8dc94"],
+Cell[2772, 86, 460, 10, 50, "Input", "ExpressionUUID" -> \
+"b50700ca-b4ea-4fbb-a68c-3c367ecda654"],
+Cell[3235, 98, 356, 10, 30, "Text", "ExpressionUUID" -> \
+"c421a24a-a391-4d8e-9803-352e51d002fb"],
+Cell[3594, 110, 559, 13, 50, "Input", "ExpressionUUID" -> \
+"b19d78a0-75b5-4c27-9035-b9ea7ff77134"],
+Cell[4156, 125, 291, 11, 30, "Text", "ExpressionUUID" -> \
+"5ddf630f-2b99-4088-85d2-4384691f491e"],
+Cell[4450, 138, 587, 17, 50, "Input", "ExpressionUUID" -> \
+"5e2ab94f-cffb-40f6-93ce-ad51e288c85d"],
+Cell[5040, 157, 324, 9, 30, "Text", "ExpressionUUID" -> \
+"17e05df1-6965-4621-aed4-44a1a8bbafd4"],
+Cell[5367, 168, 281, 6, 30, "Input", "ExpressionUUID" -> \
+"39561485-3f9f-4164-9a95-957346d50109"],
+Cell[5651, 176, 390, 12, 30, "Text", "ExpressionUUID" -> \
+"a5617f13-9343-4ec5-a0ae-f6d24e009e2a"],
+Cell[6044, 190, 329, 8, 30, "Input", "ExpressionUUID" -> \
+"cd281f1b-34fd-4862-942d-4494d648cb87"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6410, 203, 164, 3, 39, "Subsubsection", "ExpressionUUID" -> \
+"a4916f4c-fb7d-411c-b6e7-9ac321526eeb"],
+Cell[6577, 208, 823, 27, 68, "Text", "ExpressionUUID" -> \
+"7f53e8f8-3fd8-4f71-b8f3-91846963d627"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

@@ -1,0 +1,6 @@
+<pre name='i_17_in' id='i_17_in' class='IFT'>files = ImageInfo[ImageForm -&gt; Color];
+images = Map[ImageRead, files];
+names = Map[Last[FileNameSplit[#]] &amp;, files];
+(* Left click image to scroll forward, Shift-click to scroll backward \
+*)
+FlipView[MapThread[Labeled[ImagePlot[#1], #2] &amp;, {images, names}]]</pre><div class='IFU'><a name='64252481'></a>http://wolfram.com/xid/0dbed1alym5ijv2xnvsnhi-bcjftf</div>

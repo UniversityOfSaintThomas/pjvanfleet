@@ -1,0 +1,12 @@
+<pre name='i_45_in' id='i_45_in' class='IFT'>(* Donoho/Johnstone Doppler function *)
+g[t_] := Sqrt[t (1 - t)]*Sin[2 Pi (1.05)/(t + .05)];
+n = 1000;
+v = g[Range[0, 1 - 1/n, 1/n]];
+ListPlot[v, Ticks -&gt; {Range[0, n, n/4], Range[-1/2, 1/2]}, 
+ PlotLabel -&gt; &quot;Data Samples&quot;]
+wt = WT[v, Daub[4], NumIterations -&gt; 2];
+(* Use the default colors *)
+WaveletRegionPlot[wt, {{2, 1}, {2, 2}}, NumIterations -&gt; 2, 
+ Background -&gt; Lighter[Gray]]
+WaveletRegionPlot[wt, {{2, 1}, {2, 2}}, NumIterations -&gt; 2, 
+ Background -&gt; {Yellow, Black}]</pre><div class='IFU'><a name='126562431'></a>http://wolfram.com/xid/0br3whhmcljlx93k2tbxed7vin6a-cdmyhd</div>

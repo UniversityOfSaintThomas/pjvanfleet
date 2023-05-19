@@ -1,0 +1,5 @@
+<pre name='i_19_in' id='i_19_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;benches.png&quot;;
+A = ImageRead[file, Resize -&gt; {128, 192}];
+ImagePlot[A]
+{wpt, tree} = WPT[A, {.5, .5}, NumIterations -&gt; 2];
+ShowBestBasis[tree, Show3D -&gt; False, ImageSize -&gt; 128]</pre><div class='IFU'><a name='79906463'></a>http://wolfram.com/xid/0bsub5sf4gpwe26lzrftnf-bluyh9</div>

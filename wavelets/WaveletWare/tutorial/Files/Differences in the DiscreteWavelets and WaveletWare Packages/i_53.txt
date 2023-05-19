@@ -1,0 +1,9 @@
+<pre name='i_53_in' id='i_53_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;church.png&quot;;
+A = ImageRead[file, Resize -&gt; {192, 128}];
+wt = WTFull[A, SplineFilters[2, 2], NumIterations -&gt; 3];
+FullWaveletPlot[wt]
+file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;fish.png&quot;;
+A = ImageRead[file, Resize -&gt; {128, 192}];
+wt = WTFull[A, Daub[4], NumIterations -&gt; 3];
+FullWaveletPlot[wt]
+FullWaveletPlot[wt, PlotTogether -&gt; True]</pre><div class='IFU'><a name='373633072'></a>http://wolfram.com/xid/0533vsu7qbb0ajiwwqawq9kz22kl8rc4uv1a9crxfvnihty6rtcsrbm-ggqjeq</div>

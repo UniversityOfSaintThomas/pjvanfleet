@@ -1,0 +1,9 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;road.png&quot;;
+A = ImageRead[file, Resize -&gt; {128, 192}];
+ImagePlot[A]
+rwt = RightWT[A, Daub[4]];
+WaveletPlot[rwt, PlotType -&gt; Right]
+iwt = RightInverseWT[rwt, Daub[4]];
+ImagePlot[iwt]
+(* Mean Squared Error *)
+MSE[A, iwt]</pre><div class='IFU'><a name='35045565'></a>http://wolfram.com/xid/0ejjx9peoqvmt3kgdhdmk3hff-u5fl7</div>

@@ -1,0 +1,4 @@
+<pre name='i_9_in' id='i_9_in' class='IFT'>v = Range[32];
+{wpt, tree} = WPT[v, Daub[4], Shift -&gt; 4];
+inv = InverseWPT[{wpt, tree}, Daub[4], Shift -&gt; 4];
+v == inv</pre><div class='IFU'><a name='249761033'></a>http://wolfram.com/xid/0bclo942dwfme8ltsw2z409ej-eezi4r</div>

@@ -1,0 +1,7 @@
+<pre name='i_55_in' id='i_55_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;cups.png&quot;;
+A = ImageRead[file, Resize -&gt; {256, 384}];
+ImagePlot[A]
+wt = HWT[A];
+WaveletRegionPlot[wt, {{All, 1, 2, 1}}, ImageSize -&gt; 192]
+WaveletRegionPlot[wt, {{All, 1, 2, 1}}, 
+ ImageSize -&gt; {Automatic, 384, 192}]</pre><div class='IFU'><a name='829331214'></a>http://wolfram.com/xid/0br3whhmcljlx93k2tbxed7vin6a-nz1qcg</div>

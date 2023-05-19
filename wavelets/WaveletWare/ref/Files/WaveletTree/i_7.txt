@@ -1,0 +1,4 @@
+<pre name='i_7_in' id='i_7_in' class='IFT'>tree = WaveletTree[2, InputDimension -&gt; 2]
+ShowBestBasis[tree, Show3D -&gt; False]
+tree = WaveletTree[3, InputDimension -&gt; 2]
+ShowBestBasis[tree, Show3D -&gt; False]</pre><div class='IFU'><a name='349248637'></a>http://wolfram.com/xid/0b6ekx0z8pnru3asz9m1un9cy0-f17v9b</div>

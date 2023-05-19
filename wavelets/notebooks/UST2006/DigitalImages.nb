@@ -1,0 +1,523 @@
+(************** Content-type: application/mathematica **************
+                     CreatedBy='Mathematica 5.2'
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used with any Mathematica-compatible
+application, such as Mathematica, MathReader or Publicon. The data
+for the notebook starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do
+one of the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the
+  application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing
+the word CacheID, otherwise Mathematica-compatible applications may
+try to use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+*******************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[     11340,        412]*)
+(*NotebookOutlinePosition[     12085,        437]*)
+(*  CellTagsIndexPosition[     12041,        433]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Digital Images", "Title"],
+
+Cell["\<\
+Wavelet Workshop
+June 7-10, 2006
+University of St. Thomas\
+\>", "Subtitle"],
+
+Cell["Objectives", "Subsubtitle"],
+
+Cell[TextData[{
+  "The purpose of this notebook is to give you a brief introduction to the \
+software package ",
+  StyleBox["WaveletFunctions",
+    FontFamily->"Courier"],
+  " and show you how to use it to load images.  Some basic image manipulation \
+is illustrated as well."
+}], "Text"],
+
+Cell[CellGroupData[{
+
+Cell["WaveletFunctions", "Subsubtitle",
+  InitializationCell->True],
+
+Cell[TextData[{
+  "This cell initializes every time you open the notebook.  It loads the ",
+  StyleBox["Mathematica",
+    FontSlant->"Italic"],
+  " package ",
+  StyleBox["WaveletFunctions",
+    FontFamily->"Courier"],
+  " for use in subsequent computations."
+}], "Text",
+  InitializationCell->True],
+
+Cell[BoxData[{
+    \(<< WaveletFunctions`WaveletFunctions`\), "\[IndentingNewLine]", 
+    \(\(flashdir = "\<E:/Images/\>";\)\), "\[IndentingNewLine]", 
+    \(\(Print["\<The flash drive directory is \>", 
+        flashdir, "\<.\>"];\)\), "\[IndentingNewLine]", 
+    \(\(imgurl = \
+"\<http://cam.mathlab.stthomas.edu/pvf/Math316/TestImages/\>";\)\), "\
+\[IndentingNewLine]", 
+    \(\(Print["\<The URL for images is \>", imgurl, "\<.\>"];\)\)}], "Input",
+  InitializationCell->True]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Help on WaveletFunctions", "Subsubtitle"],
+
+Cell[TextData[{
+  "If you ever need help with ",
+  StyleBox["WaveletFunctions",
+    FontFamily->"Courier"],
+  ", go to ",
+  StyleBox["Help",
+    FontSlant->"Italic"],
+  ", then ",
+  StyleBox["Help Browser",
+    FontSlant->"Italic"],
+  ", and click on ",
+  StyleBox["AddOns & Links",
+    FontSlant->"Italic"],
+  ".  If you scroll down you will find ",
+  StyleBox["WaveletFunctions",
+    FontFamily->"Courier"],
+  ".  "
+}], "Text"],
+
+Cell[CellGroupData[{
+
+Cell["Loading a Digital Image", "Section"],
+
+Cell[TextData[{
+  StyleBox["WaveletFunctions",
+    FontFamily->"Courier"],
+  " comes with a command called ",
+  StyleBox["ReadImage",
+    FontWeight->"Bold"],
+  ".  This command essentially needs one argument - the location, either on a \
+computer or on the internet, of a digital image.  In the case of a grayscale \
+image, ",
+  StyleBox["ReadImage",
+    FontWeight->"Bold"],
+  " returns a matrix (named ",
+  StyleBox["A",
+    FontWeight->"Bold"],
+  " in the commands below) containing the gray scale intensity values for \
+each pixel.  \n\nHere are some examples."
+}], "Text"],
+
+Cell[BoxData[{
+    \(\(A = 
+        ReadImage[
+          flashdir <> "\<garfield_gray.jpg\>"];\)\), "\[IndentingNewLine]", 
+    \(\(A = 
+        ReadImage[
+          imgurl <> "\<garfield_gray.jpg\>"];\)\), "\[IndentingNewLine]", 
+    \(\(Print["\<The dimensions of the image are \>", 
+        Dimensions[A]];\)\)}], "Input"],
+
+Cell[TextData[{
+  "Here is the first row of ",
+  StyleBox["A",
+    FontWeight->"Bold"],
+  ":"
+}], "Text"],
+
+Cell[BoxData[
+    \(A[\([1]\)]\)], "Input"],
+
+Cell[TextData[{
+  "Here is the 100th row of ",
+  StyleBox["A",
+    FontWeight->"Bold"],
+  ":"
+}], "Text"],
+
+Cell[BoxData[
+    \(A[\([100]\)]\)], "Input"],
+
+Cell[TextData[{
+  "Here is the 100th column of ",
+  StyleBox["A",
+    FontWeight->"Bold"],
+  ":"
+}], "Text"],
+
+Cell[BoxData[
+    \(\(Transpose[A]\)[\([100]\)]\)], "Input"],
+
+Cell[TextData[{
+  "There are two additional options (hereafter ",
+  StyleBox["directive",
+    FontWeight->"Bold"],
+  "s) for ",
+  StyleBox["ReadImage",
+    FontWeight->"Bold"],
+  ".    The first is called ",
+  StyleBox["PrintInfo",
+    FontWeight->"Bold"],
+  " and if set to ",
+  StyleBox["True",
+    FontWeight->"Bold"],
+  ", will give you the dimensions and type (grayscale, color) of image you \
+have read.  The ",
+  StyleBox["PowersOfTwo",
+    FontWeight->"Bold"],
+  " option, if set (say to K) will chop off enough rows on the bottom and \
+columns on the left to make the dimensions of the image divisible by ",
+  Cell[BoxData[
+      \(2\^K\)]],
+  ".  This is really handy when students pull their own images off the web \
+and we need the dimensions to be divisible by ",
+  Cell[BoxData[
+      \(2\^K\)]],
+  "."
+}], "Text"],
+
+Cell[BoxData[{
+    \(\(A = 
+        ReadImage[flashdir <> "\<garfield_gray.jpg\>", 
+          PrintInfo \[Rule] True];\)\), "\[IndentingNewLine]", 
+    \(\(B = 
+        ReadImage[flashdir <> "\<garfield.jpg\>", 
+          PrintInfo \[Rule] True];\)\)}], "Input"],
+
+Cell[BoxData[
+    \(\(\(\[IndentingNewLine]\)\(\(A = 
+        ReadImage[flashdir <> "\<garfield_gray.jpg\>", 
+          PrintInfo \[Rule] True, 
+          PowersOfTwo \[Rule] 4];\)\[IndentingNewLine]
+    \(Print["\<The new dimensions of A are \>", 
+        Dimensions[A], "\<.\>"];\)\)\)\)], "Input"],
+
+Cell[TextData[{
+  "Note that ",
+  StyleBox["B",
+    FontWeight->"Bold"],
+  " was processed as a color image.  This means that ",
+  StyleBox["B",
+    FontWeight->"Bold"],
+  " returned three matrices - the first matrix is the ",
+  StyleBox["red",
+    FontColor->RGBColor[1, 0, 0]],
+  " portion of the image (with values 0 to 255), the second matrix is the ",
+  StyleBox["green",
+    FontColor->RGBColor[0, 1, 0]],
+  " portion of the image, and the third matrix is the ",
+  StyleBox["blue",
+    FontColor->RGBColor[0, 0, 1]],
+  " portion of the image.\n\nNotation-wise, we have the matrices",
+  StyleBox[" B[[ 1 ]]",
+    FontWeight->"Bold"],
+  " (red), ",
+  StyleBox["B[[ 2 ]]",
+    FontWeight->"Bold"],
+  " (blue), and ",
+  StyleBox["B[[ 3 ]]",
+    FontWeight->"Bold"],
+  " (green), but it might be easier to make the call as follows:"
+}], "Text"],
+
+Cell[BoxData[
+    \(\({red, green, blue}\  = \ 
+        ReadImage[flashdir <> "\<garfield.jpg\>", 
+          PrintInfo \[Rule] True];\)\)], "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Plotting a Digital Image", "Section"],
+
+Cell[TextData[{
+  "It is easy to plot digital images read with ",
+  StyleBox["ReadImage",
+    FontWeight->"Bold"],
+  " in ",
+  StyleBox["Mathematica",
+    FontSlant->"Italic"],
+  ".  The command is called ",
+  StyleBox["ImagePlot",
+    FontWeight->"Bold"],
+  " (I wish now I would have called it PlotImage to parallel ReadImage .... \
+).  \n\nOnce you have an image loaded via ",
+  StyleBox["ReadImage",
+    FontWeight->"Bold"],
+  ", here's what you can do:"
+}], "Text"],
+
+Cell[BoxData[
+    \(\(ImagePlot[A];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(ImagePlot[B];\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(ImagePlot[{red, green, blue}];\)\)], "Input"],
+
+Cell[TextData[{
+  "You can plot individual channels of a color image if you like.  It will be \
+grayscale by default, but if you want to see it in its original color, simply \
+add the directive ",
+  StyleBox["ChannelColor",
+    FontWeight->"Bold"],
+  ":"
+}], "Text"],
+
+Cell[BoxData[{
+    \(\(ImagePlot[red];\)\), "\[IndentingNewLine]", 
+    \(\(ImagePlot[red, 
+        ChannelColor \[Rule] Red];\)\), "\[IndentingNewLine]", 
+    \(\(ImagePlot[green, 
+        ChannelColor \[Rule] Green];\)\), "\[IndentingNewLine]", 
+    \(\(ImagePlot[blue, 
+        ChannelColor \[Rule] Blue];\)\), "\[IndentingNewLine]", 
+    \(\(ImagePlot[{red, green, blue}];\)\)}], "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Manipulating Images", "Section"],
+
+Cell["\<\
+Once you have an image loaded and know how to plot it, you can do all kinds \
+of things with it.  
+
+Convert color to grayscale:\
+\>", "Text"],
+
+Cell[BoxData[
+    \(\(ImagePlot[\((red + green + blue)\)/3];\)\)], "Input"],
+
+Cell["Darken the image", "Text"],
+
+Cell[BoxData[
+    \(\(ImagePlot[A/2];\)\)], "Input"],
+
+Cell["Image negative", "Text"],
+
+Cell[BoxData[
+    \(\(ImagePlot[255 - A];\)\)], "Input"],
+
+Cell["Color negative", "Text"],
+
+Cell[BoxData[
+    \(\(ImagePlot[255 - {red, green, blue}];\)\)], "Input"],
+
+Cell["Flip it upside down", "Text"],
+
+Cell[BoxData[
+    \(ImagePlot[Reverse[A]]\)], "Input"],
+
+Cell["What does the transpose do?", "Text"],
+
+Cell[BoxData[
+    \(\(ImagePlot[Transpose[A]];\)\)], "Input"],
+
+Cell["\<\
+The previous cell is basically a rotation of the image counterclockwise 90 \
+degrees.   In the cell below, can you write code to rotate the image \
+clockwise 90 degrees?\
+\>", "Text"],
+
+Cell[BoxData[
+    \( (*\ Remove\ this\ comment\ and\ put\ code\ here\ *) \)], "Input",
+  FontColor->RGBColor[0, 0, 1]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Converting Color Images to YCbCr Space", "Section"],
+
+Cell[TextData[{
+  StyleBox["WaveletFunctions",
+    FontFamily->"Courier"],
+  " contains a command for converting from RGB color space to YCbCr space.  \
+The command is called ",
+  StyleBox["RGBtoYCbCr",
+    FontWeight->"Bold"],
+  ".  Here is an example call:"
+}], "Text"],
+
+Cell[BoxData[{
+    \(\({Y, Cb, Cr}\  = \ 
+        RGBtoYCbCr[{red, green, blue}];\)\), "\[IndentingNewLine]", 
+    \(\(ImagePlot[Y, 
+        LinearScaling \[Rule] True];\)\), "\[IndentingNewLine]", 
+    \(\(ImagePlot[Cb, 
+        LinearScaling \[Rule] True];\)\), "\[IndentingNewLine]", 
+    \(\(ImagePlot[Cr, LinearScaling \[Rule] True];\)\)}], "Input"],
+
+Cell[TextData[{
+  "Note that I have used the directive ",
+  StyleBox["LinearScaling",
+    FontWeight->"Bold"],
+  " set to ",
+  StyleBox["True",
+    FontWeight->"Bold"],
+  ".  This maps the minimum value of the matrix to 0 and the maximum value of \
+the matrix to 255."
+}], "Text"],
+
+Cell[TextData[{
+  "You can convert back to RGB space using the command ",
+  StyleBox["YCbCrtoRGB",
+    FontWeight->"Bold"],
+  ":"
+}], "Text"],
+
+Cell[BoxData[{
+    \(\({red, green, blue} = 
+        YCbCrtoRGB[{Y, Cb, Cr}];\)\), "\[IndentingNewLine]", 
+    \(\(ImagePlot[{red, green, blue}];\)\)}], "Input"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+FrontEndVersion->"5.2 for Microsoft Windows",
+ScreenRectangle->{{0, 1024}, {0, 685}},
+AutoGeneratedPackage->None,
+ScreenStyleEnvironment->"Presentation",
+WindowSize->{1016, 651},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+StyleDefinitions -> "Report.nb"
+]
+
+(*******************************************************************
+Cached data follows.  If you edit this Notebook file directly, not
+using Mathematica, you must remove the line containing CacheID at
+the top of  the file.  The cache data will then be recreated when
+you save this file from within Mathematica.
+*******************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+
+(*NotebookFileOutline
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[1776, 53, 31, 0, 117, "Title"],
+Cell[1810, 55, 85, 4, 143, "Subtitle"],
+Cell[1898, 61, 33, 0, 67, "Subsubtitle"],
+Cell[1934, 63, 288, 7, 63, "Text"],
+
+Cell[CellGroupData[{
+Cell[2247, 74, 67, 1, 67, "Subsubtitle",
+  InitializationCell->True],
+Cell[2317, 77, 298, 9, 63, "Text",
+  InitializationCell->True],
+Cell[2618, 88, 479, 9, 155, "Input",
+  InitializationCell->True]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[3134, 102, 47, 0, 67, "Subsubtitle"],
+Cell[3184, 104, 429, 17, 64, "Text"],
+
+Cell[CellGroupData[{
+Cell[3638, 125, 42, 0, 96, "Section"],
+Cell[3683, 127, 578, 16, 129, "Text"],
+Cell[4264, 145, 325, 8, 103, "Input"],
+Cell[4592, 155, 105, 5, 40, "Text"],
+Cell[4700, 162, 43, 1, 51, "Input"],
+Cell[4746, 165, 105, 5, 40, "Text"],
+Cell[4854, 172, 45, 1, 51, "Input"],
+Cell[4902, 175, 108, 5, 40, "Text"],
+Cell[5013, 182, 60, 1, 51, "Input"],
+Cell[5076, 185, 828, 26, 128, "Text"],
+Cell[5907, 213, 262, 6, 77, "Input"],
+Cell[6172, 221, 300, 6, 129, "Input"],
+Cell[6475, 229, 845, 26, 150, "Text"],
+Cell[7323, 257, 148, 3, 51, "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[7508, 265, 43, 0, 96, "Section"],
+Cell[7554, 267, 470, 15, 106, "Text"],
+Cell[8027, 284, 50, 1, 51, "Input"],
+Cell[8080, 287, 50, 1, 51, "Input"],
+Cell[8133, 290, 67, 1, 51, "Input"],
+Cell[8203, 293, 266, 7, 62, "Text"],
+Cell[8472, 302, 392, 8, 155, "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[8901, 315, 38, 0, 96, "Section"],
+Cell[8942, 317, 151, 5, 84, "Text"],
+Cell[9096, 324, 75, 1, 51, "Input"],
+Cell[9174, 327, 32, 0, 40, "Text"],
+Cell[9209, 329, 52, 1, 51, "Input"],
+Cell[9264, 332, 30, 0, 40, "Text"],
+Cell[9297, 334, 56, 1, 51, "Input"],
+Cell[9356, 337, 30, 0, 40, "Text"],
+Cell[9389, 339, 73, 1, 51, "Input"],
+Cell[9465, 342, 35, 0, 40, "Text"],
+Cell[9503, 344, 54, 1, 51, "Input"],
+Cell[9560, 347, 43, 0, 40, "Text"],
+Cell[9606, 349, 61, 1, 51, "Input"],
+Cell[9670, 352, 193, 4, 62, "Text"],
+Cell[9866, 358, 118, 2, 51, "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[10021, 365, 57, 0, 96, "Section"],
+Cell[10081, 367, 271, 8, 63, "Text"],
+Cell[10355, 377, 354, 7, 129, "Input"],
+Cell[10712, 386, 280, 9, 62, "Text"],
+Cell[10995, 397, 141, 5, 40, "Text"],
+Cell[11139, 404, 161, 3, 77, "Input"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+
+
+(*******************************************************************
+End of Mathematica Notebook file.
+*******************************************************************)
+

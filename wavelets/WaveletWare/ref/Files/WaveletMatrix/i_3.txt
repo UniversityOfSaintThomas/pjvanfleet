@@ -1,0 +1,2 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>W = WaveletMatrix[Haar[], {8, 8}];
+MatrixForm[W]</pre><div class='IFU'><a name='344078122'></a>http://wolfram.com/xid/0rbcx7yrv4nohjeyr4g6dr032-fy42nw</div>

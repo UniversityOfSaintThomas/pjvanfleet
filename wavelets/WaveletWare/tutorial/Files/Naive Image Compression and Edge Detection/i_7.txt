@@ -1,0 +1,2 @@
+<pre name='i_7_in' id='i_7_in' class='IFT'>wt = HWT[Acentered, NumIterations -&gt; 3];
+WaveletPlot[wt, NumIterations -&gt; 3]</pre><div class='IFU'><a name='273896294'></a>http://wolfram.com/xid/0ck2bt1tgpszi5qmumv90y9mftkdg9nq1q0ukjlzbu-etct0o</div>

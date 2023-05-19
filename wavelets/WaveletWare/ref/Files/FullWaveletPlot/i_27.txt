@@ -1,0 +1,6 @@
+<pre name='i_27_in' id='i_27_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;cups.png&quot;;
+A = ImageRead[file, Resize -&gt; {128, 192}];
+wt = WTFull[A, Haar[], NumIterations -&gt; 2];
+FullWaveletPlot[wt, 
+ Iteration -&gt; {All, {{All, 1, 1, 1}}, {{All, 2, 1, 1}}}, 
+ PlotTogether -&gt; {True, False, True}]</pre><div class='IFU'><a name='276142908'></a>http://wolfram.com/xid/0063dvybfwx396xn21trjec45uq-euozim</div>

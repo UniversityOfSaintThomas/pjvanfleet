@@ -1,0 +1,4 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>v = RandomInteger[{-5, 5}, 4]
+w = RandomInteger[{-5, 5}, 4]
+MSE[v, w]
+Total[(v - w)^2]/Length[w]</pre><div class='IFU'><a name='275602098'></a>http://wolfram.com/xid/0do1eh55e6re23a0jz7vh-eudd74</div>

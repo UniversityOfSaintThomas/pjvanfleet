@@ -1,0 +1,6 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>g[t_] := 4 Sin[4 Pi*t] - Sign[t - .3] - Sign[.72 - t];
+n = 1000;
+v = g[Range[0, 1 - 1/n, 1/n]];
+iterations = 3;
+w = WPTFull[v, Daub[4], NumIterations -&gt; iterations];
+FullWaveletVectorPlot[w, PacketPlot -&gt; True, ImageSize -&gt; 200]</pre><div class='IFU'><a name='170541033'></a>http://wolfram.com/xid/0jqhxp1jfkkb02fxgadkjiduuygd66-c3tkk7</div>

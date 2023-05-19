@@ -1,0 +1,3 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>v = Range[8]^2
+W = WaveletMatrix[{1/2, 1/2}, {8, 8}];
+MatrixForm[W]</pre><div class='IFU'><a name='182350197'></a>http://wolfram.com/xid/0kmsg876k74fv7tus4gahxj5adn8b2m3ovcixzmeb-dauolj</div>

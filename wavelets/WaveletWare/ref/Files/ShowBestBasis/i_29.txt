@@ -1,0 +1,4 @@
+<pre name='i_29_in' id='i_29_in' class='IFT'>ShowBestBasis[WaveletTree[3, InputDimension -&gt; 2], ColorOn -&gt; Blue, 
+ ColorOff -&gt; Orange, ImageSize -&gt; 300]
+ShowBestBasis[WaveletTree[3, InputDimension -&gt; 2], ColorOn -&gt; Blue, 
+ ColorOff -&gt; Orange, OpacityOff -&gt; .7, ImageSize -&gt; 300]</pre><div class='IFU'><a name='104738706'></a>http://wolfram.com/xid/0ju408za6tmbiu55ts1k9e6e-b0m66s</div>

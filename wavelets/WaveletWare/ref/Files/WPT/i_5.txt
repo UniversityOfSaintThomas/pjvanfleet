@@ -1,0 +1,9 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;road.png&quot;;
+A = ImageRead[file, Resize -&gt; {256, 384}];
+ImagePlot[A]
+iterations = 3;
+{wpt, tree} = 
+  WPT[A, SplineFilters[2, 2], NumIterations -&gt; iterations, 
+   CostFunction -&gt; NumberAboveThreshold, SecondParameter -&gt; 40];
+WaveletPlot[wpt, tree, NumIterations -&gt; iterations]
+ShowBestBasis[tree, Show3D -&gt; False]</pre><div class='IFU'><a name='1067595365'></a>http://wolfram.com/xid/0bsub5sf4gpwe26lzrftnf-rxwj43</div>

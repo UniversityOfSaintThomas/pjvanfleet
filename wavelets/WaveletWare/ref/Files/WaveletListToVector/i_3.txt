@@ -1,0 +1,5 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>v = Range[16];
+iterations = 3;
+wt = HWT[v, NumIterations -&gt; iterations]
+wtlist = WaveletVectorToList[wt, NumIterations -&gt; iterations]
+list = WaveletListToVector[wtlist]</pre><div class='IFU'><a name='642521904'></a>http://wolfram.com/xid/0bgs8pq6xf2jh4szo9r0zq56tpyho6-kwtrcy</div>

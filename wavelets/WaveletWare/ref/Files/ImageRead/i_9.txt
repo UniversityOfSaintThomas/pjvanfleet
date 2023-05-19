@@ -1,0 +1,2 @@
+<pre name='i_9_in' id='i_9_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;chess.png&quot;;
+ImageRead[file, DisplayInfo -&gt; True];</pre><div class='IFU'><a name='3352663'></a>http://wolfram.com/xid/0bsub5sf4gpwe26ly21g5m-b947t</div>

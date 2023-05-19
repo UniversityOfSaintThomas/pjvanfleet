@@ -1,0 +1,8 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;facade.png&quot;;
+{r, g, b} = ImageRead[file, Resize -&gt; 200];
+ImagePlot[{r, g, b}]
+{h, s, i} = RGBToHSI[{r, g, b}];
+Map[ImagePlot[#, Scaling -&gt; True, ImageSize -&gt; Dimensions[r]] &amp;, {h, 
+  s, i}]
+{r, g, b} = HSIToRGB[{h, s, i}];
+ImagePlot[{r, g, b}]</pre><div class='IFU'><a name='524266099'></a>http://wolfram.com/xid/04j60t5tk393i6ilswj6d4cvwq-iye4lh</div>

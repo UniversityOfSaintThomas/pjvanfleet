@@ -1,0 +1,6 @@
+<pre name='i_11_in' id='i_11_in' class='IFT'>file = PackageDirectory[DataType -&gt; Sounds] &lt;&gt; &quot;bark.wav&quot;;
+{v, rate} = AudioRead[file, PowersOfTwo -&gt; 3];
+wt = WT[v, Daub[4], NumIterations -&gt; 3];
+ListPlay[v, SampleRate -&gt; rate]
+WaveletVectorPlay[wt, NumIterations -&gt; 3, SampleRate -&gt; rate, 
+ Iteration -&gt; {{3, 2}, {2, 2}, {1, 2}}]</pre><div class='IFU'><a name='272105602'></a>http://wolfram.com/xid/0c9xiooyewsxl9wvvcdkih5p36vu-esaga8</div>

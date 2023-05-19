@@ -1,0 +1,439 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     16071,        431]
+NotebookOptionsPosition[     13763,        371]
+NotebookOutlinePosition[     14107,        386]
+CellTagsIndexPosition[     14064,        383]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Example 2.13 (Convolution Products)", "Section",
+ CellChangeTimes->{{3.6747400799154887`*^9, 3.6747400868855157`*^9}, {
+  3.6747401192115917`*^9, 3.674740124362601*^9}, {3.674823639171709*^9, 
+  3.674823640303733*^9}, {3.6748236819375725`*^9, 3.674823684099594*^9}, {
+  3.6748241486687813`*^9, 3.6748241538079395`*^9}, {3.674833786805024*^9, 
+  3.674833793820221*^9}, {3.67483496960868*^9, 3.674834977961851*^9}, {
+  3.6748372283814373`*^9, 3.6748372383986397`*^9}, {3.6748385806297417`*^9, 
+  3.6748385857348447`*^9}, {3.6748397883317714`*^9, 3.6748397983939004`*^9}, {
+  3.674840306273494*^9, 3.674840319442063*^9}, {3.6749053385239134`*^9, 
+  3.6749053446960697`*^9}, {3.6749076621445403`*^9, 3.6749076643771744`*^9}, {
+  3.6749079569710503`*^9, 3.674907957131055*^9}, {3.7269226479254045`*^9, 
+  3.726922653003366*^9}, {3.7269361169628177`*^9, 
+  3.7269361226257696`*^9}},ExpressionUUID->"61441dcd-c124-4728-9627-\
+fe95dfa30ee1"],
+
+Cell["Compute each of the following convolution products.", "Text",
+ CellChangeTimes->{{3.6747401116573763`*^9, 3.6747401462228427`*^9}, {
+  3.674823687935635*^9, 3.6748237135069*^9}, {3.674824162140191*^9, 
+  3.6748241660423098`*^9}, {3.6748338237688246`*^9, 3.6748338335560656`*^9}, {
+  3.6748350000142927`*^9, 3.674835001045314*^9}, {3.6748372456437855`*^9, 
+  3.6748372514349017`*^9}, {3.674838592312978*^9, 3.674838602418185*^9}, {
+  3.6748398031289864`*^9, 3.6748398101000853`*^9}, {3.6748403296173935`*^9, 
+  3.6748403482264524`*^9}, {3.6749053485382376`*^9, 3.674905362536563*^9}, {
+  3.6749079664623704`*^9, 3.674907977009245*^9}, {3.726922729870191*^9, 
+  3.726922752447209*^9}, {3.7269361549610567`*^9, 
+  3.7269361626249447`*^9}},ExpressionUUID->"ffd013fd-03fd-445a-a4d1-\
+95a0242f09b0"],
+
+Cell[CellGroupData[{
+
+Cell["Reference.", "Subsubsection",
+ CellChangeTimes->{{3.6747631102003517`*^9, 
+  3.6747631125733557`*^9}},ExpressionUUID->"ab3ce69c-85bd-4b8f-b7ee-\
+37b8a74faa09"],
+
+Cell["\<\
+The material for this lab is covered in Section 2.4 of the book \
+\[OpenCurlyDoubleQuote]Discrete Wavelet Transformations: An Elementary \
+Approach with Applications, 2nd Edition,\[CloseCurlyDoubleQuote] by Patrick J \
+Van Fleet.\
+\>", "Text",
+ CellChangeTimes->{{3.674763119565366*^9, 3.6747631649004583`*^9}, {
+   3.674763293323564*^9, 3.674763311554607*^9}, {3.6997856290190563`*^9, 
+   3.699785638548086*^9}, {3.72692103296169*^9, 3.726921034949597*^9}, 
+   3.7269211368903008`*^9, 
+   3.726936132434535*^9},ExpressionUUID->"071ecca0-6276-4002-bd63-\
+6766fbd307d9"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["WaveletWare Commands Used in This Notebook", "Subsubsection",
+ CellChangeTimes->{{3.6747417571916847`*^9, 3.674741765831501*^9}, {
+  3.6747418595935683`*^9, 
+  3.6747419193671017`*^9}},ExpressionUUID->"14166fb2-5df0-4cb7-bdc7-\
+ebdcac9fc8df"],
+
+Cell["None.", "Text",
+ CellChangeTimes->{{3.6747419216613054`*^9, 3.6747419222229066`*^9}, {
+  3.6748347219042873`*^9, 3.674834723145313*^9}, {3.674834988453061*^9, 
+  3.6748349907731075`*^9}},ExpressionUUID->"47384da6-eb94-4255-845d-\
+95e71d44a104"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Solution.", "Subsubsection",
+ CellChangeTimes->{{3.726922758319417*^9, 
+  3.726922759279294*^9}},ExpressionUUID->"8ad6ecb1-50bc-4b93-94b5-\
+f1f85e5a9787"],
+
+Cell[TextData[{
+ "We cannot compute convolution products of bi-infinite sequences in \
+Mathematica but the software can help us see patterns.  \n\nFor (a), we \
+define ",
+ StyleBox["X",
+  FontWeight->"Bold"],
+ " using the ",
+ StyleBox["Array",
+  FontWeight->"Bold"],
+ " command.  The variable ",
+ StyleBox["h",
+  FontWeight->"Bold"],
+ " holds the two non-zero values of the given vector.  The Mathematica \
+command ",
+ StyleBox["ListConvolve",
+  FontWeight->"Bold"],
+ " will convolve the two sequences.  Here ",
+ StyleBox["h",
+  FontWeight->"Bold"],
+ " is considered the kernel, as referenced in the ",
+ StyleBox["ListConvolve",
+  FontWeight->"Bold"],
+ " help."
+}], "Text",
+ CellChangeTimes->{{3.674840400458351*^9, 3.6748404059380217`*^9}, {
+   3.6749054324554214`*^9, 3.6749054496912513`*^9}, {3.674905527883494*^9, 
+   3.6749055499922853`*^9}, {3.6749079900016356`*^9, 
+   3.6749079954042974`*^9}, {3.674908165471346*^9, 3.6749081798661423`*^9}, {
+   3.7269227782396555`*^9, 3.726922800097044*^9}, {3.726923323749564*^9, 
+   3.726923362563874*^9}, 3.726936195760147*^9, {3.7269362727216578`*^9, 
+   3.7269363447709837`*^9}, {3.726937720310179*^9, 3.726937760090577*^9}, {
+   3.726937797973416*^9, 3.7269379309110136`*^9}, {3.72693796772092*^9, 
+   3.7269379806645517`*^9}, 3.7269410081692924`*^9, {3.7269411137721577`*^9, 
+   3.7269411291657104`*^9}},ExpressionUUID->"e09137de-5cdd-4e7a-9e3b-\
+5c6063c06239"],
+
+Cell[BoxData[{
+ RowBox[{"X", "=", 
+  RowBox[{"Array", "[", 
+   RowBox[{"x", ",", "21", ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"-", "10"}], ",", "10"}], "}"}]}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"h", "=", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", 
+     RowBox[{"-", "1"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"y", "=", 
+  RowBox[{"ListConvolve", "[", 
+   RowBox[{"h", ",", "X"}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.7269363649237432`*^9, 3.7269363747075686`*^9}, {
+   3.7269372796102285`*^9, 3.7269373820743093`*^9}, {3.7269374204065757`*^9, 
+   3.726937454524645*^9}, {3.726937502780343*^9, 3.726937507900731*^9}, 
+   3.726937794733694*^9, {3.726937997288976*^9, 3.726937997645487*^9}, {
+   3.7269394124938865`*^9, 3.7269394247132797`*^9}, {3.7269395392181044`*^9, 
+   3.726939543684559*^9}, {3.726940885368266*^9, 3.7269408922929783`*^9}, {
+   3.7269409720078144`*^9, 3.7269409944723797`*^9}, {3.726941708951932*^9, 
+   3.7269417091264043`*^9}},ExpressionUUID->"600e3cff-81f1-4720-b2a6-\
+a26984559612"],
+
+Cell["Here is the code for (b) and (c):", "Text",
+ CellChangeTimes->{{3.7269380104313335`*^9, 3.7269380177403765`*^9}, {
+  3.7269380644809723`*^9, 
+  3.7269380657268286`*^9}},ExpressionUUID->"48fd3f06-784d-48ec-9e6d-\
+8c1f5a100f81"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"h", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"1", "/", "2"}], ",", 
+     RowBox[{"1", "/", "2"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"y", "=", 
+   RowBox[{"Simplify", "[", 
+    RowBox[{"ListConvolve", "[", 
+     RowBox[{"h", ",", "X"}], "]"}], "]"}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"h", "=", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "1"}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"y", "=", 
+  RowBox[{"Simplify", "[", 
+   RowBox[{"ListConvolve", "[", 
+    RowBox[{"h", ",", "X"}], "]"}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"ListConvolve", "[", 
+  RowBox[{"h", ",", "y"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.674840420123604*^9, 3.6748404468341465`*^9}, {
+  3.67484270198967*^9, 3.6748427021416845`*^9}, {3.6749054680450697`*^9, 
+  3.6749055250305223`*^9}, {3.6749055579942055`*^9, 3.674905583673958*^9}, {
+  3.6749072589936466`*^9, 3.674907259133649*^9}, {3.674908003725048*^9, 
+  3.67490811950928*^9}, {3.674908185630776*^9, 3.674908226920637*^9}, {
+  3.6749088356014795`*^9, 3.6749088357314777`*^9}, {3.72692281059196*^9, 
+  3.726922857971713*^9}, {3.726923291600069*^9, 3.726923319125769*^9}, {
+  3.726923375368107*^9, 3.7269233925949664`*^9}, {3.7269357297006855`*^9, 
+  3.7269357353955812`*^9}, {3.726938024869955*^9, 3.7269381097270994`*^9}, {
+  3.726941014394084*^9, 3.7269410261848893`*^9}, {3.7269417064712257`*^9, 
+  3.7269417065985713`*^9}},ExpressionUUID->"4916c0df-b01d-464a-819b-\
+f74b87c77076"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Things To Try.", "Subsubsection",
+ CellChangeTimes->{{3.674741317287572*^9, 3.674741319527376*^9}, {
+  3.6747419524260297`*^9, 
+  3.674741953872259*^9}},ExpressionUUID->"3d914ddd-2173-4b18-a0fb-\
+8def8d05b15d"],
+
+Cell[TextData[{
+ "Create a kernel ",
+ StyleBox["h",
+  FontWeight->"Bold"],
+ " = (",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["h", "0"], TraditionalForm]],
+  FormatType->"TraditionalForm",ExpressionUUID->
+  "ca55612b-58d3-40c7-8673-85b19e301af7"],
+ ", ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["h", "1"], TraditionalForm]],
+  FormatType->"TraditionalForm",ExpressionUUID->
+  "793bf4bc-a449-4879-81b4-5100f6429d57"],
+ ", ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["h", "2"], TraditionalForm]],
+  FormatType->"TraditionalForm",ExpressionUUID->
+  "572d62d9-14af-4591-a7f1-0fc9bdb06fd2"],
+ ") where each ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["h", "i"], TraditionalForm]],
+  FormatType->"TraditionalForm",ExpressionUUID->
+  "34fa5be8-c0bf-43b9-88c4-4880728c1a45"],
+ " > 0 and ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["h", "0"], TraditionalForm]],
+  FormatType->"TraditionalForm",ExpressionUUID->
+  "1b000ca4-b344-493b-aba5-8f14451dd7bf"],
+ " + ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["h", "1"], TraditionalForm]],
+  FormatType->"TraditionalForm",ExpressionUUID->
+  "a7d27609-8eee-4924-87af-81578e12ad64"],
+ " + ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["h", "2"], TraditionalForm]],
+  FormatType->"TraditionalForm",ExpressionUUID->
+  "cf1fb474-bed9-4c25-a800-330f7dcb7997"],
+ " = 1.  Then create a vector ",
+ StyleBox["b",
+  FontWeight->"Bold"],
+ " of length 10 whose entries are one and convolve it with ",
+ StyleBox["h",
+  FontWeight->"Bold"],
+ ".  What\[CloseCurlyQuote]s the result?  Then convolve ",
+ StyleBox["h",
+  FontWeight->"Bold"],
+ " with ",
+ StyleBox["c",
+  FontWeight->"Bold"],
+ " below and describe the output."
+}], "Text",
+ CellChangeTimes->{{3.726938441821535*^9, 3.726938624203768*^9}, {
+  3.7269386563930902`*^9, 
+  3.726938726131462*^9}},ExpressionUUID->"c6050102-3b06-4a0d-be78-\
+54d4f24eccb5"],
+
+Cell[BoxData[
+ RowBox[{"c", "=", 
+  RowBox[{"RandomInteger", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"0", ",", "9"}], "}"}], ",", "10"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.7269386279072294`*^9, 3.7269386344742813`*^9}, {
+  3.7269417031271834`*^9, 
+  3.726941703606515*^9}},ExpressionUUID->"c0132ab6-7698-4d32-9573-\
+165e82385ca4"],
+
+Cell[TextData[{
+ "Problem 2.50 shows that basic multiplication can be viewed as convolution.\n\
+\nWe can use ListConvolve to do the computation but need to pad each list \
+with zeros to ensure adequate space for the extra digits incurred by \
+performing the multiplication.  The 1 in the third argument of ListConvolve \
+tells the function to align every element in ",
+ StyleBox["x",
+  FontWeight->"Bold"],
+ " with the first element of ",
+ StyleBox["h",
+  FontWeight->"Bold"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.7269388403859005`*^9, 3.726938858469433*^9}, {
+  3.72693929122217*^9, 3.7269393048876066`*^9}, {3.726941162030326*^9, 
+  3.7269412021607065`*^9}, {3.72694124537854*^9, 3.7269412726913943`*^9}, {
+  3.726941306341343*^9, 
+  3.7269413151732597`*^9}},ExpressionUUID->"af60f8e0-b985-4702-9c46-\
+5fbd017cb1ff"],
+
+Cell[BoxData[{
+ RowBox[{"1112", "*", "231"}], "\n", 
+ RowBox[{
+  RowBox[{"x", "=", 
+   RowBox[{"PadRight", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2", ",", "1", ",", "1", ",", "1"}], "}"}], ",", "8"}], "]"}]}],
+   ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"h", "=", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "3", ",", "2"}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"y", "=", 
+  RowBox[{"ListConvolve", "[", 
+   RowBox[{"h", ",", "x", ",", "1"}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.726938878642228*^9, 3.726938882372369*^9}, {
+   3.7269390118104477`*^9, 3.726939011873788*^9}, {3.726939328994029*^9, 
+   3.7269393320635953`*^9}, 3.7269410695959883`*^9, {3.726941330871667*^9, 
+   3.7269413920100355`*^9}, {3.7269414315629196`*^9, 
+   3.7269414430831013`*^9}},ExpressionUUID->"5a69e5d5-1ca0-4e6f-bcef-\
+eefeab19d2b9"],
+
+Cell[TextData[{
+ "You can use ",
+ StyleBox["Reverse",
+  FontWeight->"Bold"],
+ " and ",
+ StyleBox["FromDigits",
+  FontWeight->"Bold"],
+ " to make a number out of the elements in ",
+ StyleBox["y",
+  FontWeight->"Bold"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.726941446554514*^9, 
+  3.726941462603883*^9}},ExpressionUUID->"606a9243-b9a3-473f-a087-\
+7bb7517837d4"],
+
+Cell[BoxData[
+ RowBox[{"FromDigits", "[", 
+  RowBox[{"Reverse", "[", "y", "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.726938878642228*^9, 3.726938882372369*^9}, {
+   3.7269390118104477`*^9, 3.726939011873788*^9}, {3.726939328994029*^9, 
+   3.7269393320635953`*^9}, 3.7269410695959883`*^9, {3.726941330871667*^9, 
+   3.7269413920100355`*^9}, {3.7269414315629196`*^9, 
+   3.7269414430831013`*^9}},ExpressionUUID->"3a15c674-4e73-4c34-b2b0-\
+e2de3457f59b"],
+
+Cell[TextData[{
+ "Repeat this exercise but use 3527 instead of 1112.  Now elements have \
+values larger than 9 which means a carrying algorithm is necessary before \
+obtaining the product.  Does ",
+ StyleBox["FromDigits",
+  FontWeight->"Bold"],
+ " and ",
+ StyleBox["Reverse",
+  FontWeight->"Bold"],
+ " still work in this case?  Regardless, it is a challenging exercise to \
+write Mathematica code to perform the necessary carrying before converting \
+the list to a number."
+}], "Text",
+ CellChangeTimes->{{3.7269414979013214`*^9, 3.726941515230147*^9}, {
+  3.726941588288777*^9, 3.726941603153872*^9}, {3.7269416368029385`*^9, 
+  3.7269416872703104`*^9}},ExpressionUUID->"d2fe8cf1-d613-47eb-900a-\
+2b2d087fefd1"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{759, 678},
+WindowMargins->{{451, Automatic}, {Automatic, 52}},
+FrontEndVersion->"11.1 for Microsoft Windows (64-bit) (April 18, 2017)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 939, 13, 70, "Section", "ExpressionUUID" -> \
+"61441dcd-c124-4728-9627-fe95dfa30ee1"],
+Cell[1522, 37, 799, 11, 30, "Text", "ExpressionUUID" -> \
+"ffd013fd-03fd-445a-a4d1-95a0242f09b0"],
+Cell[CellGroupData[{
+Cell[2346, 52, 165, 3, 39, "Subsubsection", "ExpressionUUID" -> \
+"ab3ce69c-85bd-4b8f-b7ee-37b8a74faa09"],
+Cell[2514, 57, 579, 11, 49, "Text", "ExpressionUUID" -> \
+"071ecca0-6276-4002-bd63-6766fbd307d9"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3130, 73, 248, 4, 39, "Subsubsection", "ExpressionUUID" -> \
+"14166fb2-5df0-4cb7-bdc7-ebdcac9fc8df"],
+Cell[3381, 79, 250, 4, 30, "Text", "ExpressionUUID" -> \
+"47384da6-eb94-4255-845d-95e71d44a104"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3668, 88, 160, 3, 39, "Subsubsection", "ExpressionUUID" -> \
+"8ad6ecb1-50bc-4b93-94b5-f1f85e5a9787"],
+Cell[3831, 93, 1411, 34, 125, "Text", "ExpressionUUID" -> \
+"e09137de-5cdd-4e7a-9e3b-5c6063c06239"],
+Cell[5245, 129, 1059, 24, 69, "Input", "ExpressionUUID" -> \
+"600e3cff-81f1-4720-b2a6-a26984559612"],
+Cell[6307, 155, 232, 4, 30, "Text", "ExpressionUUID" -> \
+"48fd3f06-784d-48ec-9e6d-8c1f5a100f81"],
+Cell[6542, 161, 1542, 34, 126, "Input", "ExpressionUUID" -> \
+"4916c0df-b01d-464a-819b-f74b87c77076"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8121, 200, 216, 4, 39, "Subsubsection", "ExpressionUUID" -> \
+"3d914ddd-2173-4b18-a0fb-8def8d05b15d"],
+Cell[8340, 206, 1834, 63, 68, "Text", "ExpressionUUID" -> \
+"c6050102-3b06-4a0d-be78-54d4f24eccb5"],
+Cell[10177, 271, 346, 9, 30, "Input", "ExpressionUUID" -> \
+"c0132ab6-7698-4d32-9573-165e82385ca4"],
+Cell[10526, 282, 820, 18, 106, "Text", "ExpressionUUID" -> \
+"af60f8e0-b985-4702-9c46-5fbd017cb1ff"],
+Cell[11349, 302, 851, 21, 88, "Input", "ExpressionUUID" -> \
+"5a69e5d5-1ca0-4e6f-bcef-eefeab19d2b9"],
+Cell[12203, 325, 360, 14, 30, "Text", "ExpressionUUID" -> \
+"606a9243-b9a3-473f-a087-7bb7517837d4"],
+Cell[12566, 341, 454, 8, 30, "Input", "ExpressionUUID" -> \
+"3a15c674-4e73-4c34-b2b0-e2de3457f59b"],
+Cell[13023, 351, 712, 16, 87, "Text", "ExpressionUUID" -> \
+"d2fe8cf1-d613-47eb-900a-2b2d087fefd1"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

@@ -1,0 +1,5 @@
+<pre name='i_57_in' id='i_57_in' class='IFT'>v = Range[10];
+A = ConstantArray[0, {10, 10}];
+B = ConstantArray[A, 3];
+c = &quot;Hello&quot;;
+Map[CheckData, {v, A, B, c}]</pre><div class='IFU'><a name='472364711'></a>http://wolfram.com/xid/0533vsu7qbb0ajiwwqawq9kz22kl8rc4uv1a9crxfvnihty6rtcsrbm-h3io79</div>

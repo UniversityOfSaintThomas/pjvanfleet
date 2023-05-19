@@ -1,0 +1,11 @@
+<pre name='i_15_in' id='i_15_in' class='IFT'>v = Range[256];
+iterations = 3;
+wt = WT[v, Daub[4], NumIterations -&gt; iterations];
+data = WaveletRegionTake[wt, {{iterations, 1}}, 
+   NumIterations -&gt; iterations];
+ListPlot[First[data]]
+iterations = 2;
+wt = WT[v, Daub[4], NumIterations -&gt; iterations];
+data = WaveletRegionTake[wt, {{iterations, 1}}, 
+   NumIterations -&gt; iterations];
+ListPlot[First[data]]</pre><div class='IFU'><a name='707443318'></a>http://wolfram.com/xid/0x7f5hjnbafgx7a2yq0j307p0f5c-lzg81k</div>

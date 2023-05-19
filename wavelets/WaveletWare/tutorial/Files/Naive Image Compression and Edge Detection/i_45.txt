@@ -1,0 +1,2 @@
+<pre name='i_45_in' id='i_45_in' class='IFT'>edges = InverseHWT[newwt, NumIterations -&gt; 2];
+ImagePlot[edges, Scaling -&gt; True]</pre><div class='IFU'><a name='774316479'></a>http://wolfram.com/xid/0ck2bt1tgpszi5qmumv90y9mftkdg9nq1q0ukjlzbu-m3akpd</div>

@@ -1,0 +1,4 @@
+<pre name='i_13_in' id='i_13_in' class='IFT'>filter = SplineFilters[2, 2]
+v = Range[20];
+BWT[v, filter]
+Simplify[BWT[v, filter, Computation -&gt; Symbolic]]</pre><div class='IFU'><a name='3317315'></a>http://wolfram.com/xid/0nxaq5tqtv6thic7lxhiz-b9dxx</div>

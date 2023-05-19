@@ -1,0 +1,8 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;cups.png&quot;;
+A = ImageRead[file, Resize -&gt; {120, 180}];
+ImagePlot[A]
+leftwt = LeftLWT[A];
+plots = WaveletPlot[leftwt, PlotType -&gt; Left, 
+   ChannelColor -&gt; {Red, Green, Blue}];
+Map[Show, plots]
+WaveletPlot[leftwt, PlotType -&gt; Left, PlotTogether -&gt; True]</pre><div class='IFU'><a name='15603273'></a>http://wolfram.com/xid/0gcihsaxmz0qthvk2tp8vv-jkpuj</div>

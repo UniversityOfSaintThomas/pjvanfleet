@@ -1,0 +1,7 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>v = RandomInteger[{0, 10}, 10]
+wt = Map[LWT[v, IntegerMap -&gt; #] &amp;, {False, True}];
+TableForm[wt]
+iwt = MapThread[
+   InverseLWT[#1, IntegerMap -&gt; #2] &amp;, {wt, {False, True}}] // 
+  TableForm
+</pre><div class='IFU'><a name='23374635'></a>http://wolfram.com/xid/0dbed1alym5ijv2xnsu9hk-n699p</div>

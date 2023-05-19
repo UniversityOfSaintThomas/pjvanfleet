@@ -1,0 +1,3 @@
+<pre name='i_11_in' id='i_11_in' class='IFT'>n = 8;
+h = {1/2, 1/2};
+WaveletMatrix[h, {n, n}] // MatrixForm</pre><div class='IFU'><a name='747302974'></a>http://wolfram.com/xid/0533vsu7qbb0ajiwwqawq9kz22kl8rc4uv1a9crxfvnihty6rtcsrbm-mm7kx8</div>

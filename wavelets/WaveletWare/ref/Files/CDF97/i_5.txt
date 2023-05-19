@@ -1,0 +1,8 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>&lt;&lt; WaveletWare`
+{n, dx} = {10, .1};
+v = Sin[2 Pi Range[0, n - dx, dx]/n];
+ListPlot[v, Ticks -&gt; {Range[0, n/dx, n/dx/4], Range[-1, 1]}, 
+ PlotLabel -&gt; &quot;Data&quot;]
+wt = BWT[v, CDF97[]];
+ListPlot[wt, Ticks -&gt; {Range[0, n/dx, n/dx/4], Range[-1, 1]}, 
+ PlotLabel -&gt; &quot;Wavelet Transform&quot;]</pre><div class='IFU'><a name='109312896'></a>http://wolfram.com/xid/0cy9xmaknxp1mtnq1rkmxk9-b3c8nm</div>

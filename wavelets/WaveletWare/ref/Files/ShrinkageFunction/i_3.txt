@@ -1,0 +1,2 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>Map[Plot[ShrinkageFunction[t, #], {t, -# - 2, # + 2}] &amp;, {1, 2, 
+   4}] // GraphicsColumn</pre><div class='IFU'><a name='68713862'></a>http://wolfram.com/xid/04j60t5tk393i6ik25ab3xrseq-be618o</div>

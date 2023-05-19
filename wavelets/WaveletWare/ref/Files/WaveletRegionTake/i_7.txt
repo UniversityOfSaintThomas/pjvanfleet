@@ -1,0 +1,11 @@
+<pre name='i_7_in' id='i_7_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;benches.png&quot;;
+A = ImageRead[file, Resize -&gt; {256, 384}];
+ImagePlot[A]
+iterations = 2;
+wt = WT[A, Coif[1], NumIterations -&gt; iterations];
+ShowBestBasis[WaveletTree[iterations, InputDimension -&gt; 2], 
+ Show3D -&gt; False]
+data = WaveletRegionTake[
+   wt, {{1, 1, 2}, {1, 2, 1}, {1, 2, 2}, {2, 1, 2}, {2, 2, 1}, {2, 2, 
+     2}}, NumIterations -&gt; iterations];
+Map[ImagePlot[#, Scaling -&gt; True] &amp;, data]</pre><div class='IFU'><a name='31475669'></a>http://wolfram.com/xid/0x7f5hjnbafgx7a2yq0j307p0f5c-s0w2f</div>

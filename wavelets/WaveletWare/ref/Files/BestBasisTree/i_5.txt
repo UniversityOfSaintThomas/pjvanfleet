@@ -1,0 +1,10 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;train.png&quot;;
+A = ImageRead[file];
+iterations = 3;
+wptfull = WPTFull[A, SplineFilters[2, 2], NumIterations -&gt; iterations];
+GraphicsGrid[
+ Partition[FullWaveletPlot[wptfull, PacketPlot -&gt; True] , 2], 
+ ImageSize -&gt; 400]
+tree = BestBasisTree[wptfull, CostFunction -&gt; NumberAboveThreshold, 
+  SecondParameter -&gt; 40]
+ShowBestBasis[tree, Show3D -&gt; False, ImageSize -&gt; 200]</pre><div class='IFU'><a name='20355768'></a>http://wolfram.com/xid/0ejjx9peoqvmt3kgd6isjkq8s-mekwa</div>

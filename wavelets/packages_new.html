@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Wavelets @University of St. Thomas</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta http-equiv="Content-Language" content="en-us" />
+<meta name="MSSmartTagsPreventParsing" content="true" />
+<meta name="robots" content="all" />
+<meta name="author" content="Patrick Van Fleet" />
+<meta name="copyright" content="Copyright (c) Respective Authors" />
+<meta name="description" content="University of St. Thomas Center for Applied Mathematics: research projects, " />
+<meta name="keywords" content="Patrick Van Fleet, University of St. Thomas, discrete wavelet transform, wavelets, St. Thomas wavelets, wavelets book" />
+<meta name="Rating" content="General" />
+<meta name="revisit-after" content="14 Days" />
+<meta name="doc-class" content="Living Document" />
+
+<base href="http://personal.stthomas.edu/pjvanfleet/wavelets/" />
+
+<link rel="stylesheet" href="wavelets.css" type="text/css" />
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+<script src="csi.min.js"></script>
+
+</head>
+<body>
+<div id="header">
+<div id="header-content">
+</div></div>
+
+<div id="content-wrap">
+	<div id="content">
+    		<div id="main"> 
+			<h2>The WaveleWare Software Package</h2>
+			<p>
+			<img src="../images/fingerprintwt.gif" class="float-right"></img><i>WaveletWare</i> is a collection (package/toolbox) of functions written to supplement the books <a href="book2info.html">Wavelet Theory: An Elementary Approach with Applications</a> by 
+			<a href="https://mcs.msudenver.edu/_u_/ruchwebsitehome">David K. Ruch</a> and 
+			<a href="http://personal.stthomas.edu/pjvanfleet/"> Patrick J. Van Fleet</a> and <a href="book3info.html">Discrete Wavelet 				Transformations: An Elementary Approach with Applications, 2nd Edition</a> by <a href="http://personal.stthomas.edu/pjvanfleet/"> 			Patrick J. Van Fleet</a> both by <a href="http://www.wiley.com/WileyCDA/WileyTitle/productCd-047018311X.html"> John J Wiley & 				Sons</a>, &copy;2008, by <a href="http://personal.stthomas.edu/pjvanfleet/">Patrick J. Van Fleet</a>. The WaveletWare 					package/toolbox is a 	replacement and an upgrade of the <i>DiscreteWavelets</i> package/toolbox that accompanied the first edition of 			<a href="book1info.html">Discrete Wavelet Transformations: An Elementary Approach with Applications</a>.
+			</p>
+			<p>
+			The package is available in Mathematica (version 10.0 or later) and the toolbox is available in MATLAB (R2018a or later).  
+			</p>
+			<h3>Features</h3>
+			The package/toolbox contains 127 (Mathematica) or 129 (MATLAB) fully-documented functions that implement virtually all topics 				and applications covered in the companion textbooks.  The major features are listed below:  
+			<ul>
+				<li><strong>Filters:</strong> Built-in filters include the Haar filter, Daubechies family of orthogonal filters, Coiflet 					filters, biorthogonal spline filter pairs, the LeGall filter and the CDF97 biorthogonal filter pair.
+				<li><strong>Transformations:</strong>  The package contains routines to perform one- and two-dimensional orthogonal, 						biorthogonal (can exploit the symmetry of the filter pairs), wavelet 	packets, LeGall and one-sided transformations.  
+				<li><strong>Visualization:</strong>  One- and two-dimensional plots of (biorthogona) wavelet transforms and wavelet packet 				transforms of signals and images.  The routines are tailored to match the theory and applications in the accompanying books.
+				<li><strong>Applications:</strong>  The package contains routines that can be used to perform naive image compression, the FBI 				Wavelet Scalar Quantization specification, JPEG2000, edge detection, image pansharpening, signal de-noising.
+				<li><strong>Image Processing:</strong> The package contains routines for color space conversions (RGB, YCbCr, HSI) and basic 				image processing routines such as gamma correction, histogram equalization, histogram matching and image resizing.
+				<li><strong>Continuous Analysis:</strong>  For those familiar with the material in <i>Wavelet Theory: An Elementary Approach 				with Applications</i>, the package contains routines for constructing (via the cascade algorithm) and plotting scaling 					functions, wavelet functions and wavelet packet functions.
+				<li><strong>Tutorials:</strong>  Tutorials are available on topics such as computing and plotting wavelet (packet) 						transformations, different data structures in the package, managing multimedia	files, naive image compression and edge 					detection and the FBI WSQ specification.
+			</ul>
+			The collection contains modules for deriving orthogonal and biorthogonal wavelet filters and using them to compute one- and two-			dimensional(biorthogonal) discrete wavelet transformations.  Modules are also included so that the user can visualize digital images 			and their transformations as well as hear digital audio files and their transformations.  Other modules allow the user to 					perform naive image compression or de-noise signals or audio clips.  These routines include cumulative energy, entropy, PSNR, DCTs, 			gamma correction, histogram equalization, universal shrinkage tolerance, SureShrink tolerance, wavelet shrinkage, and SureShrink 
+			de-noising.  There are also modules that allow the user to investigate Fourier series and perform color space conversions.
+			</p>
+			<p>
+			Download and installation instructions appear below:
+			</p>
+			<h4>Mathematica (v10.0 or higher)</h4>
+			<ol>
+				<li>Click <a href="zipfiles/WaveletWare1.0.1.zip">here</a> to download WaveletWare for Mathematica.</li>
+				<li>Open Mathematica and execute the command: <strong>$Path</strong>.</li>
+				<li>Unzip the zip file from the first step into any of the folders from the second step for which you have read/write 					privileges.</li>
+				<li>In Mathematica execute the command <b>&lt;&lt;WaveletWare`</b> (take care to get the grave accent, not the apostrophe when 				typing this command)</li>
+				<li>If you see no error messages after issuing the above command, chances are the installation was successful.  To double-					check, execute the command <b>?Haar</b>.  If the installation worked, you should see a message that says 
+					<center><i>Haar[] returns the Haar lowpass filter &gt;&gt;</i>.</center></li> 
+			</ol>
+			<h4>MATLAB (R2018a or later)</h4>
+			<ol>
+				<li> Click <a href="zipfiles/WaveletWareMATLAB1.0.zip">here</a> to download WaveletWare for MATLAB.</li>
+				<li> Extract the file <i>WaveletWare.mltbx</i> from the zip file and launch it.  MATLAB will open and the toolbox will self-				extract.
+				<li> The path should be automatically set by the installer.  If this not the case, make sure the WaveletWare folder and subfolders are in your MATLAB path.
+				<li> Help files, guides and tutorials for <i>WaveletWare</i> are fully integrated into MATLAB documentation.  The quickest 				way to access these files is to type <i>WaveletWare</i> in the documentation search box.</li>
+			</ol>
+			<h4>Installation Notes</h4>
+			<ol>
+				<li>It is not a good idea to install <i>WaveletWare</i> more than once on your computer.  The new version allows for easy 					addition of multimedia files and if you have two or more installations and only add multimedia files to one of them, there is a 				chance <i>WaveletWare</i> won't find them.
+				</li>
+				<li>Help files, guides and tutorials for <i>WaveletWare</i> are fully integrated into Mathematica/MATLAB documentation.  The 				quickest way to access these files is to click type <i>WaveletWare</i> or a particular function in the documentation search 				box.</li>
+			</ol>
+		</div>
+	
+	<div data-include="sidebar.html"></div>
+
+
+</div>
+
+<div id="footer">
+	<div id="footer-content">
+		<p>&copy; Copyright <script type="text/javascript">document.write(new Date().getFullYear())</script><strong> Patrick Van Fleet</strong><br/>
+				
+		<script type="text/javascript">
+		<!--
+		var m = "Page last updated: " + document.lastModified;
+		var p = m.length-9;
+		document.write(m.substring(p, 0)+".");
+		 -->
+		</script>
+		</p>
+	</div>
+</div>
+
+</body>
+</html>

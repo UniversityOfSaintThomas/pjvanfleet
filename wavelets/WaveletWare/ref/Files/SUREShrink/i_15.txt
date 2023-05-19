@@ -1,0 +1,12 @@
+<pre name='i_15_in' id='i_15_in' class='IFT'>g[t_] := Round[50*(4 Sin[4 Pi*t] - Sign[t - .3] - Sign[.72 - t])];
+{sigma, n} = {6, 1024};
+original = g[Range[0, 1 - 1/n, 1/n]];
+ListPlot[original, Ticks -&gt; {Range[0, n, n/4], Range[-4, 4, 2]}, 
+ PlotLabel -&gt; &quot;Original Signal&quot;]
+y = original + WhiteNoise[n, sigma];
+ListPlot[y, Ticks -&gt; {Range[0, n, n/4], Range[-4, 4, 2]}, 
+ PlotLabel -&gt; &quot;Noisy Signal&quot;]
+newy = SUREShrink[y, SplineFilters[2, 2], NumIterations -&gt; 3, 
+   Boundary -&gt; True];
+ListPlot[newy, Ticks -&gt; {Range[0, n, n/4], Range[-4, 4, 2]}, 
+ PlotLabel -&gt; &quot;Denoised Signal&quot;]</pre><div class='IFU'><a name='522024938'></a>http://wolfram.com/xid/0br3whhmcljlx93k1jq5aob808me-iw23a0</div>

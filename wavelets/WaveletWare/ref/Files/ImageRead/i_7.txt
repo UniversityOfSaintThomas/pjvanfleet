@@ -1,0 +1,4 @@
+<pre name='i_7_in' id='i_7_in' class='IFT'>A = ImageRead[
+   &quot;http://personal.stthomas.edu/pjvanfleet/images/escher.pgm&quot;];
+Dimensions[A]
+ImagePlot[A]</pre><div class='IFU'><a name='125328041'></a>http://wolfram.com/xid/0bsub5sf4gpwe26ly21g5m-ccwh0r</div>

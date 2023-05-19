@@ -1,0 +1,2 @@
+<pre name='i_57_in' id='i_57_in' class='IFT'>W = WaveletMatrix[SplineFilters[2, 2], {8, 8}];
+MatrixForm[W]</pre><div class='IFU'><a name='204652320'></a>http://wolfram.com/xid/0kmsg876k74fv7tus4gahxj5adn8b2m3ovcixzmeb-dn4o0y</div>

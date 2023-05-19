@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Naive Image Compression and Edge Detection&mdash;Wolfram Language Documentation</title>
+<meta name="buildnumber" content="0000000" />
+<meta name="historydata" content="{0.0, , , }" />
+<meta name="keywords" content="Naive Image Compression and Edge Detection" />
+
+<meta name="description" content="Routines in the WaveletWare package can be used as an introduction to image processing applications such as image compression and edge detection. While the methods presented below are more pedagogical than practical, they do give a good sense of how wavelet transformations can be used in image processing applications. This loads the package: (top)" />
+<script language="JavaScript" type="text/javascript">baselang='Naive Image Compression and Edge Detection';</script>
+<script language="JavaScript" type="text/javascript">packagename='WaveletWare';</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		 <link rel="stylesheet" type="text/css" href="../css/reference.css" />
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/core/1.6.1/jquery.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/plugins/hoverIntent/r5/jquery.hoverIntent.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/reference.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/documentation-search.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/inputs.js"></script>
+		 <script language="javaScript" type="text/javascript" src="../javascript/faster-page-load.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/plugins/jcarousel/tinycarousel/tinycarousel.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery.dotdotdot-1.5.1.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/carousel.js"></script>
+</head>
+<body id="tutorial">
+<a name="top"></a>
+<!--#include virtual="/common/includes/gl-header.html"--> 
+<div class="main-wrapper">
+
+
+<div class="wrapper mainOuter">
+    <div class="mainContent">
+ <div class="topContentWrap">
+  <div class="ribbonWrap">
+   <span class="ribbonOuter"><span class="ribbonInner">WAVELET WARE TUTORIAL</span></span>
+  </div>
+  
+  <div class="clear"><!-- --></div>
+ </div>
+ <h1 class="Title"><a name="509267359"></a>Naive Image Compression and Edge Detection</h1>
+ <div class="TutorialJumpBox">
+  <table class="nogridboxdividers">
+   <col />
+   <col />
+   <tr class="lineAbove" style=""><td><a href="../tutorial/Naive Image Compression and Edge Detection.html#824751051">Compression of a GrayScale Image</a></td><td><a href="../tutorial/Naive Image Compression and Edge Detection.html#346351407">Naive Edge Detection</a></td></tr>
+   <tr class="" style=""><td><a href="../tutorial/Naive Image Compression and Edge Detection.html#117918254">Compression of a Color Image</a></td><td></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="141179702"></a>Routines in the <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> package can be used as an introduction to image processing applications such as image compression and edge detection.  While the methods presented below are more pedagogical than practical, they do give a good sense of how wavelet transformations can be used in image processing applications.</p>
+ <div class="MCap"><a name="16454449"></a>This loads the package:</div>
+ <table class="InCell">
+  <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+     <a name="861618089"></a>
+     <img src="Files/Naive Image Compression and Edge Detection/I_2.gif"
+         height="15"
+         width="93"
+         alt="Click for copyable input" />
+    </div><div id="i_1_out" class="IFL"></div></td></tr>
+ </table>
+ <h2 class="Section"><a name="824751051"></a>Compression of a GrayScale Image</h2>
+ <p class="Text">
+  <a name="425099969"></a>
+  <a href="#top">(top)</a>
+ </p>
+ <p class="Text"><a name="6434950"></a>A basic algorithm for performing image compression on a grayscale image is as follows:<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;1) Import and center the image<br />&nbsp;&nbsp;&nbsp;&nbsp;2) Apply <span class="IF"><span class="TI">k</span></span> iterations of the discrete wavelet transform to the image<br />&nbsp;&nbsp;&nbsp;&nbsp;3) Quantize the iterated transform<br />&nbsp;&nbsp;&nbsp;&nbsp;4) Encode the quantized version of the transform<br /><br />To recover the image from its compressed form:<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;1) Unencode the quantized version of the transform<br />&nbsp;&nbsp;&nbsp;&nbsp;2) Apply <span class="IF"><span class="TI">k</span></span> iterations of the inverse discrete wavelet transform<br />&nbsp;&nbsp;&nbsp;&nbsp;3) Undo the centering operation from step 1) above<br /><br />Since the transform data have been quantized, we have performed lossy compression and thus will not recover the original image.  </p>
+ <p class="Text"><a name="172932308"></a>Here is implementation of the algorithm described above on a test image.<br /><br />A test image is imported and plotted.  </p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+      <a name="305733401"></a>
+      <img src="Files/Naive Image Compression and Edge Detection/I_4.gif"
+          height="101"
+          width="383"
+          alt="Click for copyable input" />
+     </div><div id="i_3_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[3]=</td><td class="Output"><img src="Files/Naive Image Compression and Edge Detection/O_1.gif" height="256" width="384" alt="" /></td></tr>
+  </table>
+  <div class="Print">
+   <a name="332589064"></a>
+   <img class="FlushInput"
+       src="Files/Naive Image Compression and Edge Detection/Image_1.gif"
+       alt=" " />
+  </div>
+  <div class="Print">
+   <a name="183531136"></a>
+   <img class="FlushInput"
+       src="Files/Naive Image Compression and Edge Detection/Image_2.gif"
+       alt=" " />
+  </div>
+ </div>
+ <p class="Text"><a name="393068698"></a>The matrix that represents the images are integers in the range 0,...,255.  To center the image, we simply subtract 128 from each matrix element.</p>
+ <table class="InCell">
+  <tr><td class="lab">In[7]:=</td><td class="Input"><div>
+     <a name="134271342"></a>
+     <img src="Files/Naive Image Compression and Edge Detection/I_6.gif"
+         height="15"
+         width="112"
+         alt="Click for copyable input" />
+    </div><div id="i_5_out" class="IFL"></div></td></tr>
+ </table>
+ <p class="Text"><a name="204915773"></a>We will use the Haar wavelet transformation for our computations.  We will use the near-orthogonal filter <span class="IF"><img src="Files/Naive Image Compression and Edge Detection/3.png" height="26" width="14" alt="" /></span>, <span class="IF"><img src="Files/Naive Image Compression and Edge Detection/4.png" height="26" width="9" alt="" /></span>) for our computations.  We compute 3 iterations of the Haar wavelet transform.  The function <span class="IF"><a href="../ref/WaveletPlot.html">WaveletPlot</a></span> automatically scales the input (effectively undoing the centering step) but it is for visualization only.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[8]:=</td><td class="Input"><div>
+      <a name="273896294"></a>
+      <img src="Files/Naive Image Compression and Edge Detection/I_8.gif"
+          height="33"
+          width="230"
+          alt="Click for copyable input" />
+     </div><div id="i_7_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[9]=</td><td class="Output"><img src="Files/Naive Image Compression and Edge Detection/O_2.gif" height="256" width="384" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="71851278"></a>To perform quantization, we compute the cumulative vector for the transformation.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[10]:=</td><td class="Input"><div>
+      <a name="123872962"></a>
+      <img src="Files/Naive Image Compression and Edge Detection/I_10.gif"
+          height="33"
+          width="294"
+          alt="Click for copyable input" />
+     </div><div id="i_9_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[11]=</td><td class="Output"><img src="Files/Naive Image Compression and Edge Detection/O_3.gif" height="145" width="240" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="88696541"></a>Looking at the cumulative energy graph, we choose (rather arbitrarily) to keep the largest values in the transform (in absolute value) that represent 99% of the energy.  The function <span class="IF"><a href="../ref/PercentCE.html">PercentCE</a></span> gives us the number of terms that satisfy this energy level and then <span class="IF"><a href="../ref/QuantizeCE.html">QuantizeCE</a></span> can be used to convert the other values in the wavelet transform to 0.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[12]:=</td><td class="Input"><div>
+      <a name="8376111"></a>
+      <img src="Files/Naive Image Compression and Edge Detection/I_12.gif"
+          height="101"
+          width="474"
+          alt="Click for copyable input" />
+     </div><div id="i_11_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[14]=</td><td class="Output"><img src="Files/Naive Image Compression and Edge Detection/O_4.gif" height="256" width="384" alt="" /></td></tr>
+  </table>
+  <div class="Print">
+   <a name="13809485"></a>
+   <img class="FlushInput"
+       src="Files/Naive Image Compression and Edge Detection/Image_5.gif"
+       alt=" " />
+  </div>
+  <div class="Print">
+   <a name="106926114"></a>
+   <img class="FlushInput"
+       src="Files/Naive Image Compression and Edge Detection/Image_6.gif"
+       alt=" " />
+  </div>
+ </div>
+ <p class="Text"><a name="339177443"></a>To encode the quantized wavelet transform use <span class="IF"><a href="../ref/MakeHuffmanCodes.html">MakeHuffmanCodes</a></span>.  This routine will create a new variable bit-length dictionary for the elements in the quantized transform.  <span class="IF"><a href="../ref/MakeHuffmanCodes.html">MakeHuffmanCodes</a></span> expects nonnegative integers as input so we will need to subtract the minimum value in the quantized transform from each element of the transform.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[17]:=</td><td class="Input"><div>
+      <a name="692714032"></a>
+      <img src="Files/Naive Image Compression and Edge Detection/I_14.gif"
+          height="101"
+          width="442"
+          alt="Click for copyable input" />
+     </div><div id="i_13_out" class="IFL"></div></td></tr>
+  </table>
+  <div class="Print">
+   <a name="239403917"></a>
+   <img class="FlushInput"
+       src="Files/Naive Image Compression and Edge Detection/Image_7.gif"
+       alt=" " />
+  </div>
+  <div class="Print">
+   <a name="293461731"></a>
+   <img class="FlushInput"
+       src="Files/Naive Image Compression and Edge Detection/Image_8.gif"
+       alt=" " />
+  </div>
+  <div class="Print">
+   <a name="464457740"></a>
+   <img class="FlushInput"
+       src="Files/Naive Image Compression and Edge Detection/Image_9.gif"
+       alt=" " />
+  </div>
+ </div>
+ <p class="Text"><a name="217503162"></a>To check the goodness of our compressed image versus the original, we reverse the compression process (except for the quantization step which is irreversible) and then compute the peak signal-to-noise ratio between the original and compressed images.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[22]:=</td><td class="Input"><div>
+      <a name="1021047218"></a>
+      <img src="Files/Naive Image Compression and Edge Detection/I_16.gif"
+          height="33"
+          width="458"
+          alt="Click for copyable input" />
+     </div><div id="i_15_out" class="IFL"></div></td></tr>
+  </table>
+  <div class="Print">
+   <a name="60709085"></a>
+   <img class="FlushInput"
+       src="Files/Naive Image Compression and Edge Detection/Image_10.gif"
+       alt=" " />
+  </div>
+ </div>
+ <p class="Text"><a name="53957670"></a>The code belows allows the user to visually compare the compressed image to the original.  Click on the images to scroll through them.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[24]:=</td><td class="Input"><div>
+      <a name="37061210"></a>
+      <img src="Files/Naive Image Compression and Edge Detection/I_18.gif"
+          height="67"
+          width="523"
+          alt="Click for copyable input" />
+     </div><div id="i_17_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[25]=</td><td class="Output"><img src="Files/Naive Image Compression and Edge Detection/O_5.gif" height="274" width="384" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="399767457"></a>The above code can certainly be modified by changing the number of iterations, the percent of energy retained and the wavelet transform used (remember to round the quantized transform in order to compute Huffman codes).</p>
+ <h2 class="Section"><a name="117918254"></a>Compression of a Color Image</h2>
+ <p class="Text">
+  <a name="136955900"></a>
+  <a href="#top">(top)</a>
+ </p>
+ <p class="Text"><a name="512281684"></a>The process for compressing color images is similar to that of grayscale images with one difference.   Quantization is more effective if it is performed on the wavelet transform of the color image using a space other than the red, green, and blue channels.  <br /><br />In this example, a color image is converted to YCbCr space and then the algorithm above is performed on each of the three channels.<br /><br />We begin by importing an image and converting it to YCbCr space.  We use the <span class="IF"><a href="../ref/DisplayMode.html">DisplayMode</a></span> option set to <a href="http://reference.wolfram.com/language/ref/True.html">True</a> in <span class="IF"><a href="../ref/RGBToYCbCr.html">RGBToYCbCr</a></span> to ensure that the values are integers.  We know that values in Y are in the interval [16,235] and the values in Cb, Cr are in the range [16,240].  So we still center by subtracting 128 from each matrix. </p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[26]:=</td><td class="Input"><div>
+      <a name="653859768"></a>
+      <img src="Files/Naive Image Compression and Edge Detection/I_20.gif"
+          height="118"
+          width="342"
+          alt="Click for copyable input" />
+     </div><div id="i_19_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[28]=</td><td class="Output"><img src="Files/Naive Image Compression and Edge Detection/O_6.gif" height="256" width="384" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[31]=</td><td class="Output"><img src="Files/Naive Image Compression and Edge Detection/O_7.gif" height="104" width="493" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="519434409"></a>Next the Haar wavelet transform of each channel is computed.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[32]:=</td><td class="Input"><div>
+      <a name="582959326"></a>
+      <img src="Files/Naive Image Compression and Edge Detection/I_22.gif"
+          height="33"
+          width="258"
+          alt="Click for copyable input" />
+     </div><div id="i_21_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[33]=</td><td class="Output"><img src="Files/Naive Image Compression and Edge Detection/O_8.gif" height="104" width="493" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="389226922"></a>The cumulative energy for each channel is computed and plotted.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[34]:=</td><td class="Input"><div>
+      <a name="130790876"></a>
+      <img src="Files/Naive Image Compression and Edge Detection/I_24.gif"
+          height="50"
+          width="521"
+          alt="Click for copyable input" />
+     </div><div id="i_23_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[35]=</td><td class="Output"><img src="Files/Naive Image Compression and Edge Detection/O_9.gif" height="89" width="396" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="73989191"></a>Since the Y channel contributes more significantly than the other two, we will retain 99.5% of the energy of that channel and 95% of the energy in the other two.  We quantize the transform as well in the step below.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[36]:=</td><td class="Input"><div>
+      <a name="511350294"></a>
+      <img src="Files/Naive Image Compression and Edge Detection/I_26.gif"
+          height="101"
+          width="501"
+          alt="Click for copyable input" />
+     </div><div id="i_25_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[36]=</td><td class="Output"><img src="Files/Naive Image Compression and Edge Detection/O_10.gif" height="15" width="100" alt="" /></td></tr>
+  </table>
+  <div class="Print">
+   <a name="459824538"></a>
+   <img class="FlushInput"
+       src="Files/Naive Image Compression and Edge Detection/Image_11.gif"
+       alt=" " />
+  </div>
+  <div class="Print">
+   <a name="28401138"></a>
+   <img class="FlushInput"
+       src="Files/Naive Image Compression and Edge Detection/Image_12.gif"
+       alt=" " />
+  </div>
+  <div class="Print">
+   <a name="371701792"></a>
+   <img class="FlushInput"
+       src="Files/Naive Image Compression and Edge Detection/Image_13.gif"
+       alt=" " />
+  </div>
+  <div class="Print">
+   <a name="831289743"></a>
+   <img class="FlushInput"
+       src="Files/Naive Image Compression and Edge Detection/Image_14.gif"
+       alt=" " />
+  </div>
+  <table class="OCell">
+   <tr><td class="lab">Out[40]=</td><td class="Output"><img src="Files/Naive Image Compression and Edge Detection/O_11.gif" height="104" width="493" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="75998249"></a>Next we create Huffman codes for each channel and determine the bits per pixel.  To compute the bpp, total the new bit lengths for each channel</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[41]:=</td><td class="Input"><div>
+      <a name="322688699"></a>
+      <img src="Files/Naive Image Compression and Edge Detection/I_28.gif"
+          height="67"
+          width="403"
+          alt="Click for copyable input" />
+     </div><div id="i_27_out" class="IFL"></div></td></tr>
+  </table>
+  <div class="Print">
+   <a name="254069746"></a>
+   <img class="FlushInput"
+       src="Files/Naive Image Compression and Edge Detection/Image_15.gif"
+       alt=" " />
+  </div>
+ </div>
+ <p class="Text"><a name="375495532"></a>To check how well the compressed image approximates the original, compute the inverse Haar transform, undo the centering and then round to integers (needed to convert back to RGB space).</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[45]:=</td><td class="Input"><div>
+      <a name="903848196"></a>
+      <img src="Files/Naive Image Compression and Edge Detection/I_30.gif"
+          height="33"
+          width="362"
+          alt="Click for copyable input" />
+     </div><div id="i_29_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[46]=</td><td class="Output"><img src="Files/Naive Image Compression and Edge Detection/O_12.gif" height="104" width="493" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="879436815"></a>Recall that values in Y are expected to be integers in the interval [16,235] and values in Cb, Cr are expected to be integers in [16,240].  A check of min/max values for each channels shows that this is not the case for Y.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[47]:=</td><td class="Input"><div>
+      <a name="413877475"></a>
+      <img src="Files/Naive Image Compression and Edge Detection/I_32.gif"
+          height="33"
+          width="112"
+          alt="Click for copyable input" />
+     </div><div id="i_31_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[47]=</td><td class="Output"><img src="Files/Naive Image Compression and Edge Detection/O_13.gif" height="15" width="56" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[48]=</td><td class="Output"><img src="Files/Naive Image Compression and Edge Detection/O_14.gif" height="15" width="74" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="93320771"></a>The cell below shows there are just a few values in Y that are below 16 or above 235.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[49]:=</td><td class="Input"><div>
+      <a name="236404020"></a>
+      <img src="Files/Naive Image Compression and Edge Detection/I_34.gif"
+          height="33"
+          width="350"
+          alt="Click for copyable input" />
+     </div><div id="i_33_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[49]=</td><td class="Output"><img src="Files/Naive Image Compression and Edge Detection/O_15.gif" height="15" width="450" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[50]=</td><td class="Output"><img src="Files/Naive Image Compression and Edge Detection/O_16.gif" height="15" width="164" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="725975230"></a>We replace the values at these position with the minimum/maximum values.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[51]:=</td><td class="Input"><div>
+      <a name="903257154"></a>
+      <img src="Files/Naive Image Compression and Edge Detection/I_36.gif"
+          height="67"
+          width="324"
+          alt="Click for copyable input" />
+     </div><div id="i_35_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[53]=</td><td class="Output"><img src="Files/Naive Image Compression and Edge Detection/O_17.gif" height="15" width="12" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[54]=</td><td class="Output"><img src="Files/Naive Image Compression and Edge Detection/O_18.gif" height="15" width="18" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="188680542"></a>Finally, convert back to RGB space and compute the PSNR between the compressed and original images.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[55]:=</td><td class="Input"><div>
+      <a name="239811965"></a>
+      <img src="Files/Naive Image Compression and Edge Detection/I_38.gif"
+          height="50"
+          width="296"
+          alt="Click for copyable input" />
+     </div><div id="i_37_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[56]=</td><td class="Output"><img src="Files/Naive Image Compression and Edge Detection/O_19.gif" height="256" width="384" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[57]=</td><td class="Output"><img src="Files/Naive Image Compression and Edge Detection/O_20.gif" height="15" width="33" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="116474233"></a>The code belows allows the user to visually compare the compressed image to the original.  Click on the images to scroll through them.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[58]:=</td><td class="Input"><div>
+      <a name="155829894"></a>
+      <img src="Files/Naive Image Compression and Edge Detection/I_40.gif"
+          height="67"
+          width="523"
+          alt="Click for copyable input" />
+     </div><div id="i_39_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[59]=</td><td class="Output"><img src="Files/Naive Image Compression and Edge Detection/O_21.gif" height="274" width="384" alt="" /></td></tr>
+  </table>
+ </div>
+ <h2 class="Section"><a name="346351407"></a>Naive Edge Detection</h2>
+ <p class="Text">
+  <a name="384231395"></a>
+  <a href="#top">(top)</a>
+ </p>
+ <p class="Text"><a name="738100022"></a>The wavelet transform can be used to perform simple edge detection in images.  The idea is as follows:  compute 2-3 iterations of the wavelet transform, replace the lowpass portion by a zero matrix, and then compute the inverse transform.  The resulting image should display portions of the region where significant changes occurred.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[60]:=</td><td class="Input"><div>
+      <a name="473173672"></a>
+      <img src="Files/Naive Image Compression and Edge Detection/I_42.gif"
+          height="101"
+          width="336"
+          alt="Click for copyable input" />
+     </div><div id="i_41_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[62]=</td><td class="Output"><img src="Files/Naive Image Compression and Edge Detection/O_22.gif" height="256" width="384" alt="" /></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[64]=</td><td class="Output"><img src="Files/Naive Image Compression and Edge Detection/O_23.gif" height="256" width="384" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="286836453"></a>Next, replace the lowpass portion of the transform by a zero matrix.  The <a href="../tutorial/WaveletWare Package.html">WaveletWare</a> functions <span class="IF"><a href="../ref/WaveletMatrixToList.html">WaveletMatrixToList</a></span> and <span class="IF"><a href="../ref/WaveletListToMatrix.html">WaveletListToMatrix</a></span> are helpful here.  The first element in wtlist below is the lowpass portion of the transform.  It is replaced by a zero matrix, and then the list is converted back to a matrix.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[65]:=</td><td class="Input"><div>
+      <a name="51686854"></a>
+      <img src="Files/Naive Image Compression and Edge Detection/I_44.gif"
+          height="84"
+          width="372"
+          alt="Click for copyable input" />
+     </div><div id="i_43_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[68]=</td><td class="Output"><img src="Files/Naive Image Compression and Edge Detection/O_24.gif" height="256" width="384" alt="" /></td></tr>
+  </table>
+ </div>
+ <p class="Text"><a name="109627795"></a>Finally, compute the inverse transform to identify edges.</p>
+ <div class="IO">
+  <table class="InCell">
+   <tr><td class="lab">In[69]:=</td><td class="Input"><div>
+      <a name="774316479"></a>
+      <img src="Files/Naive Image Compression and Edge Detection/I_46.gif"
+          height="33"
+          width="266"
+          alt="Click for copyable input" />
+     </div><div id="i_45_out" class="IFL"></div></td></tr>
+  </table>
+  <table class="OCell">
+   <tr><td class="lab">Out[70]=</td><td class="Output"><img src="Files/Naive Image Compression and Edge Detection/O_25.gif" height="256" width="384" alt="" /></td></tr>
+  </table>
+ </div>
+</div>
+</div><!-- /wrapper -->
+
+
+	
+</div>
+
+
+</body>
+		 </html>

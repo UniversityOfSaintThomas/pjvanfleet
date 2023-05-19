@@ -1,0 +1,8 @@
+<pre name='i_101_in' id='i_101_in' class='IFT'>f = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;fish.png&quot;;
+A = ImageRead[f, Resize -&gt; {128, 192}];
+ImagePlot[A]
+{y, cb, cr} = RGBToYCbCr[A];
+Map[ImagePlot[#, Scaling -&gt; True] &amp;, {y, cb, cr}]
+rwt = RightHWT[{y, cb, cr}];
+WaveletPlot[rwt, PlotType -&gt; Right]
+</pre><div class='IFU'><a name='22116165'></a>http://wolfram.com/xid/0kmsg876k74fv7tus4gahxj5adn8b2m3ovcixzmeb-nga77</div>

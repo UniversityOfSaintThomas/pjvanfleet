@@ -1,0 +1,559 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     22088,        551]
+NotebookOptionsPosition[     18949,        474]
+NotebookOutlinePosition[     19294,        489]
+CellTagsIndexPosition[     19251,        486]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Example 3.9 (Decoding Huffman Codes)", "Section",
+ CellChangeTimes->{{3.6747410188032584`*^9, 3.674741042688301*^9}, {
+   3.674742552975814*^9, 3.6747425597738523`*^9}, {3.67474453723468*^9, 
+   3.674744561535725*^9}, {3.674747931751519*^9, 3.6747479370307474`*^9}, 
+   3.6747516510077415`*^9, {3.674754123065485*^9, 3.674754140322116*^9}, {
+   3.6751749126193643`*^9, 3.6751749154137692`*^9}, {3.6755147920766993`*^9, 
+   3.6755147959137897`*^9}, 
+   3.7038554579213896`*^9},ExpressionUUID->"4a047ba9-7694-4e94-ab9a-\
+1eebf011ff48"],
+
+Cell["Decode a Huffman-encoded bit stream.", "Text",
+ CellChangeTimes->{{3.6747410667041707`*^9, 3.6747410805055957`*^9}, {
+  3.6747424105934367`*^9, 3.674742410733837*^9}, {3.674742572300502*^9, 
+  3.674742584222324*^9}, {3.6747445741715794`*^9, 3.6747445846113987`*^9}, {
+  3.6747479622130194`*^9, 3.674747968138232*^9}, {3.675174920421378*^9, 
+  3.6751749285570188`*^9}, {3.6755273811539464`*^9, 
+  3.675527390297255*^9}},ExpressionUUID->"59713904-a5fc-4a27-8b77-\
+d0857a3a384d"],
+
+Cell[CellGroupData[{
+
+Cell["Reference.", "Subsubsection",
+ CellChangeTimes->{{3.6747631102003517`*^9, 
+  3.6747631125733557`*^9}},ExpressionUUID->"65d02f24-7e16-4115-ba09-\
+c244c089bb03"],
+
+Cell["\<\
+The material for this lab is covered in Section 3.3 of the book \
+\[OpenCurlyDoubleQuote]Discrete Wavelet Transformations: An Elementary \
+Approach with Applications, 2nd Edition,\[CloseCurlyDoubleQuote] by Patrick J \
+Van Fleet.\
+\>", "Text",
+ CellChangeTimes->{{3.674763119565366*^9, 3.6747631649004583`*^9}, {
+   3.674763293323564*^9, 3.674763311554607*^9}, {3.6997856290190563`*^9, 
+   3.699785638548086*^9}, {3.72692103296169*^9, 3.726921034949597*^9}, {
+   3.7270063962717886`*^9, 3.727006396991242*^9}, 
+   3.727009034200805*^9},ExpressionUUID->"2b4d716b-3ac6-4925-9a90-\
+6045f145aa4d"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["WaveletWare Commands Used in This Notebook", "Subsubsection",
+ CellChangeTimes->{{3.6747417571916847`*^9, 3.674741765831501*^9}, {
+  3.6747418595935683`*^9, 
+  3.6747419193671017`*^9}},ExpressionUUID->"64efad45-c55f-4a59-a728-\
+14b0dd9b6634"],
+
+Cell["Execute the line below to load the WaveletWare package.", "Text",
+ CellChangeTimes->{{3.726919365764247*^9, 
+  3.7269193911263213`*^9}},ExpressionUUID->"39ef8e9a-d081-4f4b-984e-\
+2731b218a23e"],
+
+Cell[BoxData[
+ RowBox[{"<<", "WaveletWare`"}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.7269193243151226`*^9, 3.7269193578933735`*^9}, {
+  3.7270065374179773`*^9, 3.727006537593671*^9}, {3.7270070318050675`*^9, 
+  3.7270070319488754`*^9}, {3.7270084778120003`*^9, 3.7270084779023743`*^9}, {
+  3.7270097015398407`*^9, 
+  3.7270097017317114`*^9}},ExpressionUUID->"df995219-26e8-4f3e-b1d3-\
+71f84b6d2904"],
+
+Cell["\<\
+Execute the line below to generate quick help on WaveletWare commands used in \
+this notebook.  Click on >> for each command to access detailed documentation \
+on the command.\
+\>", "Text",
+ CellChangeTimes->{{3.726919395574725*^9, 
+  3.7269194464807606`*^9}},ExpressionUUID->"60804f36-92c4-4d16-b374-\
+5e783694d3f6"],
+
+Cell[BoxData[{
+ RowBox[{"?", "MakeHuffmanCodes"}], "\[IndentingNewLine]", 
+ RowBox[{"?", "HuffmanTree"}]}], "Input",
+ CellChangeTimes->{{3.7269193243151226`*^9, 3.7269193578933735`*^9}, {
+  3.727006411728204*^9, 3.7270064146082783`*^9}, {3.7270064673326874`*^9, 
+  3.7270064795892925`*^9}, {3.727006595390209*^9, 3.727006600158367*^9}, {
+  3.72700691873085*^9, 3.7270069320111556`*^9}, {3.7270070971669283`*^9, 
+  3.72700709878319*^9}, {3.727007656662043*^9, 3.727007686295689*^9}, {
+  3.7270077238976808`*^9, 3.7270077269537964`*^9}, {3.7270077787964225`*^9, 
+  3.72700778190035*^9}, {3.727009043699129*^9, 3.7270090645469418`*^9}, {
+  3.7270095740304623`*^9, 
+  3.727009574398796*^9}},ExpressionUUID->"3d8a8990-c5a2-49a1-a5d3-\
+d59f05ad31ec"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Solution.", "Subsubsection",
+ CellChangeTimes->{{3.674741083458001*^9, 3.674741085127204*^9}, {
+  3.674741868740185*^9, 
+  3.674741869629386*^9}},ExpressionUUID->"3e1533c1-0cc0-47a1-8bc3-\
+3398c0b728e2"],
+
+Cell["\<\
+First define the bit stream given in the example.  We do this with a string.\
+\>", "Text",
+ CellChangeTimes->{{3.6747411194901114`*^9, 3.6747411391369605`*^9}, {
+  3.674742623448035*^9, 3.674742630967649*^9}, {3.6747446245665*^9, 
+  3.6747446285253077`*^9}, {3.6747479738622437`*^9, 3.6747480058727283`*^9}, {
+  3.6747541466889267`*^9, 3.674754251603379*^9}, {3.6751749520373015`*^9, 
+  3.6751749586109133`*^9}, {3.6755148175042253`*^9, 3.675514819025256*^9}, {
+  3.6755148532970734`*^9, 3.6755148644122963`*^9}, {3.6755149448761034`*^9, 
+  3.675514948728182*^9}},ExpressionUUID->"ed29ac1b-e5be-4313-bd56-\
+109808724e87"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"bitstream", "=", "\"\<100111100110101111001100\>\""}], 
+  ";"}]], "Input",
+ CellChangeTimes->CompressedData["
+1:eJwdxU0og3EcAOC1sXxNacrMkIsmUb5la7wRQtRykM8MObwHI60UVnJQb9NQ
+QiQshdKmobYwDAeaJTGSZE0Yh2nW1qb8f7/D05Om6JP3sFksVjIBe23TuZxO
+N+U8GcyHu5QqCmZcWjwomTuGOQcbuHdNfQvHLDN4K137DY8lqXDB4b4HLjdb
+fHBN068gjDxwF8Dp+ZUPeF2T+QX7zm6qwslSywsu/uRruOT0grdJ+HWTXoB3
+BniLsDirzAzLRK/481W8By65FOBaEXshkpxTaVuCGxP/VuGtDJkO1gtVcVHk
+lJkJvO12nHtP5r8f8WDFYjblIAvNeXgv5Sx6IJsCHvyx2eUfVripCGkdZ4Qc
+uvNHwKUNFdGwUfIyB0uHfvDqJ90SzFyc4+3s7WtYrEuww7XdTAjOry/8g2fV
+wtRR8mrxEB6cMvSrySb9Hi4/bfEarW7K6ujAY+00b5dsGFPi/xN35C4=
+  "],ExpressionUUID->"85374aec-b1fa-4a49-8ada-ff624cc9a7a4"],
+
+Cell["Now create the codes and the characters they represent.", "Text",
+ CellChangeTimes->{{3.6747481391318703`*^9, 3.6747481572267556`*^9}, {
+  3.6747482631312256`*^9, 3.6747482854328675`*^9}, {3.6747543729442806`*^9, 
+  3.6747544006279583`*^9}, {3.674754447143382*^9, 3.6747544609514065`*^9}, {
+  3.6747546110123515`*^9, 3.6747546204709682`*^9}, {3.674754716951002*^9, 
+  3.674754733742962*^9}, {3.6747547738516183`*^9, 3.67475477495922*^9}, {
+  3.6751752106768103`*^9, 3.6751752349458466`*^9}, {3.6751753527541943`*^9, 
+  3.6751753767402573`*^9}, {3.675514909552391*^9, 
+  3.6755149191975856`*^9}},ExpressionUUID->"471fcb3c-56c6-4211-8681-\
+45c00371e610"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"codes", "=", 
+   RowBox[{"{", 
+    RowBox[{
+    "\"\<0\>\"", ",", "\"\<10\>\"", ",", "\"\<111\>\"", ",", "\"\<1101\>\"", 
+     ",", "\"\<1100\>\"", ",", "\"\<11111\>\""}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"chars", "=", 
+   RowBox[{"{", 
+    RowBox[{
+    "\"\<e\>\"", ",", "\"\<w\>\"", ",", "\"\< \>\"", ",", "\"\<r\>\"", ",", 
+     "\"\<t\>\""}], "}"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.6747481658821716`*^9, 3.67474824787617*^9}, {
+   3.674748287713472*^9, 3.6747482910226774`*^9}, {3.674748806752003*^9, 
+   3.6747488068686047`*^9}, {3.674754407153222*^9, 3.674754500099476*^9}, {
+   3.6747551341411896`*^9, 3.674755161482438*^9}, {3.6751752380458508`*^9, 
+   3.675175287780966*^9}, {3.67517532417909*^9, 3.675175343082149*^9}, {
+   3.675177479626586*^9, 3.6751774799465866`*^9}, {3.6755149228776608`*^9, 
+   3.675514926937742*^9}, {3.6755149993372765`*^9, 3.6755150321659794`*^9}, {
+   3.6755159264042697`*^9, 3.6755159452807646`*^9}, {3.67551604071502*^9, 
+   3.6755160428360634`*^9}, {3.675516256742465*^9, 3.675516270616066*^9}, {
+   3.675516446571789*^9, 3.675516447810789*^9}, {3.6755169020460095`*^9, 
+   3.675516917236163*^9}, {3.67551710554714*^9, 3.675517105587141*^9}, {
+   3.6755174037041955`*^9, 3.6755174040042048`*^9}, 3.6755178051993246`*^9, {
+   3.6755182508295717`*^9, 3.6755182531796656`*^9}, {3.6755198838290358`*^9, 
+   3.6755198839690385`*^9}, {3.7270096976836386`*^9, 
+   3.7270096978115664`*^9}, {3.72700989759593*^9, 
+   3.7270098977388897`*^9}},ExpressionUUID->"4d080512-c1a0-47f8-9d75-\
+27f2c5ee5bbb"],
+
+Cell["\<\
+We will start with an empty string that we will built into our answer.\
+\>", "Text",
+ CellChangeTimes->{{3.675518167874117*^9, 
+  3.675518183079756*^9}},ExpressionUUID->"efec2dcc-c75a-4311-a921-\
+2f8167eba44e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"string", "=", "\"\<\>\""}], ";"}]], "Input",
+ CellChangeTimes->{{3.6755181843998084`*^9, 3.675518186029874*^9}, {
+  3.6755198820889983`*^9, 3.675519882220001*^9}, {3.727009696931542*^9, 
+  3.727009697059223*^9}, {3.7270098965398827`*^9, 
+  3.727009896689104*^9}},ExpressionUUID->"c8f98383-e1ff-4e01-a693-\
+0d383e735ab2"],
+
+Cell[TextData[{
+ "To parse out the characters from the bit stream, we need to search for the \
+first occurrence (if any) of each of codes.  We can does this with ",
+ StyleBox["StringPosition",
+  FontWeight->"Bold"],
+ " and ",
+ StyleBox["Map",
+  FontWeight->"Bold"],
+ ".  Then map the ",
+ StyleBox["Flatten",
+  FontWeight->"Bold"],
+ " command across the results to get lists of length 2."
+}], "Text",
+ CellChangeTimes->{{3.6755178124264708`*^9, 3.675517836995968*^9}, {
+  3.6755178731078157`*^9, 
+  3.6755179329341044`*^9}},ExpressionUUID->"800748c6-ad0a-4089-a1df-\
+0884bb34a3a9"],
+
+Cell[BoxData[
+ RowBox[{"pairs", "=", 
+  RowBox[{"Map", "[", 
+   RowBox[{"Flatten", ",", 
+    RowBox[{"Map", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"StringPosition", "[", 
+        RowBox[{"bitstream", ",", "#", ",", "1"}], "]"}], "&"}], ",", 
+      "codes"}], "]"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.675517847662258*^9, 3.6755178578775086`*^9}, {
+  3.675517941177286*^9, 3.675517980690084*^9}, {3.6755182071067624`*^9, 
+  3.675518210416895*^9}, {3.675519879939953*^9, 3.675519880069956*^9}, {
+  3.727009695155822*^9, 3.7270096952843895`*^9}, {3.7270098951960225`*^9, 
+  3.7270098953384333`*^9}},ExpressionUUID->"143b76d2-4c2f-4be7-8723-\
+f4793d4f6316"],
+
+Cell[TextData[{
+ "The first value of each ordered pair is where each code starts.  We are \
+looking for the single pair whose first entry is 1.  The position of this \
+pair in the ",
+ StyleBox["pairs",
+  FontWeight->"Bold"],
+ " list tells us which of ",
+ StyleBox["chars",
+  FontWeight->"Bold"],
+ " to add to our answer ",
+ StyleBox["string",
+  FontWeight->"Bold"],
+ ".\n\nWe then drop the appropriate amount of characters from the start of ",
+ StyleBox["bitstream",
+  FontWeight->"Bold"],
+ ".  ",
+ StyleBox["FirstPosition",
+  FontWeight->"Bold"],
+ " tells us that the 1 occurs at position {2,1} (",
+ StyleBox["pairs",
+  FontWeight->"Bold"],
+ " is viewed as a matrix) so we take as ",
+ StyleBox["idx",
+  FontWeight->"Bold"],
+ " the 2 from this result."
+}], "Text",
+ CellChangeTimes->{{3.675517997135418*^9, 3.675518159895891*^9}, {
+  3.6755188047511044`*^9, 3.675518889423986*^9}, {3.6755189204706674`*^9, 
+  3.6755189818679895`*^9}, {3.6755190877943177`*^9, 
+  3.6755190967774982`*^9}},ExpressionUUID->"be533578-a857-41c1-abae-\
+875fc89c9696"],
+
+Cell[BoxData[{
+ RowBox[{"where", "=", 
+  RowBox[{"FirstPosition", "[", 
+   RowBox[{"pairs", ",", "1", ",", 
+    RowBox[{"{", "2", "}"}]}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"idx", "=", 
+  RowBox[{"First", "[", "where", "]"}]}]}], "Input",
+ CellChangeTimes->{{3.675518276605677*^9, 3.6755183128862305`*^9}, {
+  3.6755183707456884`*^9, 3.675518446446842*^9}, {3.6755184882570486`*^9, 
+  3.6755185515984755`*^9}, {3.6755189089613934`*^9, 3.675518909441403*^9}, {
+  3.6755189415051093`*^9, 3.675518943720154*^9}, {3.6755189843780394`*^9, 
+  3.675518990996248*^9}, {3.6755198780499153`*^9, 3.6755198781999183`*^9}, {
+  3.727009693459489*^9, 3.727009693587427*^9}, {3.7270098931689873`*^9, 
+  3.727009893338724*^9}},ExpressionUUID->"a5beef63-41a9-4da3-ae32-\
+36da948bbad6"],
+
+Cell[TextData[{
+ "Now we append the 2nd value of ",
+ StyleBox["chars",
+  FontWeight->"Bold"],
+ " to the string and drop 2 values from the front of ",
+ StyleBox["bitstream",
+  FontWeight->"Bold"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.6755189974083786`*^9, 
+  3.6755190247389293`*^9}},ExpressionUUID->"396f3dc9-08cd-4881-9d42-\
+314cdb2ba2da"],
+
+Cell[BoxData[{
+ RowBox[{"string", "=", 
+  RowBox[{"string", "<>", 
+   RowBox[{"chars", "[", 
+    RowBox[{"[", "idx", "]"}], "]"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"bitstream", "=", 
+  RowBox[{"StringDrop", "[", 
+   RowBox[{"bitstream", ",", 
+    RowBox[{"StringLength", "[", 
+     RowBox[{"codes", "[", 
+      RowBox[{"[", "idx", "]"}], "]"}], "]"}]}], 
+   "]"}]}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.67551856627077*^9, 3.675518595264426*^9}, {
+  3.675518669285163*^9, 3.675518711138151*^9}, {3.675518744957843*^9, 
+  3.6755187456288567`*^9}, {3.6755190265299654`*^9, 3.6755190284800043`*^9}, {
+  3.6755198744898434`*^9, 3.675519874699847*^9}, {3.7270096921152325`*^9, 
+  3.7270096922592306`*^9}, {3.727009891228509*^9, 
+  3.727009891408535*^9}},ExpressionUUID->"bef09aed-a931-4cfa-aec0-\
+fd0bd86b2a0e"],
+
+Cell[TextData[{
+ "This process is repeated until the length of ",
+ StyleBox["bitstream",
+  FontWeight->"Bold"],
+ " is 0.  We can do the entire decoding using a ",
+ StyleBox["While",
+  FontWeight->"Bold"],
+ " statement."
+}], "Text",
+ CellChangeTimes->{{3.675519039155218*^9, 
+  3.6755190590906887`*^9}},ExpressionUUID->"44ebba74-4e85-4f5c-aa7c-\
+b7e8d62dbe1a"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"bitstream", "=", "\"\<100111100110101111001100\>\""}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"codes", "=", 
+   RowBox[{"{", 
+    RowBox[{
+    "\"\<0\>\"", ",", "\"\<10\>\"", ",", "\"\<111\>\"", ",", "\"\<1101\>\"", 
+     ",", "\"\<1100\>\"", ",", "\"\<11111\>\""}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"chars", "=", 
+   RowBox[{"{", 
+    RowBox[{
+    "\"\<e\>\"", ",", "\"\<w\>\"", ",", "\"\< \>\"", ",", "\"\<r\>\"", ",", 
+     "\"\<t\>\""}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"string", "=", "\"\<\>\""}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"While", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"StringLength", "[", "bitstream", "]"}], ">", "0"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"pairs", "=", 
+      RowBox[{"Map", "[", 
+       RowBox[{"Flatten", ",", 
+        RowBox[{"Map", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"StringPosition", "[", 
+            RowBox[{"bitstream", ",", "#", ",", "1"}], "]"}], "&"}], ",", 
+          "codes"}], "]"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"idx", "=", 
+      RowBox[{"First", "[", 
+       RowBox[{"FirstPosition", "[", 
+        RowBox[{"pairs", ",", "1", ",", 
+         RowBox[{"{", "2", "}"}]}], "]"}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"string", "=", 
+      RowBox[{"string", "<>", 
+       RowBox[{"chars", "[", 
+        RowBox[{"[", "idx", "]"}], "]"}]}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"bitstream", "=", 
+      RowBox[{"StringDrop", "[", 
+       RowBox[{"bitstream", ",", 
+        RowBox[{"StringLength", "[", 
+         RowBox[{"codes", "[", 
+          RowBox[{"[", "idx", "]"}], "]"}], "]"}]}], "]"}]}], ";"}]}], 
+   "\[IndentingNewLine]", "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{"\"\<The string is: \>\"", ",", "string"}], "]"}]}], "Input",
+ CellChangeTimes->CompressedData["
+1:eJwdxUsow3EcAPC1sYbtwFZmXrloEoV5xJr9m/dEyUFiZQjtQKOVwkoOq5nW
+lFiTzFIoSR5lecYoC2l5Ja3JwjiMWRbK7/s9fPqkKLvr2uk0Gi2ZgANnpmxG
+i496POgTwa09GgrWPxnxn6LJfZixvYAH5rQumD2jx5tU8nd4OF6D83c2/bDM
+vheEqxq++GFk9VUIV03NvsDzhvQ3OHh0WR5OFu+5ceEr18Akp+Z6x2DPosoM
+r6o5FliYIbXDkgQP/uDk+eHCUz5uTKCbI8hZZWfTcH3cnxVeSpPY4BWBJjqS
+nDSuw5tdI8xrMvd5lwMrLZnUDVlgz8E7qMf8W/JWyI/fNT59Dyh9FEtczRgk
+/159s+Di2pIoeK3IPQmL+z/winvbNKw/duAK+vI5LLTFXsDyNv0vLKrJ+4Mn
+tILkIbK1oB+nuYtjtOQTlQ3f6BIlwlK2A3fKvN1woDSE110rPtcOfVSfqRPn
+9YrZ62TdaCX+D3hN8J0=
+  "],ExpressionUUID->"73082411-6352-46c8-ba1d-3bcf7cf495d9"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Things To Try.", "Subsubsection",
+ CellChangeTimes->{{3.674741944310015*^9, 
+  3.67474194691722*^9}},ExpressionUUID->"79af6f83-8f81-464f-b9ab-\
+45f55f83fea0"],
+
+Cell[TextData[{
+ "Create a string and then use ",
+ StyleBox["MakeHuffmanCodes",
+  FontWeight->"Bold"],
+ " and ",
+ StyleBox["HuffmanTree",
+  FontWeight->"Bold"],
+ " to create Huffman codes for each character of the string (see Example \
+3.7).  Then alter the code above to see if you can decode the Huffman codes \
+and recover the original string."
+}], "Text",
+ CellChangeTimes->{{3.6747420480998836`*^9, 3.6747421314892807`*^9}, {
+  3.674742175168991*^9, 3.6747422393427753`*^9}, {3.6747427897444954`*^9, 
+  3.6747428171272078`*^9}, {3.674745173965828*^9, 3.674745256220656*^9}, {
+  3.6747453489013157`*^9, 3.674745361004139*^9}, {3.6747485066380587`*^9, 
+  3.674748554059788*^9}, {3.6747548607142477`*^9, 3.6747551092495203`*^9}, {
+  3.674755174682087*^9, 3.6747551884895167`*^9}, {3.6751770788103437`*^9, 
+  3.675177119681447*^9}, {3.6755192421325593`*^9, 3.6755194071691437`*^9}, {
+  3.6755195479112806`*^9, 3.6755196349286985`*^9}, {3.675519672363483*^9, 
+  3.6755197987391973`*^9}},ExpressionUUID->"a74571a0-97b3-4565-8fd4-\
+eca5f2f60d54"],
+
+Cell[TextData[{
+ "Let ",
+ StyleBox["str",
+  FontWeight->"Bold"],
+ " be some string and ",
+ StyleBox["codes",
+  FontWeight->"Bold"],
+ " be the first argument returned by ",
+ StyleBox["MakeHuffmanCodes",
+  FontWeight->"Bold"],
+ " when it is applied to ",
+ StyleBox["str",
+  FontWeight->"Bold"],
+ ". Write a Mathematica module called ",
+ StyleBox["ToBitStream",
+  FontWeight->"Bold"],
+ " that takes as arguments ",
+ StyleBox["str",
+  FontWeight->"Bold"],
+ " and ",
+ StyleBox["codes",
+  FontWeight->"Bold"],
+ " and returns the bitstream (as a string) of the Huffman-encoded version of ",
+ StyleBox["str",
+  FontWeight->"Bold"],
+ ".  Test your module on different strings and codes.\n\nWrite a Mathematica ",
+ StyleBox["Module",
+  FontWeight->"Bold"],
+ " that takes as input a Huffman-encode bitstream, a list characters in the \
+original string, and a list of the Huffman codes for each character and \
+returns the original string.\n\nTest your module on different strings."
+}], "Text",
+ CellChangeTimes->{{3.6747420480998836`*^9, 3.6747421314892807`*^9}, {
+  3.674742175168991*^9, 3.6747422393427753`*^9}, {3.6747427897444954`*^9, 
+  3.6747428171272078`*^9}, {3.674745173965828*^9, 3.674745256220656*^9}, {
+  3.6747453489013157`*^9, 3.674745361004139*^9}, {3.6747485066380587`*^9, 
+  3.674748554059788*^9}, {3.6747548607142477`*^9, 3.6747551092495203`*^9}, {
+  3.674755174682087*^9, 3.6747551884895167`*^9}, {3.6751770788103437`*^9, 
+  3.675177119681447*^9}, {3.6755192421325593`*^9, 3.6755194071691437`*^9}, {
+  3.6755195479112806`*^9, 3.6755196349286985`*^9}, {3.675519672363483*^9, 
+  3.675519857361476*^9}},ExpressionUUID->"ed2b0517-91fd-4ec5-948c-\
+de419a625fcd"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{759, 678},
+WindowMargins->{{124, Automatic}, {112, Automatic}},
+FrontEndVersion->"11.1 for Microsoft Windows (64-bit) (April 18, 2017)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 539, 8, 70, "Section", "ExpressionUUID" -> \
+"4a047ba9-7694-4e94-ab9a-1eebf011ff48"],
+Cell[1122, 32, 482, 7, 30, "Text", "ExpressionUUID" -> \
+"59713904-a5fc-4a27-8b77-d0857a3a384d"],
+Cell[CellGroupData[{
+Cell[1629, 43, 165, 3, 39, "Subsubsection", "ExpressionUUID" -> \
+"65d02f24-7e16-4115-ba09-c244c089bb03"],
+Cell[1797, 48, 603, 11, 49, "Text", "ExpressionUUID" -> \
+"2b4d716b-3ac6-4925-9a90-6045f145aa4d"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2437, 64, 248, 4, 39, "Subsubsection", "ExpressionUUID" -> \
+"64efad45-c55f-4a59-a728-14b0dd9b6634"],
+Cell[2688, 70, 199, 3, 30, "Text", "ExpressionUUID" -> \
+"39ef8e9a-d081-4f4b-984e-2731b218a23e"],
+Cell[2890, 75, 420, 8, 46, "Input", "ExpressionUUID" -> \
+"df995219-26e8-4f3e-b1d3-71f84b6d2904",
+ InitializationCell->True],
+Cell[3313, 85, 327, 7, 49, "Text", "ExpressionUUID" -> \
+"60804f36-92c4-4d16-b374-5e783694d3f6"],
+Cell[3643, 94, 744, 12, 50, "Input", "ExpressionUUID" -> \
+"3d8a8990-c5a2-49a1-a5d3-d59f05ad31ec"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4424, 111, 209, 4, 39, "Subsubsection", "ExpressionUUID" -> \
+"3e1533c1-0cc0-47a1-8bc3-3398c0b728e2"],
+Cell[4636, 117, 631, 10, 30, "Text", "ExpressionUUID" -> \
+"ed29ac1b-e5be-4313-bd56-109808724e87"],
+Cell[5270, 129, 691, 13, 30, "Input", "ExpressionUUID" -> \
+"85374aec-b1fa-4a49-8ada-ff624cc9a7a4"],
+Cell[5964, 144, 658, 9, 30, "Text", "ExpressionUUID" -> \
+"471fcb3c-56c6-4211-8681-45c00371e610"],
+Cell[6625, 155, 1605, 30, 50, "Input", "ExpressionUUID" -> \
+"4d080512-c1a0-47f8-9d75-27f2c5ee5bbb"],
+Cell[8233, 187, 220, 5, 30, "Text", "ExpressionUUID" -> \
+"efec2dcc-c75a-4311-a921-2f8167eba44e"],
+Cell[8456, 194, 355, 7, 30, "Input", "ExpressionUUID" -> \
+"c8f98383-e1ff-4e01-a693-0d383e735ab2"],
+Cell[8814, 203, 580, 16, 68, "Text", "ExpressionUUID" -> \
+"800748c6-ad0a-4089-a1df-0884bb34a3a9"],
+Cell[9397, 221, 672, 15, 30, "Input", "ExpressionUUID" -> \
+"143b76d2-4c2f-4be7-8723-f4793d4f6316"],
+Cell[10072, 238, 1044, 30, 144, "Text", "ExpressionUUID" -> \
+"be533578-a857-41c1-abae-875fc89c9696"],
+Cell[11119, 270, 775, 14, 50, "Input", "ExpressionUUID" -> \
+"a5beef63-41a9-4da3-ae32-36da948bbad6"],
+Cell[11897, 286, 342, 11, 30, "Text", "ExpressionUUID" -> \
+"396f3dc9-08cd-4881-9d42-314cdb2ba2da"],
+Cell[12242, 299, 829, 18, 69, "Input", "ExpressionUUID" -> \
+"bef09aed-a931-4cfa-aec0-fd0bd86b2a0e"],
+Cell[13074, 319, 359, 11, 49, "Text", "ExpressionUUID" -> \
+"44ebba74-4e85-4f5c-aa7c-b7e8d62dbe1a"],
+Cell[13436, 332, 2569, 65, 240, "Input", "ExpressionUUID" -> \
+"73082411-6352-46c8-ba1d-3bcf7cf495d9"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[16042, 402, 164, 3, 39, "Subsubsection", "ExpressionUUID" -> \
+"79af6f83-8f81-464f-b9ab-45f55f83fea0"],
+Cell[16209, 407, 1044, 20, 68, "Text", "ExpressionUUID" -> \
+"a74571a0-97b3-4565-8fd4-eca5f2f60d54"],
+Cell[17256, 429, 1665, 41, 182, "Text", "ExpressionUUID" -> \
+"ed2b0517-91fd-4ec5-948c-de419a625fcd"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

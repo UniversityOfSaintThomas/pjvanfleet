@@ -1,0 +1,5 @@
+<pre name='i_9_in' id='i_9_in' class='IFT'>A = RandomInteger[{0, 10}, {10, 10}];
+MatrixForm[A]
+rwt = RightHWT[A, Computation -&gt; Symbolic];
+RightInverseHWT[rwt] // MatrixForm
+RightInverseHWT[rwt, Computation -&gt; Symbolic] // MatrixForm</pre><div class='IFU'><a name='200302328'></a>http://wolfram.com/xid/0dndw8hsfhl9i9u7jg71b5ri6rf-dljgju</div>

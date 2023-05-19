@@ -1,0 +1,8 @@
+<pre name='i_15_in' id='i_15_in' class='IFT'>data = ScalingFunctionData[Daub[4]];
+ListPlot[data, Joined -&gt; True, PlotRange -&gt; All, ImageSize -&gt; 400]
+t = Map[WaveletFunctionData[Daub[4], NumIterations -&gt; #] &amp;, 
+   Range[0, 6]];
+(* Click the mouse on the second image to see all iterations *)
+FlipView[Map[
+  ListPlot[#, Joined -&gt; True, PlotRange -&gt; All, ImageSize -&gt; 400] &amp;, 
+  t]]</pre><div class='IFU'><a name='575933248'></a>http://wolfram.com/xid/0bb24v1bavfeg9e1n9wtvw85xzwkij2-js6i72</div>

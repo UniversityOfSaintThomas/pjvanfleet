@@ -1,0 +1,13 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>(* Donoho/Johnstone Doppler function *)
+g[t_] := Sqrt[t (1 - t)]*Sin[2 Pi (1.05)/(t + .05)];
+n = 1024;
+v = g[Range[0, 1 - 1/n, 1/n]];
+ListPlot[v, Ticks -&gt; {Range[0, n, n/4], Range[-1/2, 1/2]}, 
+ PlotLabel -&gt; &quot;Data Samples&quot;]
+iterations = 2;
+wt = WT[v, Daub[4], NumIterations -&gt; iterations];
+{wpt, tree} = 
+  WPT[v, Daub[4], FixedTree -&gt; WaveletTree[iterations], 
+   NumIterations -&gt; iterations];
+wt == wpt
+</pre><div class='IFU'><a name='69294678'></a>http://wolfram.com/xid/0b6ekx0z8pnru3asz9m1un9cy0-bfjieg</div>

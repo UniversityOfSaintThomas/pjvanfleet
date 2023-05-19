@@ -1,0 +1,4 @@
+<pre name='i_13_in' id='i_13_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;cups.png&quot;;
+A = ImageRead[file, Resize -&gt; 300];
+ImagePlot[A, 
+ ChannelColor -&gt; {Yellow, GrayLevel[.6], CMYKColor[0, 1, 1, .25]}]</pre><div class='IFU'><a name='24648777'></a>http://wolfram.com/xid/0nxaq5tqtv6thic7hg2v2-oylej</div>

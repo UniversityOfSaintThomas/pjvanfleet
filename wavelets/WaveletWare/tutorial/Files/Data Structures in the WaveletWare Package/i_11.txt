@@ -1,0 +1,2 @@
+<pre name='i_11_in' id='i_11_in' class='IFT'>tree = WaveletTree[4];
+CheckTree[tree, 1]</pre><div class='IFU'><a name='69897103'></a>http://wolfram.com/xid/0dw3hmeolb456i3ocz9bqdb7htqim7p8o1p7qzwg41bm-bfwe8h</div>

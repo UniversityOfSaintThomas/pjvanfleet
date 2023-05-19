@@ -1,0 +1,3 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>A = RandomInteger[{0, 10}, {40, 40}];
+Print[&quot;The maximum number of iterations of a wavelet transform that \
+can be performed on A is &quot;, MaxIts[A], &quot;.&quot;];</pre><div class='IFU'><a name='24195189'></a>http://wolfram.com/xid/0dbed1alym5ijv2xmuay80-oovev</div>

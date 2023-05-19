@@ -1,0 +1,14 @@
+<pre name='i_13_in' id='i_13_in' class='IFT'>g[t_] := 4 Sin[4 Pi t] - Sign[t - .3] - Sign[.72 - t];
+{sigma, n} = {6, 1000};
+original = Round[50*g[Range[0, 1 - 1/n, 1/n]]];
+ListPlot[original, Ticks -&gt; {Range[0, n, n/4], Range[-4, 4, 2]}, 
+ PlotLabel -&gt; &quot;Original Signal&quot;]
+y = original + Round[WhiteNoise[n, sigma]];
+ListPlot[y, Ticks -&gt; {Range[0, n, n/4], Range[-4, 4, 2]}, 
+ PlotLabel -&gt; &quot;Noisy Signal&quot;]
+(* Pick lambda somewhat arbitrarily *)
+lambda = 4;
+newy = WaveletShrinkage[y, LeGall[], lambda, NumIterations -&gt; 3, 
+   IntegerMap -&gt; True];
+ListPlot[newy, Ticks -&gt; {Range[0, n, n/4], Range[-4, 4, 2]}, 
+ PlotLabel -&gt; &quot;Denoised Signal&quot;]</pre><div class='IFU'><a name='279692192'></a>http://wolfram.com/xid/0cnb6473kluspzbo389ro71o3hbx5a-ews15u</div>

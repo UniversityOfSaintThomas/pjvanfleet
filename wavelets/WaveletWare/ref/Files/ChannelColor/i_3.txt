@@ -1,0 +1,4 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;benches.png&quot;;
+A = ImageRead[file, Resize -&gt; {256, 384}];
+ImagePlot[A]
+ImagePlot[A, ChannelColor -&gt; Green]</pre><div class='IFU'><a name='193663902'></a>http://wolfram.com/xid/0e2pnrmsqjyawkp72wahcufy-dhk6a4</div>

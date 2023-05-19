@@ -1,0 +1,2 @@
+<pre name='i_29_in' id='i_29_in' class='IFT'>newYCbCr = Round[InverseHWT[newwt, NumIterations -&gt; 3] + 128];
+Map[ImagePlot[#, Scaling -&gt; True] &amp;, newYCbCr]</pre><div class='IFU'><a name='903848196'></a>http://wolfram.com/xid/0ck2bt1tgpszi5qmumv90y9mftkdg9nq1q0ukjlzbu-o8ev0m</div>

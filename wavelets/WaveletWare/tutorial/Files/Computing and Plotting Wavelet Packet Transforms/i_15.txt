@@ -1,0 +1,4 @@
+<pre name='i_15_in' id='i_15_in' class='IFT'>inv = InverseWPT[{wt, tree}, SplineFilters[2, 2]];
+ListPlot[inv, Ticks -&gt; {Range[0, n, n/4], Range[-1/2, 1/2]}, 
+ PlotLabel -&gt; &quot;Data Samples&quot;, ImageSize -&gt; 400]
+Chop[v] == Chop[inv]</pre><div class='IFU'><a name='109073320'></a>http://wolfram.com/xid/0iglzsj6g5gr1t4ex14c4bsar4ymys4uuo5d2m08201-b273sq</div>

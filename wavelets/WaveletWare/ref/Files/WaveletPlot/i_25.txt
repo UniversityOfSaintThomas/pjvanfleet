@@ -1,0 +1,10 @@
+<pre name='i_25_in' id='i_25_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;cups.png&quot;;
+A = ImageRead[file, Resize -&gt; {128, 192}];
+ImagePlot[A]
+{wpt, tree} = 
+  WPT[A, Daub[6], NumIterations -&gt; 3, 
+   CostFunction -&gt; NumberAboveThreshold, SecondParameter -&gt; 40];
+Map[ShowBestBasis[#, Show3D -&gt; False, ImageSize -&gt; 200] &amp;, tree]
+WaveletPlot[wpt, tree, 
+ Iteration -&gt; {{1, 2, 1, 2}, {All, 2, 2, 3}, {3, 3, 4, 8}, {All, 3, 6,
+     7}}]</pre><div class='IFU'><a name='407825468'></a>http://wolfram.com/xid/0cew39zuhikyj6xdcij5apz9u-g03efi</div>

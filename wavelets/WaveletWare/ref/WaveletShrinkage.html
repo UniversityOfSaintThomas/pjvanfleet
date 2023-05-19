@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>WaveletShrinkage&mdash;Wolfram Language Documentation</title>
+<meta name="buildnumber" content="0000000" />
+<meta name="historydata" content="{XX, , , }" />
+<meta name="keywords" content="WaveletShrinkage" />
+
+<meta name="description" content="WaveletShrinkage[data, filter, lambda, opts] takes a vector or matrix, an orthogonal filter or biorthogonal filter pair, and a tolerance(s) and returns a denoised approximation of the input." />
+<script language="JavaScript" type="text/javascript">baselang='WaveletShrinkage';</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		 <link rel="stylesheet" type="text/css" href="../css/reference.css" />
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/core/1.6.1/jquery.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/plugins/hoverIntent/r5/jquery.hoverIntent.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/reference.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/documentation-search.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/inputs.js"></script>
+		 <script language="javaScript" type="text/javascript" src="../javascript/faster-page-load.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/plugins/jcarousel/tinycarousel/tinycarousel.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery.dotdotdot-1.5.1.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/carousel.js"></script>
+<script language="JavaScript" type="text/javascript" src="../javascript/toggle-highlight.js"></script>
+</head>
+<body id="ref" class="function">
+<a name="top"></a>
+<!--#include virtual="/common/includes/gl-header.html"--> 
+<div class="main-wrapper">
+
+
+<div class="wrapper mainOuter">
+    <div class="mainContent">
+ <div class="topContentWrap">
+  <div class="ribbonWrap">
+   <span class="ribbonOuter"><span class="ribbonInner">WAVELET WARE PACKAGE SYMBOL</span></span>
+  </div>
+  <ul class="dropdown">
+   <li>
+    <a href="#">See Also</a>
+    <ul class="sub_menu">
+     <li>
+      <a href="/language/WaveletWare/ref/ShrinkageFunction.html"><span class="dropdownPad">ShrinkageFunction</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/VisuShrink.html"><span class="dropdownPad">VisuShrink</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/SUREShrink.html"><span class="dropdownPad">SUREShrink</span></a>
+     </li>
+    </ul>
+   </li>
+   <li>
+    <a href="#">Related Guides</a>
+    <ul class="sub_menu">
+     <li>
+      <a href="/language/WaveletWare/guide/List of Functions - Alphabetical.html"><span class="dropdownPad">List of Functions - Alphabetical</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/guide/List of Functions - Categorical.html"><span class="dropdownPad">List of Functions - Categorical</span></a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+  <div class="clear"><!-- --></div>
+ </div>
+ <h1>WaveletShrinkage</h1>
+ <div class="functionIntroWrap">
+  <div class="functionIntro">
+   <p><span class="IF"><img src="Files/WaveletShrinkage/1.png" height="18" width="245" alt="" /></span><br />takes a vector or matrix, an orthogonal filter or biorthogonal filter pair, and a tolerance(s) and returns a denoised approximation of the input.</p>
+  </div>
+ </div>
+ <div class="expandWrap closed"
+     id="DetailsAndOptions">
+  <div class="expandOuter">
+   <h2 class="expandInner"><a class="expand hide" title="show" href="#">Details</a><a class="collapse" title="hide" href="#">Details</a></h2>
+   <div class="expanded">
+    <ul class="functionList">
+     <li>The following options can be given: </li>
+     <li class="NotesTable">
+      <table>
+       <col width="1%" />
+       <col width="28%" />
+       <col width="28%" />
+       <col width="43%" />
+       <tr class="lineAbove" style=""><td /><td><a href="http://reference.wolfram.com/language/WaveletWare/ref/NumIterations.html">NumIterations</a></td><td>1</td><td><span class="TT"><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/NumIterations.html">NumIterations</a></span> is an option used by several functions in the <a href="../WaveletWare/tutorial/WaveletWare Package.html">WaveletWare</a> package.  It indicates the number of iterations of the wavelet transform performed on the data.</span></td></tr>
+       <tr class="" style=""><td /><td><a href="http://reference.wolfram.com/language/WaveletWare/ref/Computation.html">Computation</a></td><td><a href="http://reference.wolfram.com/language/WaveletWare/ref/Numerical.html">Numerical</a></td><td><span class="TT"><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/Computation.html">Computation</a></span> is an option for wavelet transform functions or the <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/CE.html">CE</a></span> function that indicates whether the comptuation should be done numerically or symbolically.</span></td></tr>
+       <tr class="" style=""><td /><td><a href="http://reference.wolfram.com/language/WaveletWare/ref/Shift.html">Shift</a></td><td>0</td><td><span class="TT"><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/Shift.html">Shift</a></span> is an option for discrete wavelet transform functions to indicate if the lowpass/highpass filters should be shifted for the computation.</span></td></tr>
+       <tr class="" style=""><td /><td><a href="http://reference.wolfram.com/language/WaveletWare/ref/Boundary.html">Boundary</a></td><td><a href="http://reference.wolfram.com/language/ref/False.html">False</a></td><td><span class="TT"><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/Boundary.html">Boundary</a></span> is an option for several routines that either compute or use the biorthogonal wavelet transform.  If set to <a href="http://reference.wolfram.com/language/ref/True.html">True</a><span class="specialcharacters"><span class="comma">,</span> a symmetric biorthogonal transformation is computed.</span></span></td></tr>
+       <tr class="" style=""><td /><td><a href="http://reference.wolfram.com/language/WaveletWare/ref/IntegerMap.html">IntegerMap</a></td><td><a href="http://reference.wolfram.com/language/ref/False.html">False</a></td><td><span class="TT"><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/IntegerMap.html">IntegerMap</a></span> is an option used by LeGall wavelet transform functions.  If set to <a href="http://reference.wolfram.com/language/ref/True.html">True</a><span class="specialcharacters"> <span class="openparenthesis">(</span>default is </span><a href="http://reference.wolfram.com/language/ref/False.html">False</a><span class="specialcharacters"><span class="closeparenthesis">)</span> and the input are integers<span class="comma">,</span> then the output is integer-valued</span>.</span></td></tr>
+      </table>
+     </li>
+     <li><a name="611826615"></a>All options are for orthogonal and (bi)orthogonal wavelet transform functions.  </li>
+     <li><a name="178336514"></a>The value for <span class="IF"><span class="TI">lambda</span></span> can be a positive number or a vector of length <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/NumIterations.html">NumIterations</a></span> where each entry is a positive number.  In the latter case, <span class="IF"><img src="Files/WaveletShrinkage/2.png" height="17" width="13" alt="" /></span> is used in conjunction with the ShrinkageFunction to perform soft thresholding on highpass iteration <span class="IF"><span class="TI">k</span></span>.</li>
+     <li><a name="43052629"></a>The Wavelet Shrinkage algorithm is as follows:</li>
+     <li class="NotesTable">
+      <a name="118245858"></a>
+      <table class="nogridboxdividers">
+       <col />
+       <col />
+       <tr class="lineAbove" style=""><td /><td>Compute k iterations of the wavelet transform on the input data;</td></tr>
+       <tr class="" style=""><td /><td>Apply the soft threshold function <a href="http://reference.wolfram.com/language/WaveletWare/ref/ShrinkageFunction.html">ShrinkageFunction</a> to each highpass portion of the transform; </td></tr>
+       <tr class="" style=""><td /><td>Join the new highpass portions of the transform with the lowpass portion;</td></tr>
+       <tr class="" style=""><td /><td>Apply the inverse wavelet transform</td></tr>
+      </table>
+     </li>
+    </ul>
+   </div>
+  </div>
+ </div>
+ <div class="expandWrap"
+     id="Examples">
+  <div class="expandOuter">
+   <h2 class="expandInner"><a class="expand hide" title="show" href="#">Examples</a><a class="collapse" title="hide" href="#">Examples</a><a class="all opener" title="open all" href="#"><span>open all</span></a><a class="all closer hide" title="close all" href="#"><span>close all</span></a></h2>
+   <div class="expanded">
+    <div class="expandSubWrap">
+     <div class="expandSubOuter">
+      <h3 class="expandSubInner"><a class="expand hide" href="#" title="show">Basic Examples<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a><a class="collapse" href="#" title="hide">Basic Examples<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a></h3>
+      <div class="expanded">
+       <div class="MCap"><a name="16454449"></a>This loads the package:</div>
+       <table class="InCell">
+        <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+           <a name="861618089"></a>
+           <img src="Files/WaveletShrinkage/I_2.gif"
+               height="15"
+               width="93"
+               alt="Click for copyable input" />
+          </div><div id="i_1_out" class="IFL"></div></td></tr>
+       </table>
+       <p><a name="578935269"></a>Perform denoising on a data set.</p>
+       <div class="IO">
+        <table class="InCell">
+         <tr><td class="lab">In[2]:=</td><td class="Input"><div>
+            <a name="84873773"></a>
+            <img src="Files/WaveletShrinkage/I_4.gif"
+                height="186"
+                width="489"
+                alt="Click for copyable input" />
+           </div><div id="i_3_out" class="IFL"></div></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[2]=</td><td class="Output"><img src="Files/WaveletShrinkage/O_1.gif" height="153" width="240" alt="" /></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[2]=</td><td class="Output"><img src="Files/WaveletShrinkage/O_2.gif" height="153" width="240" alt="" /></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[2]=</td><td class="Output"><img src="Files/WaveletShrinkage/O_3.gif" height="153" width="240" alt="" /></td></tr>
+        </table>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="expandSubWrap closed">
+     <div class="expandSubOuter">
+      <h3 class="expandSubInner"><a class="expand hide" href="#" title="show">Options<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(5)</span></a><a class="collapse" href="#" title="hide">Options<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(5)</span></a></h3>
+      <div class="expanded"></div>
+     </div>
+    </div>
+    <div class="toplink">
+     <a href="#top">Top</a>
+    </div>
+    <div class="clear"><!-- --></div>
+   </div>
+  </div>
+ </div>
+ <div class="expandWrap"
+     id="SeeAlso">
+  <div class="expandOuter">
+   <h2 class="expandInner"><a class="expand hide" title="show" href="#">See Also</a><a class="collapse" title="hide" href="#">See Also</a></h2>
+   <div class="expanded">
+    <p class="inlineFunctionList"><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/ShrinkageFunction.html">ShrinkageFunction</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/VisuShrink.html">VisuShrink</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/SUREShrink.html">SUREShrink</a></span></p>
+   </div>
+  </div>
+ </div>
+ <div class="expandWrap"
+     id="RelatedGuides">
+  <div class="expandOuter">
+   <h2 class="expandInner"><a class="expand hide" title="show" href="#">Related Guides</a><a class="collapse" title="hide" href="#">Related Guides</a></h2>
+   <div class="expanded">
+    <ul class="functionList">
+     <li>
+      <a name="588318102"></a>
+      <a href="http://reference.wolfram.com/language/WaveletWare/guide/List of Functions - Alphabetical.html">List of Functions - Alphabetical</a>
+     </li>
+     <li>
+      <a name="102509363"></a>
+      <a href="http://reference.wolfram.com/language/WaveletWare/guide/List of Functions - Categorical.html">List of Functions - Categorical</a>
+     </li>
+    </ul>
+   </div>
+  </div>
+ </div>
+</div>
+</div><!-- /wrapper -->
+
+	
+</div>
+
+
+</body>
+		 </html>

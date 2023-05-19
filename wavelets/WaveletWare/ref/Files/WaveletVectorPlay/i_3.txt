@@ -1,0 +1,5 @@
+<pre name='i_3_in' id='i_3_in' class='IFT'>file = PackageDirectory[DataType -&gt; Sounds] &lt;&gt; &quot;sonar.wav&quot;;
+{data, rate} = AudioRead[file];
+wt = WT[data, Daub[4]];
+ListPlay[data, SampleRate -&gt; rate]
+WaveletVectorPlay[wt]</pre><div class='IFU'><a name='195348239'></a>http://wolfram.com/xid/0c9xiooyewsxl9wvvcdkih5p36vu-dik9x9</div>

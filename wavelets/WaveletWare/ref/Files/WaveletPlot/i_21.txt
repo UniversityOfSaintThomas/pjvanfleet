@@ -1,0 +1,5 @@
+<pre name='i_21_in' id='i_21_in' class='IFT'>file = PackageDirectory[DataType -&gt; Images] &lt;&gt; &quot;fish.png&quot;;
+A = ImageRead[file, Resize -&gt; {256, 384}];
+ImagePlot[A]
+wt = HWT[A, NumIterations -&gt; 2];
+WaveletPlot[wt, NumIterations -&gt; 2, Iteration -&gt; {{All, 2, 1, 1}}]</pre><div class='IFU'><a name='177254020'></a>http://wolfram.com/xid/0cew39zuhikyj6xdcij5apz9u-c7tgc2</div>

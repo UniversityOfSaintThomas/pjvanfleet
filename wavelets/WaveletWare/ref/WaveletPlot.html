@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>WaveletPlot&mdash;Wolfram Language Documentation</title>
+<meta name="buildnumber" content="0000000" />
+<meta name="historydata" content="{XX, , , }" />
+<meta name="keywords" content="WaveletPlot" />
+
+<meta name="description" content="WaveletPlot[a,opts] or WaveletPlot[a,tree,opts] plots a 2-dimensional wavelet or wavelet packet transform." />
+<script language="JavaScript" type="text/javascript">baselang='WaveletPlot';</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		 <link rel="stylesheet" type="text/css" href="../css/reference.css" />
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/core/1.6.1/jquery.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/plugins/hoverIntent/r5/jquery.hoverIntent.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/reference.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/documentation-search.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/inputs.js"></script>
+		 <script language="javaScript" type="text/javascript" src="../javascript/faster-page-load.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/plugins/jcarousel/tinycarousel/tinycarousel.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery.dotdotdot-1.5.1.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/carousel.js"></script>
+<script language="JavaScript" type="text/javascript" src="../javascript/toggle-highlight.js"></script>
+</head>
+<body id="ref" class="function">
+<a name="top"></a>
+<!--#include virtual="/common/includes/gl-header.html"--> 
+<div class="main-wrapper">
+
+
+<div class="wrapper mainOuter">
+    <div class="mainContent">
+ <div class="topContentWrap">
+  <div class="ribbonWrap">
+   <span class="ribbonOuter"><span class="ribbonInner">WAVELET WARE PACKAGE SYMBOL</span></span>
+  </div>
+  <ul class="dropdown">
+   <li>
+    <a href="#">Tutorials</a>
+    <ul class="sub_menu">
+     <li>
+      <a href="/language/WaveletWare/tutorial/Computing and Plotting Wavelet Packet Transforms.html"><span class="dropdownPad">Computing and Plotting Wavelet Packet Transformations</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/tutorial/Computing and Plotting Wavelet Transformations.html"><span class="dropdownPad">Computing and Plotting Wavelet Transformations</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/tutorial/Data Structures in the WaveletWare Package.html"><span class="dropdownPad">Data Structures in the WaveletWare Package</span></a>
+     </li>
+    </ul>
+   </li>
+   <li>
+    <a href="#">See Also</a>
+    <ul class="sub_menu">
+     <li>
+      <a href="/language/WaveletWare/ref/WT.html"><span class="dropdownPad">WT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/HWT.html"><span class="dropdownPad">HWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/BWT.html"><span class="dropdownPad">BWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/LWT.html"><span class="dropdownPad">LWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/LeftWT.html"><span class="dropdownPad">LeftWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/RightWT.html"><span class="dropdownPad">RightWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/LeftHWT.html"><span class="dropdownPad">LeftHWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/RightHWT.html"><span class="dropdownPad">RightHWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/LeftLWT.html"><span class="dropdownPad">LeftLWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/RightLWT.html"><span class="dropdownPad">RightLWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/WaveletVectorPlot.html"><span class="dropdownPad">WaveletVectorPlot</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/FullWaveletPlot.html"><span class="dropdownPad">FullWaveletPlot</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/WaveletRegionPlot.html"><span class="dropdownPad">WaveletRegionPlot</span></a>
+     </li>
+    </ul>
+   </li>
+   <li>
+    <a href="#">Related Guides</a>
+    <ul class="sub_menu">
+     <li>
+      <a href="/language/WaveletWare/guide/List of Functions - Alphabetical.html"><span class="dropdownPad">List of Functions - Alphabetical</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/guide/List of Options and Values.html"><span class="dropdownPad">List of Options and Values</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/guide/List of Functions - Categorical.html"><span class="dropdownPad">List of Functions - Categorical</span></a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+  <div class="clear"><!-- --></div>
+ </div>
+ <h1>WaveletPlot</h1>
+ <div class="functionIntroWrap">
+  <div class="functionIntro">
+   <p>WaveletPlot[<span class="IF"><span class="TI">a</span></span>,<span class="IF"><span class="TI">opts</span></span>]<br />or WaveletPlot[<span class="IF"><span class="TI">a</span></span>,<span class="IF"><span class="TI">tree</span></span>,<span class="IF"><span class="TI">opts</span></span>] plots a 2-dimensional wavelet or wavelet packet transform.</p>
+  </div>
+ </div>
+ <div class="expandWrap closed"
+     id="DetailsAndOptions">
+  <div class="expandOuter">
+   <h2 class="expandInner"><a class="expand hide" title="show" href="#">Details</a><a class="collapse" title="hide" href="#">Details</a></h2>
+   <div class="expanded">
+    <ul class="functionList">
+     <li>The following options can be given: </li>
+     <li class="NotesTable">
+      <table>
+       <col width="1%" />
+       <col width="28%" />
+       <col width="28%" />
+       <col width="43%" />
+       <tr class="lineAbove" style=""><td /><td><a href="http://reference.wolfram.com/language/WaveletWare/ref/PlotType.html">PlotType</a></td><td><a href="http://reference.wolfram.com/language/ref/Automatic.html">Automatic</a></td><td><span class="TT"><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/PlotType.html">PlotType</a></span> is an option for <span class="IF"><img src="Files/WaveletPlot/1.png" height="17" width="62" alt="" /></span> that if set to <a href="http://reference.wolfram.com/language/ref/Automatic.html">Automatic</a><span class="specialcharacters"> <span class="openparenthesis">(</span>default<span class="closeparenthesis">)</span><span class="comma">,</span> plots wavelet transformed data.  It can also be set to </span><a href="http://reference.wolfram.com/language/ref/Left.html">Left</a> or <a href="http://reference.wolfram.com/language/ref/Right.html">Right</a> to plot the output of <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/LeftWT.html">LeftWT</a></span><span class="specialcharacters"><span class="comma">,</span> </span><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/RightWT.html">RightWT</a></span><span class="specialcharacters"><span class="comma">,</span> respectively.</span></span></td></tr>
+       <tr class="" style=""><td /><td><a href="http://reference.wolfram.com/language/WaveletWare/ref/Iteration.html">Iteration</a></td><td><a href="http://reference.wolfram.com/language/ref/All.html">All</a></td><td><span class="TT"><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/Iteration.html">Iteration</a></span> is an option for <span class="monospace">WaveletPlot</span><span class="specialcharacters"><span class="comma">,</span> </span><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/WaveletVectorPlot.html">WaveletVectorPlot</a></span><span class="specialcharacters"><span class="comma">,</span> </span><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/FullWaveletPlot.html">FullWaveletPlot</a></span><span class="specialcharacters"><span class="comma">,</span> </span><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/FullWaveletVectorPlot.html">FullWaveletVectorPlot</a></span> and <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/WaveletVectorPlay.html">WaveletVectorPlay</a></span> that can be used to designate as output a particular region of the input data.</span></td></tr>
+       <tr class="" style=""><td /><td><a href="http://reference.wolfram.com/language/WaveletWare/ref/NumIterations.html">NumIterations</a></td><td>1</td><td><span class="TT"><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/NumIterations.html">NumIterations</a></span> is an option used by several functions in the WaveletWare package.  It indicates the number of iterations of the wavelet transform performed on the data.</span></td></tr>
+       <tr class="" style=""><td /><td><a href="http://reference.wolfram.com/language/WaveletWare/ref/PlotTogether.html">PlotTogether</a></td><td><a href="http://reference.wolfram.com/language/ref/False.html">False</a></td><td><span class="TT"><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/PlotTogether.html">PlotTogether</a></span> is an option for <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/ImagePlot.html">ImagePlot</a></span><span class="specialcharacters"><span class="comma">,</span> </span><span class="monospace">WaveletPlot</span><span class="specialcharacters"><span class="comma">,</span> </span><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/FullWaveletPlot.html">FullWaveletPlot</a></span><span class="specialcharacters"><span class="comma">,</span> and </span><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/WaveletRegionPlot.html">WaveletRegionPlot</a></span>.  If set to <a href="http://reference.wolfram.com/language/ref/True.html">True</a><span class="specialcharacters"><span class="comma">,</span> an input list of three matrices are plotted as a color image.  Otherwise each channel is plotted separately.</span></span></td></tr>
+       <tr class="" style=""><td /><td><a href="http://reference.wolfram.com/language/WaveletWare/ref/Scaling.html">Scaling</a></td><td><a href="http://reference.wolfram.com/language/ref/True.html">True</a></td><td><span class="TT"><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/Scaling.html">Scaling</a></span> is an option for <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/ImagePlot.html">ImagePlot</a></span><span class="specialcharacters"><span class="comma">,</span> </span><span class="monospace">WaveletPlot</span><span class="specialcharacters"><span class="comma">,</span> </span><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/FullWaveletPlot.html">FullWaveletPlot</a></span> and <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/WaveletRegionPlot.html">WaveletRegionPlot</a></span>.  If set to <a href="http://reference.wolfram.com/language/ref/True.html">True</a><span class="specialcharacters"> <span class="openparenthesis">(</span>default<span class="closeparenthesis">)</span><span class="comma">,</span> the data are scaled before plotting.  If set to </span><a href="http://reference.wolfram.com/language/ref/False.html">False</a><span class="specialcharacters"><span class="comma">,</span> raw data are plotted.</span></span></td></tr>
+       <tr class="" style=""><td /><td><a href="http://reference.wolfram.com/language/WaveletWare/ref/ChannelColor.html">ChannelColor</a></td><td>GrayLevel<span class="openbracket">[</span>1<span class="closebracket">]</span></td><td><span class="TT"><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/ChannelColor.html">ChannelColor</a></span> is an option for <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/ImagePlot.html">ImagePlot</a></span><span class="specialcharacters"><span class="comma">,</span> </span><span class="monospace">WaveletPlot</span><span class="specialcharacters"><span class="comma">,</span> </span><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/FullWaveletPlot.html">FullWaveletPlot</a></span> and <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/WaveletRegionPlot.html">WaveletRegionPlot</a></span><span class="specialcharacters">.  It can be used to set ColorFunction to a particular RGB color when a single matrix <span class="openparenthesis">(</span>with </span><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/Scaling.html">Scaling</a></span><span class="specialcharacters"> set to Image<span class="closeparenthesis">)</span> is input in </span><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/ImagePlot.html">ImagePlot</a></span>.</span></td></tr>
+       <tr class="" style=""><td /><td><a href="http://reference.wolfram.com/language/WaveletWare/ref/Dimming.html">Dimming</a></td><td>GrayLevel<span class="openbracket">[</span>0.8<span class="closebracket">]</span></td><td><span class="TT"><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/Dimming.html">Dimming</a></span> is an option for <span class="IF"><img src="Files/WaveletPlot/2.png" height="17" width="62" alt="" /></span> and <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/WaveletVectorPlot.html">WaveletVectorPlot</a></span>.  It sets the color of those portions of the transform not to be plotted.</span></td></tr>
+       <tr class="" style=""><td /><td><a href="http://reference.wolfram.com/language/WaveletWare/ref/DimmingRange.html">DimmingRange</a></td><td><span class="openbrace">{</span>200<span class="comma">,</span> 255<span class="closebrace">}</span></td><td><span class="TT"><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/DimmingRange.html">DimmingRange</a></span> is an option for <span class="IF"><img src="Files/WaveletPlot/3.png" height="17" width="62" alt="" /></span> or <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/FullWaveletPlot.html">FullWaveletPlot</a></span>.  It sets the intensity range for those portions of the wavelet transformed that are dimmed.</span></td></tr>
+       <tr class="" style=""><td /><td><a href="http://reference.wolfram.com/language/WaveletWare/ref/DivideLines.html">DivideLines</a></td><td><a href="http://reference.wolfram.com/language/ref/True.html">True</a></td><td><span class="TT"><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/DivideLines.html">DivideLines</a></span> is an option for <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/WaveletPlot.html">WaveletPlot</a></span><span class="specialcharacters"><span class="comma">,</span> </span><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/FullWaveletPlot.html">FullWaveletPlot</a></span><span class="specialcharacters"><span class="comma">,</span> </span><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/WaveletVectorPlot.html">WaveletVectorPlot</a></span> and <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/FullWaveletVectorPlot.html">FullWaveletVectorPlot</a></span> that indicates whether or not different portions of the transform should be separated by dividing lines.</span></td></tr>
+       <tr class="" style=""><td /><td><a href="http://reference.wolfram.com/language/WaveletWare/ref/DivideLinesColor.html">DivideLinesColor</a></td><td>GrayLevel<span class="openbracket">[</span>1<span class="closebracket">]</span></td><td><span class="TT"><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/DivideLinesColor.html">DivideLinesColor</a></span> is an option for <span class="IF"><img src="Files/WaveletPlot/4.png" height="17" width="62" alt="" /></span><span class="specialcharacters"><span class="comma">,</span> </span><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/FullWaveletPlot.html">FullWaveletPlot</a></span><span class="specialcharacters"><span class="comma">,</span> </span><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/WaveletVectorPlot.html">WaveletVectorPlot</a></span> and <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/FullWaveletVectorPlot.html">FullWaveletVectorPlot</a></span>  that indicates the color of divide lines.</span></td></tr>
+       <tr class="" style=""><td /><td><a href="http://reference.wolfram.com/language/WaveletWare/ref/Border.html">Border</a></td><td><a href="http://reference.wolfram.com/language/ref/True.html">True</a></td><td><span class="TT"><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/Border.html">Border</a></span> is an option for <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/ImagePlot.html">ImagePlot</a></span><span class="specialcharacters"><span class="comma">,</span> </span><span class="monospace">WaveletPlot</span><span class="specialcharacters"><span class="comma">,</span> </span><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/FullWaveletPlot.html">FullWaveletPlot</a></span> and <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/WaveletRegionPlot.html">WaveletRegionPlot</a></span><span class="specialcharacters">.  If set to True <span class="openparenthesis">(</span>default<span class="closeparenthesis">)</span><span class="comma">,</span> a border is placed on the image.</span></span></td></tr>
+       <tr class="" style=""><td /><td><a href="http://reference.wolfram.com/language/WaveletWare/ref/BorderColor.html">BorderColor</a></td><td>GrayLevel<span class="openbracket">[</span>0<span class="closebracket">]</span></td><td><span class="TT"><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/BorderColor.html">BorderColor</a></span> is an option for <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/ImagePlot.html">ImagePlot</a></span><span class="specialcharacters"><span class="comma">,</span>  </span><span class="monospace">WaveletPlot</span><span class="specialcharacters"><span class="comma">,</span> </span><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/FullWaveletPlot.html">FullWaveletPlot</a></span> and <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/WaveletRegionPlot.html">WaveletRegionPlot</a></span>.  It sets the color of the image border.</span></td></tr>
+       <tr class="" style=""><td /><td><a href="http://reference.wolfram.com/language/ref/AlignmentPoint.html">AlignmentPoint</a></td><td><a href="http://reference.wolfram.com/language/ref/Center.html">Center</a></td><td><span class="TT">AlignmentPoint is an option which specifies how objects should by default be aligned when they appear in Inset.</span></td></tr>
+       <tr class="" style=""><td /><td><a href="http://reference.wolfram.com/language/ref/BaselinePosition.html">BaselinePosition</a></td><td><a href="http://reference.wolfram.com/language/ref/Automatic.html">Automatic</a></td><td><span class="TT">BaselinePosition is an option that specifies where the baseline of an object is considered to be for purposes of alignment with surrounding text or other expressions. </span></td></tr>
+       <tr class="" style=""><td /><td><a href="http://reference.wolfram.com/language/ref/ColorSpace.html">ColorSpace</a></td><td><a href="http://reference.wolfram.com/language/ref/Automatic.html">Automatic</a></td><td><span class="TT">ColorSpace is an option for Image and related functions that specifies the color space to which color values refer.</span></td></tr>
+       <tr class="" style=""><td /><td><a href="http://reference.wolfram.com/language/ref/ImageResolution.html">ImageResolution</a></td><td><a href="http://reference.wolfram.com/language/ref/Automatic.html">Automatic</a></td><td><span class="TT"><span class="specialcharacters">ImageResolution is an option for Export<span class="comma">,</span> Rasterize<span class="comma">,</span> and related functions that specifies at what resolution bitmap images should be rendered. </span></span></td></tr>
+       <tr class="" style=""><td /><td><a href="http://reference.wolfram.com/language/ref/ImageSize.html">ImageSize</a></td><td><a href="http://reference.wolfram.com/language/ref/Automatic.html">Automatic</a></td><td><span class="TT">ImageSize is an option that specifies the overall size of an image to display for an object. </span></td></tr>
+       <tr class="" style=""><td /><td><a href="http://reference.wolfram.com/language/ref/Interleaving.html">Interleaving</a></td><td><a href="http://reference.wolfram.com/language/ref/Automatic.html">Automatic</a></td><td><span class="TT">Interleaving is an option for Image and related functions that specifies whether data corresponding to different channels in an object such as an image should be interleaved.</span></td></tr>
+       <tr class="" style=""><td /><td><a href="http://reference.wolfram.com/language/ref/Magnification.html">Magnification</a></td><td><a href="http://reference.wolfram.com/language/ref/Automatic.html">Automatic</a></td><td><span class="TT">Magnification is an option for Style and Cell that specifies what magnification to use for display. </span></td></tr>
+       <tr class="" style=""><td /><td><a href="http://reference.wolfram.com/language/ref/MetaInformation.html">MetaInformation</a></td><td><span class="openbrace">{</span><span class="closebrace">}</span></td><td><span class="TT"><span class="specialcharacters">MetaInformation is an option giving meta-information for Image<span class="comma">,</span> CloudObject<span class="comma">,</span> and other objects.</span></span></td></tr>
+       <tr class="" style=""><td /><td><a href="http://reference.wolfram.com/language/ref/TaggingRules.html">TaggingRules</a></td><td><span class="openbrace">{</span><span class="closebrace">}</span></td><td><span class="TT">TaggingRules is an option for selections that specifies a list of strings to be associated with a selection.</span></td></tr>
+       <tr class="" style=""><td /><td><a href="http://reference.wolfram.com/language/ref/ColorFunction.html">ColorFunction</a></td><td><a href="http://reference.wolfram.com/language/ref/Automatic.html">Automatic</a></td><td><span class="TT">ColorFunction is an option for graphics functions that specifies a function to apply to determine colors of elements. </span></td></tr>
+       <tr class="" style=""><td /><td><a href="http://reference.wolfram.com/language/ref/ColorFunctionScaling.html">ColorFunctionScaling</a></td><td><a href="http://reference.wolfram.com/language/ref/True.html">True</a></td><td><span class="TT">ColorFunctionScaling is an option for graphics functions that specifies whether arguments supplied to a color function should be scaled to lie between 0 and 1. </span></td></tr>
+      </table>
+     </li>
+     <li><a name="51611240"></a>The options <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/PlotType.html">PlotType</a></span>, <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/Iteration.html">Iteration</a></span>, <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/NumIterations.html">NumIterations</a></span>, <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/PlotTogether.html">PlotTogether</a></span>, <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/Scaling.html">Scaling</a></span>, <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/Dimming.html">Dimming</a></span>, <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/DimmingRange.html">DimmingRange</a></span>, <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/DivideLines.html">DivideLines</a></span>, <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/DivideLinesColor.html">DivideLinesColor</a></span>, <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/Border.html">Border</a></span>, <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/BorderColor.html">BorderColor</a></span> and <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/ChannelColor.html">ChannelColor</a></span> are part of the WaveletWare package.  The remaining options are associated with the <em>Mathematica</em> functions <a href="http://reference.wolfram.com/language/ref/Raster.html">Raster</a> (<a href="http://reference.wolfram.com/language/ref/ColorFunction.html">ColorFunction</a> and <a href="http://reference.wolfram.com/language/ref/ColorFunctionScaling.html">ColorFunctionScaling</a>) and <a href="http://reference.wolfram.com/language/ref/Image.html">Image</a> (<a href="http://reference.wolfram.com/language/ref/AlignmentPoint.html">AlignmentPoint</a>, <a href="http://reference.wolfram.com/language/ref/BaselinePosition.html">BaselinePosition</a>, <a href="http://reference.wolfram.com/language/ref/ColorSpace.html">ColorSpace</a>, <a href="http://reference.wolfram.com/language/ref/ImageResolution.html">ImageResolution</a>, <a href="http://reference.wolfram.com/language/ref/ImageSize.html">ImageSize</a>, <a href="http://reference.wolfram.com/language/WaveletWare/ref/InterLeaving.html">InterLeaving</a>, <a href="http://reference.wolfram.com/language/ref/Magnification.html">Magnification</a>, <a href="http://reference.wolfram.com/language/ref/MetaInformation.html">MetaInformation</a> and <a href="http://reference.wolfram.com/language/ref/TaggingRules.html">TaggingRules</a>) and not addressed on this page.</li>
+     <li><a name="293663613"></a>The input <span class="IF"><span class="TI">a</span></span> should be either a matrix, or a list of three matrices of equal dimensions.</li>
+     <li><a name="252938391"></a>If no value for <span class="IF"><span class="TI">tree</span></span> is provided, <span class="monospace">WaveletPlot</span> assumes that the plot of a regular wavelet transform is requested and proceeds accordingly.</li>
+     <li><a name="422015524"></a>If any of the options <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/DivideLinesColor.html">DivideLinesColor</a></span>, <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/ChannelColor.html">ChannelColor</a></span> or <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/BorderColor.html">BorderColor</a></span> are set to <a href="http://reference.wolfram.com/language/ref/White.html">White</a>, then that part of the image is plotted in gray scale.</li>
+     <li><a name="556275237"></a><span class="monospace">WaveletPlot</span> replaces WaveletDensityPlot from the DiscreteWavelets package.</li>
+    </ul>
+   </div>
+  </div>
+ </div>
+ <div class="expandWrap"
+     id="Examples">
+  <div class="expandOuter">
+   <h2 class="expandInner"><a class="expand hide" title="show" href="#">Examples</a><a class="collapse" title="hide" href="#">Examples</a><a class="all opener" title="open all" href="#"><span>open all</span></a><a class="all closer hide" title="close all" href="#"><span>close all</span></a></h2>
+   <div class="expanded">
+    <div class="expandSubWrap">
+     <div class="expandSubOuter">
+      <h3 class="expandSubInner"><a class="expand hide" href="#" title="show">Basic Examples<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(4)</span></a><a class="collapse" href="#" title="hide">Basic Examples<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(4)</span></a></h3>
+      <div class="expanded">
+       <div class="MCap"><a name="16454449"></a>This loads the package:</div>
+       <table class="InCell">
+        <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+           <a name="861618089"></a>
+           <img src="Files/WaveletPlot/I_2.gif"
+               height="15"
+               width="93"
+               alt="Click for copyable input" />
+          </div><div id="i_1_out" class="IFL"></div></td></tr>
+       </table>
+       <p><a name="208085178"></a>Plot the wavelet transform of a grayscale image.</p>
+       <div class="IO">
+        <table class="InCell">
+         <tr><td class="lab">In[2]:=</td><td class="Input"><div>
+            <a name="69002711"></a>
+            <img src="Files/WaveletPlot/I_4.gif"
+                height="84"
+                width="332"
+                alt="Click for copyable input" />
+           </div><div id="i_3_out" class="IFL"></div></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[2]=</td><td class="Output"><img src="Files/WaveletPlot/O_1.gif" height="256" width="384" alt="" /></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[2]=</td><td class="Output"><img src="Files/WaveletPlot/O_2.gif" height="256" width="384" alt="" /></td></tr>
+        </table>
+       </div>
+       <div class="ExLine"><a name="307058738"></a><!-- --></div>
+       <p><a name="281658434"></a>Plot the wavelet transform of a color image.</p>
+       <div class="IO">
+        <table class="InCell">
+         <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+            <a name="461228304"></a>
+            <img src="Files/WaveletPlot/I_6.gif"
+                height="84"
+                width="315"
+                alt="Click for copyable input" />
+           </div><div id="i_5_out" class="IFL"></div></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_3.gif" height="256" width="384" alt="" /></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_4.gif" height="252" width="386" alt="" /></td></tr>
+        </table>
+       </div>
+       <div class="ExLine"><a name="103352370"></a><!-- --></div>
+       <p><a name="761464496"></a>Plot the wavelet packet transform of a gray scale image.</p>
+       <div class="IO">
+        <table class="InCell">
+         <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+            <a name="353697605"></a>
+            <img src="Files/WaveletPlot/I_8.gif"
+                height="152"
+                width="389"
+                alt="Click for copyable input" />
+           </div><div id="i_7_out" class="IFL"></div></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_5.gif" height="256" width="384" alt="" /></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_6.gif" height="256" width="384" alt="" /></td></tr>
+        </table>
+       </div>
+       <div class="ExLine"><a name="412995926"></a><!-- --></div>
+       <p><a name="8452793"></a>Plot the wavelet packet transform of a color image.</p>
+       <div class="IO">
+        <table class="InCell">
+         <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+            <a name="16835662"></a>
+            <img src="Files/WaveletPlot/I_10.gif"
+                height="152"
+                width="389"
+                alt="Click for copyable input" />
+           </div><div id="i_9_out" class="IFL"></div></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_7.gif" height="256" width="384" alt="" /></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/WaveletPlot/O_8.gif" height="252" width="386" alt="" /></td></tr>
+        </table>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="expandSubWrap closed">
+     <div class="expandSubOuter">
+      <h3 class="expandSubInner"><a class="expand hide" href="#" title="show">Options<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(41)</span></a><a class="collapse" href="#" title="hide">Options<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(41)</span></a></h3>
+      <div class="expanded"></div>
+     </div>
+    </div>
+    <div class="expandSubWrap closed">
+     <div class="expandSubOuter">
+      <h3 class="expandSubInner"><a class="expand hide" href="#" title="show">Possible Issues<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a><a class="collapse" href="#" title="hide">Possible Issues<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(1)</span></a></h3>
+      <div class="expanded"></div>
+     </div>
+    </div>
+    <div class="toplink">
+     <a href="#top">Top</a>
+    </div>
+    <div class="clear"><!-- --></div>
+   </div>
+  </div>
+ </div>
+ <div class="expandWrap"
+     id="SeeAlso">
+  <div class="expandOuter">
+   <h2 class="expandInner"><a class="expand hide" title="show" href="#">See Also</a><a class="collapse" title="hide" href="#">See Also</a></h2>
+   <div class="expanded">
+    <p class="inlineFunctionList"><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/WT.html">WT</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/HWT.html">HWT</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/BWT.html">BWT</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/LWT.html">LWT</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/LeftWT.html">LeftWT</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/RightWT.html">RightWT</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/LeftHWT.html">LeftHWT</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/RightHWT.html">RightHWT</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/LeftLWT.html">LeftLWT</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/RightLWT.html">RightLWT</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/WaveletVectorPlot.html">WaveletVectorPlot</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/FullWaveletPlot.html">FullWaveletPlot</a> <span class="special-character FilledVerySmallSquare">&#9642;</span> <a href="http://reference.wolfram.com/language/WaveletWare/ref/WaveletRegionPlot.html">WaveletRegionPlot</a></span></p>
+   </div>
+  </div>
+ </div>
+ <div class="expandWrap"
+     id="Tutorials">
+  <div class="expandOuter">
+   <h2 class="expandInner"><a class="expand hide" title="show" href="#">Tutorials</a><a class="collapse" title="hide" href="#">Tutorials</a></h2>
+   <div class="expanded">
+    <ul class="functionList">
+     <li>
+      <a name="317413943"></a>
+      <a href="http://reference.wolfram.com/language/WaveletWare/tutorial/Computing and Plotting Wavelet Packet Transforms.html">Computing and Plotting Wavelet Packet Transformations</a>
+     </li>
+     <li>
+      <a name="675691843"></a>
+      <a href="http://reference.wolfram.com/language/WaveletWare/tutorial/Computing and Plotting Wavelet Transformations.html">Computing and Plotting Wavelet Transformations</a>
+     </li>
+     <li>
+      <a name="829501916"></a>
+      <a href="../WaveletWare/tutorial/Data Structures in the WaveletWare Package.html">Data Structures in the WaveletWare Package</a>
+     </li>
+    </ul>
+   </div>
+  </div>
+ </div>
+ <div class="expandWrap"
+     id="RelatedGuides">
+  <div class="expandOuter">
+   <h2 class="expandInner"><a class="expand hide" title="show" href="#">Related Guides</a><a class="collapse" title="hide" href="#">Related Guides</a></h2>
+   <div class="expanded">
+    <ul class="functionList">
+     <li>
+      <a name="66875867"></a>
+      <a href="http://reference.wolfram.com/language/WaveletWare/guide/List of Functions - Alphabetical.html">List of Functions - Alphabetical</a>
+     </li>
+     <li>
+      <a name="823018817"></a>
+      <a href="http://reference.wolfram.com/language/WaveletWare/guide/List of Options and Values.html">List of Options and Values</a>
+     </li>
+     <li>
+      <a name="847129090"></a>
+      <a href="http://reference.wolfram.com/language/WaveletWare/guide/List of Functions - Categorical.html">List of Functions - Categorical</a>
+     </li>
+    </ul>
+   </div>
+  </div>
+ </div>
+</div>
+</div><!-- /wrapper -->
+
+	
+</div>
+
+
+</body>
+		 </html>

@@ -1,0 +1,3 @@
+<pre name='i_7_in' id='i_7_in' class='IFT'>h = Daub[4];
+H[w_] := FiniteFourier[w, h];
+Simplify[H[w]*H[-w] + H[w + Pi]*H[-w - Pi] ] == 2</pre><div class='IFU'><a name='183549986'></a>http://wolfram.com/xid/0bmr3yafg3z5yjy0n2ev1sy-dbkec0</div>

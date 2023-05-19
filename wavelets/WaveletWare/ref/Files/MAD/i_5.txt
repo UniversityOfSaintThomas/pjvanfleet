@@ -1,0 +1,2 @@
+<pre name='i_5_in' id='i_5_in' class='IFT'>img = ImageInfo[ImageForm -&gt; GrayScale];
+A = ImageRead[First[img]]; MAD[A]</pre><div class='IFU'><a name='292412355'></a>http://wolfram.com/xid/08s5uh4e1e3rdx359nj-e4do3p</div>

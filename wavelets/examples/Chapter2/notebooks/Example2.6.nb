@@ -1,0 +1,405 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     13749,        397]
+NotebookOptionsPosition[     11149,        331]
+NotebookOutlinePosition[     11493,        346]
+CellTagsIndexPosition[     11450,        343]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Example 2.6 (Solving Ax=b)", "Section",
+ CellChangeTimes->{{3.6747400799154887`*^9, 3.6747400868855157`*^9}, {
+  3.6747401192115917`*^9, 3.674740124362601*^9}, {3.674823639171709*^9, 
+  3.674823640303733*^9}, {3.6748236819375725`*^9, 3.674823684099594*^9}, {
+  3.6748241486687813`*^9, 3.6748241538079395`*^9}, {3.674833786805024*^9, 
+  3.674833793820221*^9}, {3.67483496960868*^9, 3.674834977961851*^9}, {
+  3.6748372283814373`*^9, 3.6748372383986397`*^9}, {3.6748385806297417`*^9, 
+  3.6748385857348447`*^9}},ExpressionUUID->"b8063b78-29f0-4749-9f21-\
+239336677e79"],
+
+Cell["Solve the systems of equations given in Example 2.6.", "Text",
+ CellChangeTimes->{{3.6747401116573763`*^9, 3.6747401462228427`*^9}, {
+  3.674823687935635*^9, 3.6748237135069*^9}, {3.674824162140191*^9, 
+  3.6748241660423098`*^9}, {3.6748338237688246`*^9, 3.6748338335560656`*^9}, {
+  3.6748350000142927`*^9, 3.674835001045314*^9}, {3.6748372456437855`*^9, 
+  3.6748372514349017`*^9}, {3.674838592312978*^9, 
+  3.674838602418185*^9}},ExpressionUUID->"5e09fbc0-2b3a-4bfe-bdca-\
+11edfc8579dc"],
+
+Cell[CellGroupData[{
+
+Cell["Reference.", "Subsubsection",
+ CellChangeTimes->{{3.6747631102003517`*^9, 
+  3.6747631125733557`*^9}},ExpressionUUID->"b030d6f0-dc33-476d-ad77-\
+3cbbaf6e911a"],
+
+Cell["\<\
+The material for this lab is covered in Section 2.2 of the book \
+\[OpenCurlyDoubleQuote]Discrete Wavelet Transformations: An Elementary \
+Approach with Applications, 2nd Edition,\[CloseCurlyDoubleQuote] by Patrick J \
+Van Fleet.\
+\>", "Text",
+ CellChangeTimes->{{3.674763119565366*^9, 3.6747631649004583`*^9}, {
+  3.674763293323564*^9, 3.674763311554607*^9}, {3.6997856290190563`*^9, 
+  3.699785638548086*^9}, {3.72692103296169*^9, 
+  3.726921034949597*^9}},ExpressionUUID->"ebc4b5a6-f04d-4932-b034-\
+b258baf0f84e"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["WaveletWare Commands Used in This Notebook", "Subsubsection",
+ CellChangeTimes->{{3.6747417571916847`*^9, 3.674741765831501*^9}, {
+  3.6747418595935683`*^9, 
+  3.6747419193671017`*^9}},ExpressionUUID->"c1bd58f2-360b-48f3-b805-\
+70995cf96bc5"],
+
+Cell["None.", "Text",
+ CellChangeTimes->{{3.6747419216613054`*^9, 3.6747419222229066`*^9}, {
+  3.6748347219042873`*^9, 3.674834723145313*^9}, {3.674834988453061*^9, 
+  3.6748349907731075`*^9}},ExpressionUUID->"f58a0034-bc74-4ccc-8159-\
+abd7a291f95a"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Solution.", "Subsubsection",
+ CellChangeTimes->{{3.6747401847284007`*^9, 
+  3.6747401899458103`*^9}},ExpressionUUID->"f6e5b2e3-1061-4390-b561-\
+07b40da6f566"],
+
+Cell[TextData[{
+ "First define ",
+ StyleBox["A",
+  FontWeight->"Bold"],
+ " and verify that it is a singular matrix. "
+}], "Text",
+ CellChangeTimes->{{3.6748350182846603`*^9, 3.674835026823832*^9}, {
+  3.674837263240139*^9, 3.6748372832855425`*^9}, {3.6748386135364265`*^9, 
+  3.6748386308267765`*^9}},ExpressionUUID->"741ab3f9-9cde-4367-a8c6-\
+f0ad20bf23db"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"A", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"1", ",", "1", ",", "1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"2", ",", "2", ",", "2"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"3", ",", "3", ",", "3"}], "}"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"MatrixForm", "[", "A", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Inverse", "[", "A", "]"}]}], "Input",
+ CellChangeTimes->{{3.674740213774307*^9, 3.6747402382289553`*^9}, {
+  3.6747413338552017`*^9, 3.674741342364217*^9}, {3.6747420276328416`*^9, 
+  3.6747420280550423`*^9}, {3.674823760720446*^9, 3.674823773168619*^9}, {
+  3.674824115899665*^9, 3.674824116286677*^9}, {3.6748243040946064`*^9, 
+  3.6748243181560526`*^9}, {3.67483399430357*^9, 3.674834096536193*^9}, {
+  3.674834706800985*^9, 3.6748347070609903`*^9}, {3.6748350336709843`*^9, 
+  3.674835105009269*^9}, {3.674835921427495*^9, 3.6748359216274986`*^9}, {
+  3.674837589450955*^9, 3.67483763858156*^9}, {3.6748381318588448`*^9, 
+  3.674838132002859*^9}, {3.674838633366827*^9, 3.6748386564663267`*^9}, {
+  3.6748394729506817`*^9, 
+  3.6748394730754833`*^9}},ExpressionUUID->"6a84435c-9424-4573-a8a5-\
+d61ed8aeb338"],
+
+Cell[TextData[{
+ "Mathematica has a couple of commands for solving linear systems.  Probably \
+the easier of the two is ",
+ StyleBox["LinearSolve",
+  FontWeight->"Bold"],
+ ".  It is used below for both systems of equations. "
+}], "Text",
+ CellChangeTimes->{{3.6748350182846603`*^9, 3.674835026823832*^9}, {
+  3.674835121593205*^9, 3.674835121653206*^9}, {3.6748376479292803`*^9, 
+  3.6748377263391867`*^9}, {3.67483866394351*^9, 3.674838670983651*^9}, {
+  3.674838706107358*^9, 
+  3.674838737586085*^9}},ExpressionUUID->"660364de-b6d7-4780-8249-\
+0ea1621298c4"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"b1", "=", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "0", ",", "0"}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"b2", "=", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "0", ",", "0"}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"LinearSolve", "[", 
+  RowBox[{"A", ",", "b1"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"LinearSolve", "[", 
+  RowBox[{"A", ",", "b2"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.6748386773607807`*^9, 3.6748386791948185`*^9}, {
+  3.6748387397751303`*^9, 3.674838754948434*^9}, {3.674839470961054*^9, 
+  3.6748394710858555`*^9}},ExpressionUUID->"87986343-cdf7-42ef-a08a-\
+ff2eab20c56c"],
+
+Cell[TextData[{
+ "In the case where the system has an infinite number of solutions, ",
+ StyleBox["LinearSolve",
+  FontWeight->"Bold"],
+ " returns only one solution.  The Mathematica command ",
+ StyleBox["Solve",
+  FontWeight->"Bold"],
+ " returns the general form of the solution in this case."
+}], "Text",
+ CellChangeTimes->{{3.67483883327454*^9, 3.674838874459846*^9}, {
+  3.7269203858324785`*^9, 
+  3.726920422134284*^9}},ExpressionUUID->"97bc3c28-792a-40e1-87cf-\
+51e310a3913f"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Clear", "[", 
+   RowBox[{"x1", ",", "x2", ",", "x3"}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"x", "=", 
+   RowBox[{"{", 
+    RowBox[{"x1", ",", "x2", ",", "x3"}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Solve", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"A", ".", "x"}], "\[Equal]", "b1"}], ",", "x"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.6748387687357616`*^9, 3.6748387704178085`*^9}, {
+  3.6748388827590237`*^9, 3.6748389076386194`*^9}, {3.674839469523835*^9, 
+  3.674839469664237*^9}},ExpressionUUID->"4550e7c6-17d2-4b23-b4c7-\
+865fb00012bd"],
+
+Cell[TextData[{
+ "The output above says that ",
+ StyleBox["x3",
+  FontWeight->"Bold"],
+ " should be the opposite of the sum of ",
+ StyleBox["x1",
+  FontWeight->"Bold"],
+ " and ",
+ StyleBox["x2",
+  FontWeight->"Bold"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.674838940792577*^9, 
+  3.674838962787039*^9}},ExpressionUUID->"5a630fd0-3bed-4f20-96b0-\
+0a44341d254b"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Things To Try.", "Subsubsection",
+ CellChangeTimes->{{3.674741317287572*^9, 3.674741319527376*^9}, {
+  3.6747419524260297`*^9, 
+  3.674741953872259*^9}},ExpressionUUID->"09d26632-d554-490a-814d-\
+ca5fe2cd7ad9"],
+
+Cell[TextData[{
+ "Solve is a very useful command in Mathematica.  Write code to solve the \
+system in two ways:  (1) Define ",
+ StyleBox["A",
+  FontWeight->"Bold"],
+ " and multiply ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox[
+    StyleBox["A",
+     FontWeight->"Bold",
+     FontSlant->"Plain"], 
+    RowBox[{"-", "1"}]], TraditionalForm]],ExpressionUUID->
+  "8858f972-c37f-4017-958e-67d8d5fd3b5c"],
+ " times ",
+ StyleBox["b",
+  FontWeight->"Bold"],
+ " and (2) define ",
+ StyleBox["A",
+  FontWeight->"Bold"],
+ ", ",
+ StyleBox["x",
+  FontWeight->"Bold"],
+ ", ",
+ StyleBox["b",
+  FontWeight->"Bold"],
+ " and use the ",
+ StyleBox["Solve",
+  FontWeight->"Bold"],
+ " command.\n\n  x + 2y - 3z =  0\n2x -   y  +  z =  2\n-x  + 5y - 2z =  2"
+}], "Text",
+ CellChangeTimes->{{3.6748383009437513`*^9, 3.6748383731709733`*^9}, {
+   3.6748389723562517`*^9, 3.674839064125486*^9}, {3.6748391007188053`*^9, 
+   3.6748392077448697`*^9}, {3.6748392857906094`*^9, 3.674839286530624*^9}, 
+   3.7269204366653347`*^9},ExpressionUUID->"46890943-d806-4609-a1e7-\
+76f802e51f69"],
+
+Cell[TextData[{
+ "Unfortunately, the ",
+ StyleBox["Solve",
+  FontWeight->"Bold"],
+ " command gives the solutions in an undesirable form.  Consider the example \
+below."
+}], "Text",
+ CellChangeTimes->{{3.674839231167453*^9, 
+  3.674839320322485*^9}},ExpressionUUID->"c88a74a6-956f-415e-b66a-\
+ec5e50c83df3"],
+
+Cell[BoxData[{
+ RowBox[{"Clear", "[", 
+  RowBox[{"x1", ",", "x2", ",", "x3"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"A", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"1", ",", "0", ",", "1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "2", ",", "1"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "1", ",", "1"}], "}"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"b", "=", 
+   RowBox[{"{", 
+    RowBox[{"4", ",", "7", ",", "6"}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"x", "=", 
+   RowBox[{"{", 
+    RowBox[{"x1", ",", "x2", ",", "x3"}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"s", "=", 
+  RowBox[{"Solve", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"A", ".", "x"}], "\[Equal]", "b"}], ",", "x"}], 
+   "]"}]}]}], "Input",
+ CellChangeTimes->{{3.674839325348586*^9, 3.674839367900217*^9}, {
+  3.6748394349100943`*^9, 
+  3.6748394654998617`*^9}},ExpressionUUID->"1c100b48-b231-4565-a19e-\
+e88388d8690a"],
+
+Cell[TextData[{
+ "Applying the command ",
+ StyleBox["First",
+  FontWeight->"Bold"],
+ " to ",
+ StyleBox["s",
+  FontWeight->"Bold"],
+ " removes one set of braces but the directive arrows are still in place.  "
+}], "Text",
+ CellChangeTimes->{{3.6748393719653006`*^9, 
+  3.6748394003624687`*^9}},ExpressionUUID->"8a7133d9-dc62-49f5-8797-\
+56804dfa3666"],
+
+Cell[BoxData[
+ RowBox[{"First", "[", "s", "]"}]], "Input",
+ CellChangeTimes->{{3.6748394025321007`*^9, 3.674839403437912*^9}, {
+  3.6748394574020653`*^9, 
+  3.6748394575580673`*^9}},ExpressionUUID->"fd1f2598-4912-422c-837b-\
+bfb7b18e6d22"],
+
+Cell[TextData[{
+ "The directive arrows can be removed via the ",
+ StyleBox["Values",
+  FontWeight->"Bold"],
+ " command."
+}], "Text",
+ CellChangeTimes->{{3.6748394068929586`*^9, 
+  3.6748394195385294`*^9}},ExpressionUUID->"493118fe-be0b-4335-87da-\
+a82f9962c015"],
+
+Cell[BoxData[
+ RowBox[{"Values", "[", 
+  RowBox[{"First", "[", "s", "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.6748394208957467`*^9, 
+  3.6748394562990503`*^9}},ExpressionUUID->"3db98b0e-247d-4044-900d-\
+b6adc9d85d77"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{759, 678},
+WindowMargins->{{366, Automatic}, {44, Automatic}},
+FrontEndVersion->"11.1 for Microsoft Windows (64-bit) (April 18, 2017)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 573, 8, 70, "Section", "ExpressionUUID" -> \
+"b8063b78-29f0-4749-9f21-239336677e79"],
+Cell[1156, 32, 496, 7, 30, "Text", "ExpressionUUID" -> \
+"5e09fbc0-2b3a-4bfe-bdca-11edfc8579dc"],
+Cell[CellGroupData[{
+Cell[1677, 43, 165, 3, 39, "Subsubsection", "ExpressionUUID" -> \
+"b030d6f0-dc33-476d-ad77-3cbbaf6e911a"],
+Cell[1845, 48, 526, 10, 49, "Text", "ExpressionUUID" -> \
+"ebc4b5a6-f04d-4932-b034-b258baf0f84e"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2408, 63, 248, 4, 39, "Subsubsection", "ExpressionUUID" -> \
+"c1bd58f2-360b-48f3-b805-70995cf96bc5"],
+Cell[2659, 69, 250, 4, 30, "Text", "ExpressionUUID" -> \
+"f58a0034-bc74-4ccc-8159-abd7a291f95a"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2946, 78, 164, 3, 39, "Subsubsection", "ExpressionUUID" -> \
+"f6e5b2e3-1061-4390-b561-07b40da6f566"],
+Cell[3113, 83, 358, 9, 30, "Text", "ExpressionUUID" -> \
+"741ab3f9-9cde-4367-a8c6-f0ad20bf23db"],
+Cell[3474, 94, 1220, 25, 69, "Input", "ExpressionUUID" -> \
+"6a84435c-9424-4573-a8a5-d61ed8aeb338"],
+Cell[4697, 121, 561, 12, 49, "Text", "ExpressionUUID" -> \
+"660364de-b6d7-4780-8249-0ea1621298c4"],
+Cell[5261, 135, 664, 16, 88, "Input", "ExpressionUUID" -> \
+"87986343-cdf7-42ef-a08a-ff2eab20c56c"],
+Cell[5928, 153, 481, 12, 49, "Text", "ExpressionUUID" -> \
+"97bc3c28-792a-40e1-87cf-51e310a3913f"],
+Cell[6412, 167, 616, 16, 69, "Input", "ExpressionUUID" -> \
+"4550e7c6-17d2-4b23-b4c7-865fb00012bd"],
+Cell[7031, 185, 360, 14, 30, "Text", "ExpressionUUID" -> \
+"5a630fd0-3bed-4f20-96b0-0a44341d254b"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7428, 204, 216, 4, 39, "Subsubsection", "ExpressionUUID" -> \
+"09d26632-d554-490a-814d-ca5fe2cd7ad9"],
+Cell[7647, 210, 1057, 35, 127, "Text", "ExpressionUUID" -> \
+"46890943-d806-4609-a1e7-76f802e51f69"],
+Cell[8707, 247, 306, 9, 49, "Text", "ExpressionUUID" -> \
+"c88a74a6-956f-415e-b66a-ec5e50c83df3"],
+Cell[9016, 258, 1022, 32, 107, "Input", "ExpressionUUID" -> \
+"1c100b48-b231-4565-a19e-e88388d8690a"],
+Cell[10041, 292, 349, 11, 49, "Text", "ExpressionUUID" -> \
+"8a7133d9-dc62-49f5-8797-56804dfa3666"],
+Cell[10393, 305, 239, 5, 30, "Input", "ExpressionUUID" -> \
+"fd1f2598-4912-422c-837b-bfb7b18e6d22"],
+Cell[10635, 312, 262, 8, 30, "Text", "ExpressionUUID" -> \
+"493118fe-be0b-4335-87da-a82f9962c015"],
+Cell[10900, 322, 221, 5, 30, "Input", "ExpressionUUID" -> \
+"3db98b0e-247d-4044-900d-b6adc9d85d77"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

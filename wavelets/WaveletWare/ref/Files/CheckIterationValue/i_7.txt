@@ -1,0 +1,2 @@
+<pre name='i_7_in' id='i_7_in' class='IFT'>CheckIterationValue[{1, 1, 1}, 1, WaveletTree[1, InputDimension -&gt; 2],
+  2]</pre><div class='IFU'><a name='330629089'></a>http://wolfram.com/xid/0cew39zuhikyj6xda0g9e2n8q-fq4tbn</div>

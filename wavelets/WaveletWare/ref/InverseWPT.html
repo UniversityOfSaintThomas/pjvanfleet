@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>InverseWPT&mdash;Wolfram Language Documentation</title>
+<meta name="buildnumber" content="0000000" />
+<meta name="historydata" content="{XX, , , }" />
+<meta name="keywords" content="InverseWPT" />
+
+<meta name="description" content="InverseWPT[{wt, tree}, h, opts] computes the inverse wavelet packet transform of a vector, a matrix or a list of three matrices." />
+<script language="JavaScript" type="text/javascript">baselang='InverseWPT';</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		 <link rel="stylesheet" type="text/css" href="../css/reference.css" />
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/core/1.6.1/jquery.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/plugins/hoverIntent/r5/jquery.hoverIntent.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/reference.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/documentation-search.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/inputs.js"></script>
+		 <script language="javaScript" type="text/javascript" src="../javascript/faster-page-load.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery/plugins/jcarousel/tinycarousel/tinycarousel.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/jquery.dotdotdot-1.5.1.js"></script>
+		 <script language="javascript" type="text/javascript" src="../javascript/carousel.js"></script>
+<script language="JavaScript" type="text/javascript" src="../javascript/toggle-highlight.js"></script>
+</head>
+<body id="ref" class="function">
+<a name="top"></a>
+<!--#include virtual="/common/includes/gl-header.html"--> 
+<div class="main-wrapper">
+
+
+<div class="wrapper mainOuter">
+    <div class="mainContent">
+ <div class="topContentWrap">
+  <div class="ribbonWrap">
+   <span class="ribbonOuter"><span class="ribbonInner">WAVELET WARE PACKAGE SYMBOL</span></span>
+  </div>
+  <ul class="dropdown">
+   <li>
+    <a href="#">Tutorials</a>
+    <ul class="sub_menu">
+     <li>
+      <a href="/language/WaveletWare/tutorial/Computing and Plotting Wavelet Packet Transforms.html"><span class="dropdownPad">Computing and Plotting Wavelet Packet Transformations</span></a>
+     </li>
+    </ul>
+   </li>
+   <li>
+    <a href="#">See Also</a>
+    <ul class="sub_menu">
+     <li>
+      <a href="/language/WaveletWare/ref/WPT.html"><span class="dropdownPad">WPT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/InverseFBIPacketTransform.html"><span class="dropdownPad">InverseFBIPacketTransform</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/InverseHWT.html"><span class="dropdownPad">InverseHWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/InverseWT.html"><span class="dropdownPad">InverseWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/InverseBWT.html"><span class="dropdownPad">InverseBWT</span></a>
+     </li>
+     <li>
+      <a href="/language/WaveletWare/ref/InverseLWT.html"><span class="dropdownPad">InverseLWT</span></a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+  <div class="clear"><!-- --></div>
+ </div>
+ <h1>InverseWPT</h1>
+ <div class="functionIntroWrap">
+  <div class="functionIntro">
+   <p><span class="IF"><img src="Files/InverseWPT/1.png" height="18" width="162" alt="" /></span><br />computes the inverse wavelet packet transform of a vector, a matrix or a list of three matrices.</p>
+  </div>
+ </div>
+ <div class="expandWrap closed"
+     id="DetailsAndOptions">
+  <div class="expandOuter">
+   <h2 class="expandInner"><a class="expand hide" title="show" href="#">Details</a><a class="collapse" title="hide" href="#">Details</a></h2>
+   <div class="expanded">
+    <ul class="functionList">
+     <li>The following options can be given: </li>
+     <li class="NotesTable">
+      <table>
+       <col width="1%" />
+       <col width="28%" />
+       <col width="28%" />
+       <col width="43%" />
+       <tr class="lineAbove" style=""><td /><td><a href="http://reference.wolfram.com/language/WaveletWare/ref/Shift.html">Shift</a></td><td>0</td><td><span class="TT"><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/Shift.html">Shift</a></span> is an option for discrete wavelet transform functions to indicate if the lowpass/highpass filters should be shifted for the computation.</span></td></tr>
+       <tr class="" style=""><td /><td><a href="http://reference.wolfram.com/language/WaveletWare/ref/Boundary.html">Boundary</a></td><td><a href="http://reference.wolfram.com/language/ref/False.html">False</a></td><td><span class="TT"><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/Boundary.html">Boundary</a></span> is an option for several routines that either compute or use the biorthogonal wavelet transform.  If set to <a href="http://reference.wolfram.com/language/ref/True.html">True</a><span class="specialcharacters"><span class="comma">,</span> the symmetric biorthogonal transformation is computed.</span></span></td></tr>
+       <tr class="" style=""><td /><td><a href="http://reference.wolfram.com/language/WaveletWare/ref/IntegerMap.html">IntegerMap</a></td><td><a href="http://reference.wolfram.com/language/ref/False.html">False</a></td><td><span class="TT"><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/IntegerMap.html">IntegerMap</a></span> is an option used by LeGall wavelet transform functions.  If set to <a href="http://reference.wolfram.com/language/ref/True.html">True</a><span class="specialcharacters"> <span class="openparenthesis">(</span>default is </span><a href="http://reference.wolfram.com/language/ref/False.html">False</a><span class="specialcharacters"><span class="closeparenthesis">)</span> and the input are integers<span class="comma">,</span> then the output is integer-valued.</span></span></td></tr>
+       <tr class="" style=""><td /><td><a href="http://reference.wolfram.com/language/WaveletWare/ref/Computation.html">Computation</a></td><td><a href="http://reference.wolfram.com/language/WaveletWare/ref/Numerical.html">Numerical</a></td><td><span class="TT"><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/Computation.html">Computation</a></span> is an option for wavelet transform functions or the <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/CE.html">CE</a></span> function that indicates whether the comptuation should be done numerically or symbolically.</span></td></tr>
+      </table>
+     </li>
+     <li><a name="11560846"></a><span class="IF"><span class="TI">wt</span></span> should be a vector, a matrix or a list of three matrices of equal dimensions.</li>
+     <li><a name="87665540"></a><span class="IF"><span class="TI">tree</span></span> should be a wavelet packet tree if <span class="IF"><span class="TI">wt</span></span> is a vector or matrix.  If <span class="IF"><span class="TI">wt</span></span> is a list of three matrices of equal dimensions, then <span class="IF"><span class="TI">tree</span></span> can be either a single wavelet packet tree (this assumes <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/CompositeTree.html">CompositeTree</a></span> has been set to <a href="http://reference.wolfram.com/language/ref/True.html">True</a> when using <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/WPT.html">WPT</a></span> to compute <span class="IF"><span class="TI">wt</span></span>) or a list of three wavelet packet trees each of the same length.</li>
+     <li><a name="166469121"></a><span class="IF"><span class="TI">h</span></span> is the filter or filter pair used to create the packet transform.</li>
+     <li><a name="41615061"></a>The inverse wavelet packet transform is computed using information from the tree and the appropriate routine (either <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/InverseHWT.html">InverseHWT</a></span>, <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/InverseWT.html">InverseWT</a></span>, <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/InverseBWT.html">InverseBWT</a></span> or <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/InverseLWT.html">InverseLWT</a></span>).  </li>
+     <li><a name="77682824"></a>The options <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/NumIterations.html">NumIterations</a></span>, <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/Shift.html">Shift</a></span>, <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/Boundary.html">Boundary</a></span>, <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/IntegerMap.html">IntegerMap</a></span> and <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/Computation.html">Computation</a></span> are options for the inverse (bi)orthogonal wavelet transforms <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/InverseHWT.html">InverseHWT</a></span>, <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/InverseWT.html">InverseWT</a></span>, <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/InverseBWT.html">InverseBWT</a></span> and <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/InverseLWT.html">InverseLWT</a></span>.  See these help pages for more information.</li>
+    </ul>
+   </div>
+  </div>
+ </div>
+ <div class="expandWrap"
+     id="Examples">
+  <div class="expandOuter">
+   <h2 class="expandInner"><a class="expand hide" title="show" href="#">Examples</a><a class="collapse" title="hide" href="#">Examples</a><a class="all opener" title="open all" href="#"><span>open all</span></a><a class="all closer hide" title="close all" href="#"><span>close all</span></a></h2>
+   <div class="expanded">
+    <div class="expandSubWrap">
+     <div class="expandSubOuter">
+      <h3 class="expandSubInner"><a class="expand hide" href="#" title="show">Basic Examples<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(3)</span></a><a class="collapse" href="#" title="hide">Basic Examples<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(3)</span></a></h3>
+      <div class="expanded">
+       <div class="MCap"><a name="16454449"></a>This loads the package:</div>
+       <table class="InCell">
+        <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+           <a name="861618089"></a>
+           <img src="Files/InverseWPT/I_2.gif"
+               height="15"
+               width="93"
+               alt="Click for copyable input" />
+          </div><div id="i_1_out" class="IFL"></div></td></tr>
+       </table>
+       <p><a name="828956494"></a>Compute the wavelet packet transform of a vector and its inverse.</p>
+       <div class="IO">
+        <table class="InCell">
+         <tr><td class="lab">In[2]:=</td><td class="Input"><div>
+            <a name="491548464"></a>
+            <img src="Files/InverseWPT/I_4.gif"
+                height="288"
+                width="464"
+                alt="Click for copyable input" />
+           </div><div id="i_3_out" class="IFL"></div></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[2]=</td><td class="Output"><img src="Files/InverseWPT/O_1.gif" height="163" width="240" alt="" /></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[2]=</td><td class="Output"><img src="Files/InverseWPT/O_2.gif" height="142" width="240" alt="" /></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[2]=</td><td class="Output"><img src="Files/InverseWPT/O_3.gif" height="125" width="240" alt="" /></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[2]=</td><td class="Output"><img src="Files/InverseWPT/O_4.gif" height="163" width="240" alt="" /></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[2]=</td><td class="Output"><img src="Files/InverseWPT/O_5.gif" height="15" width="76" alt="" /></td></tr>
+        </table>
+       </div>
+       <div class="ExLine"><a name="27426434"></a><!-- --></div>
+       <p><a name="23013647"></a>Compute the wavelet packet transform of an image and its inverse.</p>
+       <div class="IO">
+        <table class="InCell">
+         <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+            <a name="1067595365"></a>
+            <img src="Files/InverseWPT/I_6.gif"
+                height="237"
+                width="389"
+                alt="Click for copyable input" />
+           </div><div id="i_5_out" class="IFL"></div></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/InverseWPT/O_6.gif" height="256" width="384" alt="" /></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/InverseWPT/O_7.gif" height="256" width="384" alt="" /></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/InverseWPT/O_8.gif" height="98" width="384" alt="" /></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/InverseWPT/O_9.gif" height="256" width="384" alt="" /></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/InverseWPT/O_10.gif" height="15" width="77" alt="" /></td></tr>
+        </table>
+       </div>
+       <div class="ExLine"><a name="446294371"></a><!-- --></div>
+       <p><a name="129089191"></a>Compute the wavelet packet transform of a color image and its inverse.</p>
+       <div class="IO">
+        <table class="InCell">
+         <tr><td class="lab">In[1]:=</td><td class="Input"><div>
+            <a name="563207510"></a>
+            <img src="Files/InverseWPT/I_8.gif"
+                height="288"
+                width="400"
+                alt="Click for copyable input" />
+           </div><div id="i_7_out" class="IFL"></div></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/InverseWPT/O_11.gif" height="128" width="192" alt="" /></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/InverseWPT/O_12.gif" height="269" width="408" alt="" /></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/InverseWPT/O_13.gif" height="106" width="410" alt="" /></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/InverseWPT/O_14.gif" height="66" width="324" alt="" /></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/InverseWPT/O_15.gif" height="128" width="192" alt="" /></td></tr>
+        </table>
+        <table class="OCell">
+         <tr><td class="lab">Out[1]=</td><td class="Output"><img src="Files/InverseWPT/O_16.gif" height="15" width="71" alt="" /></td></tr>
+        </table>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="expandSubWrap closed">
+     <div class="expandSubOuter">
+      <h3 class="expandSubInner"><a class="expand hide" href="#" title="show">Options<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(4)</span></a><a class="collapse" href="#" title="hide">Options<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span>(4)</span></a></h3>
+      <div class="expanded"></div>
+     </div>
+    </div>
+    <div class="toplink">
+     <a href="#top">Top</a>
+    </div>
+    <div class="clear"><!-- --></div>
+   </div>
+  </div>
+ </div>
+ <div class="expandWrap"
+     id="SeeAlso">
+  <div class="expandOuter">
+   <h2 class="expandInner"><a class="expand hide" title="show" href="#">See Also</a><a class="collapse" title="hide" href="#">See Also</a></h2>
+   <div class="expanded">
+    <p class="inlineFunctionList"><span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/WPT.html">WPT</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/InverseFBIPacketTransform.html">InverseFBIPacketTransform</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/InverseHWT.html">InverseHWT</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/InverseWT.html">InverseWT</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/InverseBWT.html">InverseBWT</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"><img src="../images/mathematicaImages/bullet.gif" style="vertical-align:middle;" width="4" height="4" alt="bullet" title="bullet" /></span> <span class="IF"><a href="http://reference.wolfram.com/language/WaveletWare/ref/InverseLWT.html">InverseLWT</a></span></p>
+   </div>
+  </div>
+ </div>
+ <div class="expandWrap"
+     id="Tutorials">
+  <div class="expandOuter">
+   <h2 class="expandInner"><a class="expand hide" title="show" href="#">Tutorials</a><a class="collapse" title="hide" href="#">Tutorials</a></h2>
+   <div class="expanded">
+    <ul class="functionList">
+     <li>
+      <a name="235614913"></a>
+      <a href="http://reference.wolfram.com/language/WaveletWare/tutorial/Computing and Plotting Wavelet Packet Transforms.html">Computing and Plotting Wavelet Packet Transformations</a>
+     </li>
+    </ul>
+   </div>
+  </div>
+ </div>
+ <div class="expandWrap"
+     id="RelatedLinks">
+  <div class="expandOuter">
+   <h2 class="expandInner"><a class="expand hide" title="show" href="#">Related Links</a><a class="collapse" title="hide" href="#">Related Links</a></h2>
+   <div class="expanded">
+    <ul class="functionList">
+     <li><a name="904739901"></a>The inverse wavelet packet transform is described in Chapter 9 of the book  <a href="http://www.wiley.com/WileyCDA/WileyTitle/productCd-0470388404.html">Wavelet Theory: An Elementary Approach with Applications</a>, David Ruch and Patrick Van Fleet, Wiley, 2009.</li>
+    </ul>
+   </div>
+  </div>
+ </div>
+</div>
+</div><!-- /wrapper -->
+
+	
+</div>
+
+
+</body>
+		 </html>
